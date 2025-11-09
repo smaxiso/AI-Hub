@@ -324,32 +324,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
         </Box>
       </DialogTitle>
 
-      <DialogContent sx={{ position: 'relative', zIndex: 1, px: { xs: 2, sm: 3 }, pb: { xs: 10, sm: 3 } }}>
-        {/* Mobile: Visit Tool Button at top */}
-        {isMobile && (
-          <Button
-            variant="contained"
-            fullWidth
-            href={tool.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            endIcon={<OpenInNewIcon />}
-            sx={{
-              background: `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}cc 100%)`,
-              color: 'white',
-              py: 1.5,
-              mb: 2,
-              borderRadius: '12px',
-              fontWeight: 600,
-              textTransform: 'none',
-              fontSize: '1rem',
-              minHeight: 48
-            }}
-          >
-            Visit Tool
-          </Button>
-        )}
-        
+      <DialogContent sx={{ position: 'relative', zIndex: 1, px: { xs: 2, sm: 3 }, pb: { xs: 2, sm: 3 } }}>
         {/* Description Section */}
         {tool.description && (
           <Paper
@@ -506,10 +481,10 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
           <Grid container spacing={2}>
             {tool.addedDate && (
               <Grid item xs={6} sm={4}>
-                <Typography variant="caption" sx={{ color: '#718096', fontWeight: 600, display: 'block', mb: 0.5 }}>
+                <Typography variant="caption" sx={{ color: isDarkMode ? '#A0AEC0' : '#4A5568', fontWeight: 600, display: 'block', mb: 0.5 }}>
                   Added Date
                 </Typography>
-                <Typography variant="body2" sx={{ fontWeight: 500, color: 'text.primary' }}>
+                <Typography variant="body2" sx={{ fontWeight: 500, color: isDarkMode ? '#E2E8F0' : '#1A202C' }}>
                   {new Date(tool.addedDate).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -519,19 +494,19 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
               </Grid>
             )}
             <Grid item xs={6} sm={4}>
-              <Typography variant="caption" sx={{ color: isDarkMode ? '#A0AEC0' : '#718096', fontWeight: 600, display: 'block', mb: 0.5 }}>
+              <Typography variant="caption" sx={{ color: isDarkMode ? '#A0AEC0' : '#4A5568', fontWeight: 600, display: 'block', mb: 0.5 }}>
                 Category
               </Typography>
-              <Typography variant="body2" sx={{ fontWeight: 500, color: isDarkMode ? '#E2E8F0' : '#2D3748' }}>
+              <Typography variant="body2" sx={{ fontWeight: 500, color: isDarkMode ? '#E2E8F0' : '#1A202C' }}>
                 {tool.category}
               </Typography>
             </Grid>
             {tool.pricing && (
               <Grid item xs={6} sm={4}>
-                <Typography variant="caption" sx={{ color: '#718096', fontWeight: 600, display: 'block', mb: 0.5 }}>
+                <Typography variant="caption" sx={{ color: isDarkMode ? '#A0AEC0' : '#4A5568', fontWeight: 600, display: 'block', mb: 0.5 }}>
                   Pricing Model
                 </Typography>
-                <Typography variant="body2" sx={{ fontWeight: 500, color: 'text.primary' }}>
+                <Typography variant="body2" sx={{ fontWeight: 500, color: isDarkMode ? '#E2E8F0' : '#1A202C' }}>
                   {tool.pricing}
                 </Typography>
               </Grid>
@@ -710,39 +685,68 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
 
       <DialogActions
         sx={{
-          px: 3,
-          pb: 3,
+          px: { xs: 2, sm: 3 },
+          pb: { xs: 2, sm: 3 },
           pt: 2,
-          position: 'relative',
-          zIndex: 1
+          position: isMobile ? 'sticky' : 'relative',
+          bottom: 0,
+          background: isMobile ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+          backdropFilter: isMobile ? 'blur(20px)' : 'none',
+          WebkitBackdropFilter: isMobile ? 'blur(20px)' : 'none',
+          borderTop: isMobile ? '1px solid rgba(255, 255, 255, 0.3)' : 'none',
+          zIndex: 10
         }}
       >
-        <Button
-          variant="outlined"
-          onClick={onClose}
-          sx={{
-            borderColor: 'rgba(255, 255, 255, 0.4)',
-            borderWidth: '2px',
-            color: 'text.primary',
-            px: 3,
-            py: 1.5,
-            borderRadius: '12px',
-            fontWeight: 600,
-            textTransform: 'none',
-            background: 'rgba(255, 255, 255, 0.15)',
-            backdropFilter: 'blur(10px)',
-            '&:hover': {
-              borderColor: 'rgba(255, 255, 255, 0.6)',
+        {isMobile ? (
+          <Button
+            variant="contained"
+            fullWidth
+            href={tool.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            endIcon={<OpenInNewIcon />}
+            sx={{
+              background: `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}cc 100%)`,
+              color: 'white',
+              py: 1.5,
+              borderRadius: '12px',
+              fontWeight: 600,
+              textTransform: 'none',
+              fontSize: '1rem',
+              minHeight: 48,
+              boxShadow: `0 4px 20px ${categoryColor}40`
+            }}
+          >
+            Visit Tool
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            onClick={onClose}
+            sx={{
+              borderColor: 'rgba(255, 255, 255, 0.4)',
               borderWidth: '2px',
-              background: 'rgba(255, 255, 255, 0.25)',
-              transform: 'translateY(-2px)',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
-            },
-            transition: 'all 0.2s ease'
-          }}
-        >
-          Close
-        </Button>
+              color: 'text.primary',
+              px: 3,
+              py: 1.5,
+              borderRadius: '12px',
+              fontWeight: 600,
+              textTransform: 'none',
+              background: 'rgba(255, 255, 255, 0.15)',
+              backdropFilter: 'blur(10px)',
+              '&:hover': {
+                borderColor: 'rgba(255, 255, 255, 0.6)',
+                borderWidth: '2px',
+                background: 'rgba(255, 255, 255, 0.25)',
+                transform: 'translateY(-2px)',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+              },
+              transition: 'all 0.2s ease'
+            }}
+          >
+            Close
+          </Button>
+        )}
       </DialogActions>
 
       {/* Add shine animation */}

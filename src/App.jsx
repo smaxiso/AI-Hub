@@ -38,6 +38,7 @@ function App() {
   const [activeTab, setActiveTab] = useState(0);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [collectionFilter, setCollectionFilter] = useState(null);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
 
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
   const { recentlyViewed, addToRecent } = useRecentlyViewed();
@@ -45,6 +46,35 @@ function App() {
   
   // Create theme based on dark mode
   const theme = useMemo(() => createAppTheme(darkMode), [darkMode]);
+
+  // Auto-scroll to AI tools section after 3 seconds if no user interaction
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!hasUserInteracted && activeTab === 0) {
+        const toolsSection = document.getElementById('all-ai-tools-section');
+        if (toolsSection) {
+          toolsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [hasUserInteracted, activeTab]);
+
+  // Track user interactions
+  useEffect(() => {
+    const handleInteraction = () => setHasUserInteracted(true);
+    
+    window.addEventListener('scroll', handleInteraction, { once: true });
+    window.addEventListener('click', handleInteraction, { once: true });
+    window.addEventListener('touchstart', handleInteraction, { once: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+    };
+  }, []);
 
   // Get all unique tags from tools
   const allTags = useMemo(() => {
@@ -377,7 +407,7 @@ function App() {
 
         {/* Main Results Section Header */}
         {activeTab === 0 && (
-          <Box sx={{ mb: 3 }}>
+          <Box id="all-ai-tools-section" sx={{ mb: 3 }}>
             <Typography 
               variant="h5" 
               sx={{ 

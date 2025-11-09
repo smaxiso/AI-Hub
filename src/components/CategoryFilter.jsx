@@ -1,18 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Chip } from '@mui/material';
+import { Box, Chip, useMediaQuery, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import { categoryColors } from '../data/tools.js';
 
 const CategoryFilter = ({ categories, selected, onChange }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <Box
       sx={{
         display: 'flex',
-        flexWrap: 'wrap',
+        flexWrap: isMobile ? 'nowrap' : 'wrap',
         gap: 1.5,
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: isMobile ? 'flex-start' : 'center',
+        alignItems: 'center',
+        overflowX: isMobile ? 'auto' : 'visible',
+        overflowY: 'hidden',
+        pb: isMobile ? 1 : 0,
+        '&::-webkit-scrollbar': {
+          height: '6px'
+        },
+        '&::-webkit-scrollbar-track': {
+          background: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: '3px'
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: 'rgba(255, 255, 255, 0.3)',
+          borderRadius: '3px',
+          '&:hover': {
+            background: 'rgba(255, 255, 255, 0.5)'
+          }
+        }
       }}
     >
       {categories.map((category, index) => {
@@ -43,6 +63,7 @@ const CategoryFilter = ({ categories, selected, onChange }) => {
                 }
               }}
               sx={{
+                flexShrink: 0,
                 background: isSelected
                   ? `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}ee 100%)`
                   : 'rgba(255, 255, 255, 0.3)',

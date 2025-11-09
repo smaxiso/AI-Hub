@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, FormControl, InputLabel, Select, MenuItem, Chip, Stack, Typography } from '@mui/material';
+import { Box, FormControl, InputLabel, Select, MenuItem, Chip, Stack, Typography, IconButton, Collapse, useMediaQuery, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 const AdvancedFilters = ({ 
   pricingFilter, 
@@ -12,6 +15,10 @@ const AdvancedFilters = ({
   onTagToggle,
   availableTags
 }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -20,11 +27,8 @@ const AdvancedFilters = ({
     >
       <Box
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 2,
           mb: 3,
-          p: 2,
+          p: { xs: 1.5, sm: 2 },
           background: 'rgba(255, 255, 255, 0.35)',
           backdropFilter: 'blur(20px)',
           borderRadius: '16px',
@@ -32,6 +36,59 @@ const AdvancedFilters = ({
           boxShadow: '0 8px 32px rgba(107, 182, 255, 0.15)'
         }}
       >
+        {/* Header with expand/collapse */}
+        {isMobile && (
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              mb: isExpanded ? 2 : 0,
+              cursor: 'pointer'
+            }}
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <FilterListIcon sx={{ color: '#6BB6FF', fontSize: '1.25rem' }} />
+              <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>
+                Filters & Sorting
+              </Typography>
+              {!isExpanded && (pricingFilter !== 'All' || sortBy !== 'name' || selectedTags.length > 0) && (
+                <Chip
+                  label="Active"
+                  size="small"
+                  sx={{
+                    height: '20px',
+                    fontSize: '0.7rem',
+                    background: '#6BB6FF',
+                    color: 'white',
+                    fontWeight: 700
+                  }}
+                />
+              )}
+            </Box>
+            <IconButton
+              size="small"
+              sx={{
+                color: '#6BB6FF',
+                transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.3s ease'
+              }}
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </Box>
+        )}
+
+        {/* Filters content */}
+        <Collapse in={!isMobile || isExpanded} timeout={300}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 2
+            }}
+          >
         <FormControl size="small" sx={{ minWidth: 150 }}>
           <InputLabel id="pricing-filter-label">Pricing</InputLabel>
           <Select
@@ -139,6 +196,8 @@ const AdvancedFilters = ({
             </Stack>
           </Box>
         )}
+          </Box>
+        </Collapse>
       </Box>
     </motion.div>
   );
