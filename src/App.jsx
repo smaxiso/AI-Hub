@@ -166,6 +166,16 @@ function App() {
     addToRecent(tool.id);
   }, [addToRecent]);
 
+  // Handle modal close - properly manage history
+  const handleModalClose = useCallback(() => {
+    setModalOpen(false);
+    setSelectedTool(null);
+    // Remove the history entry if it exists
+    if (window.history.state?.modalOpen) {
+      window.history.back();
+    }
+  }, []);
+
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -186,13 +196,36 @@ function App() {
       }
       // Close modal on Escape
       if (e.key === 'Escape' && modalOpen) {
-        setModalOpen(false);
+        handleModalClose();
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [modalOpen, showShortcuts, toggleDarkMode]);
+  }, [modalOpen, showShortcuts, toggleDarkMode, handleModalClose]);
+
+  // Handle browser back button to close modal on mobile
+  useEffect(() => {
+    if (!modalOpen) return;
+
+    // Push a state when modal opens
+    window.history.pushState({ modalOpen: true }, '');
+
+    const handlePopState = (event) => {
+      if (modalOpen) {
+        setModalOpen(false);
+        setSelectedTool(null);
+        // Prevent adding another history entry
+        event.preventDefault();
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [modalOpen]);
 
   // Handle URL params for tool sharing
   useEffect(() => {
@@ -645,7 +678,7 @@ function App() {
         <ToolDetailModal
           tool={selectedTool}
           open={modalOpen}
-          onClose={() => setModalOpen(false)}
+          onClose={handleModalClose}
           onFavorite={() => selectedTool && toggleFavorite(selectedTool.id)}
           isFavorite={selectedTool ? isFavorite(selectedTool.id) : false}
           onToolClick={(tool) => {
