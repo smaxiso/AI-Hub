@@ -21,7 +21,7 @@ const rawTools = [
     name: 'DeepSeek',
     url: 'https://chat.deepseek.com/',
     category: 'Chat',
-    icon: 'https://logo.clearbit.com/deepseek.com',
+    icon: 'https://chat.deepseek.com/favicon.ico',
     description: 'Advanced AI assistant focused on deep reasoning, coding, and complex problem-solving tasks with enhanced mathematical capabilities.'
   },
   {
@@ -71,7 +71,7 @@ const rawTools = [
     name: 'Stable Diffusion',
     url: 'https://stablediffusionweb.com/#demo',
     category: 'Image',
-    icon: 'https://logo.clearbit.com/stability.ai',
+    icon: 'https://stablediffusionweb.com/favicon.ico',
     description: 'Open-source AI image generation model that creates high-quality images from text prompts with fine-grained control.'
   },
   {
@@ -113,7 +113,7 @@ const rawTools = [
     name: 'Adobe Enhance Speech',
     url: 'https://podcast.adobe.com/enhance',
     category: 'Audio',
-    icon: 'https://logo.clearbit.com/adobe.com',
+    icon: 'https://www.adobe.com/favicon.ico',
     description: 'AI-powered tool that automatically removes background noise and enhances speech quality in audio recordings for podcasts and videos.'
   },
   
@@ -144,11 +144,9 @@ const rawTools = [
     name: 'AgentGPT',
     url: 'https://agentgpt.reworkd.ai/',
     category: 'Chat',
-    icon: 'https://logo.clearbit.com/reworkd.ai',
-    name: 'Prompt Engineering',
-    url: 'https://www.promptengineering.org/',
-    category: 'Other',
-      },
+    icon: 'https://agentgpt.reworkd.ai/favicon.ico',
+    description: 'Autonomous AI agents that can accomplish complex goals by breaking them down into smaller tasks and executing them independently.'
+  },
   {
     id: 'wisdolia',
     name: 'Wisdolia',
@@ -305,7 +303,7 @@ const rawTools = [
     name: 'Adobe Firefly',
     url: 'https://firefly.adobe.com/',
     category: 'Image',
-    icon: 'https://logo.clearbit.com/adobe.com',
+    icon: 'https://www.adobe.com/favicon.ico',
     description: 'Adobe\'s creative AI platform for generating images, text effects, and design elements, integrated with Adobe Creative Cloud.',
     tags: ['image-generation', 'adobe', 'design', 'creative'],
     pricing: 'Freemium',
