@@ -21,7 +21,7 @@ const rawTools = [
     name: 'DeepSeek',
     url: 'https://chat.deepseek.com/',
     category: 'Chat',
-    icon: 'https://chat.deepseek.com/favicon.ico',
+    icon: 'https://images.seeklogo.com/logo-png/61/2/deepseek-ai-icon-logo-png_seeklogo-611473.png',
     description: 'Advanced AI assistant focused on deep reasoning, coding, and complex problem-solving tasks with enhanced mathematical capabilities.'
   },
   {
@@ -29,7 +29,7 @@ const rawTools = [
     name: 'Gemini',
     url: 'https://gemini.google.com/',
     category: 'Chat',
-    icon: 'https://gemini.google.com/favicon.ico',
+    icon: 'https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/gemini-color.png',
     description: 'Google\'s advanced AI chatbot powered by Gemini, offering multimodal capabilities for conversations, analysis, and creative tasks.'
   },
   {
@@ -37,7 +37,7 @@ const rawTools = [
     name: 'You.com',
     url: 'https://you.com/?chatMode=default',
     category: 'Chat',
-    icon: 'https://logo.clearbit.com/you.com',
+    icon: 'https://home.you.com/hs-fs/hubfs/Blog%20Posts/You_Com_Font.gif?width=900&height=506&name=You_Com_Font.gif',
     description: 'AI-powered search engine and chatbot that provides real-time web results and conversational answers to your queries.'
   },
   {
@@ -61,7 +61,7 @@ const rawTools = [
     name: 'Microsoft Copilot',
     url: 'https://copilot.microsoft.com/',
     category: 'Chat',
-    icon: 'https://logo.clearbit.com/microsoft.com',
+    icon: 'https://store-images.s-microsoft.com/image/apps.21661.9007199267161390.afb6b8cd-d194-4a99-b633-03cd80118a21.e9a094be-ee73-4e19-8cdf-49a27b0974ed',
     description: 'Microsoft\'s AI assistant integrated with Bing, providing intelligent answers, creative content, and web search capabilities.'
   },
   
@@ -79,7 +79,7 @@ const rawTools = [
     name: 'Bing Image Creator',
     url: 'https://www.bing.com/create',
     category: 'Image',
-    icon: 'https://logo.clearbit.com/bing.com',
+    icon: 'https://st1.techlusive.in/wp-content/uploads/2023/05/Bing.jpg',
     description: 'Microsoft\'s AI image generator powered by DALL-E, creating images from text descriptions with creative freedom.'
   },
   {
@@ -192,7 +192,7 @@ const rawTools = [
     name: 'Ask Your PDF',
     url: 'https://askyourpdf.com/',
     category: 'Other',
-    icon: 'https://logo.clearbit.com/askyourpdf.com',
+    icon: 'https://logo.clearbit.com/gamma.app',
     name: 'Gamma',
     url: 'https://gamma.app/docs/Untitled-pb9o4ohy1eg3fdu?mode=doc',
     category: 'Other',
@@ -281,7 +281,7 @@ const rawTools = [
     name: 'Cursor',
     url: 'https://cursor.sh/',
     category: 'Other',
-    icon: 'https://logo.clearbit.com/cursor.sh',
+    icon: 'https://logo.clearbit.com/cursor.com',
     description: 'AI-powered code editor built for pair programming with AI, offering intelligent code completion, refactoring, and generation.',
     tags: ['coding', 'development', 'ide', 'programming'],
     pricing: 'Freemium',
