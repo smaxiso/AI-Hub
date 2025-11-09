@@ -198,6 +198,8 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
               <img
                 src={tool.icon}
                 alt={tool.name}
+                loading="lazy"
+                decoding="async"
                 style={{
                   width: '48px',
                   height: '48px',
