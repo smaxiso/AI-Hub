@@ -731,25 +731,27 @@ function App() {
           </Box>
         )}
 
-        {/* Keyboard Shortcuts Button */}
-        <Fab
-          size="small"
-          onClick={() => setShowShortcuts(!showShortcuts)}
-          sx={{
-            position: 'fixed',
-            bottom: 24,
-            left: 24,
-            background: 'rgba(255, 255, 255, 0.25)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255, 255, 255, 0.18)',
-            color: 'text.secondary',
-            '&:hover': {
-              background: 'rgba(255, 255, 255, 0.35)'
-            }
-          }}
-        >
-          <KeyboardIcon />
-        </Fab>
+        {/* Keyboard Shortcuts Button - Hidden on Mobile */}
+        {!isMobile && (
+          <Fab
+            size="small"
+            onClick={() => setShowShortcuts(!showShortcuts)}
+            sx={{
+              position: 'fixed',
+              bottom: 24,
+              left: 24,
+              background: 'rgba(255, 255, 255, 0.25)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.18)',
+              color: 'text.secondary',
+              '&:hover': {
+                background: 'rgba(255, 255, 255, 0.35)'
+              }
+            }}
+          >
+            <KeyboardIcon />
+          </Fab>
+        )}
       </Container>
     </Box>
     </ThemeProvider>
