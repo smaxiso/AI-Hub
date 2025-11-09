@@ -29,7 +29,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [pricingFilter, setPricingFilter] = useState('All');
-  const [sortBy, setSortBy] = useState('most-visited');
+  const [sortBy, setSortBy] = useState('popular');
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedTool, setSelectedTool] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
