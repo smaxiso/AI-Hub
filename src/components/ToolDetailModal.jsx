@@ -34,7 +34,7 @@ import { findSimilarTools, findAlternatives } from '../utils/toolSimilarity.js';
 import ShareButton from './ShareButton';
 import ToolCard from './ToolCard';
 
-const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolClick }) => {
+const ToolDetailModal = ({ tool = null, open, onClose, onFavorite, isFavorite, onToolClick = undefined }) => {
   if (!tool) return null;
 
   const theme = useTheme();
@@ -783,11 +783,6 @@ ToolDetailModal.propTypes = {
   onFavorite: PropTypes.func.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   onToolClick: PropTypes.func,
-};
-
-ToolDetailModal.defaultProps = {
-  tool: null,
-  onToolClick: undefined,
 };
 
 export default ToolDetailModal;

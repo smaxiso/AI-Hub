@@ -10,7 +10,7 @@ import ToolCard from './ToolCard';
 import { useFavorites } from '../hooks/useFavorites';
 import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
 
-const RecentlyViewed = ({ allTools, onToolClick }) => {
+const RecentlyViewed = ({ allTools, onToolClick = undefined }) => {
   const { recentlyViewed, clearRecent } = useRecentlyViewed();
   const { isFavorite, toggleFavorite } = useFavorites();
   const theme = useTheme();
@@ -157,10 +157,6 @@ RecentlyViewed.propTypes = {
     })
   ).isRequired,
   onToolClick: PropTypes.func,
-};
-
-RecentlyViewed.defaultProps = {
-  onToolClick: undefined,
 };
 
 export default React.memo(RecentlyViewed);

@@ -13,7 +13,7 @@ const AdvancedFilters = ({
   onSortChange,
   selectedTags,
   onTagToggle,
-  availableTags
+  availableTags = []
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -211,10 +211,6 @@ AdvancedFilters.propTypes = {
   selectedTags: PropTypes.arrayOf(PropTypes.string).isRequired,
   onTagToggle: PropTypes.func.isRequired,
   availableTags: PropTypes.arrayOf(PropTypes.string),
-};
-
-AdvancedFilters.defaultProps = {
-  availableTags: [],
 };
 
 export default React.memo(AdvancedFilters);

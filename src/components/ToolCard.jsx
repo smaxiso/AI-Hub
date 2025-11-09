@@ -9,7 +9,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareButton from './ShareButton';
 import { trackToolClick } from '../utils/analytics';
 
-const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
+const ToolCard = ({ tool, onFavorite = undefined, isFavorite = false, onClick = undefined }) => {
   const categoryColor = categoryColors[tool.category] || categoryColors.Other;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -380,12 +380,6 @@ ToolCard.propTypes = {
   onFavorite: PropTypes.func,
   isFavorite: PropTypes.bool,
   onClick: PropTypes.func,
-};
-
-ToolCard.defaultProps = {
-  onFavorite: undefined,
-  isFavorite: false,
-  onClick: undefined,
 };
 
 // Memoize component to prevent unnecessary re-renders
