@@ -215,7 +215,7 @@ const rawTools = [
     name: 'DALL-E',
     url: 'https://openai.com/dall-e-3',
     category: 'Image',
-    icon: 'https://logo.clearbit.com/openai.com',
+    icon: 'https://openai.com/favicon.ico',
     description: 'OpenAI\'s advanced image generation model that creates realistic and artistic images from natural language descriptions with high accuracy.',
     tags: ['image-generation', 'openai', 'art', 'creative'],
     pricing: 'Paid',
