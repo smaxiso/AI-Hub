@@ -131,7 +131,11 @@ const rawTools = [
     name: 'D-ID Create Video',
     url: 'https://studio.d-id.com/editor',
     category: 'Video',
-    icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACQUlEQVQ4jY2Tv2+NYRTHP+c8z/ve61Z19aP1I6VVKtqIwUJiYpIQk8FixmQQw10a1CiIf0CESEwGEgtJB5GQEIQ21ZpINJS67+37nGPoS278iu90cnLO98l5vt8v/Bvyo/DOuon+NlBBAets+NiWEaw9T7JQIPbm+eTM8E3aDiLgCjSAroqsczkHhmY/teKdF1/LI7emPtTy1tzW0Y0bi7NbDwm4g1DPwnQ906la1Kd54GAHQX8tyj3gkIq8zoNOxSB39/bV+v388KVybGA/gLr7Olu0U8B9Vb0AhIrgY8LHGxk9eZRgyY7mKmvuzxYnmZs9kywe9ub6ugLtNkwUpV1xI1bnBGB1QC4mtAH+oYQHZbLrXXkYkHOf5lR9krhsREVEa9CVZSwXQYECSEApTrBkiEsEVFWXAeXS73pCxaO7ewGeLYLn0gJGs8CAJ966SlsRdccBQ/FkOIBK6PsyX0ypiEgNhIyAeTsE1gV0d4Ae3EuSiQgCCIYEXZK+TXrU6K4fVXe3AlqLi3xGvDslbreSHSvglQgNC5rcPQFuZt/KtKT05JOX1zTqngjECP2o7qqs45Whopuouomr1mv4oKjsC6rTRUps2j54AOxdRFiIUW+4s2BmTaBdyZgQX7DEvCprifrQzGdW1NL4l9NoGeMGkj8G6AXWVo7sRARWVv0+YM3VHWQ/LT4+fNnPbd72axZkKTd/ho8NrSpjPBHdPwO9tJ4dl45A/WnxB+HPGT8/uBrNd/J1YUKak+//9th/4zsQEPjq2M3cXwAAAABJRU5ErkJggg=='
+    icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACQUlEQVQ4jY2Tv2+NYRTHP+c8z/ve61Z19aP1I6VVKtqIwUJiYpIQk8FixmQQw10a1CiIf0CESEwGEgtJB5GQEIQ21ZpINJS67+37nGPoS278iu90cnLO98l5vt8v/Bvyo/DOuon+NlBBAets+NiWEaw9T7JQIPbm+eTM8E3aDiLgCjSAroqsczkHhmY/teKdF1/LI7emPtTy1tzW0Y0bi7NbDwm4g1DPwnQ906la1Kd54GAHQX8tyj3gkIq8zoNOxSB39/bV+v388KVybGA/gLr7Olu0U8B9Vb0AhIrgY8LHGxk9eZRgyY7mKmvuzxYnmZs9kywe9ub6ugLtNkwUpV1xI1bnBGB1QC4mtAH+oYQHZbLrXXkYkHOf5lR9krhsREVEa9CVZSwXQYECSEApTrBkiEsEVFWXAeXS73pCxaO7ewGeLYLn0gJGs8CAJ966SlsRdccBQ/FkOIBK6PsyX0ypiEgNhIyAeTsE1gV0d4Ae3EuSiQgCCIYEXZK+TXrU6K4fVXe3AlqLi3xGvDslbreSHSvglQgNC5rcPQFuZt/KtKT05JOX1zTqngjECP2o7qqs45Whopuouomr1mv4oKjsC6rTRUps2j54AOxdRFiIUW+4s2BmTaBdyZgQX7DEvCprifrQzGdW1NL4l9NoGeMGkj8G6AXWVo7sRARWVv0+YM3VHWQ/LT4+fNnPbd72axZkKTd/ho8NrSpjPBHdPwO9tJ4dl45A/WnxB+HPGT8/uBrNd/J1YUKak+//9th/4zsQEPjq2M3cXwAAAABJRU5ErkJggg==',
+    description: 'Create AI-powered talking avatar videos from text, turning photos into realistic speaking presenters for training, marketing, and content creation.',
+    tags: ['video-generation', 'avatars', 'presentations', 'talking-head'],
+    pricing: 'Freemium',
+    useCases: ['Training Videos', 'Marketing', 'Presentations', 'Content Creation']
   },
   
   // Other Tools
@@ -226,105 +230,165 @@ const rawTools = [
     name: 'Midjourney',
     url: 'https://www.midjourney.com/',
     category: 'Image',
-    icon: null
+    icon: null,
+    description: 'Leading AI art generator creating stunning, highly-detailed images from text descriptions through Discord, popular among artists and designers.',
+    tags: ['art', 'image-generation', 'discord', 'creative'],
+    pricing: 'Paid',
+    useCases: ['Digital Art', 'Concept Art', 'Illustrations', 'Creative Design']
   },
   {
     id: 'dalle',
     name: 'DALL-E',
     url: 'https://openai.com/dall-e-3',
     category: 'Image',
-    icon: null
+    icon: null,
+    description: 'OpenAI\'s advanced image generation model that creates realistic and artistic images from natural language descriptions with high accuracy.',
+    tags: ['image-generation', 'openai', 'art', 'creative'],
+    pricing: 'Paid',
+    useCases: ['Image Generation', 'Creative Content', 'Marketing Assets', 'Concept Visualization']
   },
   {
     id: 'elevenlabs',
     name: 'ElevenLabs',
     url: 'https://elevenlabs.io/',
     category: 'Audio',
-    icon: null
+    icon: null,
+    description: 'State-of-the-art AI voice synthesis platform with realistic text-to-speech, voice cloning, and multilingual support for content creators.',
+    tags: ['voice-synthesis', 'text-to-speech', 'voice-cloning', 'audio'],
+    pricing: 'Freemium',
+    useCases: ['Voice Over', 'Audiobooks', 'Podcasts', 'Video Narration']
   },
   {
     id: 'suno',
     name: 'Suno',
     url: 'https://www.suno.ai/',
     category: 'Audio',
-    icon: null
+    icon: null,
+    description: 'AI music generation platform that creates complete songs with vocals and instrumentals from text prompts, revolutionizing music creation.',
+    tags: ['music-generation', 'songwriting', 'ai-music', 'audio'],
+    pricing: 'Freemium',
+    useCases: ['Music Creation', 'Songwriting', 'Background Music', 'Audio Production']
   },
   {
     id: 'pika-labs',
     name: 'Pika Labs',
     url: 'https://pika.art/',
     category: 'Video',
-    icon: null
+    icon: null,
+    description: 'AI video generation platform that creates and edits videos from text prompts, enabling easy video creation and manipulation.',
+    tags: ['video-generation', 'video-editing', 'ai-video', 'creative'],
+    pricing: 'Freemium',
+    useCases: ['Video Creation', 'Video Editing', 'Social Media Content', 'Creative Projects']
   },
   {
     id: 'synthesia',
     name: 'Synthesia',
     url: 'https://www.synthesia.io/',
     category: 'Video',
-    icon: null
+    icon: null,
+    description: 'Professional AI video creation platform with realistic avatars and voices, perfect for training videos, presentations, and marketing content.',
+    tags: ['video-generation', 'avatars', 'presentations', 'training'],
+    pricing: 'Paid',
+    useCases: ['Training Videos', 'Corporate Communications', 'Marketing', 'Presentations']
   },
   {
     id: 'notion-ai',
     name: 'Notion AI',
     url: 'https://www.notion.so/product/ai',
     category: 'Chat',
-    icon: null
+    icon: null,
+    description: 'AI writing assistant integrated into Notion workspace, helping with brainstorming, content creation, summarization, and task automation.',
+    tags: ['writing', 'productivity', 'workspace', 'note-taking'],
+    pricing: 'Paid',
+    useCases: ['Writing', 'Note Taking', 'Task Management', 'Content Creation']
   },
   {
     id: 'cursor',
     name: 'Cursor',
     url: 'https://cursor.sh/',
     category: 'Other',
-    icon: null
+    icon: null,
+    description: 'AI-powered code editor built for pair programming with AI, offering intelligent code completion, refactoring, and generation.',
+    tags: ['coding', 'development', 'ide', 'programming'],
+    pricing: 'Freemium',
+    useCases: ['Code Development', 'Programming', 'Software Engineering', 'Code Review']
   },
   {
     id: 'github-copilot',
     name: 'GitHub Copilot',
     url: 'https://github.com/copilot',
     category: 'Other',
-    icon: null
+    icon: null,
+    description: 'AI pair programmer by GitHub and OpenAI that suggests code completions, entire functions, and helps developers code faster.',
+    tags: ['coding', 'development', 'github', 'programming'],
+    pricing: 'Paid',
+    useCases: ['Code Completion', 'Programming', 'Software Development', 'Code Suggestions']
   },
   {
     id: 'adobe-firefly',
     name: 'Adobe Firefly',
     url: 'https://firefly.adobe.com/',
     category: 'Image',
-    icon: null
+    icon: null,
+    description: 'Adobe\'s creative AI platform for generating images, text effects, and design elements, integrated with Adobe Creative Cloud.',
+    tags: ['image-generation', 'adobe', 'design', 'creative'],
+    pricing: 'Freemium',
+    useCases: ['Graphic Design', 'Marketing Materials', 'Creative Content', 'Digital Art']
   },
   {
     id: 'jasper',
     name: 'Jasper',
     url: 'https://www.jasper.ai/',
     category: 'Other',
-    icon: null
+    icon: null,
+    description: 'AI content creation platform specializing in marketing copy, blog posts, social media content, and business communications.',
+    tags: ['writing', 'marketing', 'content-creation', 'copywriting'],
+    pricing: 'Paid',
+    useCases: ['Marketing Copy', 'Blog Writing', 'Social Media', 'Content Marketing']
   },
   {
     id: 'copy-ai',
     name: 'Copy.ai',
     url: 'https://www.copy.ai/',
     category: 'Other',
-    icon: null
+    icon: null,
+    description: 'AI-powered copywriting tool that generates marketing content, product descriptions, social posts, and creative copy in seconds.',
+    tags: ['copywriting', 'marketing', 'content-creation', 'writing'],
+    pricing: 'Freemium',
+    useCases: ['Copywriting', 'Marketing Content', 'Product Descriptions', 'Social Media']
   },
   {
     id: 'poe',
     name: 'Poe',
     url: 'https://poe.com/',
     category: 'Chat',
-    icon: null
+    icon: null,
+    description: 'Quora\'s AI platform providing access to multiple AI chatbots including GPT-4, Claude, and custom bots in one interface.',
+    tags: ['chatbot', 'multi-model', 'conversation', 'ai-access'],
+    pricing: 'Freemium',
+    useCases: ['Multi-Model Chat', 'AI Comparison', 'Conversations', 'Custom Bots']
   },
   {
     id: 'character-ai',
     name: 'Character.AI',
     url: 'https://character.ai/',
     category: 'Chat',
-    icon: null
+    icon: null,
+    description: 'Conversational AI platform for chatting with AI characters, including historical figures, fictional characters, and custom personalities.',
+    tags: ['chatbot', 'roleplay', 'conversation', 'entertainment'],
+    pricing: 'Freemium',
+    useCases: ['Entertainment', 'Roleplay', 'Learning', 'Creative Writing']
   },
   {
     id: 'hugging-face',
     name: 'Hugging Face',
     url: 'https://huggingface.co/',
     category: 'Other',
-    icon: null
+    icon: null,
+    description: 'Leading AI community platform hosting thousands of pre-trained models, datasets, and tools for machine learning and NLP tasks.',
+    tags: ['ml-platform', 'models', 'datasets', 'development'],
+    pricing: 'Freemium',
+    useCases: ['Model Hosting', 'ML Development', 'Research', 'AI Deployment']
   }
 ];
 
