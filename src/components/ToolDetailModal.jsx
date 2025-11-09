@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Dialog,
   DialogTitle,
@@ -49,6 +50,8 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
       onClose={onClose}
       maxWidth="md"
       fullWidth
+      aria-labelledby="tool-detail-title"
+      aria-describedby="tool-detail-description"
       PaperProps={{
         sx: {
           background: 'rgba(255, 255, 255, 0.15)',
@@ -91,7 +94,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
         }}
       />
 
-      <DialogTitle sx={{ pb: 2, position: 'relative', zIndex: 1 }}>
+      <DialogTitle id="tool-detail-title" sx={{ pb: 2, position: 'relative', zIndex: 1 }}>
         <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 2 }}>
           <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, flex: 1 }}>
             {/* Icon with animated border */}
@@ -319,6 +322,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
             }}
           >
             <Typography
+              id="tool-detail-description"
               variant="body1"
               sx={{
                 color: 'text.primary',
@@ -711,6 +715,32 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
       `}</style>
     </Dialog>
   );
+};
+
+ToolDetailModal.propTypes = {
+  tool: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    pricing: PropTypes.string,
+    useCases: PropTypes.arrayOf(PropTypes.string),
+    addedDate: PropTypes.string,
+    isNew: PropTypes.bool,
+    icon: PropTypes.string,
+  }),
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onFavorite: PropTypes.func.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  onToolClick: PropTypes.func,
+};
+
+ToolDetailModal.defaultProps = {
+  tool: null,
+  onToolClick: undefined,
 };
 
 export default ToolDetailModal;

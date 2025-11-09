@@ -12,14 +12,18 @@ import DarkModeToggle from './components/DarkModeToggle';
 import TrendingSection from './components/TrendingSection';
 import RecentlyViewed from './components/RecentlyViewed';
 import Collections from './components/Collections';
+import EmptyState from './components/EmptyState';
 import { aiTools } from './data/tools.js';
 import { useFavorites } from './hooks/useFavorites';
 import { useRecentlyViewed } from './hooks/useRecentlyViewed';
 import { useDarkMode } from './hooks/useDarkMode';
 import { getTrendingTools, getMostVisitedTools } from './utils/analytics';
-import useToolSearch from './hooks/useToolSearch';
-import EmptyState from './components/EmptyState';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
+import SearchOffIcon from '@mui/icons-material/SearchOff';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import NewReleasesIcon from '@mui/icons-material/NewReleases';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -278,7 +282,7 @@ function App() {
                   fontSize: { xs: '1rem', md: '1.25rem' }
                 }}
               >
-                Discover, compare, and master AI tools - Your complete learning hub
+                Discover, compare, and master AI tools - Your complete AI learning hub
               </Typography>
             </Box>
             <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
@@ -387,14 +391,11 @@ function App() {
                   ))}
                 </Grid>
               ) : (
-                <Box sx={{ textAlign: 'center', py: 8 }}>
-                  <Typography variant="h5" sx={{ mb: 2, color: darkMode ? '#A0AEC0' : 'text.secondary' }}>
-                    No tools found
-                  </Typography>
-                  <Typography variant="body1" sx={{ color: darkMode ? '#A0AEC0' : 'text.secondary' }}>
-                    Try adjusting your search or filter criteria
-                  </Typography>
-                </Box>
+                <EmptyState
+                  icon={<SearchOffIcon sx={{ fontSize: 64, color: darkMode ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
+                  title="No tools found"
+                  description="Try adjusting your search or filter criteria to find what you're looking for."
+                />
               )}
             </motion.div>
           )}
@@ -428,14 +429,11 @@ function App() {
                     ))}
                   </Grid>
                 ) : (
-                  <Box sx={{ textAlign: 'center', py: 8 }}>
-                    <Typography variant="h5" sx={{ mb: 2, color: darkMode ? '#A0AEC0' : 'text.secondary' }}>
-                      No visits yet
-                    </Typography>
-                    <Typography variant="body1" sx={{ color: darkMode ? '#A0AEC0' : 'text.secondary' }}>
-                      Start exploring tools to see your most visited here
-                    </Typography>
-                  </Box>
+                  <EmptyState
+                    icon={<VisibilityOffIcon sx={{ fontSize: 64, color: darkMode ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
+                    title="No visits yet"
+                    description="Start exploring tools to see your most visited here. Click on any tool to begin tracking your usage."
+                  />
                 );
               })()}
             </motion.div>
@@ -479,11 +477,11 @@ function App() {
                   ))}
                 </Grid>
               ) : (
-                <Box sx={{ textAlign: 'center', py: 8 }}>
-                  <Typography variant="body1" sx={{ color: darkMode ? '#A0AEC0' : 'text.secondary' }}>
-                    No new tools this month
-                  </Typography>
-                </Box>
+                <EmptyState
+                  icon={<NewReleasesIcon sx={{ fontSize: 64, color: darkMode ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
+                  title="No new tools this month"
+                  description="Check back soon for the latest AI tools. We're constantly adding new and exciting tools to the collection."
+                />
               )}
             </motion.div>
           )}
@@ -517,14 +515,13 @@ function App() {
                     ))}
                 </Grid>
               ) : (
-                <Box sx={{ textAlign: 'center', py: 8 }}>
-                  <Typography variant="h5" sx={{ mb: 2, color: darkMode ? '#A0AEC0' : 'text.secondary' }}>
-                    No favorites yet
-                  </Typography>
-                  <Typography variant="body1" sx={{ color: darkMode ? '#A0AEC0' : 'text.secondary' }}>
-                    Click the heart icon on any tool to add it to favorites
-                  </Typography>
-                </Box>
+                <EmptyState
+                  icon={<FavoriteBorderIcon sx={{ fontSize: 64, color: darkMode ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
+                  title="No favorites yet"
+                  description="Click the heart icon on any tool to add it to your favorites. Build your personalized collection of AI tools."
+                  actionLabel="Explore Tools"
+                  onAction={() => setActiveTab(0)}
+                />
               )}
             </motion.div>
           )}

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Chip } from '@mui/material';
 import { motion } from 'framer-motion';
 import { categoryColors } from '../data/tools.js';
@@ -32,6 +33,15 @@ const CategoryFilter = ({ categories, selected, onChange }) => {
             <Chip
               label={category}
               onClick={() => onChange(category)}
+              aria-label={`Filter by ${category} category`}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onChange(category);
+                }
+              }}
               sx={{
                 background: isSelected
                   ? `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}ee 100%)`
@@ -70,5 +80,11 @@ const CategoryFilter = ({ categories, selected, onChange }) => {
   );
 };
 
-export default CategoryFilter;
+CategoryFilter.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selected: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+export default React.memo(CategoryFilter);
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Typography, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import ToolCard from './ToolCard';
@@ -51,5 +52,21 @@ const TrendingSection = ({ tools, onToolClick }) => {
   );
 };
 
-export default TrendingSection;
+TrendingSection.propTypes = {
+  tools: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onToolClick: PropTypes.func,
+};
+
+TrendingSection.defaultProps = {
+  onToolClick: undefined,
+};
+
+export default React.memo(TrendingSection);
 

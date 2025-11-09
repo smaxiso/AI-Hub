@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, FormControl, InputLabel, Select, MenuItem, Chip, Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 
@@ -32,10 +33,12 @@ const AdvancedFilters = ({
         }}
       >
         <FormControl size="small" sx={{ minWidth: 150 }}>
-          <InputLabel>Pricing</InputLabel>
+          <InputLabel id="pricing-filter-label">Pricing</InputLabel>
           <Select
             value={pricingFilter}
             label="Pricing"
+            labelId="pricing-filter-label"
+            aria-label="Filter by pricing model"
             onChange={(e) => onPricingChange(e.target.value)}
             sx={{
               background: 'rgba(255, 255, 255, 0.3)',
@@ -59,10 +62,12 @@ const AdvancedFilters = ({
         </FormControl>
 
         <FormControl size="small" sx={{ minWidth: 150 }}>
-          <InputLabel>Sort By</InputLabel>
+          <InputLabel id="sort-by-label">Sort By</InputLabel>
           <Select
             value={sortBy}
             label="Sort By"
+            labelId="sort-by-label"
+            aria-label="Sort tools"
             onChange={(e) => onSortChange(e.target.value)}
             sx={{
               background: 'rgba(255, 255, 255, 0.3)',
@@ -97,6 +102,15 @@ const AdvancedFilters = ({
                   label={tag}
                   size="small"
                   onClick={() => onTagToggle(tag)}
+                  aria-label={`${selectedTags.includes(tag) ? 'Remove' : 'Add'} ${tag} tag filter`}
+                  role="button"
+                  tabIndex={0}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      onTagToggle(tag);
+                    }
+                  }}
                   sx={{
                     background: selectedTags.includes(tag)
                       ? 'linear-gradient(135deg, rgba(107, 182, 255, 0.4) 0%, rgba(107, 182, 255, 0.25) 100%)'
@@ -130,5 +144,19 @@ const AdvancedFilters = ({
   );
 };
 
-export default AdvancedFilters;
+AdvancedFilters.propTypes = {
+  pricingFilter: PropTypes.string.isRequired,
+  onPricingChange: PropTypes.func.isRequired,
+  sortBy: PropTypes.string.isRequired,
+  onSortChange: PropTypes.func.isRequired,
+  selectedTags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onTagToggle: PropTypes.func.isRequired,
+  availableTags: PropTypes.arrayOf(PropTypes.string),
+};
+
+AdvancedFilters.defaultProps = {
+  availableTags: [],
+};
+
+export default React.memo(AdvancedFilters);
 

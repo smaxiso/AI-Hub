@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Typography, Grid, IconButton } from '@mui/material';
 import { motion } from 'framer-motion';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -23,6 +24,7 @@ const RecentlyViewed = ({ allTools, onToolClick }) => {
         <IconButton
           onClick={clearRecent}
           size="small"
+          aria-label="Clear recently viewed tools"
           sx={{
             color: 'text.secondary',
             '&:hover': {
@@ -55,5 +57,19 @@ const RecentlyViewed = ({ allTools, onToolClick }) => {
   );
 };
 
-export default RecentlyViewed;
+RecentlyViewed.propTypes = {
+  allTools: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onToolClick: PropTypes.func,
+};
+
+RecentlyViewed.defaultProps = {
+  onToolClick: undefined,
+};
+
+export default React.memo(RecentlyViewed);
 

@@ -53,7 +53,7 @@ The built files will be in the `dist` directory.
 ## Project Structure
 
 ```
-ai-gallery/
+theaihubx/
 ├── src/
 │   ├── components/
 │   │   ├── ToolCard.jsx      # Glassmorphism card component

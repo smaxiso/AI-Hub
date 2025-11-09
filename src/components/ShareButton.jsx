@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { IconButton, Tooltip, Menu, MenuItem, Snackbar, Alert } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -54,6 +55,7 @@ const ShareButton = ({ tool }) => {
         <IconButton
           onClick={handleClick}
           size="small"
+          aria-label={`Share ${tool.name}`}
           sx={{
             color: '#718096',
             background: 'rgba(255, 255, 255, 0.25)',
@@ -123,5 +125,13 @@ const ShareButton = ({ tool }) => {
   );
 };
 
-export default ShareButton;
+ShareButton.propTypes = {
+  tool: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default React.memo(ShareButton);
 
