@@ -129,6 +129,10 @@ const ToolDetailModal = ({ tool = null, open, onClose, onFavorite, isFavorite, o
                   <img
                     src={tool.icon}
                     alt={tool.name}
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling.style.display = 'flex';
+                    }}
                     style={{
                       width: isMobile ? '42px' : '60px',
                       height: isMobile ? '42px' : '60px',
@@ -136,16 +140,19 @@ const ToolDetailModal = ({ tool = null, open, onClose, onFavorite, isFavorite, o
                       objectFit: 'cover'
                     }}
                   />
-                ) : (
+                ) : null}
+                {/* Fallback */}
+                {(!tool.icon || tool.icon) && (
                   <Typography
                     variant="h4"
                     sx={{
                       color: categoryColor,
                       fontWeight: 700,
-                      fontSize: { xs: '1.5rem', sm: '2rem' }
+                      fontSize: { xs: '1.5rem', sm: '2rem' },
+                      display: tool.icon ? 'none' : 'block'
                     }}
                   >
-                    {tool.name.charAt(0)}
+                    {tool.name.charAt(0).toUpperCase()}
                   </Typography>
                 )}
                 {/* Shine effect */}

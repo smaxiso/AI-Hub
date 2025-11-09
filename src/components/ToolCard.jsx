@@ -212,6 +212,10 @@ const ToolCard = ({ tool, onFavorite = undefined, isFavorite = false, onClick = 
                 alt={tool.name}
                 loading="lazy"
                 decoding="async"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling.style.display = 'flex';
+                }}
                 style={{
                   width: '42px',
                   height: '42px',
@@ -219,14 +223,16 @@ const ToolCard = ({ tool, onFavorite = undefined, isFavorite = false, onClick = 
                   objectFit: 'cover'
                 }}
               />
-            ) : (
+            ) : null}
+            {/* Fallback for missing/failed icons */}
+            {(!tool.icon || tool.icon) && (
               <Box
                 sx={{
                   width: '42px',
                   height: '42px',
                   borderRadius: '8px',
                   background: `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}dd 100%)`,
-                  display: 'flex',
+                  display: tool.icon ? 'none' : 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
                 }}
@@ -239,7 +245,7 @@ const ToolCard = ({ tool, onFavorite = undefined, isFavorite = false, onClick = 
                     fontSize: '1.25rem'
                   }}
                 >
-                  {tool.name.charAt(0)}
+                  {tool.name.charAt(0).toUpperCase()}
                 </Typography>
               </Box>
             )}
