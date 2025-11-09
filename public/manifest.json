@@ -1,0 +1,36 @@
+{
+  "name": "AI Gallery - Discover Amazing AI Tools",
+  "short_name": "AI Gallery",
+  "description": "A beautiful gallery of AI tools with glassmorphism design",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E8F4F8",
+  "theme_color": "#B8E0F2",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities", "education"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Favorites",
+      "short_name": "Favorites",
+      "description": "View your favorite AI tools",
+      "url": "/?tab=favorites",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
+
