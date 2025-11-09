@@ -7,6 +7,7 @@ import { categoryColors } from '../data/tools.js';
 const CategoryFilter = ({ categories, selected, onChange }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isDarkMode = theme.palette.mode === 'dark';
 
   return (
     <Box
@@ -66,13 +67,21 @@ const CategoryFilter = ({ categories, selected, onChange }) => {
                 flexShrink: 0,
                 background: isSelected
                   ? `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}ee 100%)`
-                  : 'rgba(255, 255, 255, 0.3)',
+                  : isDarkMode 
+                    ? 'rgba(255, 255, 255, 0.1)'
+                    : 'rgba(255, 255, 255, 0.3)',
                 backdropFilter: 'blur(20px)',
                 WebkitBackdropFilter: 'blur(20px)',
                 border: isSelected
                   ? `2px solid ${categoryColor}`
-                  : '1.5px solid rgba(255, 255, 255, 0.3)',
-                color: isSelected ? 'white' : '#718096',
+                  : isDarkMode
+                    ? '1.5px solid rgba(255, 255, 255, 0.2)'
+                    : '1.5px solid rgba(255, 255, 255, 0.3)',
+                color: isSelected 
+                  ? 'white' 
+                  : isDarkMode 
+                    ? '#A0AEC0' 
+                    : '#718096',
                 fontWeight: isSelected ? 700 : 600,
                 fontSize: { xs: '0.8rem', sm: '0.875rem' },
                 px: 1.5,
@@ -90,7 +99,11 @@ const CategoryFilter = ({ categories, selected, onChange }) => {
                   border: `2px solid ${categoryColor}`,
                   boxShadow: `0 6px 24px ${categoryColor}60`,
                   transform: 'translateY(-2px)',
-                  color: isSelected ? 'white' : categoryColor
+                  color: isSelected 
+                    ? 'white' 
+                    : isDarkMode 
+                      ? '#E2E8F0' 
+                      : categoryColor
                 }
               }}
             />
