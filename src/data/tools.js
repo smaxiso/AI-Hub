@@ -248,7 +248,7 @@ const rawTools = [
     name: 'Pika Labs',
     url: 'https://pika.art/',
     category: 'Video',
-    icon: 'https://logo.clearbit.com/pika.art',
+    icon: 'https://pika.art/favicon.ico',
     description: 'AI video generation platform that creates and edits videos from text prompts, enabling easy video creation and manipulation.',
     tags: ['video-generation', 'video-editing', 'ai-video', 'creative'],
     pricing: 'Freemium',
