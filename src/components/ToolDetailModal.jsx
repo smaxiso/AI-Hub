@@ -35,16 +35,16 @@ import ShareButton from './ShareButton';
 import ToolCard from './ToolCard';
 
 const ToolDetailModal = ({ tool = null, open, onClose, onFavorite, isFavorite, onToolClick = undefined }) => {
-  if (!tool) return null;
-
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const categoryColor = categoryColors[tool.category] || categoryColors.Other;
+  const categoryColor = tool ? (categoryColors[tool.category] || categoryColors.Other) : '#B8E0F2';
   
   // Find similar tools and alternatives
-  const similarTools = findSimilarTools(tool, aiTools, 4);
-  const alternativeTools = findAlternatives(tool, aiTools, 4);
+  const similarTools = tool ? findSimilarTools(tool, aiTools, 4) : [];
+  const alternativeTools = tool ? findAlternatives(tool, aiTools, 4) : [];
+
+  if (!tool) return null;
 
   return (
     <Dialog
@@ -55,6 +55,9 @@ const ToolDetailModal = ({ tool = null, open, onClose, onFavorite, isFavorite, o
       fullScreen={isMobile}
       aria-labelledby="tool-detail-title"
       aria-describedby="tool-detail-description"
+      disablePortal={false}
+      keepMounted={false}
+      disableScrollLock={false}
       PaperProps={{
         sx: {
           background: 'rgba(255, 255, 255, 0.15)',
