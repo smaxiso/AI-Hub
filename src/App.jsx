@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import { Box, Container, Typography, Grid, Fab, Tabs, Tab, ThemeProvider, CssBaseline } from '@mui/material';
+import { Box, Container, Typography, Grid, Fab, Tabs, Tab, ThemeProvider, CssBaseline, Chip } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createAppTheme } from './theme';
 import ToolCard from './components/ToolCard';
