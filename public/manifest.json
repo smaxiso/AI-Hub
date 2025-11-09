@@ -1,7 +1,7 @@
 {
-  "name": "AI Gallery - Discover Amazing AI Tools",
-  "short_name": "AI Gallery",
-  "description": "A beautiful gallery of AI tools with glassmorphism design",
+  "name": "TheAIHubX - Your Complete AI Learning Hub",
+  "short_name": "TheAIHubX",
+  "description": "Discover, compare, and master AI tools. Curated tools and structured learning paths for AI enthusiasts.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#E8F4F8",

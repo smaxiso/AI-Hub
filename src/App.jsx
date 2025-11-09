@@ -269,7 +269,7 @@ function App() {
                   color: darkMode ? '#E2E8F0' : '#2D3748'
                 }}
               >
-                AI Gallery
+                TheAIHubX
               </Typography>
               <Typography
                 variant="h6"
@@ -278,7 +278,7 @@ function App() {
                   fontSize: { xs: '1rem', md: '1.25rem' }
                 }}
               >
-                Discover amazing AI tools
+                Discover, compare, and master AI tools - Your complete learning hub
               </Typography>
             </Box>
             <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>

@@ -1,6 +1,8 @@
-# AI Gallery
+# TheAIHubX
 
-A beautiful, modern AI tools gallery with glassmorphism design, 3D effects, and smooth animations. Built with React, Material-UI, and Framer Motion.
+**Discover, compare, and master AI tools - Your complete learning hub**
+
+Find all your essential AI tools in one place. Explore, compare, and learn to master AI with curated tools and structured learning paths. A beautiful, modern platform with glassmorphism design, 3D effects, and smooth animations. Built with React, Material-UI, and Framer Motion.
 
 ## Features
 
