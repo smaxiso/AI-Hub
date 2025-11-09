@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Typography, Card, CardContent, IconButton, Chip } from '@mui/material';
+import { Box, Typography, Card, CardContent, IconButton, Chip, useMediaQuery, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import { categoryColors } from '../data/tools.js';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -11,6 +11,8 @@ import { trackToolClick } from '../utils/analytics';
 
 const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
   const categoryColor = categoryColors[tool.category] || categoryColors.Other;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -29,14 +31,19 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
     }
   };
 
+  const CardWrapper = isMobile ? 'div' : motion.div;
+  const cardWrapperProps = isMobile ? {} : {
+    whileHover: { 
+      y: -8,
+      scale: 1.02,
+      transition: { duration: 0.2 }
+    },
+    whileTap: { scale: 0.98 }
+  };
+
   return (
-    <motion.div
-      whileHover={{ 
-        y: -8,
-        scale: 1.02,
-        transition: { duration: 0.3 }
-      }}
-      whileTap={{ scale: 0.98 }}
+    <CardWrapper
+      {...cardWrapperProps}
       style={{ height: '100%' }}
     >
       <Card
@@ -52,9 +59,11 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
         tabIndex={0}
         sx={{
           height: '100%',
-          background: 'rgba(255, 255, 255, 0.25)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          background: isMobile 
+            ? 'rgba(255, 255, 255, 0.35)'
+            : 'rgba(255, 255, 255, 0.25)',
+          backdropFilter: isMobile ? 'none' : 'blur(20px)',
+          WebkitBackdropFilter: isMobile ? 'none' : 'blur(20px)',
           borderRadius: '20px',
           border: '1px solid rgba(255, 255, 255, 0.18)',
           boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1)',
@@ -175,23 +184,26 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
           }}
         >
           {/* Icon */}
-          <motion.div
+          <Box
             className="icon-container"
-            whileHover={{ rotate: [0, -5, 5, -5, 0] }}
-            transition={{ duration: 0.5 }}
-            style={{
+            sx={{
               marginBottom: '12px',
               width: '56px',
               height: '56px',
               borderRadius: '14px',
               background: 'rgba(255, 255, 255, 0.3)',
-              backdropFilter: 'blur(10px)',
+              backdropFilter: isMobile ? 'none' : 'blur(10px)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               border: '1px solid rgba(255, 255, 255, 0.2)',
               boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
-              transition: 'transform 0.3s ease'
+              transition: isMobile ? 'none' : 'transform 0.3s ease',
+              ...(!isMobile && {
+                '&:hover': {
+                  transform: 'rotate(-5deg)'
+                }
+              })
             }}
           >
             {tool.icon ? (
@@ -231,7 +243,7 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
                 </Typography>
               </Box>
             )}
-          </motion.div>
+          </Box>
 
           {/* Tool Name */}
           <Typography
@@ -347,7 +359,7 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
           </Box>
         </CardContent>
       </Card>
-    </motion.div>
+    </CardWrapper>
   );
 };
 

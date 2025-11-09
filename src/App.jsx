@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import { Box, Container, Typography, Grid, Fab, Tabs, Tab, ThemeProvider, CssBaseline, Chip } from '@mui/material';
+import { Box, Container, Typography, Grid, Fab, Tabs, Tab, ThemeProvider, CssBaseline, Chip, useMediaQuery } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createAppTheme } from './theme';
 import ToolCard from './components/ToolCard';
@@ -46,6 +46,10 @@ function App() {
   
   // Create theme based on dark mode
   const theme = useMemo(() => createAppTheme(darkMode), [darkMode]);
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  
+  // Reduce animations on mobile
+  const shouldAnimate = !isMobile;
 
   // Auto-scroll to AI tools section after 3 seconds if no user interaction
   useEffect(() => {
@@ -228,47 +232,49 @@ function App() {
           backgroundAttachment: 'fixed'
         }}
       >
-      {/* Animated background elements */}
-      <Box
-        sx={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 0,
-          pointerEvents: 'none',
-          overflow: 'hidden'
-        }}
-      >
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            style={{
-              position: 'absolute',
-              width: '300px',
-              height: '300px',
-              borderRadius: '50%',
-              background: darkMode
-                ? `linear-gradient(135deg, rgba(100, 150, 200, 0.1) 0%, rgba(150, 100, 200, 0.1) 100%)`
-                : `linear-gradient(135deg, rgba(184, 224, 242, 0.3) 0%, rgba(212, 197, 249, 0.3) 100%)`,
-              filter: 'blur(60px)',
-              left: `${20 + i * 20}%`,
-              top: `${10 + i * 15}%`
-            }}
-            animate={{
-              y: [0, 30, 0],
-              x: [0, 20, 0],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{
-              duration: 8 + i * 2,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
-          />
-        ))}
-      </Box>
+      {/* Animated background elements - Disabled on mobile */}
+      {!isMobile && (
+        <Box
+          sx={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 0,
+            pointerEvents: 'none',
+            overflow: 'hidden'
+          }}
+        >
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              style={{
+                position: 'absolute',
+                width: '300px',
+                height: '300px',
+                borderRadius: '50%',
+                background: darkMode
+                  ? `linear-gradient(135deg, rgba(100, 150, 200, 0.1) 0%, rgba(150, 100, 200, 0.1) 100%)`
+                  : `linear-gradient(135deg, rgba(184, 224, 242, 0.3) 0%, rgba(212, 197, 249, 0.3) 100%)`,
+                filter: 'blur(60px)',
+                left: `${20 + i * 20}%`,
+                top: `${10 + i * 15}%`
+              }}
+              animate={{
+                y: [0, 30, 0],
+                x: [0, 20, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: 8 + i * 2,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+          ))}
+        </Box>
+      )}
 
       <Container
         maxWidth="xl"
@@ -451,18 +457,27 @@ function App() {
                 <Grid container spacing={3}>
                   {filteredTools.map((tool, index) => (
                     <Grid item xs={12} sm={6} md={4} lg={3} key={tool.id}>
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.05 }}
-                      >
+                      {shouldAnimate ? (
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.5) }}
+                        >
+                          <ToolCard
+                            tool={tool}
+                            onFavorite={toggleFavorite}
+                            isFavorite={isFavorite(tool.id)}
+                            onClick={handleToolClick}
+                          />
+                        </motion.div>
+                      ) : (
                         <ToolCard
                           tool={tool}
                           onFavorite={toggleFavorite}
                           isFavorite={isFavorite(tool.id)}
                           onClick={handleToolClick}
                         />
-                      </motion.div>
+                      )}
                     </Grid>
                   ))}
                 </Grid>
@@ -489,18 +504,27 @@ function App() {
                   <Grid container spacing={3}>
                     {mostVisited.map((tool, index) => (
                       <Grid item xs={12} sm={6} md={4} lg={3} key={tool.id}>
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: index * 0.05 }}
-                        >
+                        {shouldAnimate ? (
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.5) }}
+                          >
+                            <ToolCard
+                              tool={tool}
+                              onFavorite={toggleFavorite}
+                              isFavorite={isFavorite(tool.id)}
+                              onClick={handleToolClick}
+                            />
+                          </motion.div>
+                        ) : (
                           <ToolCard
                             tool={tool}
                             onFavorite={toggleFavorite}
                             isFavorite={isFavorite(tool.id)}
                             onClick={handleToolClick}
                           />
-                        </motion.div>
+                        )}
                       </Grid>
                     ))}
                   </Grid>
