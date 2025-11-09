@@ -375,6 +375,38 @@ function App() {
           <RecentlyViewed allTools={aiTools} onToolClick={handleToolClick} />
         )}
 
+        {/* Main Results Section Header */}
+        {activeTab === 0 && (
+          <Box sx={{ mb: 3 }}>
+            <Typography 
+              variant="h5" 
+              sx={{ 
+                fontWeight: 700,
+                fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                color: darkMode ? '#E2E8F0' : '#2D3748',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1
+              }}
+            >
+              {collectionFilter ? 'Collection Tools' : searchQuery || selectedCategory !== 'All' ? 'Search Results' : 'All AI Tools'}
+              <Chip 
+                label={filteredTools.length}
+                size="small"
+                sx={{
+                  height: '26px',
+                  fontSize: '0.875rem',
+                  fontWeight: 700,
+                  background: darkMode
+                    ? 'rgba(160, 174, 192, 0.2)'
+                    : 'rgba(113, 128, 150, 0.2)',
+                  color: darkMode ? '#A0AEC0' : '#718096',
+                  border: `1px solid ${darkMode ? 'rgba(160, 174, 192, 0.3)' : 'rgba(113, 128, 150, 0.3)'}`
+                }}
+              />
+            </Typography>
+          </Box>
+        )}
 
         {/* Content based on active tab */}
         <AnimatePresence mode="wait">
@@ -385,11 +417,6 @@ function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              {collectionFilter && (
-                <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
-                  Collection Tools ({filteredTools.length})
-                </Typography>
-              )}
               {filteredTools.length > 0 ? (
                 <Grid container spacing={3}>
                   {filteredTools.map((tool, index) => (
