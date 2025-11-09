@@ -262,8 +262,8 @@ function App() {
                 component="h1"
                 sx={{
                   fontWeight: 700,
-                  fontSize: { xs: '2.5rem', md: '3.5rem' },
-                  mb: 1,
+                  fontSize: { xs: '1.75rem', sm: '2.25rem', md: '3.5rem' },
+                  mb: { xs: 0.5, md: 1 },
                   background: darkMode
                     ? 'linear-gradient(135deg, #E2E8F0 0%, #A0AEC0 100%)'
                     : 'linear-gradient(135deg, #2D3748 0%, #718096 100%)',
@@ -279,10 +279,21 @@ function App() {
                 variant="h6"
                 sx={{
                   color: darkMode ? '#A0AEC0' : 'text.secondary',
-                  fontSize: { xs: '1rem', md: '1.25rem' }
+                  fontSize: { xs: '0.875rem', sm: '1rem', md: '1.25rem' },
+                  display: { xs: 'none', sm: 'block' }
                 }}
               >
                 Discover, compare, and master AI tools - Your complete AI learning hub
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: darkMode ? '#A0AEC0' : 'text.secondary',
+                  fontSize: '0.8rem',
+                  display: { xs: 'block', sm: 'none' }
+                }}
+              >
+                Your complete AI learning hub
               </Typography>
             </Box>
             <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
@@ -292,17 +303,24 @@ function App() {
         </motion.div>
 
         {/* Tabs for different views */}
-        <Box sx={{ mb: 4 }}>
+        <Box sx={{ mb: { xs: 2, md: 4 }, mt: { xs: 2, md: 0 } }}>
           <Tabs
             value={activeTab}
             onChange={(e, newValue) => {
               setActiveTab(newValue);
               setCollectionFilter(null);
             }}
+            variant="scrollable"
+            scrollButtons="auto"
+            allowScrollButtonsMobile
             sx={{
               '& .MuiTab-root': {
                 color: darkMode ? '#A0AEC0' : '#718096',
                 fontWeight: 500,
+                fontSize: { xs: '0.85rem', md: '0.95rem' },
+                minHeight: { xs: 42, md: 48 },
+                minWidth: { xs: 80, md: 120 },
+                px: { xs: 1.5, md: 2 },
                 '&.Mui-selected': {
                   color: darkMode ? '#90CDF4' : '#6BB6FF',
                   fontWeight: 700
@@ -311,7 +329,8 @@ function App() {
               '& .MuiTabs-indicator': {
                 background: darkMode
                   ? 'linear-gradient(90deg, #90CDF4 0%, #A78BFA 100%)'
-                  : 'linear-gradient(90deg, #6BB6FF 0%, #A78BFA 100%)'
+                  : 'linear-gradient(90deg, #6BB6FF 0%, #A78BFA 100%)',
+                height: { xs: 2, md: 3 }
               }
             }}
           >

@@ -15,7 +15,8 @@ import {
   Stack,
   Paper,
   Grid,
-  useTheme
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -38,6 +39,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
 
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const categoryColor = categoryColors[tool.category] || categoryColors.Other;
   
   // Find similar tools and alternatives
@@ -50,6 +52,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
       onClose={onClose}
       maxWidth="md"
       fullWidth
+      fullScreen={isMobile}
       aria-labelledby="tool-detail-title"
       aria-describedby="tool-detail-description"
       PaperProps={{
@@ -58,7 +61,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
           backdropFilter: 'blur(30px)',
           WebkitBackdropFilter: 'blur(30px)',
           border: '1px solid rgba(255, 255, 255, 0.2)',
-          borderRadius: '24px',
+          borderRadius: isMobile ? 0 : '24px',
           boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)',
           overflow: 'hidden',
           position: 'relative'
@@ -94,9 +97,9 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
         }}
       />
 
-      <DialogTitle id="tool-detail-title" sx={{ pb: 2, position: 'relative', zIndex: 1 }}>
-        <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 2 }}>
-          <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, flex: 1 }}>
+      <DialogTitle id="tool-detail-title" sx={{ pb: { xs: 1.5, sm: 2 }, pt: { xs: 1.5, sm: 3 }, px: { xs: 2, sm: 3 }, position: 'relative', zIndex: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: { xs: 1.5, sm: 2 } }}>
+          <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: { xs: 1.5, sm: 2 }, flex: 1 }}>
             {/* Icon with animated border */}
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
@@ -104,9 +107,9 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
             >
               <Box
                 sx={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '20px',
+                  width: { xs: '56px', sm: '80px' },
+                  height: { xs: '56px', sm: '80px' },
+                  borderRadius: { xs: '14px', sm: '20px' },
                   background: 'rgba(255, 255, 255, 0.3)',
                   backdropFilter: 'blur(10px)',
                   border: `2px solid ${categoryColor}60`,
@@ -115,7 +118,8 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
                   justifyContent: 'center',
                   boxShadow: `0 8px 32px ${categoryColor}30`,
                   position: 'relative',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  flexShrink: 0
                 }}
               >
                 {tool.icon ? (
@@ -123,9 +127,9 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
                     src={tool.icon}
                     alt={tool.name}
                     style={{
-                      width: '60px',
-                      height: '60px',
-                      borderRadius: '12px',
+                      width: isMobile ? '42px' : '60px',
+                      height: isMobile ? '42px' : '60px',
+                      borderRadius: isMobile ? '8px' : '12px',
                       objectFit: 'cover'
                     }}
                   />
@@ -134,52 +138,60 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
                     variant="h4"
                     sx={{
                       color: categoryColor,
-                      fontWeight: 700
+                      fontWeight: 700,
+                      fontSize: { xs: '1.5rem', sm: '2rem' }
                     }}
                   >
                     {tool.name.charAt(0)}
                   </Typography>
                 )}
                 {/* Shine effect */}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: '-100%',
-                    width: '100%',
-                    height: '100%',
-                    background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
-                    animation: 'shine 3s infinite'
-                  }}
-                />
+                {!isMobile && (
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: '-100%',
+                      width: '100%',
+                      height: '100%',
+                      background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
+                      animation: 'shine 3s infinite'
+                    }}
+                  />
+                )}
               </Box>
             </motion.div>
 
-            <Box sx={{ flex: 1, pt: 0.5 }}>
+            <Box sx={{ flex: 1, pt: 0.5, minWidth: 0 }}>
               <Typography
                 variant="h4"
                 component="div"
                 sx={{
                   fontWeight: 700,
-                  mb: 1,
+                  mb: { xs: 0.5, sm: 1 },
                   color: isDarkMode ? '#E2E8F0' : '#2D3748',
-                  fontSize: { xs: '1.75rem', md: '2rem' }
+                  fontSize: { xs: '1.25rem', sm: '1.75rem', md: '2rem' },
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical'
                 }}
               >
                 {tool.name}
               </Typography>
               
-              <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+              <Stack direction="row" spacing={{ xs: 0.5, sm: 1 }} flexWrap="wrap" useFlexGap>
                 <Chip
-                  icon={<CategoryIcon sx={{ fontSize: '1rem !important' }} />}
+                  icon={<CategoryIcon sx={{ fontSize: { xs: '0.85rem', sm: '1rem' }, display: { xs: 'none', sm: 'inline-flex' } }} />}
                   label={tool.category}
                   size="small"
                   sx={{
                     background: `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}dd 100%)`,
                     border: `1.5px solid ${categoryColor}`,
-                    fontSize: '0.8rem',
+                    fontSize: { xs: '0.7rem', sm: '0.8rem' },
                     fontWeight: 700,
-                    height: '28px',
+                    height: { xs: '24px', sm: '28px' },
                     color: 'white',
                     boxShadow: `0 4px 12px ${categoryColor}50`,
                     '& .MuiChip-icon': {
@@ -189,13 +201,13 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
                 />
                 {tool.pricing && (
                   <Chip
-                    icon={<AttachMoneyIcon sx={{ fontSize: '1rem !important' }} />}
+                    icon={<AttachMoneyIcon sx={{ fontSize: { xs: '0.85rem', sm: '1rem' }, display: { xs: 'none', sm: 'inline-flex' } }} />}
                     label={tool.pricing}
                     size="small"
                     sx={{
-                      fontSize: '0.8rem',
+                      fontSize: { xs: '0.7rem', sm: '0.8rem' },
                       fontWeight: 700,
-                      height: '28px',
+                      height: { xs: '24px', sm: '28px' },
                       background: tool.pricing === 'Free'
                         ? 'linear-gradient(135deg, #34D399 0%, #10B981 100%)'
                         : tool.pricing === 'Paid'
@@ -221,9 +233,9 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
                     sx={{
                       background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)',
                       color: 'white',
-                      fontSize: '0.75rem',
+                      fontSize: { xs: '0.65rem', sm: '0.75rem' },
                       fontWeight: 700,
-                      height: '28px',
+                      height: { xs: '24px', sm: '28px' },
                       boxShadow: '0 4px 12px rgba(255, 107, 107, 0.4)'
                     }}
                   />
@@ -233,7 +245,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
           </Box>
 
           {/* Action buttons */}
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1 }}>
             <Button
               variant="contained"
               href={tool.url}
@@ -306,14 +318,39 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
         </Box>
       </DialogTitle>
 
-      <DialogContent sx={{ position: 'relative', zIndex: 1 }}>
+      <DialogContent sx={{ position: 'relative', zIndex: 1, px: { xs: 2, sm: 3 }, pb: { xs: 10, sm: 3 } }}>
+        {/* Mobile: Visit Tool Button at top */}
+        {isMobile && (
+          <Button
+            variant="contained"
+            fullWidth
+            href={tool.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            endIcon={<OpenInNewIcon />}
+            sx={{
+              background: `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}cc 100%)`,
+              color: 'white',
+              py: 1.5,
+              mb: 2,
+              borderRadius: '12px',
+              fontWeight: 600,
+              textTransform: 'none',
+              fontSize: '1rem',
+              minHeight: 48
+            }}
+          >
+            Visit Tool
+          </Button>
+        )}
+        
         {/* Description Section */}
         {tool.description && (
           <Paper
             elevation={0}
             sx={{
-              p: 3,
-              mb: 3,
+              p: { xs: 2, sm: 3 },
+              mb: { xs: 2, sm: 3 },
               background: 'rgba(255, 255, 255, 0.2)',
               backdropFilter: 'blur(10px)',
               borderRadius: '16px',
@@ -327,7 +364,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
               sx={{
                 color: 'text.primary',
                 lineHeight: 1.8,
-                fontSize: '1.05rem',
+                fontSize: { xs: '0.95rem', sm: '1.05rem' },
                 fontWeight: 400
               }}
             >
@@ -336,7 +373,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
           </Paper>
         )}
 
-        <Grid container spacing={2}>
+        <Grid container spacing={{ xs: 1.5, sm: 2 }}>
           {/* Use Cases */}
           {tool.useCases && tool.useCases.length > 0 && (
             <Grid item xs={12} md={6}>

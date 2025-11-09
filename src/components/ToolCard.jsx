@@ -165,7 +165,7 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
         <CardContent
           sx={{
             width: '100%',
-            p: 3,
+            p: { xs: 2, sm: 2.5, md: 3 },
             position: 'relative',
             zIndex: 2,
             display: 'flex',
@@ -180,10 +180,10 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
             whileHover={{ rotate: [0, -5, 5, -5, 0] }}
             transition={{ duration: 0.5 }}
             style={{
-              marginBottom: '16px',
-              width: '64px',
-              height: '64px',
-              borderRadius: '16px',
+              marginBottom: '12px',
+              width: '56px',
+              height: '56px',
+              borderRadius: '14px',
               background: 'rgba(255, 255, 255, 0.3)',
               backdropFilter: 'blur(10px)',
               display: 'flex',
@@ -201,8 +201,8 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
                 loading="lazy"
                 decoding="async"
                 style={{
-                  width: '48px',
-                  height: '48px',
+                  width: '42px',
+                  height: '42px',
                   borderRadius: '8px',
                   objectFit: 'cover'
                 }}
@@ -210,8 +210,8 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
             ) : (
               <Box
                 sx={{
-                  width: '48px',
-                  height: '48px',
+                  width: '42px',
+                  height: '42px',
                   borderRadius: '8px',
                   background: `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}dd 100%)`,
                   display: 'flex',
@@ -223,7 +223,8 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
                   variant="h6"
                   sx={{
                     color: 'white',
-                    fontWeight: 700
+                    fontWeight: 700,
+                    fontSize: '1.25rem'
                   }}
                 >
                   {tool.name.charAt(0)}
@@ -238,25 +239,25 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
             component="h3"
             sx={{
               fontWeight: 600,
-              mb: 1,
+              mb: 0.5,
               color: 'text.primary',
-              fontSize: { xs: '1rem', sm: '1.1rem' },
+              fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
               lineHeight: 1.3
             }}
           >
             {tool.name}
           </Typography>
 
-          {/* Description preview */}
+          {/* Description preview - hide on small mobile */}
           {tool.description && (
             <Typography
               variant="caption"
               sx={{
                 color: 'text.secondary',
-                mb: 1,
-                fontSize: '0.7rem',
+                mb: 0.5,
+                fontSize: { xs: '0.65rem', sm: '0.7rem' },
                 lineHeight: 1.3,
-                display: '-webkit-box',
+                display: { xs: 'none', sm: '-webkit-box' },
                 WebkitLineClamp: 2,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
@@ -268,7 +269,7 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
           )}
 
           {/* Badges row */}
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, justifyContent: 'center', mt: 1 }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 0.5, sm: 0.5 }, justifyContent: 'center', mt: { xs: 0.5, sm: 1 } }}>
             {/* Category Badge */}
             <Chip
               label={tool.category}
@@ -276,8 +277,8 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
               sx={{
                 background: `linear-gradient(135deg, ${categoryColor}30 0%, ${categoryColor}15 100%)`,
                 border: `1.5px solid ${categoryColor}`,
-                fontSize: '0.7rem',
-                height: '22px',
+                fontSize: { xs: '0.65rem', sm: '0.7rem' },
+                height: { xs: '20px', sm: '22px' },
                 fontWeight: 600,
                 color: categoryColor,
                 boxShadow: `0 2px 8px ${categoryColor}30`,
@@ -295,8 +296,8 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
                 label={tool.pricing}
                 size="small"
                 sx={{
-                  fontSize: '0.7rem',
-                  height: '22px',
+                  fontSize: { xs: '0.65rem', sm: '0.7rem' },
+                  height: { xs: '20px', sm: '22px' },
                   fontWeight: 600,
                   background: tool.pricing === 'Free' 
                     ? 'linear-gradient(135deg, rgba(52, 211, 153, 0.25) 0%, rgba(52, 211, 153, 0.15) 100%)' 
@@ -331,8 +332,8 @@ const ToolCard = ({ tool, onFavorite, isFavorite, onClick }) => {
           <Box
             sx={{
               position: 'absolute',
-              bottom: 12,
-              right: 12,
+              bottom: { xs: 8, sm: 12 },
+              right: { xs: 8, sm: 12 },
               opacity: 0.6,
               transition: 'opacity 0.3s ease'
             }}
