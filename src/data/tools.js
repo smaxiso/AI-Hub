@@ -27,7 +27,7 @@ const rawTools = [
   {
     id: 'gemini',
     name: 'Gemini',
-    url: 'https://bard.google.com/',
+    url: 'https://gemini.google.com/',
     category: 'Chat',
     icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACh0lEQVR4nIxSS08TURQ+9zGPtrQUFEFajAswoTERU5PSjYHEhZCYuID+AGOa+GLhjkiwwTVsjCb8A6QxcaMkbmAl1HdADaa4QEoqkAJtp512Zu5cZ1ofKAU9m3vul/N995xzPwqHhBIKNdtnXSKxcVANrgXyHzh2yXewp27YzqcBSK1adIAAgrBfLroDyR1XM3B6tKMtPlGyYP7PDngQBEuV5z2d18Hd5Ns81uWb84Wv2eRodFI4tAMeA4piYGQu9XRjT+vzVUe7c6nxHCy7TxdW6JELj4brX/XEOJ2LIeMPgZ9EO89eDXUbDl885Qj43wtn2Qe5E76KJ8kOEteymhlJjIgLFaYlBJbQrw74IIhqd/vNgt40lpICrjcozJZZkHwxTkDGdDIdy0TnoJjcHH1bxg8sslbpQHkKLZQ23AZNvmwyZ8cya+Hv9KC5VDpPVtUunik0Q1GTEAPKACGMRUCmDknOzCcG4HGKiBMxCXl1jygoThdsKAKk8ias51TI6gXQiA4cSdWv4RxZFzsXMMJeUwNEXReLaYBiNJkMSaqxc4N75TFZLLmwvsm4ukWAegETiQEXiGlyBcrmaP4bfrhyH5XtEWhl/mkgqGPGBiaefep70eguxFv1LX+utM40rd56up5gTV9Ti0JkcQRXlzjICcQRq/gARYDZ5+xsD+0PzCyQsjbgduzmJE8KjLo0cGc6j2lmYHEELVS2b4dF3mek3t45IzoZFK6ceZxIq8o95tkmqnuD5OjHu/NDx1/C5GsB9nhgn5F+OwpQODUoFz83JHdVL1sl/lPQd8ta2X9YuRIRwPNtcXXN0KdyQmYK+ofKEEE1a2lNgXh1J9ugj1uvsr3Y3/EdAAD//429n5gAAAAGSURBVAMApnISZcw7dI0AAAAASUVORK5CYII=',
     description: 'Google\'s advanced AI chatbot powered by Gemini, offering multimodal capabilities for conversations, analysis, and creative tasks.'
