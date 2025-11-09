@@ -1,0 +1,31 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <rect width="192" height="192" rx="32" fill="url(#gradient)"/>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="192" y2="192" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B8E0F2"/>
+      <stop offset="50%" stop-color="#D4C5F9"/>
+      <stop offset="100%" stop-color="#90CDF4"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Central Hub Circle -->
+  <circle cx="96" cy="96" r="32" fill="white" opacity="0.9"/>
+  
+  <!-- Large "X" in center -->
+  <text x="96" y="108" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#1a1a2e" text-anchor="middle">X</text>
+  
+  <!-- Connecting nodes around hub -->
+  <circle cx="96" cy="40" r="8" fill="white" opacity="0.8"/>
+  <circle cx="152" cy="96" r="8" fill="white" opacity="0.8"/>
+  <circle cx="96" cy="152" r="8" fill="white" opacity="0.8"/>
+  <circle cx="40" cy="96" r="8" fill="white" opacity="0.8"/>
+  
+  <!-- Connection lines -->
+  <line x1="96" y1="64" x2="96" y2="40" stroke="white" stroke-width="3" opacity="0.6"/>
+  <line x1="128" y1="96" x2="152" y2="96" stroke="white" stroke-width="3" opacity="0.6"/>
+  <line x1="96" y1="128" x2="96" y2="152" stroke="white" stroke-width="3" opacity="0.6"/>
+  <line x1="64" y1="96" x2="40" y2="96" stroke="white" stroke-width="3" opacity="0.6"/>
+</svg>
