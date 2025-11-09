@@ -29,7 +29,7 @@ const rawTools = [
     name: 'Gemini',
     url: 'https://gemini.google.com/',
     category: 'Chat',
-    icon: 'https://logo.clearbit.com/google.com',
+    icon: 'https://gemini.google.com/favicon.ico',
     description: 'Google\'s advanced AI chatbot powered by Gemini, offering multimodal capabilities for conversations, analysis, and creative tasks.'
   },
   {
