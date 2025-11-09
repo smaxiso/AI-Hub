@@ -244,8 +244,9 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
             </Box>
           </Box>
 
-          {/* Action buttons */}
-          <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1 }}>
+          {/* Action buttons - Always visible */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1 }, flexShrink: 0 }}>
+            {/* Desktop: Visit Tool Button */}
             <Button
               variant="contained"
               href={tool.url}
@@ -253,6 +254,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
               rel="noopener noreferrer"
               endIcon={<OpenInNewIcon />}
               sx={{
+                display: { xs: 'none', sm: 'flex' },
                 background: `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}cc 100%)`,
                 color: 'white',
                 px: 3,
@@ -283,6 +285,8 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
                 border: isFavorite ? '1.5px solid #FF6B9D' : '1px solid rgba(255, 255, 255, 0.4)',
                 color: isFavorite ? '#FF6B9D' : '#718096',
                 boxShadow: isFavorite ? '0 4px 12px rgba(255, 107, 157, 0.3)' : 'none',
+                minWidth: { xs: 40, sm: 'auto' },
+                minHeight: { xs: 40, sm: 'auto' },
                 '&:hover': {
                   background: isFavorite ? 'rgba(255, 107, 157, 0.3)' : 'rgba(255, 255, 255, 0.35)',
                   transform: 'scale(1.1)',
@@ -291,7 +295,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
                 transition: 'all 0.2s ease'
               }}
             >
-              {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              {isFavorite ? <FavoriteIcon fontSize={isMobile ? "small" : "medium"} /> : <FavoriteBorderIcon fontSize={isMobile ? "small" : "medium"} />}
             </IconButton>
             <ShareButton tool={tool} />
             <IconButton
@@ -302,6 +306,8 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.4)',
                 color: '#718096',
+                minWidth: { xs: 40, sm: 'auto' },
+                minHeight: { xs: 40, sm: 'auto' },
                 '&:hover': {
                   background: 'rgba(251, 113, 133, 0.2)',
                   border: '1.5px solid #FB7185',
@@ -312,7 +318,7 @@ const ToolDetailModal = ({ tool, open, onClose, onFavorite, isFavorite, onToolCl
                 transition: 'all 0.2s ease'
               }}
             >
-              <CloseIcon />
+              <CloseIcon fontSize={isMobile ? "small" : "medium"} />
             </IconButton>
           </Box>
         </Box>
