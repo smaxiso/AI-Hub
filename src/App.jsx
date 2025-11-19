@@ -323,12 +323,33 @@ function App() {
         }}
       >
         {/* Magic Prompt Modal */}
-        <Dialog open={magicPromptOpen} onClose={() => setMagicPromptOpen(false)} maxWidth="sm" fullWidth>
-          <DialogContent sx={{ background: darkMode
-            ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
-            : 'linear-gradient(135deg, #E8F4F8 0%, #D4C5F9 50%, #C8F4E0 100%)',
-            p: { xs: 1, sm: 3 } }}>
-            <MagicPrompt />
+        <Dialog
+          open={magicPromptOpen}
+          onClose={() => setMagicPromptOpen(false)}
+          maxWidth="sm"
+          fullWidth
+          PaperProps={{
+            sx: {
+              m: { xs: 0 },
+              maxWidth: { xs: '100vw', sm: '600px' },
+              width: '100%',
+              borderRadius: { xs: 0, sm: '16px' },
+            }
+          }}
+        >
+          <DialogContent
+            sx={{
+              background: darkMode
+                ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
+                : 'linear-gradient(135deg, #E8F4F8 0%, #D4C5F9 50%, #C8F4E0 100%)',
+              p: { xs: 1, sm: 3 },
+              minHeight: { xs: '100vh', sm: 'auto' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <MagicPrompt onClose={() => setMagicPromptOpen(false)} />
           </DialogContent>
         </Dialog>
         {/* Header with Dark Mode Toggle */}
@@ -745,49 +766,49 @@ function App() {
           </Box>
         )}
 
-        {/* Floating Action Buttons - Hidden on Mobile */}
+        {/* Floating Action Buttons - Visible on all devices, optimized for mobile */}
+        <Fab
+          size={isMobile ? 'large' : 'medium'}
+          onClick={() => setMagicPromptOpen(true)}
+          sx={{
+            position: 'fixed',
+            bottom: isMobile ? 16 : 24,
+            right: isMobile ? 16 : 24,
+            background: 'linear-gradient(135deg, #6BB6FF 0%, #A78BFA 100%)',
+            color: 'white',
+            boxShadow: '0 4px 16px rgba(100,150,200,0.12)',
+            border: '1px solid rgba(255,255,255,0.18)',
+            zIndex: 1100,
+            width: isMobile ? 64 : undefined,
+            height: isMobile ? 64 : undefined,
+            '&:hover': {
+              background: 'linear-gradient(135deg, #A78BFA 0%, #6BB6FF 100%)'
+            }
+          }}
+          aria-label="Magic Prompt"
+        >
+          <AutoAwesomeIcon fontSize={isMobile ? 'large' : 'medium'} />
+        </Fab>
         {!isMobile && (
-          <>
-            <Fab
-              size="medium"
-              onClick={() => setMagicPromptOpen(true)}
-              sx={{
-                position: 'fixed',
-                bottom: 24,
-                right: 24,
-                background: 'linear-gradient(135deg, #6BB6FF 0%, #A78BFA 100%)',
-                color: 'white',
-                boxShadow: '0 4px 16px rgba(100,150,200,0.12)',
-                border: '1px solid rgba(255,255,255,0.18)',
-                zIndex: 1100,
-                '&:hover': {
-                  background: 'linear-gradient(135deg, #A78BFA 0%, #6BB6FF 100%)'
-                }
-              }}
-              aria-label="Magic Prompt"
-            >
-              <AutoAwesomeIcon fontSize="medium" />
-            </Fab>
-            <Fab
-              size="small"
-              onClick={() => setShowShortcuts(!showShortcuts)}
-              sx={{
-                position: 'fixed',
-                bottom: 24,
-                left: 24,
-                background: 'rgba(255, 255, 255, 0.25)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255, 255, 255, 0.18)',
-                color: 'text.secondary',
-                zIndex: 1100,
-                '&:hover': {
-                  background: 'rgba(255, 255, 255, 0.35)'
-                }
-              }}
-            >
-              <KeyboardIcon />
-            </Fab>
-          </>
+          <Fab
+            size="small"
+            onClick={() => setShowShortcuts(!showShortcuts)}
+            sx={{
+              position: 'fixed',
+              bottom: 24,
+              left: 24,
+              background: 'rgba(255, 255, 255, 0.25)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.18)',
+              color: 'text.secondary',
+              zIndex: 1100,
+              '&:hover': {
+                background: 'rgba(255, 255, 255, 0.35)'
+              }
+            }}
+          >
+            <KeyboardIcon />
+          </Fab>
         )}
       </Container>
     </Box>
