@@ -3,8 +3,13 @@ const CACHE_NAME = 'ai-gallery-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/src/main.jsx',
-  '/src/App.jsx'
+  '/manifest.json',
+  '/favicon.svg',
+  '/icon.svg',
+  '/apple-touch-icon.png',
+  '/og-image.png',
+  '/og-image.svg'
+  // Add more static files if needed
 ];
 
 self.addEventListener('install', (event) => {
