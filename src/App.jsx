@@ -322,7 +322,7 @@ function App() {
           pt: { xs: 4, md: 6 }
         }}
       >
-        {/* Magic Prompt Modal */}
+        {/* Magic Prompt Modal - No DialogContent wrapper, direct child for perfect glow and spacing */}
         <Dialog
           open={magicPromptOpen}
           onClose={() => setMagicPromptOpen(false)}
@@ -330,27 +330,15 @@ function App() {
           fullWidth
           PaperProps={{
             sx: {
-              m: { xs: 0 },
-              maxWidth: { xs: '100vw', sm: '600px' },
-              width: '100%',
-              borderRadius: { xs: 0, sm: '16px' },
+              m: 2,
+              borderRadius: '24px',
+              background: 'transparent',
+              boxShadow: 'none',
+              overflow: 'visible'
             }
           }}
         >
-          <DialogContent
-            sx={{
-              background: darkMode
-                ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
-                : 'linear-gradient(135deg, #E8F4F8 0%, #D4C5F9 50%, #C8F4E0 100%)',
-              p: { xs: 1, sm: 3 },
-              minHeight: { xs: '100vh', sm: 'auto' },
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <MagicPrompt onClose={() => setMagicPromptOpen(false)} />
-          </DialogContent>
+          <MagicPrompt onClose={() => setMagicPromptOpen(false)} />
         </Dialog>
         {/* Header with Dark Mode Toggle */}
         <motion.div
@@ -766,29 +754,75 @@ function App() {
           </Box>
         )}
 
-        {/* Floating Action Buttons - Visible on all devices, optimized for mobile */}
-        <Fab
-          size={isMobile ? 'large' : 'medium'}
-          onClick={() => setMagicPromptOpen(true)}
-          sx={{
-            position: 'fixed',
-            bottom: isMobile ? 16 : 24,
-            right: isMobile ? 16 : 24,
-            background: 'linear-gradient(135deg, #6BB6FF 0%, #A78BFA 100%)',
-            color: 'white',
-            boxShadow: '0 4px 16px rgba(100,150,200,0.12)',
-            border: '1px solid rgba(255,255,255,0.18)',
-            zIndex: 1100,
-            width: isMobile ? 64 : undefined,
-            height: isMobile ? 64 : undefined,
-            '&:hover': {
-              background: 'linear-gradient(135deg, #A78BFA 0%, #6BB6FF 100%)'
-            }
+        {/* Floating Action Button - Premium 3D with Breathing Animation */}
+        <motion.div
+          animate={{
+            y: [0, -6, 0],
+            boxShadow: [
+              "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+              "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+              "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+            ]
           }}
-          aria-label="Magic Prompt"
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{
+            position: 'fixed',
+            bottom: isMobile ? 16 : 32,
+            right: isMobile ? 16 : 32,
+            zIndex: 1100,
+            background: 'none', // Ensure no background is set on the wrapper
+            borderRadius: '50%', // Prevent any square shape
+            boxShadow: 'none' // Remove any default shadow from the wrapper
+          }}
         >
-          <AutoAwesomeIcon fontSize={isMobile ? 'large' : 'medium'} />
-        </Fab>
+          <Fab
+            onClick={() => setMagicPromptOpen(true)}
+            sx={{
+              width: isMobile ? 64 : 72,
+              height: isMobile ? 64 : 72,
+              background: 'linear-gradient(135deg, #6BB6FF 0%, #A78BFA 100%)',
+              color: 'white',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              boxShadow: `
+                inset 0 4px 8px rgba(255,255,255,0.4),
+                inset 0 -4px 8px rgba(0,0,0,0.2),
+                0 8px 20px rgba(107, 182, 255, 0.5)
+              `,
+              '&:hover': {
+                background: 'linear-gradient(135deg, #A78BFA 0%, #6BB6FF 100%)',
+                transform: 'scale(1.05)',
+                boxShadow: `
+                  inset 0 4px 8px rgba(255,255,255,0.5),
+                  inset 0 -4px 8px rgba(0,0,0,0.3),
+                  0 12px 28px rgba(107, 182, 255, 0.6)
+                `
+              },
+              transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            }}
+            aria-label="Magic Prompt"
+          >
+            {/* Animated stars icon using Framer Motion */}
+            <motion.span
+              animate={{
+                rotate: [0, 20, -20, 0],
+                scale: [1, 1.15, 1],
+                opacity: [1, 0.7, 1]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              style={{ display: 'inline-block' }}
+            >
+              <AutoAwesomeIcon sx={{ fontSize: isMobile ? '1.8rem' : '2.2rem', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))' }} />
+            </motion.span>
+          </Fab>
+        </motion.div>
         {!isMobile && (
           <Fab
             size="small"
