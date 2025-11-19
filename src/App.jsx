@@ -768,45 +768,38 @@ function App() {
 
         {/* Floating Action Buttons - Visible on all devices, optimized for mobile */}
         {/* 3D Animated FAB Button */}
-        <Box
-          sx={{
-            position: 'fixed',
-            bottom: isMobile ? 16 : 24,
-            right: isMobile ? 16 : 24,
-            zIndex: 1200,
-            perspective: 800,
-          }}
+        <motion.div
+          initial={{ scale: 1, boxShadow: '0 8px 32px rgba(100,150,200,0.18)' }}
+          animate={{ scale: [1, 1.08, 1], boxShadow: [
+            '0 8px 32px rgba(100,150,200,0.18)',
+            '0 16px 48px rgba(167,139,250,0.28)',
+            '0 8px 32px rgba(100,150,200,0.18)'
+          ] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ position: 'fixed', bottom: isMobile ? 16 : 24, right: isMobile ? 16 : 24, zIndex: 1100 }}
         >
-          <motion.div
-            initial={{ scale: 1, rotateX: 0, boxShadow: '0 8px 32px rgba(100,150,200,0.18)' }}
-            animate={{ scale: [1, 1.08, 1], rotateX: [0, 12, 0], boxShadow: ['0 8px 32px rgba(100,150,200,0.18)', '0 16px 48px rgba(100,150,200,0.28)', '0 8px 32px rgba(100,150,200,0.18)'] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-            whileHover={{ scale: 1.13, rotateX: 0, boxShadow: '0 24px 64px rgba(100,150,200,0.32)' }}
+          <Fab
+            size={isMobile ? 'large' : 'medium'}
+            onClick={() => setMagicPromptOpen(true)}
+            sx={{
+              background: 'linear-gradient(135deg, #6BB6FF 0%, #A78BFA 100%)',
+              color: 'white',
+              boxShadow: '0 8px 32px rgba(100,150,200,0.18), 0 1.5px 8px #A78BFA',
+              border: '2px solid rgba(255,255,255,0.22)',
+              width: isMobile ? 64 : undefined,
+              height: isMobile ? 64 : undefined,
+              transform: 'perspective(600px) rotateX(8deg)',
+              '&:hover': {
+                background: 'linear-gradient(135deg, #A78BFA 0%, #6BB6FF 100%)',
+                boxShadow: '0 16px 48px rgba(167,139,250,0.28), 0 1.5px 8px #6BB6FF',
+                transform: 'perspective(600px) rotateX(0deg) scale(1.08)'
+              }
+            }}
+            aria-label="Magic Prompt"
           >
-            <Fab
-              size={isMobile ? 'large' : 'medium'}
-              onClick={() => setMagicPromptOpen(true)}
-              sx={{
-                background: 'linear-gradient(135deg, #6BB6FF 0%, #A78BFA 100%)',
-                color: 'white',
-                boxShadow: '0 8px 32px rgba(100,150,200,0.18), 0 1.5px 0px 2px #A78BFA',
-                border: '2.5px solid rgba(255,255,255,0.22)',
-                width: isMobile ? 64 : undefined,
-                height: isMobile ? 64 : undefined,
-                borderRadius: '50%',
-                filter: 'drop-shadow(0 2px 12px #A78BFA)',
-                transition: 'box-shadow 0.3s, transform 0.3s',
-                '&:hover': {
-                  background: 'linear-gradient(135deg, #A78BFA 0%, #6BB6FF 100%)',
-                  boxShadow: '0 24px 64px rgba(100,150,200,0.32)',
-                }
-              }}
-              aria-label="Magic Prompt"
-            >
-              <AutoAwesomeIcon fontSize={isMobile ? 'large' : 'medium'} />
-            </Fab>
-          </motion.div>
-        </Box>
+            <AutoAwesomeIcon fontSize={isMobile ? 'large' : 'medium'} />
+          </Fab>
+        </motion.div>
         {!isMobile && (
           <Fab
             size="small"

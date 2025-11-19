@@ -39,14 +39,15 @@ const MagicPrompt = ({ onClose }) => {
   };
 
   return (
-    <Paper 
+    <Paper
       ref={modalRef}
-      sx={{ 
+      sx={{
         p: { xs: 0, sm: 0 },
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.09) 100%)',
+        mb: 0,
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%)',
         backdropFilter: 'blur(24px)',
-        border: '2.5px solid rgba(255,255,255,0.22)',
-        borderRadius: { xs: 0, sm: '22px' },
+        border: '1.5px solid rgba(255,255,255,0.22)',
+        borderRadius: { xs: 0, sm: '20px' },
         position: 'relative',
         maxWidth: { xs: '100vw', sm: '480px' },
         width: '100%',
@@ -55,67 +56,69 @@ const MagicPrompt = ({ onClose }) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: '0 8px 32px rgba(100,150,200,0.18)',
+        boxShadow: '0 8px 32px rgba(100,150,200,0.18), 0 1.5px 8px #A78BFA',
+        overflow: 'hidden',
       }}
     >
+      {/* Modal Header */}
       <Box sx={{
         display: 'flex',
         alignItems: 'center',
-        gap: 1,
-        mb: { xs: 0, sm: 2 },
-        mt: { xs: 2, sm: 4 },
-        width: '100%',
         justifyContent: 'space-between',
-        px: { xs: 2, sm: 4 },
+        width: '100%',
+        px: { xs: 2, sm: 3 },
+        pt: { xs: 2, sm: 3 },
+        pb: 1,
+        borderBottom: '1px solid rgba(255,255,255,0.12)',
+        background: 'transparent',
       }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <AutoAwesomeIcon sx={{ color: '#FFB020', fontSize: 32 }} />
-          <Typography variant="h6" fontWeight="bold" sx={{ fontSize: { xs: '1.15rem', sm: '1.35rem' } }}>
+          <AutoAwesomeIcon sx={{ color: '#FFB020', fontSize: 28 }} />
+          <Typography variant="h6" fontWeight="bold" sx={{ fontSize: { xs: '1.1rem', sm: '1.25rem' } }}>
             Magic Prompt Generator
           </Typography>
         </Box>
-        <IconButton aria-label="Close" onClick={onClose} sx={{ ml: 1 }}>
-          <CloseIcon sx={{ fontSize: 28 }} />
+        <IconButton aria-label="Close" onClick={onClose} sx={{ ml: 1, color: '#A0AEC0' }}>
+          <CloseIcon fontSize="medium" />
         </IconButton>
       </Box>
+      {/* Modal Content */}
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
         gap: 2.5,
         width: '100%',
-        maxWidth: 420,
-        mx: 'auto',
-        mt: { xs: 2, sm: 2 },
-        mb: { xs: 2, sm: 4 },
-        px: { xs: 2, sm: 4 },
+        px: { xs: 2, sm: 3 },
+        py: { xs: 2, sm: 3 },
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'transparent',
       }}>
         <TextField
           label="Role (Who is the AI?)"
           placeholder="e.g. Expert Copywriter, Senior React Developer"
           name="role"
-          variant="outlined"
+          variant="filled"
           value={formData.role}
           onChange={handleChange}
           InputProps={{
-            startAdornment: <AutoAwesomeIcon sx={{ color: '#A78BFA', mr: 1 }} />,
+            startAdornment: <AutoAwesomeIcon sx={{ color: '#A78BFA', mr: 1 }} fontSize="small" />,
+            disableUnderline: true,
             sx: {
-              background: 'rgba(255,255,255,0.45)',
-              borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(100,150,200,0.08)',
-            },
-          }}
-          sx={{
-            '& .MuiInputBase-root': {
               fontWeight: 500,
               fontSize: '1rem',
-              background: 'rgba(255,255,255,0.45)',
+              background: 'rgba(255,255,255,0.18)',
               borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(100,150,200,0.08)',
-            },
-            '& .MuiInputLabel-root': {
-              fontWeight: 500,
+              boxShadow: '0 2px 8px rgba(167,139,250,0.08)',
+              py: 1,
+            }
+          }}
+          InputLabelProps={{
+            sx: {
+              fontWeight: 600,
               color: '#A78BFA',
-            },
+              fontSize: '1rem',
+            }
           }}
         />
         <TextField
@@ -124,84 +127,78 @@ const MagicPrompt = ({ onClose }) => {
           name="context"
           multiline
           rows={2}
-          variant="outlined"
+          variant="filled"
           value={formData.context}
           onChange={handleChange}
           InputProps={{
+            disableUnderline: true,
             sx: {
-              background: 'rgba(255,255,255,0.45)',
-              borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(100,150,200,0.08)',
-            },
-          }}
-          sx={{
-            '& .MuiInputBase-root': {
               fontWeight: 500,
               fontSize: '1rem',
-              background: 'rgba(255,255,255,0.45)',
+              background: 'rgba(255,255,255,0.18)',
               borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(100,150,200,0.08)',
-            },
-            '& .MuiInputLabel-root': {
-              fontWeight: 500,
+              boxShadow: '0 2px 8px rgba(167,139,250,0.08)',
+              py: 1,
+            }
+          }}
+          InputLabelProps={{
+            sx: {
+              fontWeight: 600,
               color: '#A78BFA',
-            },
+              fontSize: '1rem',
+            }
           }}
         />
         <TextField
           label="Task (What should it do?)"
           placeholder="e.g. Write a compelling subject line and body text"
           name="task"
-          variant="outlined"
+          variant="filled"
           value={formData.task}
           onChange={handleChange}
           InputProps={{
+            disableUnderline: true,
             sx: {
-              background: 'rgba(255,255,255,0.45)',
-              borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(100,150,200,0.08)',
-            },
-          }}
-          sx={{
-            '& .MuiInputBase-root': {
               fontWeight: 500,
               fontSize: '1rem',
-              background: 'rgba(255,255,255,0.45)',
+              background: 'rgba(255,255,255,0.18)',
               borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(100,150,200,0.08)',
-            },
-            '& .MuiInputLabel-root': {
-              fontWeight: 500,
+              boxShadow: '0 2px 8px rgba(167,139,250,0.08)',
+              py: 1,
+            }
+          }}
+          InputLabelProps={{
+            sx: {
+              fontWeight: 600,
               color: '#A78BFA',
-            },
+              fontSize: '1rem',
+            }
           }}
         />
         <TextField
           label="Constraints (Format, Tone, Limits)"
           placeholder="e.g. Keep it under 100 words, professional tone"
           name="constraints"
-          variant="outlined"
+          variant="filled"
           value={formData.constraints}
           onChange={handleChange}
           InputProps={{
+            disableUnderline: true,
             sx: {
-              background: 'rgba(255,255,255,0.45)',
-              borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(100,150,200,0.08)',
-            },
-          }}
-          sx={{
-            '& .MuiInputBase-root': {
               fontWeight: 500,
               fontSize: '1rem',
-              background: 'rgba(255,255,255,0.45)',
+              background: 'rgba(255,255,255,0.18)',
               borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(100,150,200,0.08)',
-            },
-            '& .MuiInputLabel-root': {
-              fontWeight: 500,
+              boxShadow: '0 2px 8px rgba(167,139,250,0.08)',
+              py: 1,
+            }
+          }}
+          InputLabelProps={{
+            sx: {
+              fontWeight: 600,
               color: '#A78BFA',
-            },
+              fontSize: '1rem',
+            }
           }}
         />
         <Button
@@ -212,15 +209,16 @@ const MagicPrompt = ({ onClose }) => {
             color: 'white',
             fontWeight: 'bold',
             py: 1.5,
-            fontSize: '1.08rem',
             borderRadius: '10px',
-            boxShadow: '0 2px 12px rgba(100,150,200,0.12)',
+            boxShadow: '0 2px 8px rgba(167,139,250,0.12)',
+            fontSize: '1.1rem',
             mt: 1,
-            transition: 'box-shadow 0.2s',
+            transition: 'all 0.2s',
             '&:hover': {
               background: 'linear-gradient(90deg, #A78BFA 0%, #6BB6FF 100%)',
-              boxShadow: '0 4px 24px rgba(100,150,200,0.18)',
-            },
+              boxShadow: '0 4px 16px rgba(167,139,250,0.18)',
+              transform: 'scale(1.04)'
+            }
           }}
         >
           Generate Magic Prompt
@@ -229,19 +227,22 @@ const MagicPrompt = ({ onClose }) => {
           <Fade in={true}>
             <Box sx={{
               mt: 2,
-              p: 2.5,
-              background: 'linear-gradient(90deg, #A78BFA22 0%, #6BB6FF22 100%)',
+              p: 2,
+              background: 'rgba(167,139,250,0.08)',
               borderRadius: '10px',
               position: 'relative',
-              boxShadow: '0 2px 12px rgba(100,150,200,0.10)',
-              border: '1.5px solid #A78BFA',
+              boxShadow: '0 2px 8px rgba(167,139,250,0.12)',
+              width: '100%',
+              minHeight: '56px',
+              display: 'flex',
+              alignItems: 'center',
             }}>
-              <Typography variant="body1" sx={{ fontFamily: 'monospace', fontSize: '1.05rem', color: '#2D3748' }}>
+              <Typography variant="body1" sx={{ fontFamily: 'monospace', fontSize: '1rem', color: '#6BB6FF', wordBreak: 'break-word' }}>
                 {generatedPrompt}
               </Typography>
               <IconButton
                 onClick={() => navigator.clipboard.writeText(generatedPrompt)}
-                sx={{ position: 'absolute', top: 5, right: 5, color: '#A78BFA', background: 'rgba(255,255,255,0.7)', borderRadius: '50%' }}
+                sx={{ position: 'absolute', top: 5, right: 5, color: '#A78BFA', background: 'rgba(255,255,255,0.18)', borderRadius: '50%' }}
               >
                 <ContentCopyIcon fontSize="small" />
               </IconButton>
