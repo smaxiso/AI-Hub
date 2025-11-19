@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/*"
+  to = "https://aihubx.web.app/:splat"
+  status = 301
+  force = true
