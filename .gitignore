@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+# Firebase service account credentials
+aihubx-firebase-adminsdk-fbsvc-1065bbca34.json
+
