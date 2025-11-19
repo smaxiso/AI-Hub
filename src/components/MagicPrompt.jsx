@@ -39,210 +39,91 @@ const MagicPrompt = ({ onClose }) => {
   };
 
   return (
-    <Paper
+    <Paper 
       ref={modalRef}
-      sx={{
-        p: { xs: 0, sm: 0 },
-        mb: 0,
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%)',
-        backdropFilter: 'blur(24px)',
-        border: '1.5px solid rgba(255,255,255,0.22)',
-        borderRadius: { xs: 0, sm: '20px' },
+      sx={{ 
+        p: { xs: 2, sm: 3 }, 
+        mb: 4, 
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255,255,255,0.2)',
+        borderRadius: '16px',
         position: 'relative',
-        maxWidth: { xs: '100vw', sm: '480px' },
-        width: '100%',
-        minHeight: { xs: '100vh', sm: 'auto' },
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: '0 8px 32px rgba(100,150,200,0.18), 0 1.5px 8px #A78BFA',
-        overflow: 'hidden',
+        maxWidth: { xs: '100vw', sm: '500px' },
+        width: '100%'
       }}
     >
-      {/* Modal Header */}
-      <Box sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '100%',
-        px: { xs: 2, sm: 3 },
-        pt: { xs: 2, sm: 3 },
-        pb: 1,
-        borderBottom: '1px solid rgba(255,255,255,0.12)',
-        background: 'transparent',
-      }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2, justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <AutoAwesomeIcon sx={{ color: '#FFB020', fontSize: 28 }} />
-          <Typography variant="h6" fontWeight="bold" sx={{ fontSize: { xs: '1.1rem', sm: '1.25rem' } }}>
-            Magic Prompt Generator
-          </Typography>
+          <AutoAwesomeIcon sx={{ color: '#FFB020' }} />
+          <Typography variant="h6" fontWeight="bold">Magic Prompt Generator</Typography>
         </Box>
-        <IconButton aria-label="Close" onClick={onClose} sx={{ ml: 1, color: '#A0AEC0' }}>
-          <CloseIcon fontSize="medium" />
+        <IconButton aria-label="Close" onClick={onClose} sx={{ ml: 1 }}>
+          <CloseIcon />
         </IconButton>
       </Box>
-      {/* Modal Content */}
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 2.5,
-        width: '100%',
-        px: { xs: 2, sm: 3 },
-        py: { xs: 2, sm: 3 },
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'transparent',
-      }}>
-        <TextField
-          label="Role (Who is the AI?)"
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <TextField 
+          label="Role (Who is the AI?)" 
           placeholder="e.g. Expert Copywriter, Senior React Developer"
-          name="role"
+          name="role" 
           variant="filled"
           value={formData.role}
           onChange={handleChange}
-          InputProps={{
-            startAdornment: <AutoAwesomeIcon sx={{ color: '#A78BFA', mr: 1 }} fontSize="small" />,
-            disableUnderline: true,
-            sx: {
-              fontWeight: 500,
-              fontSize: '1rem',
-              background: 'rgba(255,255,255,0.18)',
-              borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(167,139,250,0.08)',
-              py: 1,
-            }
-          }}
-          InputLabelProps={{
-            sx: {
-              fontWeight: 600,
-              color: '#A78BFA',
-              fontSize: '1rem',
-            }
-          }}
         />
-        <TextField
-          label="Context (Background Info)"
+        <TextField 
+          label="Context (Background Info)" 
           placeholder="e.g. I am writing a sales email for a SaaS product..."
-          name="context"
+          name="context" 
           multiline
           rows={2}
           variant="filled"
           value={formData.context}
           onChange={handleChange}
-          InputProps={{
-            disableUnderline: true,
-            sx: {
-              fontWeight: 500,
-              fontSize: '1rem',
-              background: 'rgba(255,255,255,0.18)',
-              borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(167,139,250,0.08)',
-              py: 1,
-            }
-          }}
-          InputLabelProps={{
-            sx: {
-              fontWeight: 600,
-              color: '#A78BFA',
-              fontSize: '1rem',
-            }
-          }}
         />
-        <TextField
-          label="Task (What should it do?)"
+        <TextField 
+          label="Task (What should it do?)" 
           placeholder="e.g. Write a compelling subject line and body text"
-          name="task"
+          name="task" 
           variant="filled"
           value={formData.task}
           onChange={handleChange}
-          InputProps={{
-            disableUnderline: true,
-            sx: {
-              fontWeight: 500,
-              fontSize: '1rem',
-              background: 'rgba(255,255,255,0.18)',
-              borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(167,139,250,0.08)',
-              py: 1,
-            }
-          }}
-          InputLabelProps={{
-            sx: {
-              fontWeight: 600,
-              color: '#A78BFA',
-              fontSize: '1rem',
-            }
-          }}
         />
-        <TextField
-          label="Constraints (Format, Tone, Limits)"
+        <TextField 
+          label="Constraints (Format, Tone, Limits)" 
           placeholder="e.g. Keep it under 100 words, professional tone"
-          name="constraints"
+          name="constraints" 
           variant="filled"
           value={formData.constraints}
           onChange={handleChange}
-          InputProps={{
-            disableUnderline: true,
-            sx: {
-              fontWeight: 500,
-              fontSize: '1rem',
-              background: 'rgba(255,255,255,0.18)',
-              borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(167,139,250,0.08)',
-              py: 1,
-            }
-          }}
-          InputLabelProps={{
-            sx: {
-              fontWeight: 600,
-              color: '#A78BFA',
-              fontSize: '1rem',
-            }
-          }}
         />
-        <Button
-          variant="contained"
+        <Button 
+          variant="contained" 
           onClick={generate}
-          sx={{
-            background: 'linear-gradient(90deg, #6BB6FF 0%, #A78BFA 100%)',
+          sx={{ 
+            background: 'linear-gradient(45deg, #6BB6FF, #A78BFA)',
             color: 'white',
             fontWeight: 'bold',
-            py: 1.5,
-            borderRadius: '10px',
-            boxShadow: '0 2px 8px rgba(167,139,250,0.12)',
-            fontSize: '1.1rem',
-            mt: 1,
-            transition: 'all 0.2s',
-            '&:hover': {
-              background: 'linear-gradient(90deg, #A78BFA 0%, #6BB6FF 100%)',
-              boxShadow: '0 4px 16px rgba(167,139,250,0.18)',
-              transform: 'scale(1.04)'
-            }
+            py: 1.5
           }}
         >
           Generate Magic Prompt
         </Button>
         {generatedPrompt && (
           <Fade in={true}>
-            <Box sx={{
-              mt: 2,
-              p: 2,
-              background: 'rgba(167,139,250,0.08)',
-              borderRadius: '10px',
-              position: 'relative',
-              boxShadow: '0 2px 8px rgba(167,139,250,0.12)',
-              width: '100%',
-              minHeight: '56px',
-              display: 'flex',
-              alignItems: 'center',
+            <Box sx={{ 
+              mt: 2, 
+              p: 2, 
+              background: 'rgba(0,0,0,0.2)', 
+              borderRadius: '8px',
+              position: 'relative'
             }}>
-              <Typography variant="body1" sx={{ fontFamily: 'monospace', fontSize: '1rem', color: '#6BB6FF', wordBreak: 'break-word' }}>
+              <Typography variant="body1" sx={{ fontFamily: 'monospace' }}>
                 {generatedPrompt}
               </Typography>
-              <IconButton
+              <IconButton 
                 onClick={() => navigator.clipboard.writeText(generatedPrompt)}
-                sx={{ position: 'absolute', top: 5, right: 5, color: '#A78BFA', background: 'rgba(255,255,255,0.18)', borderRadius: '50%' }}
+                sx={{ position: 'absolute', top: 5, right: 5, color: 'white' }}
               >
                 <ContentCopyIcon fontSize="small" />
               </IconButton>
