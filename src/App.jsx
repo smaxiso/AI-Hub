@@ -10,6 +10,10 @@ import ToolDetailModal from './components/ToolDetailModal';
 import ToolComparison from './components/ToolComparison';
 import DarkModeToggle from './components/DarkModeToggle';
 import TrendingSection from './components/TrendingSection';
+import MagicPrompt from './components/MagicPrompt';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import RecentlyViewed from './components/RecentlyViewed';
 import Collections from './components/Collections';
 import EmptyState from './components/EmptyState';
@@ -26,6 +30,7 @@ import NewReleasesIcon from '@mui/icons-material/NewReleases';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function App() {
+    const [magicPromptOpen, setMagicPromptOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [pricingFilter, setPricingFilter] = useState('All');
@@ -317,6 +322,15 @@ function App() {
           pt: { xs: 4, md: 6 }
         }}
       >
+        {/* Magic Prompt Modal */}
+        <Dialog open={magicPromptOpen} onClose={() => setMagicPromptOpen(false)} maxWidth="sm" fullWidth>
+          <DialogContent sx={{ background: darkMode
+            ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
+            : 'linear-gradient(135deg, #E8F4F8 0%, #D4C5F9 50%, #C8F4E0 100%)',
+            p: { xs: 1, sm: 3 } }}>
+            <MagicPrompt />
+          </DialogContent>
+        </Dialog>
         {/* Header with Dark Mode Toggle */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -731,26 +745,49 @@ function App() {
           </Box>
         )}
 
-        {/* Keyboard Shortcuts Button - Hidden on Mobile */}
+        {/* Floating Action Buttons - Hidden on Mobile */}
         {!isMobile && (
-          <Fab
-            size="small"
-            onClick={() => setShowShortcuts(!showShortcuts)}
-            sx={{
-              position: 'fixed',
-              bottom: 24,
-              left: 24,
-              background: 'rgba(255, 255, 255, 0.25)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.18)',
-              color: 'text.secondary',
-              '&:hover': {
-                background: 'rgba(255, 255, 255, 0.35)'
-              }
-            }}
-          >
-            <KeyboardIcon />
-          </Fab>
+          <>
+            <Fab
+              size="medium"
+              onClick={() => setMagicPromptOpen(true)}
+              sx={{
+                position: 'fixed',
+                bottom: 24,
+                right: 24,
+                background: 'linear-gradient(135deg, #6BB6FF 0%, #A78BFA 100%)',
+                color: 'white',
+                boxShadow: '0 4px 16px rgba(100,150,200,0.12)',
+                border: '1px solid rgba(255,255,255,0.18)',
+                zIndex: 1100,
+                '&:hover': {
+                  background: 'linear-gradient(135deg, #A78BFA 0%, #6BB6FF 100%)'
+                }
+              }}
+              aria-label="Magic Prompt"
+            >
+              <AutoAwesomeIcon fontSize="medium" />
+            </Fab>
+            <Fab
+              size="small"
+              onClick={() => setShowShortcuts(!showShortcuts)}
+              sx={{
+                position: 'fixed',
+                bottom: 24,
+                left: 24,
+                background: 'rgba(255, 255, 255, 0.25)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.18)',
+                color: 'text.secondary',
+                zIndex: 1100,
+                '&:hover': {
+                  background: 'rgba(255, 255, 255, 0.35)'
+                }
+              }}
+            >
+              <KeyboardIcon />
+            </Fab>
+          </>
         )}
       </Container>
     </Box>
