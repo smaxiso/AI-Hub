@@ -97,6 +97,19 @@ const rawTools = [
     isNew: true
   },
   {
+    id: 'antigravity',
+    name: 'Antigravity',
+    url: 'https://antigravity.google/',
+    category: 'Coding',
+    icon: '/logos/antigravity.png',
+    description: 'A powerful agentic AI coding assistant designed by the Google DeepMind team working on Advanced Agentic Coding.',
+    tags: ['coding', 'agent', 'google', 'deepmind'],
+    pricing: 'Free',
+    useCases: ['Pair Programming', 'Complex Refactoring', 'Agentic Workflows'],
+    addedDate: '2025-11-18',
+    isNew: true
+  },
+  {
     id: 'bolt-new',
     name: 'Bolt.new',
     url: 'https://bolt.new/',
