@@ -24,5 +24,8 @@ dist-ssr
 *.sw?
 
 # Firebase service account credentials
-aihubx-firebase-adminsdk-fbsvc-1065bbca34.json
+aihubx-firebase-adminsdk*
+
+# Environment variables
+.env
 
