@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { Box, Typography, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 
-const EmptyState = ({ 
-  icon, 
-  title, 
-  description, 
-  action, 
-  actionLabel,
-  onAction 
+const EmptyState = ({
+  icon = null,
+  title,
+  description,
+  action = null,
+  actionLabel = null,
+  onAction = undefined
 }) => {
   return (
     <motion.div
@@ -37,7 +37,7 @@ const EmptyState = ({
             {icon}
           </motion.div>
         )}
-        
+
         <Typography
           variant="h5"
           component="h2"
@@ -50,7 +50,7 @@ const EmptyState = ({
         >
           {title}
         </Typography>
-        
+
         <Typography
           variant="body1"
           sx={{
@@ -62,7 +62,7 @@ const EmptyState = ({
         >
           {description}
         </Typography>
-        
+
         {(action || (actionLabel && onAction)) && (
           <Box>
             {action || (
@@ -105,11 +105,6 @@ EmptyState.propTypes = {
   onAction: PropTypes.func,
 };
 
-EmptyState.defaultProps = {
-  icon: null,
-  action: null,
-  actionLabel: null,
-  onAction: undefined,
-};
+// Default props handled in component definition
 
 export default EmptyState;

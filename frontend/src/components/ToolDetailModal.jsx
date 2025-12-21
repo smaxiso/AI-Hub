@@ -29,20 +29,20 @@ import TagIcon from '@mui/icons-material/Tag';
 import WorkIcon from '@mui/icons-material/Work';
 import { motion } from 'framer-motion';
 import { categoryColors } from '../data/tools.js';
-import { aiTools } from '../data/tools.js';
+// Removed static aiTools import
 import { findSimilarTools, findAlternatives } from '../utils/toolSimilarity.js';
 import ShareButton from './ShareButton';
 import ToolCard from './ToolCard';
 
-const ToolDetailModal = ({ tool = null, open, onClose, onFavorite, isFavorite, onToolClick = undefined }) => {
+const ToolDetailModal = ({ tool = null, aiTools = [], open, onClose, onFavorite, isFavorite, onToolClick = undefined }) => {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const categoryColor = tool ? (categoryColors[tool.category] || categoryColors.Other) : '#B8E0F2';
-  
+
   // Find similar tools and alternatives
-  const similarTools = tool ? findSimilarTools(tool, aiTools, 4) : [];
-  const alternativeTools = tool ? findAlternatives(tool, aiTools, 4) : [];
+  const similarTools = (tool && aiTools.length > 0) ? findSimilarTools(tool, aiTools, 4) : [];
+  const alternativeTools = (tool && aiTools.length > 0) ? findAlternatives(tool, aiTools, 4) : [];
 
   if (!tool) return null;
 
@@ -190,7 +190,7 @@ const ToolDetailModal = ({ tool = null, open, onClose, onFavorite, isFavorite, o
               >
                 {tool.name}
               </Typography>
-              
+
               <Stack direction="row" spacing={{ xs: 0.5, sm: 1 }} flexWrap="wrap" useFlexGap>
                 <Chip
                   icon={<CategoryIcon sx={{ fontSize: { xs: '0.85rem', sm: '1rem' }, display: { xs: 'none', sm: 'inline-flex' } }} />}
@@ -221,15 +221,15 @@ const ToolDetailModal = ({ tool = null, open, onClose, onFavorite, isFavorite, o
                       background: tool.pricing === 'Free'
                         ? 'linear-gradient(135deg, #34D399 0%, #10B981 100%)'
                         : tool.pricing === 'Paid'
-                        ? 'linear-gradient(135deg, #FB7185 0%, #F43F5E 100%)'
-                        : 'linear-gradient(135deg, #6BB6FF 0%, #3B82F6 100%)',
+                          ? 'linear-gradient(135deg, #FB7185 0%, #F43F5E 100%)'
+                          : 'linear-gradient(135deg, #6BB6FF 0%, #3B82F6 100%)',
                       color: 'white',
                       border: `1.5px solid ${tool.pricing === 'Free' ? '#34D399' : tool.pricing === 'Paid' ? '#FB7185' : '#6BB6FF'}`,
                       boxShadow: tool.pricing === 'Free'
                         ? '0 4px 12px rgba(52, 211, 153, 0.4)'
                         : tool.pricing === 'Paid'
-                        ? '0 4px 12px rgba(251, 113, 133, 0.4)'
-                        : '0 4px 12px rgba(107, 182, 255, 0.4)',
+                          ? '0 4px 12px rgba(251, 113, 133, 0.4)'
+                          : '0 4px 12px rgba(107, 182, 255, 0.4)',
                       '& .MuiChip-icon': {
                         color: 'white'
                       }
