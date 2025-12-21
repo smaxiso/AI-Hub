@@ -31,6 +31,7 @@ const ToolForm = ({ isEditing }) => {
     const [error, setError] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+    const [duplicateCheck, setDuplicateCheck] = useState({ checking: false, exists: false, tool: null });
 
     useEffect(() => {
         if (isEditing && id) {
@@ -63,6 +64,31 @@ const ToolForm = ({ isEditing }) => {
     const handleCloseSnackbar = () => {
         setSnackbar({ ...snackbar, open: false });
     };
+
+    // Debounced duplicate check
+    useEffect(() => {
+        if (!formData.url || isEditing) return; // Skip check when editing existing tool
+
+        const timeoutId = setTimeout(async () => {
+            setDuplicateCheck({ checking: true, exists: false, tool: null });
+
+            try {
+                const res = await fetch(`${API_URL}/tools/check-duplicate?url=${encodeURIComponent(formData.url)}`);
+                const data = await res.json();
+
+                if (data.exists) {
+                    setDuplicateCheck({ checking: false, exists: true, tool: data.tool });
+                } else {
+                    setDuplicateCheck({ checking: false, exists: false, tool: null });
+                }
+            } catch (err) {
+                console.error('Error checking duplicate:', err);
+                setDuplicateCheck({ checking: false, exists: false, tool: null });
+            }
+        }, 800); // 800ms debounce
+
+        return () => clearTimeout(timeoutId);
+    }, [formData.url, isEditing]);
 
     const handleImageUpload = async (event) => {
         try {
@@ -206,7 +232,21 @@ const ToolForm = ({ isEditing }) => {
                                     value={formData.url}
                                     onChange={(e) => setFormData({ ...formData, url: e.target.value })}
                                     required
+                                    error={duplicateCheck.exists}
+                                    helperText={duplicateCheck.checking ? 'Checking for duplicates...' : ''}
                                 />
+                                {duplicateCheck.exists && duplicateCheck.tool && (
+                                    <Alert severity="warning" sx={{ mt: 1 }}>
+                                        <Typography variant="subtitle2" fontWeight="bold">
+                                            ⚠️ This tool already exists!
+                                        </Typography>
+                                        <Typography variant="body2" sx={{ mt: 0.5 }}>
+                                            <strong>Name:</strong> {duplicateCheck.tool.name}<br />
+                                            <strong>Category:</strong> {duplicateCheck.tool.category}<br />
+                                            <strong>Added:</strong> {duplicateCheck.tool.added_date}
+                                        </Typography>
+                                    </Alert>
+                                )}
                             </Grid>
 
                             <Grid item xs={12}>

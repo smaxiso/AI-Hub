@@ -165,6 +165,39 @@ app.get('/api/tools', async (req, res) => {
     }
 });
 
+// GET /api/tools/check-duplicate - Check if tool URL already exists
+app.get('/api/tools/check-duplicate', async (req, res) => {
+    const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'URL parameter is required' });
+    }
+
+    try {
+        const { data, error } = await supabase
+            .from('tools')
+            .select('id, name, category, added_date, url')
+            .eq('url', url)
+            .maybeSingle();
+
+        if (error) throw error;
+
+        if (data) {
+            // Tool exists
+            res.json({
+                exists: true,
+                tool: data
+            });
+        } else {
+            // Tool does not exist
+            res.json({ exists: false });
+        }
+    } catch (err) {
+        console.error('Error checking duplicate:', err);
+        res.status(500).json({ error: 'Failed to check for duplicates' });
+    }
+});
+
 // POST /api/tools - Create new tool (Admin only)
 app.post('/api/tools', authenticateUser, requireRole(['owner', 'admin']), async (req, res) => {
     const { id, name, url, category, description, tags, pricing, icon, use_cases, added_date } = req.body;
@@ -174,6 +207,21 @@ app.post('/api/tools', authenticateUser, requireRole(['owner', 'admin']), async 
     const addedDate = added_date || new Date().toISOString().split('T')[0];
 
     try {
+        // Check for duplicate URL
+        const { data: existing } = await supabase
+            .from('tools')
+            .select('id, name, url')
+            .eq('url', url)
+            .maybeSingle();
+
+        if (existing) {
+            return res.status(409).json({
+                error: 'Duplicate tool',
+                message: `A tool with this URL already exists: ${existing.name}`,
+                existingTool: existing
+            });
+        }
+
         const { data, error } = await supabase
             .from('tools')
             .insert([{
