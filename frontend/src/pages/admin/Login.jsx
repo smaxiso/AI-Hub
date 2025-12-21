@@ -5,9 +5,10 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Box, Button, TextField, Typography, Paper, Alert, InputAdornment, IconButton } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { supabase } from '../../supabaseClient';
 
 const Login = () => {
-    const { signIn } = useAuth();
+    const { signIn, signOut } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const [email, setEmail] = useState('');
@@ -15,6 +16,7 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [pendingUser, setPendingUser] = useState(false);
 
     const from = location.state?.from?.pathname || '/admin';
 
@@ -22,14 +24,73 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
         setError(null);
+        setPendingUser(false);
 
-        const { error } = await signIn({ email, password });
+        try {
+            let loginEmail = email;
 
-        if (error) {
-            setError(error.message);
+            // Check if input is a username (no @ symbol)
+            if (!email.includes('@')) {
+                // Query database to get email from username
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('email, role')
+                    .eq('username', email)
+                    .single();
+
+                if (!profile) {
+                    setError('Username not found');
+                    setLoading(false);
+                    return;
+                }
+
+                loginEmail = profile.email;
+
+                // Check if user is pending BEFORE login attempt
+                if (profile.role === 'pending') {
+                    setPendingUser(true);
+                    setError(null);
+                    setLoading(false);
+                    return;
+                }
+            }
+
+            // Attempt login with email
+            const { error: signInError } = await signIn({ email: loginEmail, password });
+
+            if (signInError) {
+                // Check if it's because user is still pending
+                if (signInError.message.includes('Email not confirmed')) {
+                    setPendingUser(true);
+                    setError(null);
+                } else {
+                    setError(signInError.message);
+                }
+                setLoading(false);
+            } else {
+                // Check role after successful login
+                const { data: { session } } = await supabase.auth.getSession();
+                if (session) {
+                    const { data: profile } = await supabase
+                        .from('profiles')
+                        .select('role')
+                        .eq('id', session.user.id)
+                        .single();
+
+                    if (profile?.role === 'pending') {
+                        await signOut();
+                        setPendingUser(true);
+                        setError(null);
+                        setLoading(false);
+                        return;
+                    }
+                }
+                navigate(from, { replace: true });
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            setError('An error occurred during login');
             setLoading(false);
-        } else {
-            navigate(from, { replace: true });
         }
     };
 
@@ -60,10 +121,18 @@ const Login = () => {
                 </Typography>
 
                 {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+                {pendingUser && (
+                    <Alert severity="warning" sx={{ mb: 2 }}>
+                        <Typography variant="subtitle2" fontWeight="bold">Account Pending Approval</Typography>
+                        <Typography variant="body2" sx={{ mt: 0.5 }}>
+                            Your profile is waiting for owner approval. Once approved, you'll be able to access the admin portal.
+                        </Typography>
+                    </Alert>
+                )}
 
                 <form onSubmit={handleSubmit}>
                     <TextField
-                        label="Email"
+                        label="Email or Username"
                         variant="standard"
                         fullWidth
                         margin="normal"
