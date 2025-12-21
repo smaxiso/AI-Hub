@@ -124,6 +124,13 @@ const ToolForm = ({ isEditing }) => {
         setSubmitting(true);
         setError(null);
 
+        // Prevent submission if duplicate exists (only for new tools)
+        if (!isEditing && duplicateCheck.exists) {
+            setError('This tool URL already exists in the database. Please use a different URL.');
+            setSubmitting(false);
+            return;
+        }
+
         // Format arrays
         const payload = {
             ...formData,
