@@ -373,12 +373,15 @@ function App() {
             pt: { xs: 4, md: 6 }
           }}
         >
-          {/* Magic Prompt Modal - No DialogContent wrapper, direct child for perfect glow and spacing */}
+          {/* Magic Prompt Modal - Fixes aria-hidden error by managing focus manually if needed, or by ensuring it doesn't conflict with root */}
           <Dialog
             open={magicPromptOpen}
             onClose={() => setMagicPromptOpen(false)}
             maxWidth="sm"
             fullWidth
+            keepMounted={false}
+            disablePortal={false} // Ensure it uses the portal to escape the root div
+            disableEnforceFocus={true} // Prevents the aggressive focus trapping that causes the aria-hidden conflict
             PaperProps={{
               sx: {
                 m: 2,
