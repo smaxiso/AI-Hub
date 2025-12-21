@@ -1,46 +1,84 @@
-# TheAIHubX
+# TheAIHubX Frontend
 
 **Discover, compare, and master AI tools - Your complete learning hub**
 
-Find all your essential AI tools in one place. Explore, compare, and learn to master AI with curated tools and structured learning paths. A beautiful, modern platform with glassmorphism design, 3D effects, and smooth animations. Built with React, Material-UI, and Framer Motion.
+A modern, feature-rich React application with glassmorphism design, 3D effects, and comprehensive admin dashboard with role-based access control.
 
-## Features
+## ✨ Features
 
+### Public Features
 - 🎨 **Glassmorphism Design** - Beautiful frosted glass effect with backdrop blur
-- 🌈 **Soothing Light Colors** - Aesthetic pastel color palette
-- 📱 **Mobile-First** - Fully responsive design that works on all devices
-- ✨ **3D Effects** - Subtle 3D transforms and hover animations
-- 🔍 **Search & Filter** - Find tools by name or category
+- 🌈 **Soothing Color Palette** - Aesthetic pastel colors with smooth gradients
+- 📱 **Mobile-First Responsive** - Optimized for all devices with card layouts
+- ✨ **3D Effects** - Subtle transforms and hover animations
+- 🔍 **Advanced Search** - Real-time search across tool names and descriptions
+- 🎯 **Smart Filtering** - Filter by categories with visual chips
+- 📊 **Flexible Sorting** - Sort alphabetically or by newest first
+- 🆕 **New Badge** - Auto-highlight tools added in the last 7 days
 - 🎭 **Smooth Animations** - Framer Motion powered transitions
-- 🎯 **Category Organization** - Tools organized by Chat, Image, Audio, Video, and Other
 
-## Tech Stack
+### Admin Dashboard
+- 🔐 **Authentication** - Secure login with Supabase Auth
+- 👥 **User Management** (Owner Only)
+  - Approve/reject new signups
+  - Revoke admin access
+  - Real-time pending user badge
+  - Session invalidation for revoked users
+- 🛠️ **Tool Management**
+  - Create, edit, and delete tools
+  - Image upload to Supabase Storage
+  - Rich form validation
+- 🔒 **Profile & Security**
+  - Avatar upload and management
+  - Username customization (with uniqueness check)
+  - Password reset flow
+- 🎨 **Production UX**
+  - Custom Material-UI dialogs for confirmations
+  - Snackbar notifications for feedback
+  - Mobile-responsive tables and cards
+  - Password visibility toggles
 
-- **React 18** - UI library
-- **Vite** - Build tool and dev server
-- **Material-UI (MUI)** - Component library
-- **Framer Motion** - Animation library
+## 🛠️ Tech Stack
+
+- **React 18** - UI library with hooks
+- **Vite** - Lightning-fast build tool
+- **Material-UI (MUI)** - Comprehensive component library
+- **Framer Motion** - Advanced animation library
+- **React Router** - Client-side routing
+- **Supabase Client** - Authentication and storage
 - **Emotion** - CSS-in-JS styling
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 16+ and npm/yarn
+- Node.js 16+
+- npm or yarn
+- Supabase project credentials
 
 ### Installation
 
-1. Install dependencies:
+1. **Install dependencies:**
 ```bash
 npm install
 ```
 
-2. Start the development server:
+2. **Configure environment variables:**
+
+Create a `.env` file in the frontend directory:
+```env
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_API_URL=http://localhost:3000/api
+```
+
+3. **Start development server:**
 ```bash
 npm run dev
 ```
 
-3. Open your browser and navigate to `http://localhost:5173`
+4. **Open browser:**
+Navigate to `http://localhost:5173`
 
 ### Build for Production
 
@@ -48,91 +86,124 @@ npm run dev
 npm run build
 ```
 
-The built files will be in the `dist` directory.
+Built files will be in the `dist` directory.
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-theaihubx/
+frontend/
 ├── src/
 │   ├── components/
-│   │   ├── ToolCard.jsx      # Glassmorphism card component
-│   │   ├── SearchBar.jsx        # Search input component
-│   │   └── CategoryFilter.jsx # Category filter chips
-│   ├── data/
-│   │   └── tools.js         # AI tools data
-│   ├── utils/
-│   │   └── parseBookmarks.js # Bookmark parser utility
-│   ├── App.jsx              # Main app component
-│   ├── main.jsx             # Entry point
-│   └── index.css            # Global styles
-├── index.html
+│   │   ├── ToolCard.jsx          # Glassmorphism tool card
+│   │   ├── SearchBar.jsx         # Search input
+│   │   ├── CategoryFilter.jsx    # Category chips
+│   │   └── ProtectedRoute.jsx    # Auth route guard
+│   ├── context/
+│   │   └── AuthContext.jsx       # Global auth state
+│   ├── pages/
+│   │   ├── Home.jsx              # Public homepage
+│   │   └── admin/
+│   │       ├── Login.jsx         # Admin login
+│   │       ├── Signup.jsx        # User registration
+│   │       ├── Dashboard.jsx     # Admin dashboard
+│   │       ├── ToolForm.jsx      # Create/edit tools
+│   │       ├── ManageUsers.jsx   # User management (owner)
+│   │       ├── Profile.jsx       # User profile settings
+│   │       ├── ForgotPassword.jsx
+│   │       └── ResetPassword.jsx
+│   ├── supabaseClient.js         # Supabase config
+│   ├── App.jsx                   # Main app with routing
+│   ├── main.jsx                  # Entry point
+│   └── index.css                 # Global styles
+├── .env                          # Environment variables
 ├── package.json
 └── vite.config.js
 ```
 
-## Customization
-
-### Adding New Tools
-
-Edit `src/data/tools.js` and add your tool object:
-
-```javascript
-{
-  id: 'unique-id',
-  name: 'Tool Name',
-  url: 'https://tool-url.com',
-  category: 'Chat', // or 'Image', 'Audio', 'Video', 'Other'
-  icon: 'data:image/png;base64,...' // optional
-}
-```
+## 🎨 Customization
 
 ### Color Scheme
 
-Modify the color palette in `src/index.css`:
+Modify the palette in `src/index.css`:
 
 ```css
 :root {
   --primary-light: #E8F4F8;
   --primary-soft: #B8E0F2;
   --accent-lavender: #D4C5F9;
-  /* ... */
+  --accent-peach: #FFD4BA;
+  --neutral-white: #FFFFFF;
 }
 ```
 
 ### Category Colors
 
-Update category colors in `src/data/tools.js`:
-
+Update in your tool data:
 ```javascript
-export const categoryColors = {
+const categoryColors = {
   Chat: '#B8E0F2',
   Image: '#D4C5F9',
-  // ...
+  Video: '#FFD4BA',
+  Coding: '#C1E7E3',
+  Audio: '#F8E6D4',
+  Agent: '#E8D4F8',
+  Other: '#D4D4D4'
 };
 ```
 
-## Features in Detail
+## 🔐 Authentication Flow
+
+1. **Public Access** - Homepage is accessible to all
+2. **Registration** - Users sign up via `/admin/signup`
+3. **Pending State** - New users start with `pending` role
+4. **Owner Approval** - Owner must approve users (promote to `admin`)
+5. **Admin Access** - Approved admins can manage tools
+6. **Session Management** - Revoked users auto-logout every 5 seconds
+
+## 🎭 Key Features in Detail
 
 ### Glassmorphism Effect
-- Backdrop blur for frosted glass appearance
+- Backdrop blur for frosted glass
 - Semi-transparent backgrounds
 - Subtle borders and shadows
+- Gradient overlays
 
-### 3D Effects
-- Hover transforms with scale and rotation
-- Parallax background elements
-- Smooth transitions
+### Mobile Responsiveness
+- Card-based layouts for small screens
+- Collapsible navigation
+- Touch-friendly buttons
+- Responsive tables transform to cards
 
-### Mobile-First Design
-- Responsive grid layout
-- Touch-friendly interactions
-- Optimized for small screens
+### Real-time Updates
+- Badge count refreshes on user approve/reject
+- Periodic role checks for session invalidation
+- Instant UI updates after actions
 
-## License
+### Production-grade UX
+- No native browser alerts/confirms
+- Custom Material-UI dialogs
+- Snackbar notifications with severity levels
+- Loading states and error handling
 
-MIT
+## 📚 Available Scripts
 
-## Contributing
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## 🔧 Environment Variables
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `VITE_SUPABASE_URL` | Supabase project URL | `https://xxx.supabase.co` |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon key | `eyJhbG...` |
+| `VITE_API_URL` | Backend API URL | `http://localhost:3000/api` |
+
+## 🤝 Contributing
 
 Feel free to submit issues and enhancement requests!
+
+## 📄 License
+
+MIT
