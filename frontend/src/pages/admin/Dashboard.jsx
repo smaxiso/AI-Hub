@@ -194,6 +194,16 @@ const Dashboard = () => {
                                 sx={{ display: { xs: 'none', md: 'flex' } }}
                             />
                         )}
+                        <Button
+                            startIcon={<OpenInNewIcon />}
+                            component="a"
+                            href="https://aihubx.web.app"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{ display: { xs: 'none', md: 'flex' }, textTransform: 'none' }}
+                        >
+                            View Site
+                        </Button>
                         <Button onClick={() => navigate('/admin/profile')} sx={{ textTransform: 'none', minWidth: 'auto' }}>
                             <PersonIcon sx={{ display: { xs: 'block', md: 'none' }, color: 'text.primary' }} />
                             <Typography variant="caption" sx={{ color: 'text.primary', mr: 1, display: { xs: 'none', md: 'block' } }}>
