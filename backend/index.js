@@ -64,6 +64,14 @@ const requireRole = (allowedRoles) => (req, res, next) => {
 
 // API Routes
 
+// Health Check Endpoint (for uptime monitoring/cron jobs)
+app.get('/api/health', (req, res) => {
+    res.status(200).json({
+        status: 'ok',
+        timestamp: new Date().toISOString()
+    });
+});
+
 // Public Signup Endpoint
 app.post('/api/auth/signup', async (req, res) => {
     const { email, password, full_name, username } = req.body;
