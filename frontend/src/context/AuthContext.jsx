@@ -9,13 +9,27 @@ export const AuthProvider = ({ children }) => {
 
     const fetchUserProfile = async (authUser) => {
         if (!authUser) return null;
+        console.log('AuthContext: fetchUserProfile called for', authUser.id);
 
         try {
-            const { data: profile } = await supabase
+            // Create a timeout promise
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Profile fetch timeout')), 5000)
+            );
+
+            // Race between fetch and timeout
+            const fetchPromise = supabase
                 .from('profiles')
                 .select('*')
                 .eq('id', authUser.id)
                 .single();
+
+            const { data: profile, error } = await Promise.race([fetchPromise, timeoutPromise]);
+
+            if (error) {
+                console.error('AuthContext: Profile fetch error', error);
+                throw error;
+            }
 
             return {
                 ...authUser,
@@ -23,8 +37,13 @@ export const AuthProvider = ({ children }) => {
                 role: profile?.role || 'authenticated'
             };
         } catch (err) {
-            console.error('Error fetching profile:', err);
-            return authUser;
+            console.error('AuthContext: Error fetching profile:', err);
+            // Return user without profile on error to allow login
+            return {
+                ...authUser,
+                profile: null,
+                role: 'authenticated'
+            };
         }
     };
 
@@ -63,13 +82,22 @@ export const AuthProvider = ({ children }) => {
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
             console.log('AuthContext: Auth change event', event);
-            if (session?.user) {
-                const userWithProfile = await fetchUserProfile(session.user);
-                setUser(userWithProfile);
-            } else {
-                setUser(null);
+            try {
+                if (session?.user) {
+                    console.log('AuthContext: Fetching profile for listener...');
+                    const userWithProfile = await fetchUserProfile(session.user);
+                    console.log('AuthContext: Profile fetched for listener', userWithProfile);
+                    setUser(userWithProfile);
+                } else {
+                    console.log('AuthContext: No session in listener');
+                    setUser(null);
+                }
+            } catch (err) {
+                console.error('AuthContext: Listener error', err);
+            } finally {
+                console.log('AuthContext: Loading finished (listener)');
+                setLoading(false);
             }
-            setLoading(false);
         });
 
         return () => subscription.unsubscribe();
