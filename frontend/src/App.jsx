@@ -16,15 +16,25 @@ import LearningHub from './pages/learning/LearningHub';
 import ModuleDetail from './pages/learning/ModuleDetail';
 import Quiz from './pages/learning/Quiz';
 
+// Public Auth Pages
+import PublicLogin from './pages/auth/Login';
+import PublicSignup from './pages/auth/Signup';
+
 function App() {
     return (
         <AuthProvider>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
+
+                    {/* Public Auth Routes */}
+                    <Route path="/login" element={<PublicLogin />} />
+                    <Route path="/signup" element={<PublicSignup />} />
+
+                    {/* Admin Auth Routes */}
                     <Route path="/admin/login" element={<Login />} />
                     <Route path="/admin/signup" element={<Signup />} />
-                    <Route path="/admin/forgot-password" element={<ForgotPassword />} /> {/* Added Signup Route */}
+                    <Route path="/admin/forgot-password" element={<ForgotPassword />} />
 
                     {/* Protected Admin Routes */}
                     <Route
@@ -46,7 +56,7 @@ function App() {
                     <Route
                         path="/admin/tool/new"
                         element={
-                            <ProtectedRoute>
+                            <ProtectedRoute allowedRoles={['owner', 'admin']}>
                                 <ToolForm isEditing={false} />
                             </ProtectedRoute>
                         }
@@ -54,7 +64,7 @@ function App() {
                     <Route
                         path="/admin/tool/:id"
                         element={
-                            <ProtectedRoute>
+                            <ProtectedRoute allowedRoles={['owner', 'admin']}>
                                 <ToolForm isEditing={true} />
                             </ProtectedRoute>
                         }
@@ -65,7 +75,7 @@ function App() {
                     <Route
                         path="/learning/module/:moduleId"
                         element={
-                            <ProtectedRoute>
+                            <ProtectedRoute requireAuth={true}>
                                 <ModuleDetail />
                             </ProtectedRoute>
                         }
@@ -73,7 +83,7 @@ function App() {
                     <Route
                         path="/learning/quiz/:moduleId"
                         element={
-                            <ProtectedRoute>
+                            <ProtectedRoute requireAuth={true}>
                                 <Quiz />
                             </ProtectedRoute>
                         }
