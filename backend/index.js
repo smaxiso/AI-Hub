@@ -122,6 +122,44 @@ app.post('/api/auth/signup', async (req, res) => {
     }
 });
 
+// Login with Email or Username
+app.post('/api/auth/login', async (req, res) => {
+    const { identifier, password } = req.body;
+
+    try {
+        let email = identifier;
+
+        // Check if identifier is username (doesn't contain @)
+        if (!identifier.includes('@')) {
+            const { data: profiles, error: profileError } = await supabase
+                .from('profiles')
+                .select('email')
+                .eq('username', identifier);
+
+            if (profileError || !profiles || profiles.length === 0) {
+                return res.status(400).json({ error: 'Invalid username or password' });
+            }
+
+            email = profiles[0].email;
+        }
+
+        // Sign in with email
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        if (error) {
+            return res.status(400).json({ error: 'Invalid credentials' });
+        }
+
+        res.json({ user: data.user, session: data.session });
+    } catch (err) {
+        console.error('Login error:', err);
+        res.status(500).json({ error: 'Login failed' });
+    }
+});
+
 // Public Learner Signup Endpoint (Auto-approved)
 app.post('/api/auth/signup-learner', async (req, res) => {
     const { email, password, full_name, username } = req.body;
