@@ -64,14 +64,15 @@ const Login = () => {
                         )}
 
                         <TextField
-                            label="Email"
-                            type="email"
+                            label="Email or Username"
+                            type="text"
                             fullWidth
                             required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={identifier}
+                            onChange={(e) => setIdentifier(e.target.value)}
                             sx={{ mb: 2 }}
-                            autoComplete="email"
+                            autoComplete="username"
+                            placeholder="Enter your email or username"
                         />
 
                         <TextField
