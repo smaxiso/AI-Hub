@@ -347,6 +347,288 @@ app.delete('/api/admin/users/:id', authenticateUser, requireRole(['owner']), asy
     }
 });
 
+// ============================================
+// LEARNING PLATFORM API ENDPOINTS
+// ============================================
+
+// 1. GET /api/learning/modules - List modules (optionally by level)
+app.get('/api/learning/modules', async (req, res) => {
+    try {
+        const { level } = req.query;
+
+        let query = supabase
+            .from('learning_modules')
+            .select('*')
+            .eq('is_published', true)
+            .order('order_index', { ascending: true });
+
+        if (level) {
+            query = query.eq('level', level);
+        }
+
+        const { data, error } = await query;
+
+        if (error) throw error;
+        res.json(data);
+    } catch (err) {
+        console.error('Error fetching modules:', err);
+        res.status(500).json({ error: 'Failed to fetch modules' });
+    }
+});
+
+// 2. GET /api/learning/modules/:id - Get module details
+app.get('/api/learning/modules/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const { data, error } = await supabase
+            .from('learning_modules')
+            .select('*')
+            .eq('id', id)
+            .eq('is_published', true)
+            .single();
+
+        if (error) throw error;
+        if (!data) return res.status(404).json({ error: 'Module not found' });
+
+        res.json(data);
+    } catch (err) {
+        console.error('Error fetching module:', err);
+        res.status(500).json({ error: 'Failed to fetch module' });
+    }
+});
+
+// 3. POST /api/learning/modules - Create module (Admin only)
+app.post('/api/learning/modules', authenticateUser, requireRole(['owner', 'admin']), async (req, res) => {
+    try {
+        const moduleData = req.body;
+
+        const { data, error } = await supabase
+            .from('learning_modules')
+            .insert([moduleData])
+            .select()
+            .single();
+
+        if (error) throw error;
+        res.status(201).json(data);
+    } catch (err) {
+        console.error('Error creating module:', err);
+        res.status(500).json({ error: 'Failed to create module' });
+    }
+});
+
+// 4. GET /api/learning/quiz/:moduleId - Get random quiz questions
+app.get('/api/learning/quiz/:moduleId', authenticateUser, async (req, res) => {
+    try {
+        const { moduleId } = req.params;
+        const count = parseInt(req.query.count) || 10;
+
+        // Get all active questions for the module
+        const { data: allQuestions, error } = await supabase
+            .from('quiz_questions')
+            .select('id, question_text, options, difficulty, topic_tag')
+            .eq('module_id', moduleId)
+            .eq('is_active', true);
+
+        if (error) throw error;
+
+        // Randomly select questions
+        const shuffled = allQuestions.sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, Math.min(count, allQuestions.length));
+
+        res.json(selected);
+    } catch (err) {
+        console.error('Error fetching quiz:', err);
+        res.status(500).json({ error: 'Failed to fetch quiz' });
+    }
+});
+
+// 5. POST /api/learning/quiz/:moduleId/submit - Submit quiz and get score
+app.post('/api/learning/quiz/:moduleId/submit', authenticateUser, async (req, res) => {
+    try {
+        const { moduleId } = req.params;
+        const { answers } = req.body; // [{question_id, selected_option}]
+        const userId = req.user.id;
+
+        // Get correct answers
+        const questionIds = answers.map(a => a.question_id);
+        const { data: questions, error: questionsError } = await supabase
+            .from('quiz_questions')
+            .select('id, options, explanation, topic_tag')
+            .in('id', questionIds);
+
+        if (questionsError) throw questionsError;
+
+        // Score the quiz
+        let correctCount = 0;
+        const detailedResults = answers.map(answer => {
+            const question = questions.find(q => q.id === answer.question_id);
+            if (!question) return null;
+
+            const correctOption = question.options.find(opt => opt.is_correct);
+            const isCorrect = answer.selected_option === correctOption.text;
+
+            if (isCorrect) correctCount++;
+
+            return {
+                question_id: answer.question_id,
+                selected_option: answer.selected_option,
+                correct_option: correctOption.text,
+                is_correct: isCorrect,
+                explanation: question.explanation,
+                topic_tag: question.topic_tag
+            };
+        });
+
+        const score = Math.round((correctCount / answers.length) * 100);
+        const passed = score >= 90; // 90% passing threshold
+
+        // Get failed topics for recommendations
+        const failedTopics = detailedResults
+            .filter(r => !r.is_correct)
+            .map(r => r.topic_tag)
+            .filter((v, i, a) => a.indexOf(v) === i); // unique
+
+        // Save quiz attempt
+        const { error: attemptError } = await supabase
+            .from('quiz_attempts')
+            .insert([{
+                user_id: userId,
+                module_id: moduleId,
+                score,
+                total_questions: answers.length,
+                correct_answers: correctCount,
+                answers: detailedResults,
+                passed,
+                completed_at: new Date().toISOString()
+            }]);
+
+        if (attemptError) console.error('Error saving quiz attempt:', attemptError);
+
+        res.json({
+            score,
+            passed,
+            correct_count: correctCount,
+            total_questions: answers.length,
+            failed_topics: passed ? [] : failedTopics,
+            detailed_results: detailedResults
+        });
+    } catch (err) {
+        console.error('Error submitting quiz:', err);
+        res.status(500).json({ error: 'Failed to submit quiz' });
+    }
+});
+
+// 6. GET /api/learning/progress - Get user progress
+app.get('/api/learning/progress', authenticateUser, async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        // Get or create user progress
+        let { data: progress, error } = await supabase
+            .from('user_progress')
+            .select('*')
+            .eq('user_id', userId)
+            .single();
+
+        if (error && error.code === 'PGRST116') {
+            // No progress found, create initial record
+            const { data: newProgress, error: createError } = await supabase
+                .from('user_progress')
+                .insert([{
+                    user_id: userId,
+                    current_level: 'beginner',
+                    completed_modules: [],
+                    total_points: 0
+                }])
+                .select()
+                .single();
+
+            if (createError) throw createError;
+            progress = newProgress;
+        } else if (error) {
+            throw error;
+        }
+
+        // Get module completions
+        const { data: completions, error: completionsError } = await supabase
+            .from('module_completions')
+            .select('*')
+            .eq('user_id', userId);
+
+        if (completionsError) throw completionsError;
+
+        res.json({
+            ...progress,
+            completions
+        });
+    } catch (err) {
+        console.error('Error fetching progress:', err);
+        res.status(500).json({ error: 'Failed to fetch progress' });
+    }
+});
+
+// 7. POST /api/learning/complete/:moduleId - Mark module as complete
+app.post('/api/learning/complete/:moduleId', authenticateUser, async (req, res) => {
+    try {
+        const { moduleId } = req.params;
+        const { completion_type, quiz_score, time_spent_minutes } = req.body;
+        const userId = req.user.id;
+
+        // Check if already completed
+        const { data: existing } = await supabase
+            .from('module_completions')
+            .select('*')
+            .eq('user_id', userId)
+            .eq('module_id', moduleId)
+            .single();
+
+        if (existing) {
+            return res.status(400).json({ error: 'Module already completed' });
+        }
+
+        // Insert completion
+        const { data: completion, error: completionError } = await supabase
+            .from('module_completions')
+            .insert([{
+                user_id: userId,
+                module_id: moduleId,
+                completion_type,
+                quiz_score,
+                time_spent_minutes
+            }])
+            .select()
+            .single();
+
+        if (completionError) throw completionError;
+
+        // Update user progress
+        const { data: progress } = await supabase
+            .from('user_progress')
+            .select('*')
+            .eq('user_id', userId)
+            .single();
+
+        if (progress) {
+            const updatedModules = [...(progress.completed_modules || []), moduleId];
+            const points = progress.total_points + (completion_type === 'quiz' ? (quiz_score >= 90 ? 50 : 20) : 25);
+
+            await supabase
+                .from('user_progress')
+                .update({
+                    completed_modules: updatedModules,
+                    total_points: points
+                })
+                .eq('user_id', userId);
+        }
+
+        res.status(201).json(completion);
+    } catch (err) {
+        console.error('Error completing module:', err);
+        res.status(500).json({ error: 'Failed to complete module' });
+    }
+});
+
 // Health check
 app.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date() });
