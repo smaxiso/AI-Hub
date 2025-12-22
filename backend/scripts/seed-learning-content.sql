@@ -3,25 +3,11 @@
 -- 5 Beginner Modules with Quiz Questions
 -- ============================================
 
--- Module 1: Introduction to AI Chat Tools
-INSERT INTO learning_modules (level, order_index, title, description, learning_objectives, estimated_duration_minutes, is_published)
-VALUES (
-  'beginner',
-  1,
-  'Introduction to AI Chat Tools',
-  'Learn the fundamentals of AI-powered chatbots like ChatGPT and Claude. Understand how they work and how to use them effectively in your daily workflow.',
-  ARRAY[
-    'Understand what AI chat tools are and how they work',
-    'Learn to craft effective prompts for better responses',
-    'Discover practical use cases for everyday tasks',
-    'Compare different chat AI tools and their strengths'
-  ],
-  30,
-  true
-) RETURNING id;
-
--- Get the module ID for quiz questions (you'll need to replace the UUID manually)
--- For now, we'll use a variable approach
+-- Clean up existing sample data (if any)
+DELETE FROM quiz_questions WHERE module_id IN (SELECT id FROM learning_modules WHERE level = 'beginner');
+DELETE FROM module_completions WHERE module_id IN (SELECT id FROM learning_modules WHERE level = 'beginner');
+DELETE FROM quiz_attempts WHERE module_id IN (SELECT id FROM learning_modules WHERE level = 'beginner');
+DELETE FROM learning_modules WHERE level = 'beginner';
 
 DO $$
 DECLARE
