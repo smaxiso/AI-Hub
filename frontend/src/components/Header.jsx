@@ -100,7 +100,7 @@ const Header = () => {
 
                                 {/* Context-aware Navigation */}
                                 {isLearningPage ? (
-                                    <MenuItem onClick={() => { handleClose(); navigate('/'); }}>
+                                    <MenuItem onClick={() => { handleClose(); window.open('/', '_blank'); }}>
                                         <ExploreIcon sx={{ mr: 1, fontSize: 20 }} />
                                         AI Hub Marketplace
                                     </MenuItem>
@@ -113,7 +113,7 @@ const Header = () => {
 
                                 {/* Admin Dashboard (if admin/owner) */}
                                 {(user.role === 'admin' || user.role === 'owner') && !isAdminPage && (
-                                    <MenuItem onClick={() => { handleClose(); navigate('/admin'); }}>
+                                    <MenuItem onClick={() => { handleClose(); window.open('/admin', '_blank'); }}>
                                         <DashboardIcon sx={{ mr: 1, fontSize: 20 }} />
                                         Admin Dashboard
                                     </MenuItem>

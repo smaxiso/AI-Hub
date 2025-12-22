@@ -33,11 +33,11 @@ const LearningHub = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (user) {
+        if (user?.id) {
             fetchProgress();
             fetchModules();
         }
-    }, [user]);
+    }, [user?.id]);
 
     useEffect(() => {
         if (progress?.current_level) {
@@ -100,10 +100,17 @@ const LearningHub = () => {
 
     const isModuleUnlocked = (module) => {
         if (!progress) return module.order_index === 1;
-        if (!module.prerequisites || module.prerequisites.length === 0) return true;
-        return module.prerequisites.every(prereqId =>
-            progress.completed_modules?.includes(prereqId)
-        );
+
+        // Strict Linear Locking: Unlock only if the IMMEDIATELY preceding module is complete
+        if (module.order_index === 1) return true;
+
+        // Find the previous module in the same level
+        // (Assuming modules are sorted by order_index, which the backend ensures)
+        const previousModule = modules.find(m => m.order_index === module.order_index - 1);
+
+        if (!previousModule) return false; // Should not happen if data is correct
+
+        return progress.completed_modules?.includes(previousModule.id);
     };
 
     const handleModuleClick = (module) => {
@@ -198,6 +205,10 @@ const LearningHub = () => {
                             const unlocked = isModuleUnlocked(module);
                             const completed = progress?.completed_modules?.includes(module.id);
 
+                            // Find completion details for score
+                            const completionRecord = progress?.completions?.find(c => c.module_id === module.id);
+                            const score = completionRecord?.quiz_score;
+
                             return (
                                 <Grid item xs={12} sm={6} md={4} key={module.id}>
                                     <Card
@@ -224,11 +235,22 @@ const LearningHub = () => {
                                                         color: 'white'
                                                     }}
                                                 />
-                                                {completed ? (
-                                                    <CheckCircleIcon color="success" />
-                                                ) : !unlocked ? (
-                                                    <LockIcon color="disabled" />
-                                                ) : null}
+                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                                    {completed && score !== undefined && (
+                                                        <Chip
+                                                            label={`Score: ${score}%`}
+                                                            size="small"
+                                                            color={score >= 90 ? "success" : "warning"}
+                                                            variant="outlined"
+                                                            sx={{ fontWeight: 'bold' }}
+                                                        />
+                                                    )}
+                                                    {completed ? (
+                                                        <CheckCircleIcon color="success" />
+                                                    ) : !unlocked ? (
+                                                        <LockIcon color="disabled" />
+                                                    ) : null}
+                                                </Box>
                                             </Box>
 
                                             <Typography variant="h6" sx={{ mb: 1, fontSize: { xs: '1rem', md: '1.25rem' } }}>

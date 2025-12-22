@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { supabase } from '../supabaseClient';
 
 const AuthContext = createContext();
@@ -6,52 +6,97 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const userRef = useRef(user);
 
-    const fetchUserProfile = async (authUser) => {
-        if (!authUser) return null;
-        console.log('AuthContext: fetchUserProfile called for', authUser.id);
+    // Keep userRef synced with user state
+    useEffect(() => {
+        userRef.current = user;
+    }, [user]);
 
-        try {
-            // Create a timeout promise (Short timeout for backend call)
-            const timeoutPromise = new Promise((_, reject) =>
-                setTimeout(() => reject(new Error('Profile fetch timeout')), 2000)
-            );
+    // Simple cache to prevent rapid re-fetching
+    const lastFetchTime = useRef(0);
+    const profileFetchPromise = useRef(null);
 
-            // Fetch from Backend API (Bypasses RLS)
-            const fetchPromise = (async () => {
-                const { data: { session } } = await supabase.auth.getSession();
-                const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/auth/profile`, {
-                    headers: {
-                        'Authorization': `Bearer ${session?.access_token}`
-                    }
-                });
-                if (!res.ok) throw new Error('Backend fetch failed');
-                return res.json();
-            })();
+    const fetchUserProfile = async (userId) => {
+        if (!userId) return; // Ensure we have a userId to fetch for
 
-            const profile = await Promise.race([fetchPromise, timeoutPromise]);
+        const now = Date.now();
+        const currentUser = userRef.current;
 
-            return {
-                ...authUser,
-                profile,
-                role: profile?.role || 'authenticated'
-            };
-        } catch (err) {
-            console.error('AuthContext: Error fetching profile:', err);
-            // Return user without profile on error to allow login
-            return {
-                ...authUser,
-                profile: null,
-                role: 'authenticated'
-            };
+        // If fetched less than 10 seconds ago AND we already have a profile, skip
+        // This prevents unnecessary backend calls if the user object already has profile data
+        if (now - lastFetchTime.current < 10000 && currentUser?.profile && currentUser.id === userId) {
+            return; // No need to refetch
         }
+
+        // If a fetch is already in progress for this user, wait for it
+        if (profileFetchPromise.current) {
+            return profileFetchPromise.current;
+        }
+
+        console.log(`AuthContext: fetchUserProfile called for ${userId}`);
+
+        profileFetchPromise.current = (async () => {
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
+                if (!session || session.user.id !== userId) {
+                    // Session expired or user changed, clear promise and return
+                    profileFetchPromise.current = null;
+                    return;
+                }
+
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+                const res = await fetch(`${API_URL}/auth/profile`, {
+                    headers: { 'Authorization': `Bearer ${session.access_token}` }
+                });
+
+                if (res.ok) {
+                    const profile = await res.json();
+                    if (profile) {
+                        console.log('AuthContext: Background Profile Update', profile.role);
+                        setUser(currentUser => {
+                            // Deep compare to prevent re-render if identical
+                            if (currentUser?.profile?.updated_at === profile.updated_at &&
+                                currentUser?.role === profile.role &&
+                                currentUser?.id === userId) {
+                                return currentUser;
+                            }
+                            // Merge new profile data into the existing user object
+                            return { ...currentUser, ...session.user, role: profile.role, profile };
+                        });
+                        lastFetchTime.current = Date.now();
+                    }
+                } else {
+                    console.error('AuthContext: Backend fetch failed with status', res.status);
+                    // If backend fetch fails, ensure user state is consistent (e.g., no profile)
+                    setUser(currentUser => {
+                        if (currentUser?.id === userId) {
+                            return { ...currentUser, profile: null, role: 'authenticated' };
+                        }
+                        return currentUser;
+                    });
+                }
+            } catch (err) {
+                console.error('AuthContext: Error fetching profile:', err);
+                // On error, ensure user state is consistent (e.g., no profile)
+                setUser(currentUser => {
+                    if (currentUser?.id === userId) {
+                        return { ...currentUser, profile: null, role: 'authenticated' };
+                    }
+                    return currentUser;
+                });
+            } finally {
+                profileFetchPromise.current = null; // Clear the promise regardless of success/failure
+            }
+        })();
+
+        return profileFetchPromise.current;
     };
 
     const refreshUser = async () => {
         const { data: { session } } = await supabase.auth.getSession();
         if (session?.user) {
-            const userWithProfile = await fetchUserProfile(session.user);
-            setUser(userWithProfile);
+            await fetchUserProfile(session.user.id);
         }
     };
 
@@ -62,18 +107,12 @@ export const AuthProvider = ({ children }) => {
 
             if (session?.user) {
                 // 1. OPTIMISTIC LOGIN: Show UI Immediately
-                // Default to 'authenticated' role so they can see Learner UI
                 console.log('AuthContext: Optimistic Login (Immediate)');
-                setUser({ ...session.user, role: 'authenticated' });
+                setUser(prev => prev?.id === session.user.id ? prev : { ...session.user, role: 'authenticated' });
                 setLoading(false);
 
-                // 2. BACKGROUND FETCH: Get Profile/Role silently
-                fetchUserProfile(session.user).then(fullUser => {
-                    if (fullUser?.profile) {
-                        console.log('AuthContext: Background Profile Update', fullUser.role);
-                        setUser(fullUser); // Update state with Admin role if found
-                    }
-                }).catch(err => console.warn('AuthContext: Background fetch failed', err));
+                // 2. BACKGROUND FETCH: Get Profile/Role
+                fetchUserProfile(session.user.id);
 
             } else {
                 console.log('AuthContext: No session');

@@ -211,7 +211,7 @@ const Profile = () => {
                                                 sx={{ mt: 1 }}
                                             />
                                             <Typography variant="caption" color="text.secondary">
-                                                {progress.modules_completed_at_level || 0} / 5 modules completed
+                                                {progress.completed_modules?.length || 0} modules completed
                                             </Typography>
                                         </Box>
 

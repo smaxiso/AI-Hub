@@ -651,6 +651,58 @@ app.post('/api/learning/quiz/:moduleId/submit', authenticateUser, async (req, re
 
         if (attemptError) console.error('Error saving quiz attempt:', attemptError);
 
+        // --- NEW: If Passed, Mark Module as Complete ---
+        if (passed) {
+            // Check if already completed
+            const { data: existingCompletion } = await supabase
+                .from('module_completions')
+                .select('id')
+                .eq('user_id', userId)
+                .eq('module_id', moduleId)
+                .single();
+
+            if (!existingCompletion) {
+                // Record Completion
+                await supabase
+                    .from('module_completions')
+                    .insert([{
+                        user_id: userId,
+                        module_id: moduleId,
+                        completion_type: 'quiz',
+                        quiz_score: score,
+                        time_spent_minutes: 15 // Estimate or track later
+                    }]);
+
+                // Update User Progress (Points + List)
+                const { data: userProg } = await supabase
+                    .from('user_progress')
+                    .select('*')
+                    .eq('user_id', userId)
+                    .single();
+
+                if (userProg) {
+                    const alreadyListed = userProg.completed_modules?.includes(moduleId);
+                    const updatedModules = alreadyListed
+                        ? (userProg.completed_modules || [])
+                        : [...(userProg.completed_modules || []), moduleId];
+
+                    // Add points only if first time completion? 
+                    // Usually yes, but for simplicity let's assume we add points if not marking duplicate completion.
+                    // Since we checked 'existingCompletion', this is likely safe.
+                    const newPoints = userProg.total_points + 50; // 50 pts for Quiz pass
+
+                    await supabase
+                        .from('user_progress')
+                        .update({
+                            completed_modules: updatedModules,
+                            total_points: newPoints
+                        })
+                        .eq('user_id', userId);
+                }
+            }
+        }
+        // -----------------------------------------------
+
         res.json({
             score,
             passed,
