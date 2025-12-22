@@ -36,3 +36,4 @@ jobs:
           channelId: live
           projectId: aihubx
           entryPoint: frontend
+          target: frontend
