@@ -11,7 +11,10 @@ import Signup from './pages/admin/Signup';
 import ForgotPassword from './pages/admin/ForgotPassword';
 import Dashboard from './pages/admin/Dashboard';
 import Profile from './pages/admin/Profile';
-import ToolForm from './pages/admin/ToolForm'; // We will create this next
+import ToolForm from './pages/admin/ToolForm';
+import LearningHub from './pages/learning/LearningHub';
+import ModuleDetail from './pages/learning/ModuleDetail';
+import Quiz from './pages/learning/Quiz';
 
 function App() {
     return (
@@ -53,6 +56,25 @@ function App() {
                         element={
                             <ProtectedRoute>
                                 <ToolForm isEditing={true} />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    {/* Learning Platform Routes */}
+                    <Route path="/learning" element={<LearningHub />} />
+                    <Route
+                        path="/learning/module/:moduleId"
+                        element={
+                            <ProtectedRoute>
+                                <ModuleDetail />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/learning/quiz/:moduleId"
+                        element={
+                            <ProtectedRoute>
+                                <Quiz />
                             </ProtectedRoute>
                         }
                     />
