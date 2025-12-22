@@ -1,50 +1,42 @@
 import React, { useState, useRef } from 'react';
 import {
-    Box, Button, Avatar, Typography, CircularProgress,
-    Snackbar, Alert
+    Box, Button, Typography, Avatar, CircularProgress,
+    Paper, IconButton
 } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { supabase } from '../supabaseClient';
 
-const AvatarUpload = ({ currentAvatarUrl, userId, onUploadComplete }) => {
+const AvatarUpload = ({ currentAvatar, userId, onUploadSuccess, onUploadError }) => {
     const [uploading, setUploading] = useState(false);
-    const [dragOver, setDragOver] = useState(false);
-    const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
+    const [dragActive, setDragActive] = useState(false);
+    const [preview, setPreview] = useState(currentAvatar);
     const fileInputRef = useRef(null);
 
-    const showNotification = (message, severity = 'info') => {
-        setNotification({ open: true, message, severity });
-    };
-
-    const handleFileSelect = async (file) => {
-        if (!file) return;
-
-        // Validate file type
-        if (!file.type.startsWith('image/')) {
-            showNotification('Please upload an image file', 'error');
-            return;
-        }
-
-        // Validate file size (max 2MB)
-        if (file.size > 2 * 1024 * 1024) {
-            showNotification('File size must be less than 2MB', 'error');
-            return;
-        }
-
-        setUploading(true);
-
+    const uploadAvatar = async (file) => {
         try {
+            setUploading(true);
+
+            // Validate file
+            if (!file.type.startsWith('image/')) {
+                throw new Error('Please upload an image file');
+            }
+
+            if (file.size > 1 * 1024 * 1024) { // 1MB limit
+                throw new Error('Image size must be less than 1MB');
+            }
+
             // Create unique filename
             const fileExt = file.name.split('.').pop();
             const fileName = `${userId}-${Date.now()}.${fileExt}`;
             const filePath = `avatars/${fileName}`;
 
             // Upload to Supabase Storage
-            const { data, error: uploadError } = await supabase.storage
+            const { error: uploadError } = await supabase.storage
                 .from('avatars')
                 .upload(filePath, file, {
                     cacheControl: '3600',
-                    upsert: true
+                    upsert: false
                 });
 
             if (uploadError) throw uploadError;
@@ -54,7 +46,7 @@ const AvatarUpload = ({ currentAvatarUrl, userId, onUploadComplete }) => {
                 .from('avatars')
                 .getPublicUrl(filePath);
 
-            // Update profile with new avatar URL
+            // Update profile
             const { error: updateError } = await supabase
                 .from('profiles')
                 .update({ avatar_url: publicUrl })
@@ -62,107 +54,125 @@ const AvatarUpload = ({ currentAvatarUrl, userId, onUploadComplete }) => {
 
             if (updateError) throw updateError;
 
-            showNotification('Avatar updated successfully!', 'success');
-            if (onUploadComplete) {
-                onUploadComplete(publicUrl);
-            }
+            setPreview(publicUrl);
+            onUploadSuccess?.(publicUrl);
         } catch (err) {
             console.error('Upload error:', err);
-            showNotification(err.message || 'Failed to upload avatar', 'error');
+            onUploadError?.(err.message);
         } finally {
             setUploading(false);
         }
     };
 
+    const handleDrag = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.type === 'dragenter' || e.type === 'dragover') {
+            setDragActive(true);
+        } else if (e.type === 'dragleave') {
+            setDragActive(false);
+        }
+    };
+
     const handleDrop = (e) => {
         e.preventDefault();
-        setDragOver(false);
-        const file = e.dataTransfer.files[0];
-        handleFileSelect(file);
+        e.stopPropagation();
+        setDragActive(false);
+
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            uploadAvatar(e.dataTransfer.files[0]);
+        }
     };
 
-    const handleDragOver = (e) => {
-        e.preventDefault();
-        setDragOver(true);
+    const handleFileSelect = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            uploadAvatar(e.target.files[0]);
+        }
     };
 
-    const handleDragLeave = () => {
-        setDragOver(false);
+    const handleRemove = async () => {
+        try {
+            setUploading(true);
+            const { error } = await supabase
+                .from('profiles')
+                .update({ avatar_url: null })
+                .eq('id', userId);
+
+            if (error) throw error;
+
+            setPreview(null);
+            onUploadSuccess?.(null);
+        } catch (err) {
+            onUploadError?.(err.message);
+        } finally {
+            setUploading(false);
+        }
     };
 
     return (
-        <Box>
-            <Box
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+            <Avatar
+                src={preview}
+                sx={{ width: 120, height: 120, bgcolor: 'primary.main', fontSize: '3rem' }}
+            >
+                {!preview && 'U'}
+            </Avatar>
+
+            <Paper
+                onDragEnter={handleDrag}
+                onDragLeave={handleDrag}
+                onDragOver={handleDrag}
+                onDrop={handleDrop}
                 sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    mb: 3
+                    p: 3,
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    border: dragActive ? '2px dashed #1976d2' : '2px dashed #ccc',
+                    bgcolor: dragActive ? 'action.hover' : 'background.paper',
+                    transition: 'all 0.2s',
+                    width: '100%',
+                    maxWidth: 400
                 }}
+                onClick={() => fileInputRef.current?.click()}
             >
-                <Avatar
-                    src={currentAvatarUrl}
-                    sx={{ width: 100, height: 100, mb: 2, bgcolor: 'primary.main' }}
-                >
-                    {!currentAvatarUrl && 'U'}
-                </Avatar>
+                {uploading ? (
+                    <CircularProgress size={40} />
+                ) : (
+                    <>
+                        <CloudUploadIcon sx={{ fontSize: 48, color: 'primary.main', mb: 1 }} />
+                        <Typography variant="body1" gutterBottom>
+                            Drag & drop your photo here
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                            or click to browse
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                            PNG, JPG up to 1MB
+                        </Typography>
+                    </>
+                )}
+            </Paper>
 
-                <Box
-                    onDrop={handleDrop}
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
-                    sx={{
-                        border: '2px dashed',
-                        borderColor: dragOver ? 'primary.main' : 'grey.300',
-                        borderRadius: 2,
-                        p: 3,
-                        textAlign: 'center',
-                        bgcolor: dragOver ? 'action.hover' : 'transparent',
-                        transition: 'all 0.3s',
-                        cursor: 'pointer',
-                        width: '100%',
-                        maxWidth: 300
-                    }}
-                    onClick={() => fileInputRef.current?.click()}
-                >
-                    {uploading ? (
-                        <CircularProgress size={24} />
-                    ) : (
-                        <>
-                            <CloudUploadIcon sx={{ fontSize: 40, color: 'text.secondary', mb: 1 }} />
-                            <Typography variant="body2" color="text.secondary">
-                                Drag & drop or click to upload
-                            </Typography>
-                            <Typography variant="caption" color="text.secondary">
-                                PNG, JPG (max 2MB)
-                            </Typography>
-                        </>
-                    )}
-                </Box>
+            <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileSelect}
+                style={{ display: 'none' }}
+            />
 
-                <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleFileSelect(e.target.files[0])}
-                    style={{ display: 'none' }}
-                />
-            </Box>
-
-            <Snackbar
-                open={notification.open}
-                autoHideDuration={4000}
-                onClose={() => setNotification({ ...notification, open: false })}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-            >
-                <Alert
-                    onClose={() => setNotification({ ...notification, open: false })}
-                    severity={notification.severity}
-                    sx={{ width: '100%' }}
+            {preview && (
+                <Button
+                    variant="outlined"
+                    color="error"
+                    size="small"
+                    startIcon={<DeleteIcon />}
+                    onClick={handleRemove}
+                    disabled={uploading}
                 >
-                    {notification.message}
-                </Alert>
-            </Snackbar>
+                    Remove Photo
+                </Button>
+            )}
         </Box>
     );
 };

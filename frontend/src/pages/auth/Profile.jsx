@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
     Box, Container, Paper, Typography, TextField, Button,
-    Alert, Avatar, Grid, Divider, Card, CardContent,
-    LinearProgress
+    Alert, Grid, Divider, Card, CardContent,
+    LinearProgress, Snackbar
 } from '@mui/material';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import SaveIcon from '@mui/icons-material/Save';
 import Header from '../../components/Header';
 import AvatarUpload from '../../components/AvatarUpload';
@@ -20,20 +19,19 @@ const Profile = () => {
 
     const [formData, setFormData] = useState({
         full_name: '',
-        username: '',
-        avatar_url: ''
+        username: ''
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [progress, setProgress] = useState(null);
+    const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
     useEffect(() => {
         if (user?.profile) {
             setFormData({
                 full_name: user.profile.full_name || '',
-                username: user.profile.username || '',
-                avatar_url: user.profile.avatar_url || ''
+                username: user.profile.username || ''
             });
         }
         fetchProgress();
@@ -69,21 +67,30 @@ const Profile = () => {
                 .from('profiles')
                 .update({
                     full_name: formData.full_name,
-                    username: formData.username,
-                    avatar_url: formData.avatar_url
+                    username: formData.username
                 })
                 .eq('id', user.id);
 
             if (updateError) throw updateError;
 
-            // Refresh user data
             await refreshUser();
             setSuccess('Profile updated successfully!');
+            setSnackbar({ open: true, message: 'Profile updated successfully!', severity: 'success' });
         } catch (err) {
             setError(err.message || 'Failed to update profile');
+            setSnackbar({ open: true, message: err.message || 'Failed to update profile', severity: 'error' });
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleAvatarSuccess = async (url) => {
+        await refreshUser();
+        setSnackbar({ open: true, message: 'Avatar updated successfully!', severity: 'success' });
+    };
+
+    const handleAvatarError = (errorMsg) => {
+        setSnackbar({ open: true, message: errorMsg, severity: 'error' });
     };
 
     if (!user) {
@@ -101,7 +108,6 @@ const Profile = () => {
                 </Typography>
 
                 <Grid container spacing={3}>
-                    {/* Profile Info */}
                     <Grid item xs={12} md={8}>
                         <Paper sx={{ p: 3 }}>
                             <Typography variant="h6" sx={{ mb: 3 }}>
@@ -109,27 +115,27 @@ const Profile = () => {
                             </Typography>
 
                             {error && (
-                                <Alert severity="error" sx={{ mb: 2 }}>
+                                <Alert severity="error" sx={{ mb: 2 }} onClose={() => setError('')}>
                                     {error}
                                 </Alert>
                             )}
 
                             {success && (
-                                <Alert severity="success" sx={{ mb: 2 }}>
+                                <Alert severity="success" sx={{ mb: 2 }} onClose={() => setSuccess('')}>
                                     {success}
                                 </Alert>
                             )}
 
-                            <form onSubmit={handleSubmit}>
-                                <AvatarUpload
-                                    currentAvatarUrl={formData.avatar_url}
-                                    userId={user.id}
-                                    onUploadComplete={(newUrl) => {
-                                        setFormData({ ...formData, avatar_url: newUrl });
-                                        refreshUser();
-                                    }}
-                                />
+                            <AvatarUpload
+                                currentAvatar={user.profile?.avatar_url}
+                                userId={user.id}
+                                onUploadSuccess={handleAvatarSuccess}
+                                onUploadError={handleAvatarError}
+                            />
 
+                            <Divider sx={{ my: 3 }} />
+
+                            <form onSubmit={handleSubmit}>
                                 <TextField
                                     label="Full Name"
                                     name="full_name"
@@ -154,18 +160,8 @@ const Profile = () => {
                                     fullWidth
                                     value={user.email}
                                     disabled
-                                    sx={{ mb: 2 }}
-                                    helperText="Email cannot be changed"
-                                />
-
-                                <TextField
-                                    label="Avatar URL"
-                                    name="avatar_url"
-                                    fullWidth
-                                    value={formData.avatar_url}
-                                    onChange={handleChange}
                                     sx={{ mb: 3 }}
-                                    helperText="URL to your profile picture"
+                                    helperText="Email cannot be changed"
                                 />
 
                                 <Button
@@ -182,7 +178,6 @@ const Profile = () => {
                         </Paper>
                     </Grid>
 
-                    {/* Learning Progress */}
                     <Grid item xs={12} md={4}>
                         <Card>
                             <CardContent>
@@ -264,6 +259,21 @@ const Profile = () => {
                     </Grid>
                 </Grid>
             </Container>
+
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={4000}
+                onClose={() => setSnackbar({ ...snackbar, open: false })}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert
+                    onClose={() => setSnackbar({ ...snackbar, open: false })}
+                    severity={snackbar.severity}
+                    sx={{ width: '100%' }}
+                >
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
         </Box>
     );
 };
