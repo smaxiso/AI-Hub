@@ -420,18 +420,18 @@ function Home() {
           sx={{
             position: 'relative',
             zIndex: 1,
-            pt: { xs: 4, md: 6 }
+            pt: { xs: 2, md: 3 } // Reduced from 4/6 to 2/3
           }}
         >
-          {/* Magic Prompt Modal - Fixes aria-hidden error by managing focus manually if needed, or by ensuring it doesn't conflict with root */}
+          {/* Magic Prompt Modal */}
           <Dialog
             open={magicPromptOpen}
             onClose={() => setMagicPromptOpen(false)}
             maxWidth="sm"
             fullWidth
             keepMounted={false}
-            disablePortal={false} // Ensure it uses the portal to escape the root div
-            disableEnforceFocus={true} // Prevents the aggressive focus trapping that causes the aria-hidden conflict
+            disablePortal={false}
+            disableEnforceFocus={true}
             PaperProps={{
               sx: {
                 m: 2,
@@ -444,59 +444,22 @@ function Home() {
           >
             <MagicPrompt onClose={() => setMagicPromptOpen(false)} />
           </Dialog>
-          {/* Header with Dark Mode Toggle */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-              <Box sx={{ flex: 1 }} />
-              <Box sx={{ flex: 1, textAlign: 'center' }}>
-                <Typography
-                  variant="h2"
-                  component="h1"
-                  sx={{
-                    fontWeight: 700,
-                    fontSize: { xs: '1.75rem', sm: '2.25rem', md: '3.5rem' },
-                    mb: { xs: 0.5, md: 1 },
-                    background: darkMode
-                      ? 'linear-gradient(135deg, #E2E8F0 0%, #A0AEC0 100%)'
-                      : 'linear-gradient(135deg, #2D3748 0%, #718096 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    color: darkMode ? '#E2E8F0' : '#2D3748'
-                  }}
-                >
-                  TheAIHubX
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: darkMode ? '#A0AEC0' : 'text.secondary',
-                    fontSize: { xs: '0.875rem', sm: '1rem', md: '1.25rem' },
-                    display: { xs: 'none', sm: 'block' }
-                  }}
-                >
-                  Discover, compare, and master AI tools - Your complete AI learning hub
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: darkMode ? '#A0AEC0' : 'text.secondary',
-                    fontSize: '0.8rem',
-                    display: { xs: 'block', sm: 'none' }
-                  }}
-                >
-                  Your complete AI learning hub
-                </Typography>
-              </Box>
-              <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-                <DarkModeToggle darkMode={darkMode} onToggle={toggleDarkMode} />
-              </Box>
-            </Box>
-          </motion.div>
+
+          {/* Tagline */}
+          <Box sx={{ textAlign: 'center', mb: 2, mt: 1 }}> {/* Added small mt, reduced mb from 3 to 2 */}
+            <Typography
+              variant="h6"
+              sx={{
+                color: darkMode ? '#A0AEC0' : 'text.secondary',
+                fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.25rem' },
+                fontWeight: 500,
+                maxWidth: '800px',
+                mx: 'auto'
+              }}
+            >
+              Discover, compare, and master AI tools
+            </Typography>
+          </Box>
 
           {/* Tabs for different views */}
           <Box sx={{ mb: { xs: 2, md: 4 }, mt: { xs: 2, md: 0 } }}>
@@ -950,6 +913,18 @@ function Home() {
             </Fab>
           )}
         </Container>
+
+        {/* Floating Dark Mode Toggle */}
+        <Box
+          sx={{
+            position: 'fixed',
+            bottom: { xs: 90, md: 110 }, // Stacked above the Magic Prompt FAB (which is at ~24px bottom + ~64px height)
+            right: { xs: 16, md: 24 },
+            zIndex: 1000
+          }}
+        >
+          <DarkModeToggle darkMode={darkMode} onToggle={toggleDarkMode} />
+        </Box>
       </Box>
     </ThemeProvider>
   );

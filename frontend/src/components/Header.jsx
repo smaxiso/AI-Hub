@@ -2,9 +2,8 @@ import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
     AppBar, Toolbar, Typography, Button, Box, IconButton,
-    Avatar, Menu, MenuItem, Chip, Divider
+    Avatar, Menu, MenuItem, Chip, Divider, Tooltip
 } from '@mui/material';
-import SchoolIcon from '@mui/icons-material/School';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -41,7 +40,18 @@ const Header = () => {
             <Toolbar sx={{ px: { xs: 2, md: 4 } }}>
                 {/* Logo */}
                 <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-                    <SchoolIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
+                    <Box
+                        component={Link}
+                        to="/"
+                        sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', mr: 1, cursor: 'pointer' }}
+                    >
+                        <Box
+                            component="img"
+                            src="/favicon.svg"
+                            alt="AI Hub X Logo"
+                            sx={{ width: 32, height: 32 }}
+                        />
+                    </Box>
                     <Typography
                         variant="h6"
                         component={Link}
@@ -125,23 +135,98 @@ const Header = () => {
                         </Box>
                     </Box>
                 ) : (
-                    <Box sx={{ display: 'flex', gap: 1 }}>
-                        <Button
-                            component={Link}
-                            to="/learning"
-                            variant="outlined"
-                            sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-                        >
-                            Learning Hub
-                        </Button>
-                        <Button
-                            component={Link}
-                            to="/login"
-                            variant="contained"
-                            startIcon={<LoginIcon />}
-                        >
-                            Login
-                        </Button>
+                    <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                        {/* Mobile: Icon only */}
+                        <Tooltip title="Start Learning AI">
+                            <IconButton
+                                component={Link}
+                                to="/learning"
+                                sx={{
+                                    display: { xs: 'inline-flex', sm: 'none' },
+                                    bgcolor: '#e3f2fd',
+                                    color: 'text.primary',
+                                    boxShadow: 1,
+                                    border: '1px solid',
+                                    borderColor: 'rgba(0, 0, 0, 0.1)',
+                                    transition: 'all 0.2s',
+                                    '&:hover': {
+                                        bgcolor: '#bbdefb',
+                                        transform: 'scale(1.05) translateY(-2px)',
+                                        boxShadow: 3
+                                    },
+                                    '&:active': {
+                                        transform: 'scale(0.95) translateY(1px)',
+                                        boxShadow: 1
+                                    }
+                                }}
+                            >
+                                <MenuBookIcon />
+                            </IconButton>
+                        </Tooltip>
+
+                        {/* Desktop: Full Button */}
+                        <Tooltip title="Browse our AI Learning Modules">
+                            <Button
+                                component={Link}
+                                to="/learning"
+                                variant="outlined"
+                                sx={{
+                                    display: { xs: 'none', sm: 'inline-flex' },
+                                    transition: 'all 0.2s',
+                                    '&:hover': { transform: 'translateY(-2px)', boxShadow: 2 },
+                                    '&:active': { transform: 'translateY(1px)', boxShadow: 1 }
+                                }}
+                            >
+                                Learning Hub
+                            </Button>
+                        </Tooltip>
+
+                        {/* Mobile: Login Icon */}
+                        <Tooltip title="Sign In to your Account">
+                            <IconButton
+                                component={Link}
+                                to="/login"
+                                sx={{
+                                    display: { xs: 'inline-flex', sm: 'none' },
+                                    bgcolor: '#e3f2fd',
+                                    color: 'text.primary',
+                                    boxShadow: 1,
+                                    border: '1px solid',
+                                    borderColor: 'rgba(0, 0, 0, 0.1)',
+                                    transition: 'all 0.2s',
+                                    '&:hover': {
+                                        bgcolor: '#bbdefb',
+                                        transform: 'scale(1.05) translateY(-2px)',
+                                        boxShadow: 3
+                                    },
+                                    '&:active': {
+                                        transform: 'scale(0.95) translateY(1px)',
+                                        boxShadow: 1
+                                    }
+                                }}
+                            >
+                                <LoginIcon />
+                            </IconButton>
+                        </Tooltip>
+
+                        {/* Desktop: Login Button */}
+                        <Tooltip title="Login to save your progress">
+                            <Button
+                                component={Link}
+                                to="/login"
+                                variant="contained"
+                                startIcon={<LoginIcon />}
+                                size="medium"
+                                sx={{
+                                    display: { xs: 'none', sm: 'inline-flex' },
+                                    transition: 'all 0.2s',
+                                    '&:hover': { transform: 'translateY(-2px)', boxShadow: 4 },
+                                    '&:active': { transform: 'translateY(1px)', boxShadow: 1 }
+                                }}
+                            >
+                                Login
+                            </Button>
+                        </Tooltip>
                     </Box>
                 )}
             </Toolbar>

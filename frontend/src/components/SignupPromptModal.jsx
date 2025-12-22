@@ -10,7 +10,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const SignupPromptModal = ({ delay = 30000 }) => { // 30 seconds default
+const SignupPromptModal = ({ delay = 15000 }) => { // 15 seconds default
     const [open, setOpen] = useState(false);
     const { user } = useAuth();
     const navigate = useNavigate();
@@ -62,7 +62,7 @@ const SignupPromptModal = ({ delay = 30000 }) => { // 30 seconds default
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <SchoolIcon color="primary" sx={{ fontSize: 32 }} />
                         <Typography variant="h6" fontWeight={700}>
-                            Master AI with AI Hub X
+                            Start Your AI Journey
                         </Typography>
                     </Box>
                     <IconButton onClick={handleClose} size="small">
@@ -73,7 +73,7 @@ const SignupPromptModal = ({ delay = 30000 }) => { // 30 seconds default
 
             <DialogContent>
                 <Typography variant="body1" sx={{ mb: 3, color: 'text.primary' }}>
-                    Sign up for free to access our comprehensive learning platform and unlock exclusive features:
+                    Dive into our comprehensive <strong>Learning Hub</strong> to master AI tools and concepts. From basics to advanced workflows, we've got you covered.
                 </Typography>
 
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 2 }}>
@@ -81,10 +81,10 @@ const SignupPromptModal = ({ delay = 30000 }) => { // 30 seconds default
                         <SchoolIcon color="primary" sx={{ fontSize: 28 }} />
                         <Box>
                             <Typography variant="subtitle1" fontWeight={600} color="text.primary">
-                                Structured Learning Paths
+                                Free AI Curriculum
                             </Typography>
                             <Typography variant="body2" color="text.primary" sx={{ opacity: 0.8 }}>
-                                Progress from beginner to expert across 4 levels
+                                Architecture, Prompt Engineering, Agents & more
                             </Typography>
                         </Box>
                     </Box>
@@ -93,10 +93,10 @@ const SignupPromptModal = ({ delay = 30000 }) => { // 30 seconds default
                         <TrendingUpIcon color="primary" sx={{ fontSize: 28 }} />
                         <Box>
                             <Typography variant="subtitle1" fontWeight={600} color="text.primary">
-                                Track Your Progress
+                                Hands-On Projects
                             </Typography>
                             <Typography variant="body2" color="text.primary" sx={{ opacity: 0.8 }}>
-                                Monitor your learning journey across all devices
+                                Build real-world applications with step-by-step guides
                             </Typography>
                         </Box>
                     </Box>
@@ -105,10 +105,10 @@ const SignupPromptModal = ({ delay = 30000 }) => { // 30 seconds default
                         <EmojiEventsIcon color="primary" sx={{ fontSize: 28 }} />
                         <Box>
                             <Typography variant="subtitle1" fontWeight={600} color="text.primary">
-                                Earn Points & Achievements
+                                Gamified Progress
                             </Typography>
                             <Typography variant="body2" color="text.primary" sx={{ opacity: 0.8 }}>
-                                Complete quizzes and modules to earn rewards
+                                Track your growth and earn badges as you learn
                             </Typography>
                         </Box>
                     </Box>
@@ -116,14 +116,24 @@ const SignupPromptModal = ({ delay = 30000 }) => { // 30 seconds default
             </DialogContent>
 
             <DialogActions sx={{ px: 3, pb: 3, gap: 1 }}>
-                <Button onClick={handleClose} sx={{ mr: 'auto' }}>
+                <Button onClick={handleClose} sx={{ mr: 'auto', color: 'text.secondary' }}>
                     Maybe Later
                 </Button>
-                <Button onClick={handleLogin} variant="outlined">
-                    Log In
-                </Button>
-                <Button onClick={handleSignup} variant="contained">
-                    Sign Up Free
+                <Button
+                    onClick={() => {
+                        setOpen(false);
+                        navigate('/learning');
+                    }}
+                    variant="contained"
+                    fullWidth
+                    startIcon={<SchoolIcon />}
+                    sx={{
+                        maxWidth: '240px',
+                        fontWeight: 600,
+                        py: 1
+                    }}
+                >
+                    Explore Learning Hub
                 </Button>
             </DialogActions>
         </Dialog>
