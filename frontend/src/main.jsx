@@ -5,17 +5,22 @@ import ErrorBoundary from './components/ErrorBoundary'
 import './index.css'
 import './firebase-init' // Initialize Firebase
 
-// Register service worker for PWA
+// Unregister old service worker to force cache refresh
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(() => {
-        // Service worker registered successfully
-      })
-      .catch((registrationError) => {
-        console.error('SW registration failed:', registrationError);
-      });
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    for (const registration of registrations) {
+      registration.unregister();
+    }
   });
+
+  // Clear all caches
+  if ('caches' in window) {
+    caches.keys().then((names) => {
+      names.forEach((name) => {
+        caches.delete(name);
+      });
+    });
+  }
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
