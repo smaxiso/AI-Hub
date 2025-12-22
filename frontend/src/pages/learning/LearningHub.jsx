@@ -58,9 +58,13 @@ const LearningHub = () => {
             if (res.ok) {
                 const data = await res.json();
                 setProgress(data);
+            } else {
+                console.error('Failed to fetch progress');
+                setProgress(null); // Fallback to null
             }
-        } catch (err) {
-            console.error('Error fetching progress:', err);
+        } catch (error) {
+            console.error('Error fetching progress:', error);
+            setProgress(null);
         }
     };
 
@@ -68,11 +72,17 @@ const LearningHub = () => {
         try {
             setLoading(true);
             const res = await fetch(`${API_URL}/learning/modules?level=${selectedLevel}`);
-            const data = await res.json();
-            setModules(data);
+            if (res.ok) {
+                const data = await res.json();
+                setModules(Array.isArray(data) ? data : []);
+            } else {
+                console.error('Failed to fetch modules');
+                setModules([]);
+            }
         } catch (err) {
             console.error('Error fetching modules:', err);
             setError('Failed to load modules');
+            setModules([]);
         } finally {
             setLoading(false);
         }

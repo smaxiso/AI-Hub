@@ -12,24 +12,24 @@ export const AuthProvider = ({ children }) => {
         console.log('AuthContext: fetchUserProfile called for', authUser.id);
 
         try {
-            // Create a timeout promise
+            // Create a timeout promise (Short timeout for backend call)
             const timeoutPromise = new Promise((_, reject) =>
-                setTimeout(() => reject(new Error('Profile fetch timeout')), 5000)
+                setTimeout(() => reject(new Error('Profile fetch timeout')), 2000)
             );
 
-            // Race between fetch and timeout
-            const fetchPromise = supabase
-                .from('profiles')
-                .select('*')
-                .eq('id', authUser.id)
-                .single();
+            // Fetch from Backend API (Bypasses RLS)
+            const fetchPromise = (async () => {
+                const { data: { session } } = await supabase.auth.getSession();
+                const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/auth/profile`, {
+                    headers: {
+                        'Authorization': `Bearer ${session?.access_token}`
+                    }
+                });
+                if (!res.ok) throw new Error('Backend fetch failed');
+                return res.json();
+            })();
 
-            const { data: profile, error } = await Promise.race([fetchPromise, timeoutPromise]);
-
-            if (error) {
-                console.error('AuthContext: Profile fetch error', error);
-                throw error;
-            }
+            const profile = await Promise.race([fetchPromise, timeoutPromise]);
 
             return {
                 ...authUser,
@@ -56,46 +56,28 @@ export const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        // Check active session
-        const getSession = async () => {
-            console.log('AuthContext: Checking session...');
-            try {
-                const { data: { session }, error } = await supabase.auth.getSession();
-                console.log('AuthContext: Session retrieved', session ? 'User found' : 'No user', error);
-
-                if (session?.user) {
-                    console.log('AuthContext: Fetching profile...');
-                    const userWithProfile = await fetchUserProfile(session.user);
-                    console.log('AuthContext: Profile fetched', userWithProfile);
-                    setUser(userWithProfile);
-                }
-            } catch (err) {
-                console.error('AuthContext: Error getting session', err);
-            } finally {
-                console.log('AuthContext: Loading finished');
-                setLoading(false);
-            }
-        };
-
-        getSession();
-
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
             console.log('AuthContext: Auth change event', event);
-            try {
-                if (session?.user) {
-                    console.log('AuthContext: Fetching profile for listener...');
-                    const userWithProfile = await fetchUserProfile(session.user);
-                    console.log('AuthContext: Profile fetched for listener', userWithProfile);
-                    setUser(userWithProfile);
-                } else {
-                    console.log('AuthContext: No session in listener');
-                    setUser(null);
-                }
-            } catch (err) {
-                console.error('AuthContext: Listener error', err);
-            } finally {
-                console.log('AuthContext: Loading finished (listener)');
+
+            if (session?.user) {
+                // 1. OPTIMISTIC LOGIN: Show UI Immediately
+                // Default to 'authenticated' role so they can see Learner UI
+                console.log('AuthContext: Optimistic Login (Immediate)');
+                setUser({ ...session.user, role: 'authenticated' });
+                setLoading(false);
+
+                // 2. BACKGROUND FETCH: Get Profile/Role silently
+                fetchUserProfile(session.user).then(fullUser => {
+                    if (fullUser?.profile) {
+                        console.log('AuthContext: Background Profile Update', fullUser.role);
+                        setUser(fullUser); // Update state with Admin role if found
+                    }
+                }).catch(err => console.warn('AuthContext: Background fetch failed', err));
+
+            } else {
+                console.log('AuthContext: No session');
+                setUser(null);
                 setLoading(false);
             }
         });

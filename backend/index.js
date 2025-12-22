@@ -11,9 +11,11 @@ app.use(cors());
 app.use(express.json());
 
 // Supabase Client
+// Supabase Client (Using Service Role Key to bypass RLS for Admin operations)
 const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY; // CHANGED: Bypasses RLS
 const supabase = createClient(supabaseUrl, supabaseKey);
+
 
 // Helper: Calculate if tool is new (Added within last 30 days)
 const isToolNew = (dateString) => {
@@ -62,6 +64,27 @@ const requireRole = (allowedRoles) => (req, res, next) => {
     next();
 };
 
+// Endpoint: Get Current User Profile (Fast, RLS-Bypassed)
+app.get('/api/auth/profile', authenticateUser, async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', req.user.id)
+            .single();
+
+        if (error) {
+            // If row doesn't exist (PGRST116), Return null instead of error
+            if (error.code === 'PGRST116') return res.json(null);
+            throw error;
+        }
+        res.json(data);
+    } catch (err) {
+        console.error('Error fetching profile via Backend:', err);
+        res.status(500).json({ error: 'Failed to fetch profile' });
+    }
+});
+
 // API Routes
 
 // Health Check Endpoint (for uptime monitoring/cron jobs)
@@ -70,6 +93,23 @@ app.get('/api/health', (req, res) => {
         status: 'ok',
         timestamp: new Date().toISOString()
     });
+});
+
+// DEBUG: Check Active Policies
+app.get('/api/debug/policies', async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from('pg_policies')
+            .select('*')
+            .eq('tablename', 'profiles');
+
+        if (error) throw error;
+        res.json(data);
+    } catch (err) {
+        // Fallback if direct access fails (pg_policies might be restricted)
+        // Try RPC if available, or just error
+        res.status(500).json({ error: err.message, hint: "Make sure you have access to pg_policies" });
+    }
 });
 
 // Public Signup Endpoint
