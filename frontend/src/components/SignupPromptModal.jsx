@@ -72,42 +72,42 @@ const SignupPromptModal = ({ delay = 30000 }) => { // 30 seconds default
             </DialogTitle>
 
             <DialogContent>
-                <Typography variant="body1" sx={{ mb: 3 }}>
+                <Typography variant="body1" sx={{ mb: 3, color: 'text.primary' }}>
                     Sign up for free to access our comprehensive learning platform and unlock exclusive features:
                 </Typography>
 
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 2 }}>
                     <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
-                        <SchoolIcon color="primary" />
+                        <SchoolIcon color="primary" sx={{ fontSize: 28 }} />
                         <Box>
-                            <Typography variant="subtitle1" fontWeight={600}>
+                            <Typography variant="subtitle1" fontWeight={600} color="text.primary">
                                 Structured Learning Paths
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.primary" sx={{ opacity: 0.8 }}>
                                 Progress from beginner to expert across 4 levels
                             </Typography>
                         </Box>
                     </Box>
 
                     <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
-                        <TrendingUpIcon color="primary" />
+                        <TrendingUpIcon color="primary" sx={{ fontSize: 28 }} />
                         <Box>
-                            <Typography variant="subtitle1" fontWeight={600}>
+                            <Typography variant="subtitle1" fontWeight={600} color="text.primary">
                                 Track Your Progress
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.primary" sx={{ opacity: 0.8 }}>
                                 Monitor your learning journey across all devices
                             </Typography>
                         </Box>
                     </Box>
 
                     <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
-                        <EmojiEventsIcon color="primary" />
+                        <EmojiEventsIcon color="primary" sx={{ fontSize: 28 }} />
                         <Box>
-                            <Typography variant="subtitle1" fontWeight={600}>
+                            <Typography variant="subtitle1" fontWeight={600} color="text.primary">
                                 Earn Points & Achievements
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.primary" sx={{ opacity: 0.8 }}>
                                 Complete quizzes and modules to earn rewards
                             </Typography>
                         </Box>
