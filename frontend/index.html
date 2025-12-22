@@ -12,12 +12,13 @@
   <meta http-equiv="Expires" content="0" />
 
   <meta http-equiv="Content-Security-Policy" content="default-src 'self';
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://www.googleapis.com https://www.googletagmanager.com;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://www.gstatic.com https://www.googleapis.com https://www.googletagmanager.com;
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
         img-src 'self' data: https: http: blob:;
         font-src 'self' https://fonts.gstatic.com;
-        connect-src 'self' https: https://www.googleapis.com http://localhost:3000;
+        connect-src 'self' https: https://www.googleapis.com http://localhost:3000 http://localhost:5173 ws://localhost:5173;
         frame-src 'self' https://www.youtube.com https://ghbtns.com;
+        worker-src 'self' blob:;
         object-src 'none';
         base-uri 'self';
         form-action 'self';">

@@ -37,30 +37,54 @@ export const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        let isMounted = true;
+
         // Check active session
         const getSession = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session?.user) {
-                const userWithProfile = await fetchUserProfile(session.user);
-                setUser(userWithProfile);
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
+                if (isMounted) {
+                    if (session?.user) {
+                        try {
+                            const userWithProfile = await fetchUserProfile(session.user);
+                            setUser(userWithProfile);
+                        } catch (err) {
+                            console.error('Failed to fetch profile during init:', err);
+                            setUser(session.user);
+                        }
+                    }
+                    setLoading(false);
+                }
+            } catch (err) {
+                console.error('Session check failed:', err);
+                if (isMounted) setLoading(false);
             }
-            setLoading(false);
         };
 
         getSession();
 
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+            if (!isMounted) return;
+
             if (session?.user) {
-                const userWithProfile = await fetchUserProfile(session.user);
-                setUser(userWithProfile);
+                try {
+                    const userWithProfile = await fetchUserProfile(session.user);
+                    setUser(userWithProfile);
+                } catch (err) {
+                    console.error('Failed to fetch profile on auth change:', err);
+                    setUser(session.user);
+                }
             } else {
                 setUser(null);
             }
             setLoading(false);
         });
 
-        return () => subscription.unsubscribe();
+        return () => {
+            isMounted = false;
+            subscription.unsubscribe();
+        };
     }, []);
 
     const value = {
