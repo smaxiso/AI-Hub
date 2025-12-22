@@ -122,6 +122,74 @@ app.post('/api/auth/signup', async (req, res) => {
     }
 });
 
+// Public Learner Signup Endpoint (Auto-approved)
+app.post('/api/auth/signup-learner', async (req, res) => {
+    const { email, password, full_name, username } = req.body;
+
+    let authId = null;
+
+    try {
+        // 1. Create Auth User
+        const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+            email,
+            password,
+            email_confirm: true,
+            user_metadata: { full_name, username }
+        });
+
+        if (authError) throw authError;
+        authId = authData.user.id;
+
+        // 2. Create Profile with 'learner' role (auto-approved)
+        const { error: profileError } = await supabase
+            .from('profiles')
+            .insert([{
+                id: authId,
+                email,
+                full_name,
+                username,
+                role: 'learner' // Auto-approved for public users
+            }]);
+
+        if (profileError) {
+            if (profileError.code === '23505') {
+                throw new Error('Username already taken');
+            }
+            throw profileError;
+        }
+
+        // 3. Auto-login: Create session for the user
+        const { data: sessionData, error: sessionError } = await supabase.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        if (sessionError) {
+            // Still return success even if auto-login fails
+            return res.status(201).json({
+                message: 'Account created successfully! Please log in.',
+                user: authData.user
+            });
+        }
+
+        res.status(201).json({
+            message: 'Account created and logged in successfully!',
+            user: sessionData.user,
+            session: sessionData.session
+        });
+    } catch (err) {
+        console.error('Learner Signup Error:', err);
+
+        // Cleanup: Delete auth user if profile creation failed
+        if (authId) {
+            await supabase.auth.admin.deleteUser(authId);
+        }
+
+        res.status(400).json({ error: err.message });
+    }
+});
+
+
 // Check Username Availability
 app.get('/api/auth/check-username', async (req, res) => {
     const { username } = req.query;
