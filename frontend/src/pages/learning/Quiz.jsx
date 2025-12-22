@@ -108,6 +108,7 @@ const Quiz = () => {
     if (results) {
         return (
             <Box sx={{ minHeight: '100vh', bgcolor: '#f5f5f5', py: 4 }}>
+                <Header />
                 <Container maxWidth="md">
                     <Paper sx={{ p: { xs: 2, md: 4 }, textAlign: 'center' }}>
                         {results.passed ? (
@@ -193,6 +194,7 @@ const Quiz = () => {
 
     return (
         <Box sx={{ minHeight: '100vh', bgcolor: '#f5f5f5', pb: 8 }}>
+            <Header />
             {/* Header with Progress */}
             <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 3 }}>
                 <Container maxWidth="md">
