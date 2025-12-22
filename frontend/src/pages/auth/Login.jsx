@@ -7,14 +7,15 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import SchoolIcon from '@mui/icons-material/School';
-import { useAuth } from '../../context/AuthContext';
+import { supabase } from '../../supabaseClient';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { signIn } = useAuth();
 
-    const [email, setEmail] = useState('');
+    const [identifier, setIdentifier] = useState(''); // Can be email or username
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
@@ -28,10 +29,25 @@ const Login = () => {
         setLoading(true);
 
         try {
-            await signIn({ email, password });
+            // Call backend login endpoint
+            const res = await fetch(`${API_URL}/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ identifier, password })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || 'Login failed');
+            }
+
+            // Set session in Supabase client
+            await supabase.auth.setSession(data.session);
+
             navigate(from, { replace: true });
         } catch (err) {
-            setError(err.message || 'Invalid email or password');
+            setError(err.message || 'Invalid credentials');
         } finally {
             setLoading(false);
         }
