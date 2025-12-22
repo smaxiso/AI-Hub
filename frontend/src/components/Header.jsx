@@ -1,18 +1,26 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
     AppBar, Toolbar, Typography, Button, Box, IconButton,
-    Avatar, Menu, MenuItem, Chip
+    Avatar, Menu, MenuItem, Chip, Divider
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import SettingsIcon from '@mui/icons-material/Settings';
+import ExploreIcon from '@mui/icons-material/Explore';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
     const { user, signOut } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const isLearningPage = location.pathname.startsWith('/learning');
+    const isAdminPage = location.pathname.startsWith('/admin');
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -52,15 +60,6 @@ const Header = () => {
                 {/* Navigation */}
                 {user ? (
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        <Button
-                            component={Link}
-                            to="/learning"
-                            variant="outlined"
-                            sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-                        >
-                            Learning
-                        </Button>
-
                         {/* User Menu */}
                         <Box>
                             <IconButton onClick={handleMenu} sx={{ p: 0 }}>
@@ -69,7 +68,7 @@ const Header = () => {
                                     alt={user.profile?.full_name}
                                     sx={{ width: 36, height: 36, bgcolor: 'primary.main' }}
                                 >
-                                    {user.profile?.full_name?.charAt(0) || user.email?.charAt(0)}
+                                    {user.profile?.full_name?.charAt(0) || user.profile?.username?.charAt(0) || user.email?.charAt(0)}
                                 </Avatar>
                             </IconButton>
                             <Menu
@@ -78,25 +77,49 @@ const Header = () => {
                                 onClose={handleClose}
                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                                PaperProps={{ sx: { minWidth: 200 } }}
                             >
-                                <MenuItem disabled>
+                                {/* User Info */}
+                                <MenuItem disabled sx={{ opacity: '1 !important' }}>
                                     <Box>
-                                        <Typography variant="body2" fontWeight={600}>
-                                            {user.profile?.full_name || 'User'}
+                                        <Typography variant="body1" fontWeight={600}>
+                                            {user.profile?.username || user.profile?.full_name || 'User'}
                                         </Typography>
                                         <Typography variant="caption" color="text.secondary">
                                             {user.email}
                                         </Typography>
                                     </Box>
                                 </MenuItem>
-                                <MenuItem onClick={() => { handleClose(); navigate('/learning'); }}>
-                                    Learning Hub
+                                <Divider />
+
+                                {/* Profile Settings */}
+                                <MenuItem onClick={() => { handleClose(); navigate('/profile'); }}>
+                                    <SettingsIcon sx={{ mr: 1, fontSize: 20 }} />
+                                    Profile Settings
                                 </MenuItem>
-                                {user.role === 'admin' || user.role === 'owner' ? (
+
+                                {/* Context-aware Navigation */}
+                                {isLearningPage ? (
+                                    <MenuItem onClick={() => { handleClose(); navigate('/'); }}>
+                                        <ExploreIcon sx={{ mr: 1, fontSize: 20 }} />
+                                        AI Hub Marketplace
+                                    </MenuItem>
+                                ) : (
+                                    <MenuItem onClick={() => { handleClose(); navigate('/learning'); }}>
+                                        <MenuBookIcon sx={{ mr: 1, fontSize: 20 }} />
+                                        Learning Hub
+                                    </MenuItem>
+                                )}
+
+                                {/* Admin Dashboard (if admin/owner) */}
+                                {(user.role === 'admin' || user.role === 'owner') && !isAdminPage && (
                                     <MenuItem onClick={() => { handleClose(); navigate('/admin'); }}>
+                                        <DashboardIcon sx={{ mr: 1, fontSize: 20 }} />
                                         Admin Dashboard
                                     </MenuItem>
-                                ) : null}
+                                )}
+
+                                <Divider />
                                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
                             </Menu>
                         </Box>

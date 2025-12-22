@@ -19,6 +19,7 @@ import Quiz from './pages/learning/Quiz';
 // Public Auth Pages
 import PublicLogin from './pages/auth/Login';
 import PublicSignup from './pages/auth/Signup';
+import PublicProfile from './pages/auth/Profile';
 
 function App() {
     return (
@@ -30,6 +31,14 @@ function App() {
                     {/* Public Auth Routes */}
                     <Route path="/login" element={<PublicLogin />} />
                     <Route path="/signup" element={<PublicSignup />} />
+                    <Route
+                        path="/profile"
+                        element={
+                            <ProtectedRoute requireAuth={true}>
+                                <PublicProfile />
+                            </ProtectedRoute>
+                        }
+                    />
 
                     {/* Admin Auth Routes */}
                     <Route path="/admin/login" element={<Login />} />
