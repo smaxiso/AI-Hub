@@ -27,7 +27,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Skeleton } from '@mui/material';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
@@ -301,24 +301,67 @@ function Home() {
         }}
       >
 
-        {/* Loading Overlay */}
+        {/* Loading Skeleton */}
         {loading && (
-          <Box
-            sx={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 9999,
-              background: darkMode ? '#1a1a2e' : '#E8F4F8'
-            }}
-          >
-            <CircularProgress size={60} thickness={4} sx={{ color: '#6BB6FF' }} />
-          </Box>
+          <Container maxWidth="xl" sx={{ pt: { xs: 4, md: 6 } }}>
+            {/* Header Skeleton */}
+            <Box sx={{ mb: 4, textAlign: 'center' }}>
+              <Skeleton variant="text" width="60%" height={60} sx={{ mx: 'auto', mb: 2 }} />
+              <Skeleton variant="text" width="40%" height={30} sx={{ mx: 'auto' }} />
+            </Box>
+
+            {/* Tabs Skeleton */}
+            <Box sx={{ mb: 4, display: 'flex', gap: 2 }}>
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <Skeleton key={i} variant="rectangular" width={100} height={48} sx={{ borderRadius: 1 }} />
+              ))}
+            </Box>
+
+            {/* Search Bar Skeleton */}
+            <Skeleton variant="rectangular" height={56} sx={{ mb: 4, borderRadius: 2 }} />
+
+            {/* Category Filter Skeleton */}
+            <Box sx={{ mb: 4, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+              {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+                <Skeleton key={i} variant="rectangular" width={90} height={32} sx={{ borderRadius: 2 }} />
+              ))}
+            </Box>
+
+            {/* Tool Cards Skeleton */}
+            <Grid container spacing={3}>
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+                  <Box
+                    sx={{
+                      p: 2,
+                      borderRadius: 3,
+                      background: darkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.7)',
+                      backdropFilter: 'blur(10px)',
+                      border: `1px solid ${darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.3)'}`,
+                    }}
+                  >
+                    {/* Icon */}
+                    <Skeleton variant="circular" width={56} height={56} sx={{ mb: 2 }} />
+                    {/* Title */}
+                    <Skeleton variant="text" width="70%" height={28} sx={{ mb: 1 }} />
+                    {/* Category chip */}
+                    <Skeleton variant="rectangular" width={80} height={24} sx={{ mb: 2, borderRadius: 2 }} />
+                    {/* Description lines */}
+                    <Skeleton variant="text" width="100%" height={20} sx={{ mb: 0.5 }} />
+                    <Skeleton variant="text" width="90%" height={20} sx={{ mb: 0.5 }} />
+                    <Skeleton variant="text" width="60%" height={20} sx={{ mb: 2 }} />
+                    {/* Tags */}
+                    <Box sx={{ display: 'flex', gap: 0.5, mb: 2 }}>
+                      <Skeleton variant="rectangular" width={60} height={24} sx={{ borderRadius: 2 }} />
+                      <Skeleton variant="rectangular" width={50} height={24} sx={{ borderRadius: 2 }} />
+                    </Box>
+                    {/* Button */}
+                    <Skeleton variant="rectangular" width="100%" height={36} sx={{ borderRadius: 2 }} />
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
         )}
 
         {/* Animated background elements - Disabled on mobile */}
