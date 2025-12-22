@@ -8,6 +8,7 @@ import {
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import SaveIcon from '@mui/icons-material/Save';
 import Header from '../../components/Header';
+import AvatarUpload from '../../components/AvatarUpload';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabaseClient';
 
@@ -120,22 +121,14 @@ const Profile = () => {
                             )}
 
                             <form onSubmit={handleSubmit}>
-                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
-                                    <Avatar
-                                        src={formData.avatar_url}
-                                        sx={{ width: 100, height: 100, mb: 2, bgcolor: 'primary.main' }}
-                                    >
-                                        {formData.full_name?.charAt(0) || formData.username?.charAt(0) || 'U'}
-                                    </Avatar>
-                                    <Button
-                                        variant="outlined"
-                                        size="small"
-                                        startIcon={<PhotoCameraIcon />}
-                                        onClick={() => alert('Avatar upload feature coming soon!')}
-                                    >
-                                        Change Photo
-                                    </Button>
-                                </Box>
+                                <AvatarUpload
+                                    currentAvatarUrl={formData.avatar_url}
+                                    userId={user.id}
+                                    onUploadComplete={(newUrl) => {
+                                        setFormData({ ...formData, avatar_url: newUrl });
+                                        refreshUser();
+                                    }}
+                                />
 
                                 <TextField
                                     label="Full Name"
