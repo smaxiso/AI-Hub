@@ -4,6 +4,12 @@
 
 A full-stack web application featuring a modern React frontend, scalable Node.js backend, and Supabase database. Includes a comprehensive admin dashboard with role-based access control (RBAC), user management, and real-time features.
 
+## 🌐 Live Deployment
+
+- **🚀 Live App:** [https://aihubx.web.app](https://aihubx.web.app)
+- **🔧 Backend API:** [https://aihubx-backend.onrender.com](https://aihubx-backend.onrender.com)
+- **👤 Admin Dashboard:** [https://aihubx.web.app/admin/login](https://aihubx.web.app/admin/login)
+
 ## 🌟 Features
 
 ### Public Features
