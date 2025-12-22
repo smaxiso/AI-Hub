@@ -30,6 +30,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Skeleton } from '@mui/material';
 import Header from './components/Header';
 import { Link } from 'react-router-dom';
+import SignupPromptModal from './components/SignupPromptModal';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
@@ -304,6 +305,8 @@ function Home() {
       >
         {/* Header */}
         <Header />
+        {/* Signup Prompt Modal */}
+        <SignupPromptModal />
 
         {/* Loading Skeleton */}
         {loading && (
