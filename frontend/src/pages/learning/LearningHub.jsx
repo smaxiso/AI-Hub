@@ -12,6 +12,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import LockIcon from '@mui/icons-material/Lock';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabaseClient';
+import Header from '../../components/Header';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
@@ -103,6 +104,7 @@ const LearningHub = () => {
 
     return (
         <Box sx={{ minHeight: '100vh', bgcolor: '#f5f5f5', pb: 8 }}>
+            <Header />
             {/* Header */}
             <Box sx={{
                 bgcolor: 'primary.main',

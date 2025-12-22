@@ -10,6 +10,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { supabase } from '../../supabaseClient';
+import Header from '../../components/Header';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
