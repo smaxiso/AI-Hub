@@ -128,19 +128,19 @@ const Header = () => {
                     <Box sx={{ display: 'flex', gap: 1 }}>
                         <Button
                             component={Link}
-                            to="/login"
-                            startIcon={<LoginIcon />}
+                            to="/learning"
+                            variant="outlined"
                             sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
                         >
-                            Login
+                            Learning Hub
                         </Button>
                         <Button
                             component={Link}
-                            to="/signup"
+                            to="/login"
                             variant="contained"
-                            startIcon={<PersonAddIcon />}
+                            startIcon={<LoginIcon />}
                         >
-                            Sign Up
+                            Login
                         </Button>
                     </Box>
                 )}
