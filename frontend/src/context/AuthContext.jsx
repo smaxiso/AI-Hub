@@ -37,54 +37,42 @@ export const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        let isMounted = true;
-
         // Check active session
         const getSession = async () => {
+            console.log('AuthContext: Checking session...');
             try {
-                const { data: { session } } = await supabase.auth.getSession();
-                if (isMounted) {
-                    if (session?.user) {
-                        try {
-                            const userWithProfile = await fetchUserProfile(session.user);
-                            setUser(userWithProfile);
-                        } catch (err) {
-                            console.error('Failed to fetch profile during init:', err);
-                            setUser(session.user);
-                        }
-                    }
-                    setLoading(false);
+                const { data: { session }, error } = await supabase.auth.getSession();
+                console.log('AuthContext: Session retrieved', session ? 'User found' : 'No user', error);
+
+                if (session?.user) {
+                    console.log('AuthContext: Fetching profile...');
+                    const userWithProfile = await fetchUserProfile(session.user);
+                    console.log('AuthContext: Profile fetched', userWithProfile);
+                    setUser(userWithProfile);
                 }
             } catch (err) {
-                console.error('Session check failed:', err);
-                if (isMounted) setLoading(false);
+                console.error('AuthContext: Error getting session', err);
+            } finally {
+                console.log('AuthContext: Loading finished');
+                setLoading(false);
             }
         };
 
         getSession();
 
         // Listen for auth changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
-            if (!isMounted) return;
-
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+            console.log('AuthContext: Auth change event', event);
             if (session?.user) {
-                try {
-                    const userWithProfile = await fetchUserProfile(session.user);
-                    setUser(userWithProfile);
-                } catch (err) {
-                    console.error('Failed to fetch profile on auth change:', err);
-                    setUser(session.user);
-                }
+                const userWithProfile = await fetchUserProfile(session.user);
+                setUser(userWithProfile);
             } else {
                 setUser(null);
             }
             setLoading(false);
         });
 
-        return () => {
-            isMounted = false;
-            subscription.unsubscribe();
-        };
+        return () => subscription.unsubscribe();
     }, []);
 
     const value = {
