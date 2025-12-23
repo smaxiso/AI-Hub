@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import {
     Box, Container, Typography, Button, Card, CardContent,
     Radio, RadioGroup, FormControlLabel, FormControl,
-    LinearProgress, Alert, Paper, Chip, List, ListItem, ListItemText
+    LinearProgress, Alert, Paper, Chip, List, ListItem, ListItemText, Snackbar
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -27,6 +27,8 @@ const Quiz = () => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [submitting, setSubmitting] = useState(false);
     const [results, setResults] = useState(null);
+    const [errorMsg, setErrorMsg] = useState('');
+    const [showError, setShowError] = useState(false);
 
     // History & Progress Tracking
     // Structure: { [questionId]: { attempts: number, status: 'unanswered'|'correct'|'incorrect_retry'|'incorrect_final', selectedOption: string, isLocked: boolean } }
@@ -155,7 +157,8 @@ const Quiz = () => {
             setResults(data);
         } catch (err) {
             console.error('Error submitting quiz:', err);
-            alert('Error submitting quiz. Please try again.');
+            setErrorMsg('Error submitting quiz. Please try again.');
+            setShowError(true);
         } finally {
             setSubmitting(false);
         }
@@ -368,6 +371,17 @@ const Quiz = () => {
                     </CardContent>
                 </Card>
             </Container>
+
+            <Snackbar
+                open={showError}
+                autoHideDuration={6000}
+                onClose={() => setShowError(false)}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={() => setShowError(false)} severity="error" sx={{ width: '100%' }}>
+                    {errorMsg}
+                </Alert>
+            </Snackbar>
         </Box>
     );
 };

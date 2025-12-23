@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Typography, Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Chip, IconButton, Tooltip } from '@mui/material';
+import { Box, Typography, Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Chip, IconButton, Tooltip, Snackbar, Alert } from '@mui/material';
 import { motion } from 'framer-motion';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -14,6 +14,21 @@ const Collections = ({ tools, onCollectionSelect }) => {
   const [newCollectionName, setNewCollectionName] = useState('');
   const fileInputRef = useRef(null);
 
+  // Snackbar State
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'info'
+  });
+
+  const handleSnackbarClose = () => {
+    setSnackbar({ ...snackbar, open: false });
+  };
+
+  const showSnackbar = (message, severity = 'info') => {
+    setSnackbar({ open: true, message, severity });
+  };
+
   const createCollection = () => {
     if (newCollectionName.trim()) {
       const newCollection = {
@@ -25,6 +40,7 @@ const Collections = ({ tools, onCollectionSelect }) => {
       setCollections([...collections, newCollection]);
       setNewCollectionName('');
       setOpen(false);
+      showSnackbar('Collection created successfully', 'success');
     }
   };
 
@@ -47,6 +63,7 @@ const Collections = ({ tools, onCollectionSelect }) => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+    showSnackbar('Collections exported', 'success');
   };
 
   const importCollections = (event) => {
@@ -62,13 +79,14 @@ const Collections = ({ tools, onCollectionSelect }) => {
           const existingIds = new Set(collections.map(c => c.id));
           const newCollections = imported.filter(c => !existingIds.has(c.id));
           setCollections([...collections, ...newCollections]);
-          alert(`Successfully imported ${newCollections.length} collection(s)`);
+          setCollections([...collections, ...newCollections]);
+          showSnackbar(`Successfully imported ${newCollections.length} collection(s)`, 'success');
         } else {
-          alert('Invalid file format. Please ensure the file contains a valid collections array.');
+          showSnackbar('Invalid file format. Please ensure the file contains a valid collections array.', 'error');
         }
       } catch (error) {
         console.error('Error importing collections:', error);
-        alert('Error importing collections. Please check the file format.');
+        showSnackbar('Error importing collections. Please check the file format.', 'error');
       }
     };
     reader.readAsText(file);
@@ -261,6 +279,18 @@ const Collections = ({ tools, onCollectionSelect }) => {
           <Button onClick={createCollection} variant="contained">Create</Button>
         </DialogActions>
       </Dialog>
+
+      {/* Global Snackbar */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleSnackbarClose} severity={snackbar.severity} sx={{ width: '100%' }}>
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

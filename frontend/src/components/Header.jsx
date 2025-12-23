@@ -8,7 +8,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ExploreIcon from '@mui/icons-material/Explore';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
+import SchoolIcon from '@mui/icons-material/School';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useAuth } from '../context/AuthContext';
 
@@ -116,7 +116,7 @@ const Header = () => {
                                     </MenuItem>
                                 ) : (
                                     <MenuItem onClick={() => { handleClose(); navigate('/learning'); }}>
-                                        <MenuBookIcon sx={{ mr: 1, fontSize: 20 }} />
+                                        <SchoolIcon sx={{ mr: 1, fontSize: 20 }} />
                                         Learning Hub
                                     </MenuItem>
                                 )}
@@ -160,7 +160,7 @@ const Header = () => {
                                     }
                                 }}
                             >
-                                <MenuBookIcon />
+                                <SchoolIcon />
                             </IconButton>
                         </Tooltip>
 
