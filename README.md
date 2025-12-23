@@ -14,14 +14,17 @@ A full-stack web application featuring a modern React frontend, scalable Node.js
 
 ### Public Features
 - 🎨 **Glassmorphism Design** - Beautiful frosted glass effect with backdrop blur
-- 📱 **Fully Responsive** - Mobile-first design with optimized layouts
+- 📱 **Fully Responsive & PWA** - Installable "App-like" experience on mobile
+- 🎓 **Learning Hub** - Integrated courses and quizzes to master AI
 - 🔍 **Advanced Search & Filtering** - Find tools by name, description, or category
 - 🎯 **Category Organization** - Tools organized by Chat, Image, Video, Coding, Audio, Agent, and more
 - ✨ **New Badge** - Automatic "NEW" badge for tools added within 7 days
+- 🗣️ **Community Contributions** - Suggest tools and provide feedback
 
 ### Admin Features
 - 🔐 **Role-Based Access Control** - Owner, Admin, and Pending user roles
 - 👥 **User Management** - Approve/reject/revoke user access
+- 📬 **Community Suggestions** - Review and manage user-submitted content
 - 📊 **Real-time Badge Updates** - Live pending user count
 - 🔄 **Session Invalidation** - Auto-logout for revoked admins
 - 🛠️ **Tool CRUD Operations** - Create, edit, and delete AI tools

@@ -15,6 +15,7 @@ import ToolForm from './pages/admin/ToolForm';
 import LearningHub from './pages/learning/LearningHub';
 import ModuleDetail from './pages/learning/ModuleDetail';
 import Quiz from './pages/learning/Quiz';
+import MagicPromptTool from './pages/tools/MagicPromptTool';
 
 // Public Auth Pages
 import PublicLogin from './pages/auth/Login';
@@ -78,6 +79,9 @@ function App() {
                             </ProtectedRoute>
                         }
                     />
+
+                    {/* Tools Routes */}
+                    <Route path="/tools/magic-prompt" element={<MagicPromptTool />} />
 
                     {/* Learning Platform Routes */}
                     <Route path="/learning" element={<LearningHub />} />

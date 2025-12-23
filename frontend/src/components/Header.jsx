@@ -11,12 +11,17 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import SchoolIcon from '@mui/icons-material/School';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useAuth } from '../context/AuthContext';
+import StreakCounter from './learning/StreakCounter';
+import PWAInstallPrompt from './PWAInstallPrompt';
+import FeedbackModal from './FeedbackModal';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 
 const Header = () => {
     const { user, signOut } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [feedbackOpen, setFeedbackOpen] = React.useState(false);
 
     const isLearningPage = location.pathname.startsWith('/learning');
     const isAdminPage = location.pathname.startsWith('/admin');
@@ -70,6 +75,9 @@ const Header = () => {
                 {/* Navigation */}
                 {user ? (
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        {/* Streak Counter */}
+                        <StreakCounter />
+
                         {/* User Menu */}
                         <Box>
                             <IconButton onClick={handleMenu} sx={{ p: 0 }}>
@@ -120,6 +128,14 @@ const Header = () => {
                                         Learning Hub
                                     </MenuItem>
                                 )}
+
+                                <Divider />
+
+                                {/* Community Contribution */}
+                                <MenuItem onClick={() => { handleClose(); setFeedbackOpen(true); }}>
+                                    <VolunteerActivismIcon sx={{ mr: 1, fontSize: 20 }} />
+                                    Contribute / Feedback
+                                </MenuItem>
 
                                 {/* Admin Dashboard (if admin/owner) */}
                                 {(user.role === 'admin' || user.role === 'owner') && !isAdminPage && (
@@ -230,6 +246,8 @@ const Header = () => {
                     </Box>
                 )}
             </Toolbar>
+            <PWAInstallPrompt />
+            <FeedbackModal open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
         </AppBar>
     );
 };

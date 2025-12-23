@@ -9,12 +9,15 @@ A modern, feature-rich React application with glassmorphism design, 3D effects, 
 ### Public Features
 - 🎨 **Glassmorphism Design** - Beautiful frosted glass effect with backdrop blur
 - 🌈 **Soothing Color Palette** - Aesthetic pastel colors with smooth gradients
-- 📱 **Mobile-First Responsive** - Optimized for all devices with card layouts
+- 📱 **PWA & Mobile-First** - Installable application with offline capabilities
+- 🎓 **Learning Hub** - Structured learning paths and interactive quizzes
+- 🏆 **Gamification** - Earn badges and maintain streaks
 - ✨ **3D Effects** - Subtle transforms and hover animations
 - 🔍 **Advanced Search** - Real-time search across tool names and descriptions
 - 🎯 **Smart Filtering** - Filter by categories with visual chips
 - 📊 **Flexible Sorting** - Sort alphabetically or by newest first
 - 🆕 **New Badge** - Auto-highlight tools added in the last 7 days
+- 🗣️ **Community** - Suggest tools and submit feedback
 - 🎭 **Smooth Animations** - Framer Motion powered transitions
 
 ### Admin Dashboard
@@ -24,6 +27,10 @@ A modern, feature-rich React application with glassmorphism design, 3D effects, 
   - Revoke admin access
   - Real-time pending user badge
   - Session invalidation for revoked users
+- 📬 **Community Moderation**
+  - Review suggestions (Tools, Feedback)
+  - Approve or Reject/Dismiss items
+  - Context-aware actions
 - 🛠️ **Tool Management**
   - Create, edit, and delete tools
   - Image upload to Supabase Storage

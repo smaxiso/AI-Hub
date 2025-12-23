@@ -24,8 +24,20 @@ const ProtectedRoute = ({ children, allowedRoles, requireAuth = false }) => {
     }
 
     // Check role-based access (if allowedRoles provided)
-    if (allowedRoles && !allowedRoles.includes(user.role)) {
-        return <Navigate to="/" replace />;
+    if (allowedRoles) {
+        // If role is still loading (default 'authenticated'), wait
+        if (user.role === 'authenticated') {
+            return (
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                    <CircularProgress />
+                </Box>
+            );
+        }
+
+        // If role is loaded but not allowed, redirect
+        if (!allowedRoles.includes(user.role)) {
+            return <Navigate to="/" replace />;
+        }
     }
 
     // If requireAuth is true, any authenticated user can access (no role check)

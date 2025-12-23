@@ -9,6 +9,8 @@ A RESTful API server providing tool management, user authentication, role-based 
 - 🔐 **JWT Authentication** - Secure authentication via Supabase
 - 👥 **Role-Based Access Control (RBAC)** - Owner, Admin, Pending roles
 - 🛠️ **Tool CRUD API** - Full create, read, update, delete for AI tools
+- 🎓 **Learning Platform API** - Modules, Quizzes, and Progress tracking
+- 🗣️ **Community API** - Suggestions and administrative review endpoints
 - 📤 **Image Upload** - Direct integration with Supabase Storage
 - 🔒 **Protected Endpoints** - Middleware-based auth and role checking
 - 👤 **User Management** - Approve, reject, and revoke user access
@@ -58,6 +60,10 @@ node scripts/setup-avatars-storage.js
 # Update schema for Phase 7 features
 node scripts/update-schema-phase-7.js
 
+# Setup Learning and Community Tables
+node scripts/setup-learning.js
+node scripts/setup-community.sql (run in Supabase SQL editor)
+
 # Create initial owner account
 node scripts/create-owner.js
 ```
@@ -80,6 +86,9 @@ backend/
 │   ├── update-schema-phase-7.js   # Add avatar_url, unique username
 │   ├── create-owner.js            # Seed owner account
 │   └── migrate-data.js            # Import tools to Supabase
+├── routes/
+│   ├── community.js               # Community suggestion routes
+│   └── learning.js                # Learning platform routes
 ├── index.js                       # Main server file
 ├── .env                           # Environment variables
 └── package.json
@@ -141,11 +150,36 @@ GET /api/auth/check-username?username=johndoe
 }
 ```
 
+### Community Endpoints (Authenticated)
+
+#### Submit Suggestion
+```http
+POST /api/community/suggest
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+  "type": "feedback",
+  "content": { "text": "Great app!" }
+}
+```
+
 ### Admin Endpoints (Requires Authentication)
 
 **Headers:**
 ```
 Authorization: Bearer <supabase_jwt_token>
+```
+
+#### Get Suggestions
+```http
+GET /api/community/suggestions
+```
+
+#### Update Suggestion Status
+```http
+PUT /api/community/suggestions/:id/status
+{ "status": "approved" }
 ```
 
 #### Create Tool

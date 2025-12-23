@@ -10,8 +10,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useAuth } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import ManageUsers from './ManageUsers';
+import CommunitySuggestions from './CommunitySuggestions';
 import { supabase } from '../../supabaseClient';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
@@ -19,10 +20,16 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 const Dashboard = () => {
     const { signOut, user } = useAuth();
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const tabValue = parseInt(searchParams.get('tab') || '0', 10);
+
+    const handleTabChange = (event, newValue) => {
+        setSearchParams({ tab: newValue });
+    };
+
     const [tools, setTools] = useState([]);
     const [filteredTools, setFilteredTools] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [tabValue, setTabValue] = useState(0);
     const [userRole, setUserRole] = useState(null);
     const [pendingCount, setPendingCount] = useState(0);
 
@@ -197,13 +204,23 @@ const Dashboard = () => {
                         <Button
                             startIcon={<OpenInNewIcon />}
                             component="a"
-                            href="https://aihubx.web.app"
+                            href="/"
                             target="_blank"
                             rel="noopener noreferrer"
                             sx={{ display: { xs: 'none', md: 'flex' }, textTransform: 'none' }}
                         >
-                            View Site
+                            Open App
                         </Button>
+                        <IconButton
+                            component="a"
+                            href="/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{ display: { xs: 'flex', md: 'none' } }}
+                            color="primary"
+                        >
+                            <OpenInNewIcon />
+                        </IconButton>
                         <Button onClick={() => navigate('/admin/profile')} sx={{ textTransform: 'none', minWidth: 'auto' }}>
                             <PersonIcon sx={{ display: { xs: 'block', md: 'none' }, color: 'text.primary' }} />
                             <Typography variant="caption" sx={{ color: 'text.primary', mr: 1, display: { xs: 'none', md: 'block' } }}>
@@ -231,13 +248,25 @@ const Dashboard = () => {
             <Container maxWidth="xl">
                 {userRole === 'owner' && (
                     <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
-                        <Tabs value={tabValue} onChange={(e, val) => setTabValue(val)} variant="scrollable" scrollButtons="auto">
+                        <Tabs
+                            value={tabValue}
+                            onChange={handleTabChange}
+                            variant="scrollable"
+                            scrollButtons
+                            allowScrollButtonsMobile
+                            sx={{
+                                [`& .MuiTabs-scrollButtons`]: {
+                                    '&.Mui-disabled': { opacity: 0.3 },
+                                },
+                            }}
+                        >
                             <Tab label="Tools" />
                             <Tab label={
                                 <Badge badgeContent={pendingCount} color="error">
                                     <Box sx={{ pr: 1.5 }}>Manage Users</Box>
                                 </Badge>
                             } />
+                            <Tab label="Community" />
                         </Tabs>
                     </Box>
                 )}
@@ -341,6 +370,10 @@ const Dashboard = () => {
 
                 {tabValue === 1 && userRole === 'owner' && (
                     <ManageUsers onUpdate={refreshPendingCount} />
+                )}
+
+                {tabValue === 2 && userRole === 'owner' && (
+                    <CommunitySuggestions />
                 )}
 
             </Container>

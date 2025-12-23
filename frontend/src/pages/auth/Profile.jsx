@@ -8,6 +8,7 @@ import {
 import SaveIcon from '@mui/icons-material/Save';
 import Header from '../../components/Header';
 import AvatarUpload from '../../components/AvatarUpload';
+import Badge from '../../components/learning/Badge';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabaseClient';
 
@@ -24,7 +25,9 @@ const Profile = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+
     const [progress, setProgress] = useState(null);
+    const [badges, setBadges] = useState([]);
     const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
     useEffect(() => {
@@ -40,12 +43,23 @@ const Profile = () => {
     const fetchProgress = async () => {
         try {
             const { data: { session } } = await supabase.auth.getSession();
+
+            // 1. Fetch Learning Progress
             const res = await fetch(`${API_URL}/learning/progress`, {
                 headers: { 'Authorization': `Bearer ${session.access_token}` }
             });
             if (res.ok) {
                 const data = await res.json();
                 setProgress(data);
+            }
+
+            // 2. Fetch Gamification Data
+            const gamRes = await fetch(`${API_URL}/gamification/progress`, {
+                headers: { 'Authorization': `Bearer ${session.access_token}` }
+            });
+            if (gamRes.ok) {
+                const gamData = await gamRes.json();
+                setBadges(gamData.badges || []);
             }
         } catch (err) {
             console.error('Error fetching progress:', err);
@@ -179,6 +193,27 @@ const Profile = () => {
                     </Grid>
 
                     <Grid item xs={12} md={4}>
+                        {/* Badges Section */}
+                        <Card sx={{ mb: 3 }}>
+                            <CardContent>
+                                <Typography variant="h6" sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
+                                    Recent Badges <Typography variant="caption" sx={{ color: 'text.secondary' }}>({badges.length})</Typography>
+                                </Typography>
+
+                                {badges.length > 0 ? (
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                                        {badges.map((badge, index) => (
+                                            <Badge key={index} achievement={badge} />
+                                        ))}
+                                    </Box>
+                                ) : (
+                                    <Typography variant="body2" color="text.secondary">
+                                        No badges earned yet. Complete modules and quizzes to earn them!
+                                    </Typography>
+                                )}
+                            </CardContent>
+                        </Card>
+
                         <Card>
                             <CardContent>
                                 <Typography variant="h6" sx={{ mb: 2 }}>

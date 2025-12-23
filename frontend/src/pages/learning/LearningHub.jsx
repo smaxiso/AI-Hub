@@ -27,6 +27,7 @@ const LearningHub = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
+    const [progressLoading, setProgressLoading] = useState(true);
     const [progress, setProgress] = useState(null);
     const [modules, setModules] = useState([]);
     const [selectedLevel, setSelectedLevel] = useState('beginner');
@@ -60,11 +61,13 @@ const LearningHub = () => {
                 setProgress(data);
             } else {
                 console.error('Failed to fetch progress');
-                setProgress(null); // Fallback to null
+                setProgress(null);
             }
         } catch (error) {
             console.error('Error fetching progress:', error);
             setProgress(null);
+        } finally {
+            setProgressLoading(false);
         }
     };
 
@@ -191,7 +194,7 @@ const LearningHub = () => {
                 )}
 
                 {/* Modules Grid */}
-                {loading ? (
+                {loading || progressLoading ? (
                     <Grid container spacing={2}>
                         {[1, 2, 3, 4].map(i => (
                             <Grid item xs={12} sm={6} md={4} key={i}>

@@ -15,10 +15,19 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function executeSqlFile(filename) {
     try {
-        const filePath = path.join(__dirname, 'scripts', filename);
+        // Try direct path first, then scripts folder
+        let filePath = filename;
+        if (!fs.existsSync(filePath)) {
+            filePath = path.join(__dirname, 'scripts', filename);
+        }
 
         if (!fs.existsSync(filePath)) {
-            console.error(`❌ File not found: ${filePath}`);
+            // Try relative to project root
+            filePath = path.join(process.cwd(), filename);
+        }
+
+        if (!fs.existsSync(filePath)) {
+            console.error(`❌ File not found: ${filename} (checked current dir, scripts/, and root)`);
             return;
         }
 

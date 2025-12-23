@@ -5,6 +5,8 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [session, setSession] = useState(null); // Added session state
+    const [streak, setStreak] = useState(null);
     const [loading, setLoading] = useState(true);
     const userRef = useRef(user);
 
@@ -38,8 +40,8 @@ export const AuthProvider = ({ children }) => {
 
         profileFetchPromise.current = (async () => {
             try {
-                const { data: { session } } = await supabase.auth.getSession();
-                if (!session || session.user.id !== userId) {
+                const { data: { session: currentSession } } = await supabase.auth.getSession();
+                if (!currentSession || currentSession.user.id !== userId) {
                     // Session expired or user changed, clear promise and return
                     profileFetchPromise.current = null;
                     return;
@@ -47,7 +49,7 @@ export const AuthProvider = ({ children }) => {
 
                 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
                 const res = await fetch(`${API_URL}/auth/profile`, {
-                    headers: { 'Authorization': `Bearer ${session.access_token}` }
+                    headers: { 'Authorization': `Bearer ${currentSession.access_token}` }
                 });
 
                 if (res.ok) {
@@ -62,9 +64,19 @@ export const AuthProvider = ({ children }) => {
                                 return currentUser;
                             }
                             // Merge new profile data into the existing user object
-                            return { ...currentUser, ...session.user, role: profile.role, profile };
+                            return { ...currentUser, ...currentSession.user, role: profile.role, profile };
                         });
                         lastFetchTime.current = Date.now();
+                    }
+
+                    // Fetch Streak Data (in parallel or sequence)
+                    const streakRes = await fetch(`${API_URL}/gamification/streak/check`, {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${currentSession.access_token}` }
+                    });
+                    if (streakRes.ok) {
+                        const streakData = await streakRes.json();
+                        setStreak(streakData.streak?.current_streak || 0);
                     }
                 } else {
                     console.error('AuthContext: Backend fetch failed with status', res.status);
@@ -104,6 +116,7 @@ export const AuthProvider = ({ children }) => {
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
             console.log('AuthContext: Auth change event', event);
+            setSession(session); // Update session state
 
             if (session?.user) {
                 // 1. OPTIMISTIC LOGIN: Show UI Immediately
@@ -130,6 +143,8 @@ export const AuthProvider = ({ children }) => {
         signOut: () => supabase.auth.signOut(),
         refreshUser,
         user,
+        session, // Expose session
+        streak,
         loading
     };
 
