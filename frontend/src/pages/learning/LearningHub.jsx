@@ -34,9 +34,16 @@ const LearningHub = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        // Fetch modules for all users (logged in or not)
+        fetchModules();
+    }, [selectedLevel]);
+
+    useEffect(() => {
+        // Only fetch progress for logged-in users
         if (user?.id) {
             fetchProgress();
-            fetchModules();
+        } else {
+            setProgressLoading(false);
         }
     }, [user?.id]);
 
@@ -45,10 +52,6 @@ const LearningHub = () => {
             setSelectedLevel(progress.current_level);
         }
     }, [progress]);
-
-    useEffect(() => {
-        fetchModules();
-    }, [selectedLevel]);
 
     const fetchProgress = async () => {
         try {

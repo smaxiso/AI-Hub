@@ -137,13 +137,26 @@ const Login = () => {
                 </Paper>
 
                 <Box sx={{ textAlign: 'center', mt: 2 }}>
-                    <Button
-                        component={Link}
-                        to="/"
-                        sx={{ color: 'white' }}
-                    >
-                        ← Back to Home
-                    </Button>
+                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.8)', display: 'block', mb: 0.5 }}>
+                        Back to
+                    </Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
+                        <Button
+                            component={Link}
+                            to="/"
+                            sx={{ color: 'white', minWidth: 'auto', px: 1 }}
+                        >
+                            HOME
+                        </Button>
+                        <Typography sx={{ color: 'rgba(255,255,255,0.6)' }}>|</Typography>
+                        <Button
+                            component={Link}
+                            to="/learning"
+                            sx={{ color: 'white', minWidth: 'auto', px: 1 }}
+                        >
+                            LEARNING HUB
+                        </Button>
+                    </Box>
                 </Box>
             </Container>
         </Box>
