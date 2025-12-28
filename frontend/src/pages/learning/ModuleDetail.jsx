@@ -320,11 +320,16 @@ const ModuleDetail = () => {
     }), []);
 
     useEffect(() => {
+        // Set flag to indicate user is viewing a module
+        sessionStorage.setItem('lastVisitedModule', moduleId);
+
         fetchModuleData();
         window.addEventListener('scroll', handleScroll);
         // Initial check
         handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, [moduleId]);
 
     const handleScroll = () => {
@@ -438,7 +443,7 @@ const ModuleDetail = () => {
                 <Container maxWidth="md">
                     <Button
                         startIcon={<ArrowBackIcon />}
-                        onClick={() => navigate('/learning')}
+                        onClick={() => navigate(-1)}
                         sx={{ mb: 3 }}
                     >
                         Back to Hub
@@ -550,7 +555,7 @@ const ModuleDetail = () => {
             <Fade in={fabVisibility.showBack}>
                 <Tooltip title="Back to Learning Hub" placement="right">
                     <IconButton
-                        onClick={() => navigate('/learning')}
+                        onClick={() => navigate(-1)}
                         sx={{
                             position: 'fixed',
                             top: { xs: 16, md: 24 }, // Much closer to top

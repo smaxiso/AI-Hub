@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
     Box, Container, Typography, Grid, Card, CardContent, Button,
     LinearProgress, Chip, Tab, Tabs, Skeleton, Alert
@@ -26,6 +26,7 @@ const LEVELS = [
 const LearningHub = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
     const [loading, setLoading] = useState(true);
     const [progressLoading, setProgressLoading] = useState(true);
     const [progress, setProgress] = useState(null);
@@ -46,6 +47,18 @@ const LearningHub = () => {
             setProgressLoading(false);
         }
     }, [user?.id]);
+
+    // Refetch progress when navigating back from a module page
+    useEffect(() => {
+        // Check if we're coming from a module detail page
+        const isFromModulePage = location.key && sessionStorage.getItem('lastVisitedModule');
+
+        if (isFromModulePage && user?.id) {
+            // Refetch only progress to update completion status
+            fetchProgress();
+            sessionStorage.removeItem('lastVisitedModule'); // Clear flag
+        }
+    }, [location.key]);
 
     useEffect(() => {
         if (progress?.current_level) {
