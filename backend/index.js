@@ -16,13 +16,17 @@ const { supabase } = require('./supabaseClient');
 
 
 // Helper: Calculate if tool is new (Added within last 30 days)
-const isToolNew = (dateString) => {
-    if (!dateString) return false;
-    const addedDate = new Date(dateString);
+// Helper: Calculate if tool is new (Added within last 14 days)
+const isToolNew = (dateString, createdAt) => {
+    // Prefer created_at if available, fallback to added_date
+    const referenceDate = createdAt ? new Date(createdAt) : (dateString ? new Date(dateString) : null);
+
+    if (!referenceDate) return false;
+
     const today = new Date();
-    const diffTime = Math.abs(today - addedDate);
+    const diffTime = Math.abs(today - referenceDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays <= 30;
+    return diffDays <= 14;
 };
 
 // Auth Middleware
@@ -300,7 +304,7 @@ app.get('/api/tools', async (req, res) => {
         // Enhance data with dynamic isNew flag
         const enhancedTools = data.map(tool => ({
             ...tool,
-            isNew: isToolNew(tool.added_date)
+            isNew: isToolNew(tool.added_date, tool.created_at)
         }));
 
         res.json(enhancedTools);
