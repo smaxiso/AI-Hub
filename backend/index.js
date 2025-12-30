@@ -961,6 +961,12 @@ app.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date() });
 });
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+// Conditionally start server for local dev or Render
+if (require.main === module) {
+    app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
+}
+
+// Export for Vercel
+module.exports = app;
