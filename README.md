@@ -7,7 +7,7 @@ A full-stack web application featuring a modern React frontend, scalable Node.js
 ## 🌐 Live Deployment
 
 - **🚀 Live App:** [https://aihubx.web.app](https://aihubx.web.app)
-- **🔧 Backend API:** [https://aihubx-backend.onrender.com](https://aihubx-backend.onrender.com)
+- **🔧 Backend API:** [https://ai-hub-mu-one.vercel.app](https://ai-hub-mu-one.vercel.app)
 - **👤 Admin Dashboard:** [https://aihubx.web.app/admin/login](https://aihubx.web.app/admin/login)
 
 ## 🌟 Features
@@ -131,7 +131,7 @@ Storage buckets:
 
 ### Deployment
 - Frontend: Firebase / Vercel
-- Backend: Render / Railway
+- Backend: Vercel
 - Database: Supabase Cloud
 
 ## 📚 API Endpoints

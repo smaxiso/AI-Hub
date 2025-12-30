@@ -76,7 +76,7 @@ Create a `.env` file in the frontend directory:
 ```env
 VITE_SUPABASE_URL=your_supabase_project_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-VITE_API_URL=http://localhost:3000/api
+VITE_API_URL=https://ai-hub-mu-one.vercel.app/api
 ```
 
 3. **Start development server:**
@@ -205,7 +205,7 @@ const categoryColors = {
 |----------|-------------|---------|
 | `VITE_SUPABASE_URL` | Supabase project URL | `https://xxx.supabase.co` |
 | `VITE_SUPABASE_ANON_KEY` | Supabase anon key | `eyJhbG...` |
-| `VITE_API_URL` | Backend API URL | `http://localhost:3000/api` |
+| `VITE_API_URL` | Backend API URL | `https://ai-hub-mu-one.vercel.app/api` |
 
 ## 🤝 Contributing
 

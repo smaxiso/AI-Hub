@@ -74,6 +74,19 @@ npm start
 ```
 
 Server runs at `http://localhost:3000`
+    
+## 🚀 Deployment (Vercel)
+
+This backend is optimized for Vercel Serverless Functions.
+
+1.  **Push to GitHub**
+2.  **Import to Vercel**:
+    *   Select Repository: `AI-Hub`
+    *   **Root Directory**: Set to `backend` (Important!)
+    *   **Environment Variables**: Add `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`
+3.  **Deploy!**
+
+Note: `PORT` variable is not needed for Vercel.
 
 ## 📁 Project Structure
 
