@@ -1,13 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { Box, Button, TextField, Typography, Paper, Container, Grid, MenuItem, Alert, CircularProgress, Snackbar } from '@mui/material';
+import { Box, Button, TextField, Typography, Paper, Container, Grid, MenuItem, Alert, CircularProgress, Snackbar, Autocomplete } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../context/AuthContext';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
-const CATEGORIES = ['Chat', 'Image', 'Video', 'Coding', 'Audio', 'Agent', 'Other'];
+const CATEGORIES = ['Chat', 'Image', 'Video', 'Coding', 'Audio', 'Agent', 'Browser', 'Other'];
 const PRICING = ['Free', 'Freemium', 'Paid'];
 
 const ToolForm = ({ isEditing }) => {
@@ -201,19 +201,24 @@ const ToolForm = ({ isEditing }) => {
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
-                                <TextField
-                                    fullWidth
-                                    select
-                                    label="Category"
+                                <Autocomplete
+                                    freeSolo
+                                    options={CATEGORIES}
                                     value={formData.category}
-                                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                >
-                                    {CATEGORIES.map((option) => (
-                                        <MenuItem key={option} value={option}>
-                                            {option}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
+                                    onChange={(event, newValue) => {
+                                        setFormData({ ...formData, category: newValue || '' });
+                                    }}
+                                    onInputChange={(event, newInputValue) => {
+                                        setFormData({ ...formData, category: newInputValue });
+                                    }}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label="Category"
+                                            helperText="Select or type a custom category"
+                                        />
+                                    )}
+                                />
                             </Grid>
 
                             <Grid item xs={12} sm={6}>

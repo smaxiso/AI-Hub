@@ -106,8 +106,25 @@ const CommunitySuggestions = () => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ p: 1, bgcolor: '#f5f5f5', borderRadius: 1 }}>
-                    <Box sx={{ overflowX: 'auto', maxHeight: '300px' }}>
-                        <pre style={{ margin: 0, fontSize: '0.75rem', fontFamily: 'monospace' }}>
+                    <Box sx={{
+                        overflowY: 'auto',
+                        maxHeight: '300px',
+                        '&::-webkit-scrollbar': {
+                            width: '8px',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                            background: '#e0e0e0',
+                            borderRadius: '4px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                            background: '#888',
+                            borderRadius: '4px',
+                            '&:hover': {
+                                background: '#555',
+                            },
+                        },
+                    }}>
+                        <pre style={{ margin: 0, fontSize: '0.75rem', fontFamily: 'monospace', whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
                             {JSON.stringify(suggestion.content, null, 2)}
                         </pre>
                     </Box>

@@ -682,5 +682,6 @@ export const categoryColors = {
   Video: '#FB7185',      // Coral Pink
   Coding: '#00C2CB',     // Teal for Developer Tools
   Agent: '#FFB020',      // Amber for Autonomous Agents
+  Browser: '#FF6B9D',    // Pink for Browser Extensions/Tools
   Other: '#C084FC'       // Bright Purple
 };
