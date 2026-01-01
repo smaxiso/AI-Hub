@@ -86,7 +86,7 @@ const CommunitySuggestions = () => {
             const { data: { session } } = await supabase.auth.getSession();
             const token = session?.access_token;
 
-            const res = await fetch(`${API_URL}/community/suggestions/${id}`, {
+            const res = await fetch(`${API_URL}/community/suggestions/${itemToDelete}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
