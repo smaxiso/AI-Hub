@@ -22,6 +22,7 @@ const CommunitySuggestions = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [statusUpdating, setStatusUpdating] = useState(null); // id of item being updated
+    const [deletingId, setDeletingId] = useState(null); // id of item being deleted
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [itemToDelete, setItemToDelete] = useState(null);
 
@@ -81,12 +82,15 @@ const CommunitySuggestions = () => {
     };
 
     const confirmDelete = async () => {
+        const idToDelete = itemToDelete;
+        setDeleteDialogOpen(false); // Close dialog immediately
+        setDeletingId(idToDelete); // Show loading state on the item
 
         try {
             const { data: { session } } = await supabase.auth.getSession();
             const token = session?.access_token;
 
-            const res = await fetch(`${API_URL}/community/suggestions/${itemToDelete}`, {
+            const res = await fetch(`${API_URL}/community/suggestions/${idToDelete}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -96,12 +100,13 @@ const CommunitySuggestions = () => {
             if (!res.ok) throw new Error('Failed to delete suggestion');
 
             // Remove from local state
-            setSuggestions(suggestions.filter(s => s.id !== itemToDelete));
-            setDeleteDialogOpen(false);
-            setItemToDelete(null);
+            setSuggestions(suggestions.filter(s => s.id !== idToDelete));
         } catch (err) {
             console.error(err);
             alert('Error deleting suggestion');
+        } finally {
+            setDeletingId(null);
+            setItemToDelete(null);
         }
     };
 
@@ -235,10 +240,11 @@ const CommunitySuggestions = () => {
                                         size="small"
                                         variant="outlined"
                                         color="error"
-                                        startIcon={<DeleteIcon />}
+                                        startIcon={deletingId === row.id ? <CircularProgress size={20} color="inherit" /> : <DeleteIcon />}
                                         onClick={() => handleDelete(row.id)}
+                                        disabled={deletingId === row.id}
                                     >
-                                        Delete
+                                        {deletingId === row.id ? 'Deleting...' : 'Delete'}
                                     </Button>
                                 </>
                             )}
@@ -331,8 +337,9 @@ const CommunitySuggestions = () => {
                                                     color="error"
                                                     size="small"
                                                     onClick={() => handleDelete(row.id)}
+                                                    disabled={deletingId === row.id}
                                                 >
-                                                    <DeleteIcon />
+                                                    {deletingId === row.id ? <CircularProgress size={20} color="inherit" /> : <DeleteIcon />}
                                                 </IconButton>
                                             </Tooltip>
                                         </>
