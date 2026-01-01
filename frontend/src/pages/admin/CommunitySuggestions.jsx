@@ -12,6 +12,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import BuildIcon from '@mui/icons-material/Build';
 import QuizIcon from '@mui/icons-material/Quiz';
 import FeedbackIcon from '@mui/icons-material/Feedback';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { supabase } from '../../supabaseClient';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
@@ -69,6 +70,32 @@ const CommunitySuggestions = () => {
             alert('Error updating status');
         } finally {
             setStatusUpdating(null);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        if (!window.confirm('Are you sure you want to permanently delete this feedback? This action cannot be undone.')) {
+            return;
+        }
+
+        try {
+            const { data: { session } } = await supabase.auth.getSession();
+            const token = session?.access_token;
+
+            const res = await fetch(`${API_URL}/community/suggestions/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!res.ok) throw new Error('Failed to delete suggestion');
+
+            // Remove from local state
+            setSuggestions(suggestions.filter(s => s.id !== id));
+        } catch (err) {
+            console.error(err);
+            alert('Error deleting suggestion');
         }
     };
 
@@ -189,14 +216,25 @@ const CommunitySuggestions = () => {
                                 </>
                             )}
                             {row.status !== 'pending' && (
-                                <Button
-                                    size="small"
-                                    variant="text"
-                                    color="inherit"
-                                    onClick={() => handleStatusUpdate(row.id, 'pending')}
-                                >
-                                    Reset Status
-                                </Button>
+                                <>
+                                    <Button
+                                        size="small"
+                                        variant="text"
+                                        color="inherit"
+                                        onClick={() => handleStatusUpdate(row.id, 'pending')}
+                                    >
+                                        Reset Status
+                                    </Button>
+                                    <Button
+                                        size="small"
+                                        variant="outlined"
+                                        color="error"
+                                        startIcon={<DeleteIcon />}
+                                        onClick={() => handleDelete(row.id)}
+                                    >
+                                        Delete
+                                    </Button>
+                                </>
                             )}
                         </CardActions>
                     </Card>
@@ -273,14 +311,25 @@ const CommunitySuggestions = () => {
                                         </>
                                     )}
                                     {row.status !== 'pending' && (
-                                        <Button
-                                            size="small"
-                                            variant="text"
-                                            color="inherit"
-                                            onClick={() => handleStatusUpdate(row.id, 'pending')}
-                                        >
-                                            Reset
-                                        </Button>
+                                        <>
+                                            <Button
+                                                size="small"
+                                                variant="text"
+                                                color="inherit"
+                                                onClick={() => handleStatusUpdate(row.id, 'pending')}
+                                            >
+                                                Reset
+                                            </Button>
+                                            <Tooltip title="Delete">
+                                                <IconButton
+                                                    color="error"
+                                                    size="small"
+                                                    onClick={() => handleDelete(row.id)}
+                                                >
+                                                    <DeleteIcon />
+                                                </IconButton>
+                                            </Tooltip>
+                                        </>
                                     )}
                                 </Box>
                             </TableCell>

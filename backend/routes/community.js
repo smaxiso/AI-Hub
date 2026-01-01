@@ -96,4 +96,35 @@ router.put('/suggestions/:id/status', async (req, res) => {
     }
 });
 
+// DELETE /api/community/suggestions/:id - Delete suggestion (Admin only)
+router.delete('/suggestions/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Double check admin role
+        const { data: profile } = await supabase
+            .from('profiles')
+            .select('role')
+            .eq('id', req.user.id)
+            .single();
+
+        if (profile?.role !== 'owner') {
+            return res.status(403).json({ error: 'Unauthorized' });
+        }
+
+        const { error } = await supabase
+            .from('community_suggestions')
+            .delete()
+            .eq('id', id);
+
+        if (error) throw error;
+
+        res.status(204).send();
+
+    } catch (error) {
+        console.error('Error deleting suggestion:', error);
+        res.status(500).json({ error: 'Failed to delete suggestion' });
+    }
+});
+
 module.exports = router;
