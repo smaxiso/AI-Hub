@@ -22,6 +22,8 @@ const CommunitySuggestions = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [statusUpdating, setStatusUpdating] = useState(null); // id of item being updated
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState(null);
 
     useEffect(() => {
         fetchSuggestions();
@@ -74,9 +76,11 @@ const CommunitySuggestions = () => {
     };
 
     const handleDelete = async (id) => {
-        if (!window.confirm('Are you sure you want to permanently delete this feedback? This action cannot be undone.')) {
-            return;
-        }
+        setItemToDelete(id);
+        setDeleteDialogOpen(true);
+    };
+
+    const confirmDelete = async () => {
 
         try {
             const { data: { session } } = await supabase.auth.getSession();
@@ -92,7 +96,9 @@ const CommunitySuggestions = () => {
             if (!res.ok) throw new Error('Failed to delete suggestion');
 
             // Remove from local state
-            setSuggestions(suggestions.filter(s => s.id !== id));
+            setSuggestions(suggestions.filter(s => s.id !== itemToDelete));
+            setDeleteDialogOpen(false);
+            setItemToDelete(null);
         } catch (err) {
             console.error(err);
             alert('Error deleting suggestion');
@@ -355,6 +361,27 @@ const CommunitySuggestions = () => {
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                 {renderMobileView()}
             </Box>
+
+            {/* Delete Confirmation Dialog */}
+            <Dialog
+                open={deleteDialogOpen}
+                onClose={() => setDeleteDialogOpen(false)}
+            >
+                <DialogTitle>Delete Feedback</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to permanently delete this feedback? This action cannot be undone.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setDeleteDialogOpen(false)} color="inherit">
+                        Cancel
+                    </Button>
+                    <Button onClick={confirmDelete} color="error" variant="contained" autoFocus>
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Paper>
     );
 };
