@@ -139,6 +139,10 @@ const ToolForm = ({ isEditing }) => {
             added_date: isEditing ? formData.added_date : new Date().toISOString().split('T')[0]
         };
 
+        // Remove computed fields that don't exist in the database
+        delete payload.isNew;
+        delete payload.created_at;
+
         try {
             const { data: { session } } = await supabase.auth.getSession();
             const token = session?.access_token;
