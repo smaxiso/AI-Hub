@@ -1,14 +1,13 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import { Box, Container, Typography, Grid, Fab, Tabs, Tab, ThemeProvider, CssBaseline, Chip, useMediaQuery } from '@mui/material';
+import { Box, Container, Typography, Grid, Fab, Tabs, Tab, CssBaseline, Chip, useMediaQuery } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
-import { createAppTheme } from './theme';
+import { useTheme } from './context/ThemeContext';
 import ToolCard from './components/ToolCard';
 import SearchBar from './components/SearchBar';
 import CategoryFilter from './components/CategoryFilter';
 import AdvancedFilters from './components/AdvancedFilters';
 import ToolDetailModal from './components/ToolDetailModal';
 import ToolComparison from './components/ToolComparison';
-import DarkModeToggle from './components/DarkModeToggle';
 import TrendingSection from './components/TrendingSection';
 import MagicPrompt from './components/MagicPrompt';
 import Dialog from '@mui/material/Dialog';
@@ -19,7 +18,6 @@ import Collections from './components/Collections';
 import EmptyState from './components/EmptyState';
 import { useFavorites } from './hooks/useFavorites';
 import { useRecentlyViewed } from './hooks/useRecentlyViewed';
-import { useDarkMode } from './hooks/useDarkMode';
 import { getTrendingTools, getMostVisitedTools } from './utils/analytics';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import SearchOffIcon from '@mui/icons-material/SearchOff';
@@ -56,10 +54,9 @@ function Home() {
 
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
   const { recentlyViewed, addToRecent } = useRecentlyViewed();
-  const [darkMode, toggleDarkMode] = useDarkMode();
+  const { theme, darkMode } = useTheme();
 
   // Create theme based on dark mode
-  const theme = useMemo(() => createAppTheme(darkMode), [darkMode]);
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   // Reduce animations on mobile
@@ -289,296 +286,342 @@ function Home() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box
-        sx={{
-          minHeight: '100vh',
-          position: 'relative',
-          overflow: 'hidden',
-          pb: 8,
-          background: darkMode
-            ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
-            : 'linear-gradient(135deg, #E8F4F8 0%, #D4C5F9 50%, #C8F4E0 100%)',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        {/* Header */}
-        <Header />
-        {/* Signup Prompt Modal */}
-        <SignupPromptModal />
 
-        {/* Loading Skeleton */}
-        {loading && (
-          <Container maxWidth="xl" sx={{ pt: { xs: 4, md: 6 } }}>
-            {/* Header Skeleton */}
-            <Box sx={{ mb: 4, textAlign: 'center' }}>
-              <Skeleton variant="text" width="60%" height={60} sx={{ mx: 'auto', mb: 2 }} />
-              <Skeleton variant="text" width="40%" height={30} sx={{ mx: 'auto' }} />
-            </Box>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        position: 'relative',
+        overflow: 'hidden',
+        pb: 8,
+        background: theme.palette.mode === 'dark'
+          ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
+          : 'linear-gradient(135deg, #E8F4F8 0%, #D4C5F9 50%, #C8F4E0 100%)',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Header */}
+      <Header />
+      {/* Signup Prompt Modal */}
+      <SignupPromptModal />
 
-            {/* Tabs Skeleton */}
-            <Box sx={{ mb: 4, display: 'flex', gap: 2 }}>
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <Skeleton key={i} variant="rectangular" width={100} height={48} sx={{ borderRadius: 1 }} />
-              ))}
-            </Box>
+      {/* Loading Skeleton */}
+      {loading && (
+        <Container maxWidth="xl" sx={{ pt: { xs: 4, md: 6 } }}>
+          {/* Header Skeleton */}
+          <Box sx={{ mb: 4, textAlign: 'center' }}>
+            <Skeleton variant="text" width="60%" height={60} sx={{ mx: 'auto', mb: 2 }} />
+            <Skeleton variant="text" width="40%" height={30} sx={{ mx: 'auto' }} />
+          </Box>
 
-            {/* Search Bar Skeleton */}
-            <Skeleton variant="rectangular" height={56} sx={{ mb: 4, borderRadius: 2 }} />
-
-            {/* Category Filter Skeleton */}
-            <Box sx={{ mb: 4, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-              {[1, 2, 3, 4, 5, 6, 7].map((i) => (
-                <Skeleton key={i} variant="rectangular" width={90} height={32} sx={{ borderRadius: 2 }} />
-              ))}
-            </Box>
-
-            {/* Tool Cards Skeleton */}
-            <Grid container spacing={3}>
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
-                  <Box
-                    sx={{
-                      p: 2,
-                      borderRadius: 3,
-                      background: darkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.7)',
-                      backdropFilter: 'blur(10px)',
-                      border: `1px solid ${darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.3)'}`,
-                    }}
-                  >
-                    {/* Icon */}
-                    <Skeleton variant="circular" width={56} height={56} sx={{ mb: 2 }} />
-                    {/* Title */}
-                    <Skeleton variant="text" width="70%" height={28} sx={{ mb: 1 }} />
-                    {/* Category chip */}
-                    <Skeleton variant="rectangular" width={80} height={24} sx={{ mb: 2, borderRadius: 2 }} />
-                    {/* Description lines */}
-                    <Skeleton variant="text" width="100%" height={20} sx={{ mb: 0.5 }} />
-                    <Skeleton variant="text" width="90%" height={20} sx={{ mb: 0.5 }} />
-                    <Skeleton variant="text" width="60%" height={20} sx={{ mb: 2 }} />
-                    {/* Tags */}
-                    <Box sx={{ display: 'flex', gap: 0.5, mb: 2 }}>
-                      <Skeleton variant="rectangular" width={60} height={24} sx={{ borderRadius: 2 }} />
-                      <Skeleton variant="rectangular" width={50} height={24} sx={{ borderRadius: 2 }} />
-                    </Box>
-                    {/* Button */}
-                    <Skeleton variant="rectangular" width="100%" height={36} sx={{ borderRadius: 2 }} />
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
-          </Container>
-        )}
-
-        {/* Animated background elements - Disabled on mobile */}
-        {!isMobile && (
-          <Box
-            sx={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 0,
-              pointerEvents: 'none',
-              overflow: 'hidden'
-            }}
-          >
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={i}
-                style={{
-                  position: 'absolute',
-                  width: '300px',
-                  height: '300px',
-                  borderRadius: '50%',
-                  background: darkMode
-                    ? `linear-gradient(135deg, rgba(100, 150, 200, 0.1) 0%, rgba(150, 100, 200, 0.1) 100%)`
-                    : `linear-gradient(135deg, rgba(184, 224, 242, 0.3) 0%, rgba(212, 197, 249, 0.3) 100%)`,
-                  filter: 'blur(60px)',
-                  left: `${20 + i * 20}%`,
-                  top: `${10 + i * 15}%`
-                }}
-                animate={{
-                  y: [0, 30, 0],
-                  x: [0, 20, 0],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{
-                  duration: 8 + i * 2,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }}
-              />
+          {/* Tabs Skeleton */}
+          <Box sx={{ mb: 4, display: 'flex', gap: 2 }}>
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <Skeleton key={i} variant="rectangular" width={100} height={48} sx={{ borderRadius: 1 }} />
             ))}
           </Box>
-        )}
 
-        <Container
-          maxWidth="xl"
+          {/* Search Bar Skeleton */}
+          <Skeleton variant="rectangular" height={56} sx={{ mb: 4, borderRadius: 2 }} />
+
+          {/* Category Filter Skeleton */}
+          <Box sx={{ mb: 4, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+            {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+              <Skeleton key={i} variant="rectangular" width={90} height={32} sx={{ borderRadius: 2 }} />
+            ))}
+          </Box>
+
+          {/* Tool Cards Skeleton */}
+          <Grid container spacing={3}>
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+                <Box
+                  sx={{
+                    p: 2,
+                    borderRadius: 3,
+                    background: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.7)',
+                    backdropFilter: 'blur(10px)',
+                    border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.3)'}`,
+                  }}
+                >
+                  {/* Icon */}
+                  <Skeleton variant="circular" width={56} height={56} sx={{ mb: 2 }} />
+                  {/* Title */}
+                  <Skeleton variant="text" width="70%" height={28} sx={{ mb: 1 }} />
+                  {/* Category chip */}
+                  <Skeleton variant="rectangular" width={80} height={24} sx={{ mb: 2, borderRadius: 2 }} />
+                  {/* Description lines */}
+                  <Skeleton variant="text" width="100%" height={20} sx={{ mb: 0.5 }} />
+                  <Skeleton variant="text" width="90%" height={20} sx={{ mb: 0.5 }} />
+                  <Skeleton variant="text" width="60%" height={20} sx={{ mb: 2 }} />
+                  {/* Tags */}
+                  <Box sx={{ display: 'flex', gap: 0.5, mb: 2 }}>
+                    <Skeleton variant="rectangular" width={60} height={24} sx={{ borderRadius: 2 }} />
+                    <Skeleton variant="rectangular" width={50} height={24} sx={{ borderRadius: 2 }} />
+                  </Box>
+                  {/* Button */}
+                  <Skeleton variant="rectangular" width="100%" height={36} sx={{ borderRadius: 2 }} />
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      )}
+
+      {/* Animated background elements - Disabled on mobile */}
+      {!isMobile && (
+        <Box
           sx={{
-            position: 'relative',
-            zIndex: 1,
-            pt: { xs: 2, md: 3 } // Reduced from 4/6 to 2/3
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 0,
+            pointerEvents: 'none',
+            overflow: 'hidden'
           }}
         >
-          {/* Magic Prompt Modal */}
-          <Dialog
-            open={magicPromptOpen}
-            onClose={() => setMagicPromptOpen(false)}
-            maxWidth="sm"
-            fullWidth
-            keepMounted={false}
-            disablePortal={false}
-            disableEnforceFocus={true}
-            PaperProps={{
-              sx: {
-                m: 2,
-                borderRadius: '24px',
-                background: 'transparent',
-                boxShadow: 'none',
-                overflow: 'visible'
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              style={{
+                position: 'absolute',
+                width: '300px',
+                height: '300px',
+                borderRadius: '50%',
+                background: theme.palette.mode === 'dark'
+                  ? `linear-gradient(135deg, rgba(100, 150, 200, 0.1) 0%, rgba(150, 100, 200, 0.1) 100%)`
+                  : `linear-gradient(135deg, rgba(184, 224, 242, 0.3) 0%, rgba(212, 197, 249, 0.3) 100%)`,
+                filter: 'blur(60px)',
+                left: `${20 + i * 20}%`,
+                top: `${10 + i * 15}%`
+              }}
+              animate={{
+                y: [0, 30, 0],
+                x: [0, 20, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: 8 + i * 2,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+          ))}
+        </Box>
+      )}
+
+      <Container
+        maxWidth="xl"
+        sx={{
+          position: 'relative',
+          zIndex: 1,
+          pt: { xs: 2, md: 3 } // Reduced from 4/6 to 2/3
+        }}
+      >
+        {/* Magic Prompt Modal */}
+        <Dialog
+          open={magicPromptOpen}
+          onClose={() => setMagicPromptOpen(false)}
+          maxWidth="sm"
+          fullWidth
+          keepMounted={false}
+          disablePortal={false}
+          disableEnforceFocus={true}
+          PaperProps={{
+            sx: {
+              m: 2,
+              borderRadius: '24px',
+              background: 'transparent',
+              boxShadow: 'none',
+              overflow: 'visible'
+            }
+          }}
+        >
+          <MagicPrompt onClose={() => setMagicPromptOpen(false)} />
+        </Dialog>
+
+        {/* Tagline */}
+        <Box sx={{ textAlign: 'center', mb: 2, mt: 1 }}> {/* Added small mt, reduced mb from 3 to 2 */}
+          <Typography
+            variant="h6"
+            sx={{
+              color: theme.palette.mode === 'dark' ? '#A0AEC0' : 'text.secondary',
+              fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.25rem' },
+              fontWeight: 500,
+              maxWidth: '800px',
+              mx: 'auto'
+            }}
+          >
+            Discover, compare, and master AI tools
+          </Typography>
+        </Box>
+
+        {/* Tabs for different views */}
+        <Box sx={{ mb: { xs: 2, md: 4 }, mt: { xs: 2, md: 0 } }}>
+          <Tabs
+            value={activeTab}
+            onChange={(e, newValue) => {
+              setActiveTab(newValue);
+              setCollectionFilter(null);
+            }}
+            variant="scrollable"
+            scrollButtons="auto"
+            allowScrollButtonsMobile
+            sx={{
+              '& .MuiTab-root': {
+                color: theme.palette.mode === 'dark' ? '#A0AEC0' : '#718096',
+                fontWeight: 500,
+                fontSize: { xs: '0.85rem', md: '0.95rem' },
+                minHeight: { xs: 42, md: 48 },
+                minWidth: { xs: 80, md: 120 },
+                px: { xs: 1.5, md: 2 },
+                '&.Mui-selected': {
+                  color: theme.palette.mode === 'dark' ? '#90CDF4' : '#6BB6FF',
+                  fontWeight: 700
+                }
+              },
+              '& .MuiTabs-indicator': {
+                background: theme.palette.mode === 'dark'
+                  ? 'linear-gradient(90deg, #90CDF4 0%, #A78BFA 100%)'
+                  : 'linear-gradient(90deg, #6BB6FF 0%, #A78BFA 100%)',
+                height: { xs: 2, md: 3 }
               }
             }}
           >
-            <MagicPrompt onClose={() => setMagicPromptOpen(false)} />
-          </Dialog>
+            <Tab label="All Tools" />
+            <Tab label="Most Visited" />
+            <Tab label="Trending" />
+            <Tab label="New Tools" />
+            <Tab label="Favorites" />
+            <Tab label="Collections" />
+          </Tabs>
+        </Box>
 
-          {/* Tagline */}
-          <Box sx={{ textAlign: 'center', mb: 2, mt: 1 }}> {/* Added small mt, reduced mb from 3 to 2 */}
+        {/* Search and Filters */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Box sx={{ mb: 4 }}>
+            <SearchBar value={searchQuery} onChange={setSearchQuery} />
+          </Box>
+          <Box sx={{ mb: 4 }}>
+            <CategoryFilter
+              categories={categories}
+              selected={selectedCategory}
+              onChange={setSelectedCategory}
+            />
+          </Box>
+          <AdvancedFilters
+            pricingFilter={pricingFilter}
+            onPricingChange={setPricingFilter}
+            sortBy={sortBy}
+            onSortChange={setSortBy}
+            selectedTags={selectedTags}
+            onTagToggle={handleTagToggle}
+            availableTags={allTags}
+          />
+        </motion.div>
+
+        {/* Recently Viewed Section */}
+        {activeTab === 0 && recentlyViewed.length > 0 && (
+          <RecentlyViewed allTools={aiTools} onToolClick={handleToolClick} />
+        )}
+
+        {/* Main Results Section Header */}
+        {activeTab === 0 && (
+          <Box id="all-ai-tools-section" sx={{ mb: 3 }}>
             <Typography
-              variant="h6"
+              variant="h5"
               sx={{
-                color: darkMode ? '#A0AEC0' : 'text.secondary',
-                fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.25rem' },
-                fontWeight: 500,
-                maxWidth: '800px',
-                mx: 'auto'
+                fontWeight: 700,
+                fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                color: theme.palette.mode === 'dark' ? '#E2E8F0' : '#2D3748',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1
               }}
             >
-              Discover, compare, and master AI tools
+              {collectionFilter ? 'Collection Tools' : searchQuery || selectedCategory !== 'All' ? 'Search Results' : 'All AI Tools'}
+              <Chip
+                label={filteredTools.length}
+                size="small"
+                sx={{
+                  height: '26px',
+                  fontSize: '0.875rem',
+                  fontWeight: 700,
+                  background: theme.palette.mode === 'dark'
+                    ? 'rgba(160, 174, 192, 0.2)'
+                    : 'rgba(113, 128, 150, 0.2)',
+                  color: theme.palette.mode === 'dark' ? '#A0AEC0' : '#718096',
+                  border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(160, 174, 192, 0.3)' : 'rgba(113, 128, 150, 0.3)'}`
+                }}
+              />
             </Typography>
           </Box>
+        )}
 
-          {/* Tabs for different views */}
-          <Box sx={{ mb: { xs: 2, md: 4 }, mt: { xs: 2, md: 0 } }}>
-            <Tabs
-              value={activeTab}
-              onChange={(e, newValue) => {
-                setActiveTab(newValue);
-                setCollectionFilter(null);
-              }}
-              variant="scrollable"
-              scrollButtons="auto"
-              allowScrollButtonsMobile
-              sx={{
-                '& .MuiTab-root': {
-                  color: darkMode ? '#A0AEC0' : '#718096',
-                  fontWeight: 500,
-                  fontSize: { xs: '0.85rem', md: '0.95rem' },
-                  minHeight: { xs: 42, md: 48 },
-                  minWidth: { xs: 80, md: 120 },
-                  px: { xs: 1.5, md: 2 },
-                  '&.Mui-selected': {
-                    color: darkMode ? '#90CDF4' : '#6BB6FF',
-                    fontWeight: 700
-                  }
-                },
-                '& .MuiTabs-indicator': {
-                  background: darkMode
-                    ? 'linear-gradient(90deg, #90CDF4 0%, #A78BFA 100%)'
-                    : 'linear-gradient(90deg, #6BB6FF 0%, #A78BFA 100%)',
-                  height: { xs: 2, md: 3 }
-                }
-              }}
-            >
-              <Tab label="All Tools" />
-              <Tab label="Most Visited" />
-              <Tab label="Trending" />
-              <Tab label="New Tools" />
-              <Tab label="Favorites" />
-              <Tab label="Collections" />
-            </Tabs>
-          </Box>
-
-          {/* Search and Filters */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Box sx={{ mb: 4 }}>
-              <SearchBar value={searchQuery} onChange={setSearchQuery} />
-            </Box>
-            <Box sx={{ mb: 4 }}>
-              <CategoryFilter
-                categories={categories}
-                selected={selectedCategory}
-                onChange={setSelectedCategory}
-              />
-            </Box>
-            <AdvancedFilters
-              pricingFilter={pricingFilter}
-              onPricingChange={setPricingFilter}
-              sortBy={sortBy}
-              onSortChange={setSortBy}
-              selectedTags={selectedTags}
-              onTagToggle={handleTagToggle}
-              availableTags={allTags}
-            />
-          </motion.div>
-
-          {/* Recently Viewed Section */}
-          {activeTab === 0 && recentlyViewed.length > 0 && (
-            <RecentlyViewed allTools={aiTools} onToolClick={handleToolClick} />
-          )}
-
-          {/* Main Results Section Header */}
+        {/* Content based on active tab */}
+        <AnimatePresence mode="wait">
           {activeTab === 0 && (
-            <Box id="all-ai-tools-section" sx={{ mb: 3 }}>
-              <Typography
-                variant="h5"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: { xs: '1.25rem', sm: '1.5rem' },
-                  color: darkMode ? '#E2E8F0' : '#2D3748',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1
-                }}
-              >
-                {collectionFilter ? 'Collection Tools' : searchQuery || selectedCategory !== 'All' ? 'Search Results' : 'All AI Tools'}
-                <Chip
-                  label={filteredTools.length}
-                  size="small"
-                  sx={{
-                    height: '26px',
-                    fontSize: '0.875rem',
-                    fontWeight: 700,
-                    background: darkMode
-                      ? 'rgba(160, 174, 192, 0.2)'
-                      : 'rgba(113, 128, 150, 0.2)',
-                    color: darkMode ? '#A0AEC0' : '#718096',
-                    border: `1px solid ${darkMode ? 'rgba(160, 174, 192, 0.3)' : 'rgba(113, 128, 150, 0.3)'}`
-                  }}
+            <motion.div
+              key="all-tools"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {filteredTools.length > 0 ? (
+                <Grid container spacing={3}>
+                  {filteredTools.map((tool, index) => (
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={tool.id}>
+                      {shouldAnimate ? (
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.5) }}
+                        >
+                          <ToolCard
+                            tool={tool}
+                            onFavorite={toggleFavorite}
+                            isFavorite={isFavorite(tool.id)}
+                            onClick={handleToolClick}
+                          />
+                        </motion.div>
+                      ) : (
+                        <ToolCard
+                          tool={tool}
+                          onFavorite={toggleFavorite}
+                          isFavorite={isFavorite(tool.id)}
+                          onClick={handleToolClick}
+                        />
+                      )}
+                    </Grid>
+                  ))}
+                </Grid>
+              ) : (
+                <EmptyState
+                  icon={<SearchOffIcon sx={{ fontSize: 64, color: theme.palette.mode === 'dark' ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
+                  title="No tools found"
+                  description="Try adjusting your search or filter criteria to find what you're looking for."
                 />
-              </Typography>
-            </Box>
+              )}
+            </motion.div>
           )}
 
-          {/* Content based on active tab */}
-          <AnimatePresence mode="wait">
-            {activeTab === 0 && (
-              <motion.div
-                key="all-tools"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                {filteredTools.length > 0 ? (
+          {activeTab === 1 && (
+            <motion.div
+              key="most-visited"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {(() => {
+                const mostVisited = getMostVisitedTools(aiTools, 20);
+                return mostVisited.length > 0 ? (
                   <Grid container spacing={3}>
-                    {filteredTools.map((tool, index) => (
+                    {mostVisited.map((tool, index) => (
                       <Grid item xs={12} sm={6} md={4} lg={3} key={tool.id}>
                         {shouldAnimate ? (
                           <motion.div
@@ -606,83 +649,74 @@ function Home() {
                   </Grid>
                 ) : (
                   <EmptyState
-                    icon={<SearchOffIcon sx={{ fontSize: 64, color: darkMode ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
-                    title="No tools found"
-                    description="Try adjusting your search or filter criteria to find what you're looking for."
+                    icon={<VisibilityOffIcon sx={{ fontSize: 64, color: theme.palette.mode === 'dark' ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
+                    title="No visits yet"
+                    description="Start exploring tools to see your most visited here. Click on any tool to begin tracking your usage."
                   />
-                )}
-              </motion.div>
-            )}
+                );
+              })()}
+            </motion.div>
+          )}
 
-            {activeTab === 1 && (
-              <motion.div
-                key="most-visited"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                {(() => {
-                  const mostVisited = getMostVisitedTools(aiTools, 20);
-                  return mostVisited.length > 0 ? (
-                    <Grid container spacing={3}>
-                      {mostVisited.map((tool, index) => (
-                        <Grid item xs={12} sm={6} md={4} lg={3} key={tool.id}>
-                          {shouldAnimate ? (
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.5) }}
-                            >
-                              <ToolCard
-                                tool={tool}
-                                onFavorite={toggleFavorite}
-                                isFavorite={isFavorite(tool.id)}
-                                onClick={handleToolClick}
-                              />
-                            </motion.div>
-                          ) : (
-                            <ToolCard
-                              tool={tool}
-                              onFavorite={toggleFavorite}
-                              isFavorite={isFavorite(tool.id)}
-                              onClick={handleToolClick}
-                            />
-                          )}
-                        </Grid>
-                      ))}
+          {activeTab === 2 && (
+            <motion.div
+              key="trending"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <TrendingSection tools={trendingTools} onToolClick={handleToolClick} />
+            </motion.div>
+          )}
+
+          {activeTab === 3 && (
+            <motion.div
+              key="new-tools"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {newTools.length > 0 ? (
+                <Grid container spacing={3}>
+                  {newTools.map((tool, index) => (
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={tool.id}>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                      >
+                        <ToolCard
+                          tool={tool}
+                          onFavorite={toggleFavorite}
+                          isFavorite={isFavorite(tool.id)}
+                          onClick={handleToolClick}
+                        />
+                      </motion.div>
                     </Grid>
-                  ) : (
-                    <EmptyState
-                      icon={<VisibilityOffIcon sx={{ fontSize: 64, color: darkMode ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
-                      title="No visits yet"
-                      description="Start exploring tools to see your most visited here. Click on any tool to begin tracking your usage."
-                    />
-                  );
-                })()}
-              </motion.div>
-            )}
+                  ))}
+                </Grid>
+              ) : (
+                <EmptyState
+                  icon={<NewReleasesIcon sx={{ fontSize: 64, color: theme.palette.mode === 'dark' ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
+                  title="No new tools this month"
+                  description="Check back soon for the latest AI tools. We're constantly adding new and exciting tools to the collection."
+                />
+              )}
+            </motion.div>
+          )}
 
-            {activeTab === 2 && (
-              <motion.div
-                key="trending"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <TrendingSection tools={trendingTools} onToolClick={handleToolClick} />
-              </motion.div>
-            )}
-
-            {activeTab === 3 && (
-              <motion.div
-                key="new-tools"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                {newTools.length > 0 ? (
-                  <Grid container spacing={3}>
-                    {newTools.map((tool, index) => (
+          {activeTab === 4 && (
+            <motion.div
+              key="favorites"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {favorites.length > 0 ? (
+                <Grid container spacing={3}>
+                  {aiTools
+                    .filter(tool => favorites.includes(tool.id))
+                    .map((tool, index) => (
                       <Grid item xs={12} sm={6} md={4} lg={3} key={tool.id}>
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -698,235 +732,185 @@ function Home() {
                         </motion.div>
                       </Grid>
                     ))}
-                  </Grid>
-                ) : (
-                  <EmptyState
-                    icon={<NewReleasesIcon sx={{ fontSize: 64, color: darkMode ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
-                    title="No new tools this month"
-                    description="Check back soon for the latest AI tools. We're constantly adding new and exciting tools to the collection."
-                  />
-                )}
-              </motion.div>
-            )}
-
-            {activeTab === 4 && (
-              <motion.div
-                key="favorites"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                {favorites.length > 0 ? (
-                  <Grid container spacing={3}>
-                    {aiTools
-                      .filter(tool => favorites.includes(tool.id))
-                      .map((tool, index) => (
-                        <Grid item xs={12} sm={6} md={4} lg={3} key={tool.id}>
-                          <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                          >
-                            <ToolCard
-                              tool={tool}
-                              onFavorite={toggleFavorite}
-                              isFavorite={isFavorite(tool.id)}
-                              onClick={handleToolClick}
-                            />
-                          </motion.div>
-                        </Grid>
-                      ))}
-                  </Grid>
-                ) : (
-                  <EmptyState
-                    icon={<FavoriteBorderIcon sx={{ fontSize: 64, color: darkMode ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
-                    title="No favorites yet"
-                    description="Click the heart icon on any tool to add it to your favorites. Build your personalized collection of AI tools."
-                    actionLabel="Explore Tools"
-                    onAction={() => setActiveTab(0)}
-                  />
-                )}
-              </motion.div>
-            )}
-
-            {activeTab === 5 && (
-              <motion.div
-                key="collections"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <Collections
-                  tools={aiTools}
-                  onCollectionSelect={handleCollectionSelect}
+                </Grid>
+              ) : (
+                <EmptyState
+                  icon={<FavoriteBorderIcon sx={{ fontSize: 64, color: theme.palette.mode === 'dark' ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}
+                  title="No favorites yet"
+                  description="Click the heart icon on any tool to add it to your favorites. Build your personalized collection of AI tools."
+                  actionLabel="Explore Tools"
+                  onAction={() => setActiveTab(0)}
                 />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Tool Detail Modal */}
-          <ToolDetailModal
-            tool={selectedTool}
-            aiTools={aiTools}
-            open={modalOpen}
-            onClose={handleModalClose}
-            onFavorite={() => selectedTool && toggleFavorite(selectedTool.id)}
-            isFavorite={selectedTool ? isFavorite(selectedTool.id) : false}
-            onToolClick={(tool) => {
-              setSelectedTool(tool);
-              addToRecent(tool.id);
-            }}
-          />
-
-          {/* Tool Comparison Modal */}
-          <ToolComparison
-            tools={comparisonTools}
-            open={comparisonOpen}
-            onClose={() => {
-              setComparisonOpen(false);
-              setComparisonTools([]);
-            }}
-          />
-
-          {/* Keyboard Shortcuts Help */}
-          {showShortcuts && (
-            <Box
-              sx={{
-                position: 'fixed',
-                bottom: 24,
-                right: 24,
-                p: 2,
-                background: 'rgba(255, 255, 255, 0.25)',
-                backdropFilter: 'blur(20px)',
-                borderRadius: '12px',
-                border: '1px solid rgba(255, 255, 255, 0.18)',
-                zIndex: 1000,
-                maxWidth: '300px'
-              }}
-            >
-              <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
-                Keyboard Shortcuts
-              </Typography>
-              <Typography variant="caption" sx={{ display: 'block', mb: 0.5 }}>
-                <kbd>/</kbd> Focus search
-              </Typography>
-              <Typography variant="caption" sx={{ display: 'block', mb: 0.5 }}>
-                <kbd>?</kbd> Show shortcuts
-              </Typography>
-              <Typography variant="caption" sx={{ display: 'block', mb: 0.5 }}>
-                <kbd>Ctrl/Cmd + D</kbd> Toggle dark mode
-              </Typography>
-              <Typography variant="caption" sx={{ display: 'block' }}>
-                <kbd>Esc</kbd> Close modal
-              </Typography>
-            </Box>
+              )}
+            </motion.div>
           )}
 
-          {/* Floating Action Button - Premium 3D with Breathing Animation */}
-          <motion.div
-            animate={{
-              y: [0, -6, 0],
-              boxShadow: [
-                "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-                "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
-              ]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            style={{
+          {activeTab === 5 && (
+            <motion.div
+              key="collections"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Collections
+                tools={aiTools}
+                onCollectionSelect={handleCollectionSelect}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Tool Detail Modal */}
+        <ToolDetailModal
+          tool={selectedTool}
+          aiTools={aiTools}
+          open={modalOpen}
+          onClose={handleModalClose}
+          onFavorite={() => selectedTool && toggleFavorite(selectedTool.id)}
+          isFavorite={selectedTool ? isFavorite(selectedTool.id) : false}
+          onToolClick={(tool) => {
+            setSelectedTool(tool);
+            addToRecent(tool.id);
+          }}
+        />
+
+        {/* Tool Comparison Modal */}
+        <ToolComparison
+          tools={comparisonTools}
+          open={comparisonOpen}
+          onClose={() => {
+            setComparisonOpen(false);
+            setComparisonTools([]);
+          }}
+        />
+
+        {/* Keyboard Shortcuts Help */}
+        {showShortcuts && (
+          <Box
+            sx={{
               position: 'fixed',
-              bottom: isMobile ? 16 : 32,
-              right: isMobile ? 16 : 32,
-              zIndex: 1100,
-              background: 'none', // Ensure no background is set on the wrapper
-              borderRadius: '50%', // Prevent any square shape
-              boxShadow: 'none' // Remove any default shadow from the wrapper
+              bottom: 24,
+              right: 24,
+              p: 2,
+              background: 'rgba(255, 255, 255, 0.25)',
+              backdropFilter: 'blur(20px)',
+              borderRadius: '12px',
+              border: '1px solid rgba(255, 255, 255, 0.18)',
+              zIndex: 1000,
+              maxWidth: '300px'
             }}
           >
-            <Fab
-              onClick={() => setMagicPromptOpen(true)}
-              sx={{
-                width: isMobile ? 64 : 72,
-                height: isMobile ? 64 : 72,
-                background: 'linear-gradient(135deg, #6BB6FF 0%, #A78BFA 100%)',
-                color: 'white',
-                border: '2px solid rgba(255, 255, 255, 0.3)',
-                boxShadow: `
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
+              Keyboard Shortcuts
+            </Typography>
+            <Typography variant="caption" sx={{ display: 'block', mb: 0.5 }}>
+              <kbd>/</kbd> Focus search
+            </Typography>
+            <Typography variant="caption" sx={{ display: 'block', mb: 0.5 }}>
+              <kbd>?</kbd> Show shortcuts
+            </Typography>
+            <Typography variant="caption" sx={{ display: 'block', mb: 0.5 }}>
+              <kbd>Ctrl/Cmd + D</kbd> Toggle dark mode
+            </Typography>
+            <Typography variant="caption" sx={{ display: 'block' }}>
+              <kbd>Esc</kbd> Close modal
+            </Typography>
+          </Box>
+        )}
+
+        {/* Floating Action Button - Premium 3D with Breathing Animation */}
+        <motion.div
+          animate={{
+            y: [0, -6, 0],
+            boxShadow: [
+              "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+              "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+              "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+            ]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{
+            position: 'fixed',
+            bottom: isMobile ? 16 : 32,
+            right: isMobile ? 16 : 32,
+            zIndex: 1100,
+            background: 'none', // Ensure no background is set on the wrapper
+            borderRadius: '50%', // Prevent any square shape
+            boxShadow: 'none' // Remove any default shadow from the wrapper
+          }}
+        >
+          <Fab
+            onClick={() => setMagicPromptOpen(true)}
+            sx={{
+              width: isMobile ? 64 : 72,
+              height: isMobile ? 64 : 72,
+              background: 'linear-gradient(135deg, #6BB6FF 0%, #A78BFA 100%)',
+              color: 'white',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              boxShadow: `
                 inset 0 4px 8px rgba(255,255,255,0.4),
                 inset 0 -4px 8px rgba(0,0,0,0.2),
                 0 8px 20px rgba(107, 182, 255, 0.5)
               `,
-                '&:hover': {
-                  background: 'linear-gradient(135deg, #A78BFA 0%, #6BB6FF 100%)',
-                  transform: 'scale(1.05)',
-                  boxShadow: `
+              '&:hover': {
+                background: 'linear-gradient(135deg, #A78BFA 0%, #6BB6FF 100%)',
+                transform: 'scale(1.05)',
+                boxShadow: `
                   inset 0 4px 8px rgba(255,255,255,0.5),
                   inset 0 -4px 8px rgba(0,0,0,0.3),
                   0 12px 28px rgba(107, 182, 255, 0.6)
                 `
-                },
-                transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+              },
+              transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            }}
+            aria-label="Magic Prompt"
+          >
+            {/* Animated stars icon using Framer Motion */}
+            <motion.span
+              animate={{
+                rotate: [0, 20, -20, 0],
+                scale: [1, 1.15, 1],
+                opacity: [1, 0.7, 1]
               }}
-              aria-label="Magic Prompt"
-            >
-              {/* Animated stars icon using Framer Motion */}
-              <motion.span
-                animate={{
-                  rotate: [0, 20, -20, 0],
-                  scale: [1, 1.15, 1],
-                  opacity: [1, 0.7, 1]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                style={{ display: 'inline-block' }}
-              >
-                <AutoAwesomeIcon sx={{ fontSize: isMobile ? '1.8rem' : '2.2rem', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))' }} />
-              </motion.span>
-            </Fab>
-          </motion.div>
-          {!isMobile && (
-            <Fab
-              size="small"
-              onClick={() => setShowShortcuts(!showShortcuts)}
-              sx={{
-                position: 'fixed',
-                bottom: 24,
-                left: 24,
-                background: 'rgba(255, 255, 255, 0.25)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255, 255, 255, 0.18)',
-                color: 'text.secondary',
-                zIndex: 1100,
-                '&:hover': {
-                  background: 'rgba(255, 255, 255, 0.35)'
-                }
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
               }}
+              style={{ display: 'inline-block' }}
             >
-              <KeyboardIcon />
-            </Fab>
-          )}
-        </Container>
+              <AutoAwesomeIcon sx={{ fontSize: isMobile ? '1.8rem' : '2.2rem', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))' }} />
+            </motion.span>
+          </Fab>
+        </motion.div>
+        {!isMobile && (
+          <Fab
+            size="small"
+            onClick={() => setShowShortcuts(!showShortcuts)}
+            sx={{
+              position: 'fixed',
+              bottom: 24,
+              left: 24,
+              background: 'rgba(255, 255, 255, 0.25)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.18)',
+              color: 'text.secondary',
+              zIndex: 1100,
+              '&:hover': {
+                background: 'rgba(255, 255, 255, 0.35)'
+              }
+            }}
+          >
+            <KeyboardIcon />
+          </Fab>
+        )}
+      </Container>
 
-        {/* Floating Dark Mode Toggle */}
-        <Box
-          sx={{
-            position: 'fixed',
-            bottom: { xs: 90, md: 110 }, // Stacked above the Magic Prompt FAB (which is at ~24px bottom + ~64px height)
-            right: { xs: 16, md: 24 },
-            zIndex: 1000
-          }}
-        >
-          <DarkModeToggle darkMode={darkMode} onToggle={toggleDarkMode} />
-        </Box>
-      </Box>
-    </ThemeProvider>
+    </Box>
   );
 }
 

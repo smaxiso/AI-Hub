@@ -15,6 +15,8 @@ import StreakCounter from './learning/StreakCounter';
 import PWAInstallPrompt from './PWAInstallPrompt';
 import FeedbackModal from './FeedbackModal';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import DarkModeToggle from './DarkModeToggle';
+import { useTheme } from '../context/ThemeContext';
 
 const Header = () => {
     const { user, signOut } = useAuth();
@@ -22,6 +24,7 @@ const Header = () => {
     const location = useLocation();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [feedbackOpen, setFeedbackOpen] = React.useState(false);
+    const { darkMode, toggleDarkMode } = useTheme();
 
     const isLearningPage = location.pathname.startsWith('/learning');
     const isAdminPage = location.pathname.startsWith('/admin');
@@ -73,178 +76,181 @@ const Header = () => {
                 </Box>
 
                 {/* Navigation */}
-                {user ? (
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        {/* Streak Counter */}
-                        <StreakCounter />
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <DarkModeToggle darkMode={darkMode} onToggle={toggleDarkMode} />
+                    {user ? (
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                            {/* Streak Counter */}
+                            <StreakCounter />
 
-                        {/* User Menu */}
-                        <Box>
-                            <IconButton onClick={handleMenu} sx={{ p: 0 }}>
-                                <Avatar
-                                    src={user.profile?.avatar_url}
-                                    alt={user.profile?.full_name}
-                                    sx={{ width: 36, height: 36, bgcolor: 'primary.main' }}
+                            {/* User Menu */}
+                            <Box>
+                                <IconButton onClick={handleMenu} sx={{ p: 0 }}>
+                                    <Avatar
+                                        src={user.profile?.avatar_url}
+                                        alt={user.profile?.full_name}
+                                        sx={{ width: 36, height: 36, bgcolor: 'primary.main' }}
+                                    >
+                                        {user.profile?.full_name?.charAt(0) || user.profile?.username?.charAt(0) || user.email?.charAt(0)}
+                                    </Avatar>
+                                </IconButton>
+                                <Menu
+                                    anchorEl={anchorEl}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                                    transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                                    PaperProps={{ sx: { minWidth: 200 } }}
                                 >
-                                    {user.profile?.full_name?.charAt(0) || user.profile?.username?.charAt(0) || user.email?.charAt(0)}
-                                </Avatar>
-                            </IconButton>
-                            <Menu
-                                anchorEl={anchorEl}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                                PaperProps={{ sx: { minWidth: 200 } }}
-                            >
-                                {/* User Info */}
-                                <MenuItem disabled sx={{ opacity: '1 !important' }}>
-                                    <Box>
-                                        <Typography variant="body1" fontWeight={600}>
-                                            {user.profile?.username || user.profile?.full_name || 'User'}
-                                        </Typography>
-                                        <Typography variant="caption" color="text.secondary">
-                                            {user.email}
-                                        </Typography>
-                                    </Box>
-                                </MenuItem>
-                                <Divider />
-
-                                {/* Profile Settings */}
-                                <MenuItem onClick={() => { handleClose(); navigate('/profile'); }}>
-                                    <SettingsIcon sx={{ mr: 1, fontSize: 20 }} />
-                                    Profile Settings
-                                </MenuItem>
-
-                                {/* Context-aware Navigation */}
-                                {isLearningPage ? (
-                                    <MenuItem onClick={() => { handleClose(); window.open('/', '_blank'); }}>
-                                        <ExploreIcon sx={{ mr: 1, fontSize: 20 }} />
-                                        AI Hub Marketplace
+                                    {/* User Info */}
+                                    <MenuItem disabled sx={{ opacity: '1 !important' }}>
+                                        <Box>
+                                            <Typography variant="body1" fontWeight={600}>
+                                                {user.profile?.username || user.profile?.full_name || 'User'}
+                                            </Typography>
+                                            <Typography variant="caption" color="text.secondary">
+                                                {user.email}
+                                            </Typography>
+                                        </Box>
                                     </MenuItem>
-                                ) : (
-                                    <MenuItem onClick={() => { handleClose(); navigate('/learning'); }}>
-                                        <SchoolIcon sx={{ mr: 1, fontSize: 20 }} />
-                                        Learning Hub
+                                    <Divider />
+
+                                    {/* Profile Settings */}
+                                    <MenuItem onClick={() => { handleClose(); navigate('/profile'); }}>
+                                        <SettingsIcon sx={{ mr: 1, fontSize: 20 }} />
+                                        Profile Settings
                                     </MenuItem>
-                                )}
 
-                                <Divider />
+                                    {/* Context-aware Navigation */}
+                                    {isLearningPage ? (
+                                        <MenuItem onClick={() => { handleClose(); window.open('/', '_blank'); }}>
+                                            <ExploreIcon sx={{ mr: 1, fontSize: 20 }} />
+                                            AI Hub Marketplace
+                                        </MenuItem>
+                                    ) : (
+                                        <MenuItem onClick={() => { handleClose(); navigate('/learning'); }}>
+                                            <SchoolIcon sx={{ mr: 1, fontSize: 20 }} />
+                                            Learning Hub
+                                        </MenuItem>
+                                    )}
 
-                                {/* Community Contribution */}
-                                <MenuItem onClick={() => { handleClose(); setFeedbackOpen(true); }}>
-                                    <VolunteerActivismIcon sx={{ mr: 1, fontSize: 20 }} />
-                                    Contribute / Feedback
-                                </MenuItem>
+                                    <Divider />
 
-                                {/* Admin Dashboard (if admin/owner) */}
-                                {(user.role === 'admin' || user.role === 'owner') && !isAdminPage && (
-                                    <MenuItem onClick={() => { handleClose(); window.open('/admin', '_blank'); }}>
-                                        <DashboardIcon sx={{ mr: 1, fontSize: 20 }} />
-                                        Admin Dashboard
+                                    {/* Community Contribution */}
+                                    <MenuItem onClick={() => { handleClose(); setFeedbackOpen(true); }}>
+                                        <VolunteerActivismIcon sx={{ mr: 1, fontSize: 20 }} />
+                                        Contribute / Feedback
                                     </MenuItem>
-                                )}
 
-                                <Divider />
-                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                            </Menu>
+                                    {/* Admin Dashboard (if admin/owner) */}
+                                    {(user.role === 'admin' || user.role === 'owner') && !isAdminPage && (
+                                        <MenuItem onClick={() => { handleClose(); window.open('/admin', '_blank'); }}>
+                                            <DashboardIcon sx={{ mr: 1, fontSize: 20 }} />
+                                            Admin Dashboard
+                                        </MenuItem>
+                                    )}
+
+                                    <Divider />
+                                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                                </Menu>
+                            </Box>
                         </Box>
-                    </Box>
-                ) : (
-                    <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                        {/* Mobile: Icon only */}
-                        <Tooltip title="Start Learning AI">
-                            <IconButton
-                                component={Link}
-                                to="/learning"
-                                sx={{
-                                    display: { xs: 'inline-flex', sm: 'none' },
-                                    bgcolor: '#e3f2fd',
-                                    color: 'text.primary',
-                                    boxShadow: 1,
-                                    border: '1px solid',
-                                    borderColor: 'rgba(0, 0, 0, 0.1)',
-                                    transition: 'all 0.2s',
-                                    '&:hover': {
-                                        bgcolor: '#bbdefb',
-                                        transform: 'scale(1.05) translateY(-2px)',
-                                        boxShadow: 3
-                                    },
-                                    '&:active': {
-                                        transform: 'scale(0.95) translateY(1px)',
-                                        boxShadow: 1
-                                    }
-                                }}
-                            >
-                                <SchoolIcon />
-                            </IconButton>
-                        </Tooltip>
+                    ) : (
+                        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                            {/* Mobile: Icon only */}
+                            <Tooltip title="Start Learning AI">
+                                <IconButton
+                                    component={Link}
+                                    to="/learning"
+                                    sx={{
+                                        display: { xs: 'inline-flex', sm: 'none' },
+                                        bgcolor: '#e3f2fd',
+                                        color: 'text.primary',
+                                        boxShadow: 1,
+                                        border: '1px solid',
+                                        borderColor: 'rgba(0, 0, 0, 0.1)',
+                                        transition: 'all 0.2s',
+                                        '&:hover': {
+                                            bgcolor: '#bbdefb',
+                                            transform: 'scale(1.05) translateY(-2px)',
+                                            boxShadow: 3
+                                        },
+                                        '&:active': {
+                                            transform: 'scale(0.95) translateY(1px)',
+                                            boxShadow: 1
+                                        }
+                                    }}
+                                >
+                                    <SchoolIcon />
+                                </IconButton>
+                            </Tooltip>
 
-                        {/* Desktop: Full Button */}
-                        <Tooltip title="Browse our AI Learning Modules">
-                            <Button
-                                component={Link}
-                                to="/learning"
-                                variant="outlined"
-                                sx={{
-                                    display: { xs: 'none', sm: 'inline-flex' },
-                                    transition: 'all 0.2s',
-                                    '&:hover': { transform: 'translateY(-2px)', boxShadow: 2 },
-                                    '&:active': { transform: 'translateY(1px)', boxShadow: 1 }
-                                }}
-                            >
-                                Learning Hub
-                            </Button>
-                        </Tooltip>
+                            {/* Desktop: Full Button */}
+                            <Tooltip title="Browse our AI Learning Modules">
+                                <Button
+                                    component={Link}
+                                    to="/learning"
+                                    variant="outlined"
+                                    sx={{
+                                        display: { xs: 'none', sm: 'inline-flex' },
+                                        transition: 'all 0.2s',
+                                        '&:hover': { transform: 'translateY(-2px)', boxShadow: 2 },
+                                        '&:active': { transform: 'translateY(1px)', boxShadow: 1 }
+                                    }}
+                                >
+                                    Learning Hub
+                                </Button>
+                            </Tooltip>
 
-                        {/* Mobile: Login Icon */}
-                        <Tooltip title="Sign In to your Account">
-                            <IconButton
-                                component={Link}
-                                to="/login"
-                                sx={{
-                                    display: { xs: 'inline-flex', sm: 'none' },
-                                    bgcolor: '#e3f2fd',
-                                    color: 'text.primary',
-                                    boxShadow: 1,
-                                    border: '1px solid',
-                                    borderColor: 'rgba(0, 0, 0, 0.1)',
-                                    transition: 'all 0.2s',
-                                    '&:hover': {
-                                        bgcolor: '#bbdefb',
-                                        transform: 'scale(1.05) translateY(-2px)',
-                                        boxShadow: 3
-                                    },
-                                    '&:active': {
-                                        transform: 'scale(0.95) translateY(1px)',
-                                        boxShadow: 1
-                                    }
-                                }}
-                            >
-                                <LoginIcon />
-                            </IconButton>
-                        </Tooltip>
+                            {/* Mobile: Login Icon */}
+                            <Tooltip title="Sign In to your Account">
+                                <IconButton
+                                    component={Link}
+                                    to="/login"
+                                    sx={{
+                                        display: { xs: 'inline-flex', sm: 'none' },
+                                        bgcolor: '#e3f2fd',
+                                        color: 'text.primary',
+                                        boxShadow: 1,
+                                        border: '1px solid',
+                                        borderColor: 'rgba(0, 0, 0, 0.1)',
+                                        transition: 'all 0.2s',
+                                        '&:hover': {
+                                            bgcolor: '#bbdefb',
+                                            transform: 'scale(1.05) translateY(-2px)',
+                                            boxShadow: 3
+                                        },
+                                        '&:active': {
+                                            transform: 'scale(0.95) translateY(1px)',
+                                            boxShadow: 1
+                                        }
+                                    }}
+                                >
+                                    <LoginIcon />
+                                </IconButton>
+                            </Tooltip>
 
-                        {/* Desktop: Login Button */}
-                        <Tooltip title="Login to save your progress">
-                            <Button
-                                component={Link}
-                                to="/login"
-                                variant="contained"
-                                startIcon={<LoginIcon />}
-                                size="medium"
-                                sx={{
-                                    display: { xs: 'none', sm: 'inline-flex' },
-                                    transition: 'all 0.2s',
-                                    '&:hover': { transform: 'translateY(-2px)', boxShadow: 4 },
-                                    '&:active': { transform: 'translateY(1px)', boxShadow: 1 }
-                                }}
-                            >
-                                Login
-                            </Button>
-                        </Tooltip>
-                    </Box>
-                )}
+                            {/* Desktop: Login Button */}
+                            <Tooltip title="Login to save your progress">
+                                <Button
+                                    component={Link}
+                                    to="/login"
+                                    variant="contained"
+                                    startIcon={<LoginIcon />}
+                                    size="medium"
+                                    sx={{
+                                        display: { xs: 'none', sm: 'inline-flex' },
+                                        transition: 'all 0.2s',
+                                        '&:hover': { transform: 'translateY(-2px)', boxShadow: 4 },
+                                        '&:active': { transform: 'translateY(1px)', boxShadow: 1 }
+                                    }}
+                                >
+                                    Login
+                                </Button>
+                            </Tooltip>
+                        </Box>
+                    )}
+                </Box>
             </Toolbar>
             <PWAInstallPrompt />
             <FeedbackModal open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
