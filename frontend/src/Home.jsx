@@ -54,7 +54,7 @@ function Home() {
 
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
   const { recentlyViewed, addToRecent } = useRecentlyViewed();
-  const { theme, darkMode } = useTheme();
+  const { theme, darkMode, toggleDarkMode } = useTheme();
 
   // Create theme based on dark mode
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
