@@ -21,3 +21,13 @@ npm-debug.log*
 .idea
 *.swp
 .kiro
+
+# Python / Scraper
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+scraper/.env
+scraper/last_scrape_report.json
+scraper/*.db
