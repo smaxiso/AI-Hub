@@ -301,10 +301,12 @@ app.get('/api/tools', async (req, res) => {
 
         if (error) throw error;
 
-        // Enhance data with dynamic isNew flag
+        // Enhance data with dynamic isNew flag and categories array
         const enhancedTools = data.map(tool => ({
             ...tool,
-            isNew: isToolNew(tool.added_date, tool.created_at)
+            isNew: isToolNew(tool.added_date, tool.created_at),
+            // Ensure categories array exists — use DB value if present, otherwise wrap single category
+            categories: tool.categories || (tool.category ? [tool.category] : [])
         }));
 
         res.json(enhancedTools);
@@ -349,11 +351,13 @@ app.get('/api/tools/check-duplicate', async (req, res) => {
 
 // POST /api/tools - Create new tool (Admin only)
 app.post('/api/tools', authenticateUser, requireRole(['owner', 'admin']), async (req, res) => {
-    const { id, name, url, category, description, tags, pricing, icon, use_cases, added_date } = req.body;
+    const { id, name, url, category, categories, description, tags, pricing, icon, use_cases, added_date } = req.body;
 
     // Auto-generate ID if not provided (simple slugify)
     const toolId = id || name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     const addedDate = added_date || new Date().toISOString().split('T')[0];
+    // Default categories to [category] if not provided
+    const toolCategories = categories || (category ? [category] : []);
 
     try {
         // Check for duplicate URL
@@ -374,7 +378,7 @@ app.post('/api/tools', authenticateUser, requireRole(['owner', 'admin']), async 
         const { data, error } = await supabase
             .from('tools')
             .insert([{
-                id: toolId, name, url, category, description, tags, pricing, icon, use_cases, added_date: addedDate
+                id: toolId, name, url, category, categories: toolCategories, description, tags, pricing, icon, use_cases, added_date: addedDate
             }])
             .select()
             .single();

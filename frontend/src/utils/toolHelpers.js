@@ -21,7 +21,7 @@ export const enhanceTool = (tool) => {
 export const getSimilarTools = (tool, allTools, limit = 4) => {
   if (!tool.tags || tool.tags.length === 0) {
     return allTools
-      .filter(t => t.id !== tool.id && t.category === tool.category)
+      .filter(t => t.id !== tool.id && hasOverlappingCategory(tool, t))
       .slice(0, limit);
   }
 
@@ -36,11 +36,20 @@ export const getSimilarTools = (tool, allTools, limit = 4) => {
     .map(({ similarity, ...t }) => t);
 };
 
+const hasOverlappingCategory = (tool1, tool2) => {
+  const cats1 = tool1.categories || [tool1.category];
+  const cats2 = tool2.categories || [tool2.category];
+  return cats1.some(c => cats2.includes(c));
+};
+
 const calculateSimilarity = (tool1, tool2) => {
   let score = 0;
   
-  // Same category
-  if (tool1.category === tool2.category) score += 3;
+  // Overlapping categories (more overlap = higher score)
+  const cats1 = tool1.categories || [tool1.category];
+  const cats2 = tool2.categories || [tool2.category];
+  const commonCats = cats1.filter(c => cats2.includes(c));
+  score += commonCats.length * 3;
   
   // Common tags
   if (tool1.tags && tool2.tags) {

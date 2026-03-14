@@ -9,7 +9,8 @@ const useToolSearch = (tools) => {
         { name: 'name', weight: 0.4 },
         { name: 'description', weight: 0.3 },
         { name: 'tags', weight: 0.2 },
-        { name: 'category', weight: 0.1 }
+        { name: 'category', weight: 0.05 },
+        { name: 'categories', weight: 0.05 }
       ],
       threshold: 0.3, // Lower = stricter matching (0.0 = exact, 1.0 = match anything)
       includeScore: true,

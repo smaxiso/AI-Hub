@@ -1,45 +1,39 @@
 // Utility functions to find similar tools and alternatives
 
+const getCategories = (tool) => tool.categories || [tool.category];
+
+const countOverlap = (arr1, arr2) =>
+  arr1.filter(item => arr2.some(b => b.toLowerCase() === item.toLowerCase())).length;
+
 export const findSimilarTools = (currentTool, allTools, limit = 4) => {
   if (!currentTool || !allTools) return [];
 
-  // Filter out the current tool
+  const currentCats = getCategories(currentTool);
   const otherTools = allTools.filter(tool => tool.id !== currentTool.id);
 
-  // Score tools based on similarity
   const scoredTools = otherTools.map(tool => {
     let score = 0;
 
-    // Same category gets high score
-    if (tool.category === currentTool.category) {
-      score += 10;
-    }
+    // Overlapping categories — more overlap = higher score
+    const catOverlap = countOverlap(getCategories(tool), currentCats);
+    score += catOverlap * 5;
 
-    // Matching tags get points
+    // Matching tags
     if (currentTool.tags && tool.tags) {
-      const commonTags = currentTool.tags.filter(tag => 
-        tool.tags.some(t => t.toLowerCase() === tag.toLowerCase())
-      );
-      score += commonTags.length * 3;
+      score += countOverlap(currentTool.tags, tool.tags) * 3;
     }
 
-    // Matching use cases get points
+    // Matching use cases
     if (currentTool.useCases && tool.useCases) {
-      const commonUseCases = currentTool.useCases.filter(useCase =>
-        tool.useCases.some(uc => uc.toLowerCase() === useCase.toLowerCase())
-      );
-      score += commonUseCases.length * 2;
+      score += countOverlap(currentTool.useCases, tool.useCases) * 2;
     }
 
-    // Same pricing model gets a small bonus
-    if (tool.pricing === currentTool.pricing) {
-      score += 1;
-    }
+    // Same pricing model
+    if (tool.pricing === currentTool.pricing) score += 1;
 
     return { ...tool, similarityScore: score };
   });
 
-  // Sort by score and return top results
   return scoredTools
     .sort((a, b) => b.similarityScore - a.similarityScore)
     .slice(0, limit)
@@ -49,17 +43,15 @@ export const findSimilarTools = (currentTool, allTools, limit = 4) => {
 export const findAlternatives = (currentTool, allTools, limit = 4) => {
   if (!currentTool || !allTools) return [];
 
-  // Filter out the current tool
+  const currentCats = getCategories(currentTool);
   const otherTools = allTools.filter(tool => tool.id !== currentTool.id);
 
-  // Score tools based on being alternatives (same category, different approach)
   const scoredTools = otherTools.map(tool => {
     let score = 0;
 
-    // Same category is important for alternatives
-    if (tool.category === currentTool.category) {
-      score += 15;
-    }
+    // Overlapping categories — important for alternatives
+    const catOverlap = countOverlap(getCategories(tool), currentCats);
+    score += catOverlap * 8;
 
     // Some matching tags but not all (different approach)
     if (currentTool.tags && tool.tags) {
@@ -69,8 +61,6 @@ export const findAlternatives = (currentTool, allTools, limit = 4) => {
       const uniqueTags = tool.tags.filter(tag =>
         !currentTool.tags.some(t => t.toLowerCase() === tag.toLowerCase())
       );
-      
-      // Balance: some overlap but also unique features
       if (commonTags.length > 0 && uniqueTags.length > 0) {
         score += commonTags.length * 2 + uniqueTags.length;
       }
@@ -78,16 +68,12 @@ export const findAlternatives = (currentTool, allTools, limit = 4) => {
 
     // Matching use cases
     if (currentTool.useCases && tool.useCases) {
-      const commonUseCases = currentTool.useCases.filter(useCase =>
-        tool.useCases.some(uc => uc.toLowerCase() === useCase.toLowerCase())
-      );
-      score += commonUseCases.length * 3;
+      score += countOverlap(currentTool.useCases, tool.useCases) * 3;
     }
 
     return { ...tool, alternativeScore: score };
   });
 
-  // Sort by score and return top results
   return scoredTools
     .sort((a, b) => b.alternativeScore - a.alternativeScore)
     .slice(0, limit)

@@ -192,23 +192,29 @@ const ToolDetailModal = ({ tool = null, aiTools = [], open, onClose, onFavorite,
               </Typography>
 
               <Stack direction="row" spacing={{ xs: 0.5, sm: 1 }} flexWrap="wrap" useFlexGap>
-                <Chip
-                  icon={<CategoryIcon sx={{ fontSize: { xs: '0.85rem', sm: '1rem' }, display: { xs: 'none', sm: 'inline-flex' } }} />}
-                  label={tool.category}
-                  size="small"
-                  sx={{
-                    background: `linear-gradient(135deg, ${categoryColor} 0%, ${categoryColor}dd 100%)`,
-                    border: `1.5px solid ${categoryColor}`,
-                    fontSize: { xs: '0.7rem', sm: '0.8rem' },
-                    fontWeight: 700,
-                    height: { xs: '24px', sm: '28px' },
-                    color: 'white',
-                    boxShadow: `0 4px 12px ${categoryColor}50`,
-                    '& .MuiChip-icon': {
-                      color: 'white'
-                    }
-                  }}
-                />
+                {(tool.categories && tool.categories.length > 0 ? tool.categories : [tool.category]).map((cat, idx) => {
+                  const catColor = categoryColors[cat] || categoryColor;
+                  return (
+                    <Chip
+                      key={cat}
+                      icon={idx === 0 ? <CategoryIcon sx={{ fontSize: { xs: '0.85rem', sm: '1rem' }, display: { xs: 'none', sm: 'inline-flex' } }} /> : undefined}
+                      label={cat}
+                      size="small"
+                      sx={{
+                        background: `linear-gradient(135deg, ${catColor} 0%, ${catColor}dd 100%)`,
+                        border: `1.5px solid ${catColor}`,
+                        fontSize: { xs: '0.7rem', sm: '0.8rem' },
+                        fontWeight: 700,
+                        height: { xs: '24px', sm: '28px' },
+                        color: 'white',
+                        boxShadow: `0 4px 12px ${catColor}50`,
+                        '& .MuiChip-icon': {
+                          color: 'white'
+                        }
+                      }}
+                    />
+                  );
+                })}
                 {tool.pricing && (
                   <Chip
                     icon={<AttachMoneyIcon sx={{ fontSize: { xs: '0.85rem', sm: '1rem' }, display: { xs: 'none', sm: 'inline-flex' } }} />}
@@ -505,10 +511,10 @@ const ToolDetailModal = ({ tool = null, aiTools = [], open, onClose, onFavorite,
             )}
             <Grid item xs={6} sm={4}>
               <Typography variant="caption" sx={{ color: isDarkMode ? '#A0AEC0' : '#4A5568', fontWeight: 600, display: 'block', mb: 0.5 }}>
-                Category
+                {tool.categories && tool.categories.length > 1 ? 'Categories' : 'Category'}
               </Typography>
               <Typography variant="body2" sx={{ fontWeight: 500, color: isDarkMode ? '#E2E8F0' : '#1A202C' }}>
-                {tool.category}
+                {tool.categories && tool.categories.length > 0 ? tool.categories.join(', ') : tool.category}
               </Typography>
             </Grid>
             {tool.pricing && (
@@ -780,6 +786,7 @@ ToolDetailModal.propTypes = {
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string),
     description: PropTypes.string,
     tags: PropTypes.arrayOf(PropTypes.string),
     pricing: PropTypes.string,

@@ -139,11 +139,14 @@ function Home() {
       const matchesSearch =
         tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         tool.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (tool.categories && tool.categories.some(cat => cat.toLowerCase().includes(searchQuery.toLowerCase()))) ||
         (tool.description && tool.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
 
-      // Category filter
-      const matchesCategory = selectedCategory === 'All' || tool.category === selectedCategory;
+      // Category filter — supports multi-category via categories array
+      const matchesCategory = selectedCategory === 'All' ||
+        (tool.categories && tool.categories.includes(selectedCategory)) ||
+        tool.category === selectedCategory;
 
       // Pricing filter
       const matchesPricing = pricingFilter === 'All' || tool.pricing === pricingFilter;
@@ -176,10 +179,27 @@ function Home() {
     return filtered;
   }, [aiTools, searchQuery, selectedCategory, pricingFilter, sortBy, selectedTags, collectionFilter]);
 
-  // Get unique categories
+  // Get unique categories from all tools' categories arrays
   const categories = useMemo(() => {
-    const uniqueCategories = ['All', ...new Set(aiTools.map(tool => tool.category))];
-    return uniqueCategories;
+    const catSet = new Set();
+    aiTools.forEach(tool => {
+      if (tool.categories && Array.isArray(tool.categories)) {
+        tool.categories.forEach(cat => catSet.add(cat));
+      } else if (tool.category) {
+        catSet.add(tool.category);
+      }
+    });
+    // Sort categories in a logical display order
+    const categoryOrder = ['Chat', 'Image', 'Video', 'Audio', 'Coding', 'Agent', 'Writing', 'Design', 'Productivity', 'Research', '3D', 'Business', 'Education', 'Social Media'];
+    const sorted = [...catSet].sort((a, b) => {
+      const ai = categoryOrder.indexOf(a);
+      const bi = categoryOrder.indexOf(b);
+      if (ai === -1 && bi === -1) return a.localeCompare(b);
+      if (ai === -1) return 1;
+      if (bi === -1) return -1;
+      return ai - bi;
+    });
+    return ['All', ...sorted];
   }, [aiTools]);
 
   // Get trending tools

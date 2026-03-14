@@ -7,7 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
-const CATEGORIES = ['Chat', 'Image', 'Video', 'Coding', 'Audio', 'Agent', 'Browser', 'Other'];
+const CATEGORIES = ['Chat', 'Image', 'Video', 'Audio', 'Coding', 'Agent', 'Writing', 'Design', 'Productivity', 'Research', '3D', 'Business', 'Education', 'Social Media'];
 const PRICING = ['Free', 'Freemium', 'Paid'];
 
 const ToolForm = ({ isEditing }) => {
@@ -19,6 +19,7 @@ const ToolForm = ({ isEditing }) => {
         name: '',
         url: '',
         category: 'Chat',
+        categories: ['Chat'],
         description: '',
         tags: '',
         pricing: 'Freemium',
@@ -49,7 +50,8 @@ const ToolForm = ({ isEditing }) => {
                 setFormData({
                     ...tool,
                     tags: Array.isArray(tool.tags) ? tool.tags.join(', ') : tool.tags,
-                    use_cases: Array.isArray(tool.use_cases) ? tool.use_cases.join(', ') : tool.use_cases || ''
+                    use_cases: Array.isArray(tool.use_cases) ? tool.use_cases.join(', ') : tool.use_cases || '',
+                    categories: tool.categories || (tool.category ? [tool.category] : ['Chat'])
                 });
             } else {
                 setError('Tool not found');
@@ -136,6 +138,7 @@ const ToolForm = ({ isEditing }) => {
             ...formData,
             tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
             use_cases: formData.use_cases.split(',').map(t => t.trim()).filter(Boolean),
+            categories: formData.categories || [formData.category],
             added_date: isEditing ? formData.added_date : new Date().toISOString().split('T')[0]
         };
 
@@ -210,7 +213,11 @@ const ToolForm = ({ isEditing }) => {
                                     options={CATEGORIES}
                                     value={formData.category}
                                     onChange={(event, newValue) => {
-                                        setFormData({ ...formData, category: newValue || '' });
+                                        const cat = newValue || '';
+                                        const cats = formData.categories || [];
+                                        // Ensure primary category is always in categories array
+                                        const updatedCats = cat && !cats.includes(cat) ? [cat, ...cats] : cats;
+                                        setFormData({ ...formData, category: cat, categories: updatedCats });
                                     }}
                                     onInputChange={(event, newInputValue) => {
                                         setFormData({ ...formData, category: newInputValue });
@@ -218,8 +225,31 @@ const ToolForm = ({ isEditing }) => {
                                     renderInput={(params) => (
                                         <TextField
                                             {...params}
-                                            label="Category"
-                                            helperText="Select or type a custom category"
+                                            label="Primary Category"
+                                            helperText="Main category shown on the tool card"
+                                        />
+                                    )}
+                                />
+                            </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                                <Autocomplete
+                                    multiple
+                                    options={CATEGORIES}
+                                    value={formData.categories || []}
+                                    onChange={(event, newValue) => {
+                                        // Ensure primary category stays in the list
+                                        let cats = [...newValue];
+                                        if (formData.category && !cats.includes(formData.category)) {
+                                            cats = [formData.category, ...cats];
+                                        }
+                                        setFormData({ ...formData, categories: cats });
+                                    }}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label="All Categories"
+                                            helperText="Tool appears under these category tabs"
                                         />
                                     )}
                                 />

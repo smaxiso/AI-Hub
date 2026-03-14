@@ -15,13 +15,13 @@ describe('ToolCard', () => {
 
   it('renders tool information correctly', () => {
     render(
-      <ToolCard 
-        tool={mockTool} 
-        onFavorite={vi.fn()} 
+      <ToolCard
+        tool={mockTool}
+        onFavorite={vi.fn()}
         isFavorite={false}
       />
     );
-    
+
     expect(screen.getByText('Test AI Tool')).toBeInTheDocument();
     expect(screen.getByText('Chat')).toBeInTheDocument();
   });
@@ -29,28 +29,28 @@ describe('ToolCard', () => {
   it('handles favorite toggle', () => {
     const onFavorite = vi.fn();
     render(
-      <ToolCard 
-        tool={mockTool} 
-        onFavorite={onFavorite} 
+      <ToolCard
+        tool={mockTool}
+        onFavorite={onFavorite}
         isFavorite={false}
       />
     );
-    
+
     const favoriteButton = screen.getByLabelText(/add.*to favorites/i);
     fireEvent.click(favoriteButton);
-    
+
     expect(onFavorite).toHaveBeenCalledWith('test-tool-1');
   });
 
   it('displays favorite state correctly', () => {
     render(
-      <ToolCard 
-        tool={mockTool} 
-        onFavorite={vi.fn()} 
+      <ToolCard
+        tool={mockTool}
+        onFavorite={vi.fn()}
         isFavorite={true}
       />
     );
-    
+
     const favoriteButton = screen.getByLabelText(/remove.*from favorites/i);
     expect(favoriteButton).toBeInTheDocument();
   });
@@ -58,61 +58,59 @@ describe('ToolCard', () => {
   it('handles click events', () => {
     const onClick = vi.fn();
     render(
-      <ToolCard 
-        tool={mockTool} 
-        onFavorite={vi.fn()} 
+      <ToolCard
+        tool={mockTool}
+        onFavorite={vi.fn()}
         isFavorite={false}
         onClick={onClick}
       />
     );
-    
+
     const card = screen.getByRole('article');
     fireEvent.click(card);
-    
+
     expect(onClick).toHaveBeenCalledWith(mockTool);
   });
 
   it('handles keyboard events (Enter key)', () => {
     const onClick = vi.fn();
     render(
-      <ToolCard 
-        tool={mockTool} 
-        onFavorite={vi.fn()} 
+      <ToolCard
+        tool={mockTool}
+        onFavorite={vi.fn()}
         isFavorite={false}
         onClick={onClick}
       />
     );
-    
+
     const card = screen.getByRole('article');
-    fireEvent.keyPress(card, { key: 'Enter', code: 'Enter' });
-    
+    fireEvent.keyPress(card, { key: 'Enter', code: 'Enter', charCode: 13 });
+
     expect(onClick).toHaveBeenCalledWith(mockTool);
   });
 
-  it('displays tags when available', () => {
+  it('displays pricing badge when available', () => {
     render(
-      <ToolCard 
-        tool={mockTool} 
-        onFavorite={vi.fn()} 
+      <ToolCard
+        tool={mockTool}
+        onFavorite={vi.fn()}
         isFavorite={false}
       />
     );
-    
-    expect(screen.getByText('test')).toBeInTheDocument();
-    expect(screen.getByText('ai')).toBeInTheDocument();
-    expect(screen.getByText('tool')).toBeInTheDocument();
+
+    expect(screen.getByText('Free')).toBeInTheDocument();
   });
 
   it('shows "New" badge when tool is new', () => {
     const newTool = { ...mockTool, isNew: true };
     render(
-      <ToolCard 
-        tool={newTool} 
-        onFavorite={vi.fn()} 
+      <ToolCard
+        tool={newTool}
+        onFavorite={vi.fn()}
         isFavorite={false}
       />
     );
-    
+
     expect(screen.getByText('New')).toBeInTheDocument();
   });
 });
