@@ -6,9 +6,11 @@ import {
     LinearProgress, Snackbar
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import Header from '../../components/Header';
 import AvatarUpload from '../../components/AvatarUpload';
 import Badge from '../../components/learning/Badge';
+import CertificateCard from '../../components/learning/CertificateCard';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabaseClient';
 
@@ -28,6 +30,7 @@ const Profile = () => {
 
     const [progress, setProgress] = useState(null);
     const [badges, setBadges] = useState([]);
+    const [certifications, setCertifications] = useState([]);
     const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
     useEffect(() => {
@@ -60,6 +63,15 @@ const Profile = () => {
             if (gamRes.ok) {
                 const gamData = await gamRes.json();
                 setBadges(gamData.badges || []);
+            }
+
+            // 3. Fetch Certifications
+            const certRes = await fetch(`${API_URL}/certifications`, {
+                headers: { 'Authorization': `Bearer ${session.access_token}` }
+            });
+            if (certRes.ok) {
+                const certData = await certRes.json();
+                setCertifications(certData.filter(c => c.earned));
             }
         } catch (err) {
             console.error('Error fetching progress:', err);
@@ -211,6 +223,37 @@ const Profile = () => {
                                         No badges earned yet. Complete modules and quizzes to earn them!
                                     </Typography>
                                 )}
+                            </CardContent>
+                        </Card>
+
+                        {/* Certifications Section */}
+                        <Card sx={{ mb: 3 }}>
+                            <CardContent>
+                                <Typography variant="h6" sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
+                                    <WorkspacePremiumIcon color="primary" /> Certifications
+                                </Typography>
+
+                                {certifications.length > 0 ? (
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                                        {certifications.map((cert, index) => (
+                                            <CertificateCard key={index} certification={cert} compact />
+                                        ))}
+                                    </Box>
+                                ) : (
+                                    <Typography variant="body2" color="text.secondary">
+                                        No certifications earned yet. Complete all modules in a level to earn one!
+                                    </Typography>
+                                )}
+
+                                <Button
+                                    variant="text"
+                                    size="small"
+                                    fullWidth
+                                    sx={{ mt: 1 }}
+                                    onClick={() => navigate('/learning/certifications')}
+                                >
+                                    View All Certifications
+                                </Button>
                             </CardContent>
                         </Card>
 

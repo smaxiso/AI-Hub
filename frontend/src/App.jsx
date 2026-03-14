@@ -16,6 +16,7 @@ import ToolForm from './pages/admin/ToolForm';
 import LearningHub from './pages/learning/LearningHub';
 import ModuleDetail from './pages/learning/ModuleDetail';
 import Quiz from './pages/learning/Quiz';
+import Certifications from './pages/learning/Certifications';
 import MagicPromptTool from './pages/tools/MagicPromptTool';
 
 // Public Auth Pages
@@ -103,6 +104,7 @@ function App() {
                                 </ProtectedRoute>
                             }
                         />
+                        <Route path="/learning/certifications" element={<Certifications />} />
                         {/* Catch all - redirect to home */}
                         <Route path="*" element={<Home />} />
                     </Routes>

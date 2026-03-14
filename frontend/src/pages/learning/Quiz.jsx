@@ -255,9 +255,22 @@ const Quiz = () => {
                         </Typography>
 
                         {results.passed ? (
-                            <Alert severity="success" sx={{ mb: 3 }}>
-                                <Typography variant="h6">Module Completed! +50 Points</Typography>
-                            </Alert>
+                            <Box>
+                                <Alert severity="success" sx={{ mb: 2 }}>
+                                    <Typography variant="h6">Module Completed! +50 Points</Typography>
+                                </Alert>
+                                {results.new_certification && (
+                                    <Alert severity="info" icon={false} sx={{ mb: 3, background: 'linear-gradient(135deg, #FF6B35 0%, #F7C948 100%)', color: 'white' }}>
+                                        <Typography variant="h6" sx={{ fontWeight: 700 }}>🎓 Certificate Earned!</Typography>
+                                        <Typography variant="body2">
+                                            {results.new_certification.name} • +{results.new_certification.points_awarded} bonus points
+                                        </Typography>
+                                        <Typography variant="caption" sx={{ opacity: 0.9 }}>
+                                            Certificate #{results.new_certification.certificate_number}
+                                        </Typography>
+                                    </Alert>
+                                )}
+                            </Box>
                         ) : (
                             <Box>
                                 <Alert severity="info" sx={{ mb: 3 }}>

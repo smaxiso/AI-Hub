@@ -10,6 +10,7 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import LockIcon from '@mui/icons-material/Lock';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabaseClient';
 import Header from '../../components/Header';
@@ -154,6 +155,14 @@ const LearningHub = () => {
                         <Typography variant="h4" sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, fontWeight: 700 }}>
                             AI Learning Path
                         </Typography>
+                        <Button
+                            variant="outlined"
+                            startIcon={<WorkspacePremiumIcon />}
+                            onClick={() => navigate('/learning/certifications')}
+                            sx={{ ml: 'auto', color: 'white', borderColor: 'rgba(255,255,255,0.5)', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}
+                        >
+                            Certifications
+                        </Button>
                     </Box>
 
                     {progress && (
