@@ -24,6 +24,8 @@ import MagicPromptTool from './pages/tools/MagicPromptTool';
 import PublicLogin from './pages/auth/Login';
 import PublicSignup from './pages/auth/Signup';
 import PublicProfile from './pages/auth/Profile';
+import PublicForgotPassword from './pages/auth/ForgotPassword';
+import ResetPassword from './pages/auth/ResetPassword';
 
 function App() {
     return (
@@ -36,6 +38,8 @@ function App() {
                         {/* Public Auth Routes */}
                         <Route path="/login" element={<PublicLogin />} />
                         <Route path="/signup" element={<PublicSignup />} />
+                        <Route path="/forgot-password" element={<PublicForgotPassword />} />
+                        <Route path="/reset-password" element={<ResetPassword />} />
                         <Route
                             path="/profile"
                             element={

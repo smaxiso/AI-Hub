@@ -125,6 +125,12 @@ const Login = () => {
                             {loading ? <CircularProgress size={24} /> : 'Log In'}
                         </Button>
 
+                        <Box sx={{ textAlign: 'center', mb: 1 }}>
+                            <Link to="/forgot-password" style={{ color: '#667eea', textDecoration: 'none', fontSize: '0.875rem' }}>
+                                Forgot your password?
+                            </Link>
+                        </Box>
+
                         <Box sx={{ textAlign: 'center' }}>
                             <Typography variant="body2" color="text.secondary">
                                 Don't have an account?{' '}
