@@ -13,6 +13,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import ManageUsers from './ManageUsers';
 import CommunitySuggestions from './CommunitySuggestions';
+import Analytics from './Analytics';
 import { supabase } from '../../supabaseClient';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
@@ -267,6 +268,7 @@ const Dashboard = () => {
                                 </Badge>
                             } />
                             <Tab label="Community" />
+                            <Tab label="Analytics" />
                         </Tabs>
                     </Box>
                 )}
@@ -374,6 +376,10 @@ const Dashboard = () => {
 
                 {tabValue === 2 && userRole === 'owner' && (
                     <CommunitySuggestions />
+                )}
+
+                {tabValue === 3 && userRole === 'owner' && (
+                    <Analytics />
                 )}
 
             </Container>
