@@ -17,6 +17,7 @@ import LearningHub from './pages/learning/LearningHub';
 import ModuleDetail from './pages/learning/ModuleDetail';
 import Quiz from './pages/learning/Quiz';
 import Certifications from './pages/learning/Certifications';
+import CertificateVerify from './pages/learning/CertificateVerify';
 import MagicPromptTool from './pages/tools/MagicPromptTool';
 
 // Public Auth Pages
@@ -105,6 +106,7 @@ function App() {
                             }
                         />
                         <Route path="/learning/certifications" element={<Certifications />} />
+                        <Route path="/certificate/verify/:certNumber" element={<CertificateVerify />} />
                         {/* Catch all - redirect to home */}
                         <Route path="*" element={<Home />} />
                     </Routes>

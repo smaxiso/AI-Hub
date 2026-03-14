@@ -1369,7 +1369,52 @@ app.get('/api/certifications/mine', authenticateUser, async (req, res) => {
     }
 });
 
-// 12. POST /api/certifications/check - Check and auto-award eligible certifications
+// 12. GET /api/certifications/verify/:certNumber - Public certificate verification
+app.get('/api/certifications/verify/:certNumber', async (req, res) => {
+    try {
+        const { certNumber } = req.params;
+
+        // Look up the user_certification by certificate_number
+        const { data: uc, error } = await supabase
+            .from('user_certifications')
+            .select(`
+                user_id, earned_at, score_average, certificate_number,
+                certifications (id, name, description, level, icon_key, points_awarded, requirements)
+            `)
+            .eq('certificate_number', certNumber)
+            .single();
+
+        if (error || !uc) {
+            return res.status(404).json({ error: 'Certificate not found', valid: false });
+        }
+
+        // Get the holder's name from profiles
+        const { data: profile } = await supabase
+            .from('profiles')
+            .select('full_name, username')
+            .eq('id', uc.user_id)
+            .single();
+
+        res.json({
+            valid: true,
+            certificate_number: uc.certificate_number,
+            holder_name: profile?.full_name || profile?.username || 'Anonymous Learner',
+            earned_at: uc.earned_at,
+            score_average: uc.score_average,
+            certification: {
+                name: uc.certifications.name,
+                description: uc.certifications.description,
+                level: uc.certifications.level,
+                points_awarded: uc.certifications.points_awarded
+            }
+        });
+    } catch (err) {
+        console.error('Error verifying certificate:', err);
+        res.status(500).json({ error: 'Verification failed', valid: false });
+    }
+});
+
+// 13. POST /api/certifications/check - Check and auto-award eligible certifications
 app.post('/api/certifications/check', authenticateUser, async (req, res) => {
     try {
         const userId = req.user.id;

@@ -1,8 +1,11 @@
-import React from 'react';
-import { Box, Card, CardContent, Typography, Chip, Tooltip } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Card, CardContent, Typography, Chip, Tooltip, IconButton, Snackbar } from '@mui/material';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import LockIcon from '@mui/icons-material/Lock';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import ShareIcon from '@mui/icons-material/Share';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { motion } from 'framer-motion';
 
 const LEVEL_COLORS = {
@@ -15,6 +18,23 @@ const LEVEL_COLORS = {
 const CertificateCard = ({ certification, compact = false }) => {
     const colors = LEVEL_COLORS[certification.level] || LEVEL_COLORS.beginner;
     const earned = certification.earned;
+    const [copied, setCopied] = useState(false);
+
+    const shareUrl = certification.certificate_number
+        ? `${window.location.origin}/certificate/verify/${certification.certificate_number}`
+        : '';
+
+    const handleCopyLink = (e) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(shareUrl);
+        setCopied(true);
+    };
+
+    const handleLinkedIn = (e) => {
+        e.stopPropagation();
+        const text = `I just earned the ${certification.name} certification from TheAIHubX! Verify it here: ${shareUrl}`;
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(certification.name)}&summary=${encodeURIComponent(text)}`, '_blank');
+    };
 
     if (compact) {
         return (
@@ -77,12 +97,28 @@ const CertificateCard = ({ certification, compact = false }) => {
 
                     {earned && (
                         <Box sx={{ mt: 2, p: 1.5, borderRadius: 1, bgcolor: colors.light }}>
-                            <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
-                                Certificate #{certification.certificate_number}
-                            </Typography>
-                            <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                                Average Score: {certification.score_average}% • Earned {new Date(certification.earned_at).toLocaleDateString()}
-                            </Typography>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <Box>
+                                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+                                        Certificate #{certification.certificate_number}
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                                        Average Score: {certification.score_average}% • Earned {new Date(certification.earned_at).toLocaleDateString()}
+                                    </Typography>
+                                </Box>
+                                <Box sx={{ display: 'flex', gap: 0.5 }}>
+                                    <Tooltip title="Copy verification link">
+                                        <IconButton size="small" onClick={handleCopyLink}>
+                                            <ContentCopyIcon fontSize="small" />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Share on LinkedIn">
+                                        <IconButton size="small" onClick={handleLinkedIn} sx={{ color: '#0077B5' }}>
+                                            <LinkedInIcon fontSize="small" />
+                                        </IconButton>
+                                    </Tooltip>
+                                </Box>
+                            </Box>
                         </Box>
                     )}
 
@@ -96,6 +132,12 @@ const CertificateCard = ({ certification, compact = false }) => {
                     )}
                 </CardContent>
             </Card>
+            <Snackbar
+                open={copied}
+                autoHideDuration={2000}
+                onClose={() => setCopied(false)}
+                message="Verification link copied to clipboard"
+            />
         </motion.div>
     );
 };
