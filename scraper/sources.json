@@ -1,0 +1,69 @@
+{
+  "_comment": "Scraper source configuration. Add/remove/update sites here. The scraper reads this file at runtime.",
+  "sources": [
+    {
+      "name": "futurepedia",
+      "enabled": true,
+      "base_url": "https://www.futurepedia.io",
+      "fetcher": "stealthy",
+      "delay_seconds": 2,
+      "pages": [
+        { "url": "https://www.futurepedia.io/ai-tools/chatbots", "default_category": "Chat" },
+        { "url": "https://www.futurepedia.io/ai-tools/text-to-image", "default_category": "Image" },
+        { "url": "https://www.futurepedia.io/ai-tools/image-editing", "default_category": "Image" },
+        { "url": "https://www.futurepedia.io/ai-tools/video-generators", "default_category": "Video" },
+        { "url": "https://www.futurepedia.io/ai-tools/video", "default_category": "Video" },
+        { "url": "https://www.futurepedia.io/ai-tools/audio-generators", "default_category": "Audio" },
+        { "url": "https://www.futurepedia.io/ai-tools/code-assistant", "default_category": "Coding" },
+        { "url": "https://www.futurepedia.io/ai-tools/ai-agents", "default_category": "Agent" },
+        { "url": "https://www.futurepedia.io/ai-tools/writing-generators", "default_category": "Writing" },
+        { "url": "https://www.futurepedia.io/ai-tools/design-generators", "default_category": "Design" },
+        { "url": "https://www.futurepedia.io/ai-tools/productivity", "default_category": "Productivity" },
+        { "url": "https://www.futurepedia.io/ai-tools/research-assistant", "default_category": "Research" },
+        { "url": "https://www.futurepedia.io/ai-tools/3D-generator", "default_category": "3D" },
+        { "url": "https://www.futurepedia.io/ai-tools/marketing", "default_category": "Business" },
+        { "url": "https://www.futurepedia.io/ai-tools/email-assistant", "default_category": "Productivity" }
+      ],
+      "selectors": {
+        "card": "[class*=\"card\"]",
+        "detail_link": "a[href*=\"/tool/\"]",
+        "detail_slug_split": "/tool/",
+        "name": "p",
+        "name_max_length": 60,
+        "description": "p",
+        "description_min_length": 20,
+        "pricing": "span",
+        "pricing_keywords": ["free", "freemium", "paid", "free trial"],
+        "category_tags": "a[href*=\"/ai-tools/\"]",
+        "icon": "img",
+        "external_link_indicator": "utm_source",
+        "external_link_exclude": "futurepedia.io/tool"
+      }
+    },
+    {
+      "name": "toolify",
+      "enabled": true,
+      "base_url": "https://www.toolify.ai",
+      "fetcher": "stealthy",
+      "delay_seconds": 2,
+      "pages": [
+        { "url": "https://www.toolify.ai/best-ai-tools", "default_category": "Chat" }
+      ],
+      "selectors": {
+        "card": "a[href*=\"/tool/\"]",
+        "detail_link": null,
+        "detail_slug_split": "/tool/",
+        "name": "h3, h4, strong, span, p",
+        "name_max_length": 60,
+        "description": "p",
+        "description_min_length": 15,
+        "pricing": null,
+        "pricing_keywords": [],
+        "category_tags": "[class*=\"tag\"], [class*=\"category\"], [class*=\"label\"], span",
+        "icon": null,
+        "external_link_indicator": null,
+        "external_link_exclude": null
+      }
+    }
+  ]
+}

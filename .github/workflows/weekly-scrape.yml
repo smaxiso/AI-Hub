@@ -28,7 +28,7 @@ jobs:
           pip install -r requirements.txt
           patchright install chromium
 
-      - name: Run scraper (dry-run first)
+      - name: Run scraper (dry-run audit)
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
@@ -40,10 +40,10 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: python main.py
 
-      - name: Upload scrape report
+      - name: Upload audit report
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: scrape-report-${{ github.run_number }}
+          name: scrape-audit-${{ github.run_number }}
           path: scraper/last_scrape_report.json
           retention-days: 30

@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
 """
-TheAIHubX — AI Tool Scraper
-Scrapes AI tool directories and syncs new discoveries into Supabase.
+TheAIHubX — AI Tool Scraper (Config-Driven)
+
+Reads site definitions from sources.json and scrapes all enabled sources.
 
 Usage:
-    python main.py                  # Full scrape + sync
-    python main.py --dry-run        # Scrape only, don't insert into DB
-    python main.py --source futurepedia  # Scrape specific source only
-    python main.py --enrich         # Also visit detail pages for richer data
+    python main.py                          # Full scrape + sync
+    python main.py --dry-run                # Scrape only, don't write to DB
+    python main.py --source futurepedia     # Scrape specific source only
+    python main.py --enrich                 # Visit detail pages for richer data
+    python main.py --config path/to.json    # Use custom config file
 """
 
 import sys
+import os
 import argparse
 import logging
 from datetime import datetime, timezone
 
-from scrapers import scrape_futurepedia, scrape_toolify, enrich_tool_details
+from config import load_sources
+from scrapers import scrape_site, enrich_tool_details
 from sync import sync_tools, save_scrape_report
 
 logging.basicConfig(
@@ -25,34 +29,41 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-SCRAPER_MAP = {
-    'futurepedia': scrape_futurepedia,
-    'toolify': scrape_toolify,
-}
-
 
 def main():
     parser = argparse.ArgumentParser(description='TheAIHubX AI Tool Scraper')
-    parser.add_argument('--dry-run', action='store_true', help='Scrape but do not insert into DB')
-    parser.add_argument('--source', type=str, choices=list(SCRAPER_MAP.keys()), help='Scrape a specific source only')
+    parser.add_argument('--dry-run', action='store_true', help='Scrape but do not write to DB')
+    parser.add_argument('--source', type=str, help='Scrape a specific source by name')
     parser.add_argument('--enrich', action='store_true', help='Visit detail pages for richer data (slower)')
+    parser.add_argument('--config', type=str, default=None, help='Path to sources.json config file')
     args = parser.parse_args()
 
     start = datetime.now(timezone.utc)
     logger.info(f'=== TheAIHubX Scraper — {start.strftime("%Y-%m-%d %H:%M UTC")} ===')
 
-    # Determine which scrapers to run
+    # Load sources from JSON config
+    try:
+        sources = load_sources(args.config)
+    except FileNotFoundError as e:
+        logger.error(str(e))
+        return 1
+
+    # Filter to specific source if requested
     if args.source:
-        sources = {args.source: SCRAPER_MAP[args.source]}
-    else:
-        sources = SCRAPER_MAP
+        sources = [s for s in sources if s['name'] == args.source]
+        if not sources:
+            logger.error(f'Source "{args.source}" not found in config. Available: check sources.json')
+            return 1
+
+    logger.info(f'Sources to scrape: {[s["name"] for s in sources]}')
 
     # Run scrapers
     all_tools = []
-    for name, scraper_fn in sources.items():
+    for site_config in sources:
+        name = site_config['name']
         logger.info(f'\n── Scraping: {name} ──')
         try:
-            tools = scraper_fn()
+            tools = scrape_site(site_config)
             logger.info(f'  {name}: {len(tools)} tools found')
             all_tools.extend(tools)
         except Exception as e:
@@ -74,28 +85,29 @@ def main():
     # Sync to Supabase
     if all_tools:
         logger.info('\n── Syncing to Supabase ──')
-        inserted, skipped, errors = sync_tools(all_tools, dry_run=args.dry_run)
+        audit = sync_tools(all_tools, dry_run=args.dry_run)
 
         elapsed = (datetime.now(timezone.utc) - start).total_seconds()
-        logger.info(f'\n=== Summary ===')
-        logger.info(f'  Scraped:  {len(all_tools)}')
-        logger.info(f'  Inserted: {inserted}')
-        logger.info(f'  Skipped:  {skipped}')
-        logger.info(f'  Errors:   {len(errors)}')
-        logger.info(f'  Time:     {elapsed:.1f}s')
+        logger.info(f'\n=== Audit Summary ===')
+        logger.info(f'  Scraped:    {len(all_tools)}')
+        logger.info(f'  Inserted:   {audit["inserted"]}')
+        logger.info(f'  Updated:    {audit["updated"]}')
+        logger.info(f'  Unchanged:  {audit["unchanged"]}')
+        logger.info(f'  Skipped:    {audit["skipped"]}')
+        logger.info(f'  Errors:     {len(audit["errors"])}')
+        logger.info(f'  Time:       {elapsed:.1f}s')
 
-        # Save report next to this script
-        import os
+        # Save report
         report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'last_scrape_report.json')
-        save_scrape_report(all_tools, inserted, skipped, errors, filename=report_path)
+        save_scrape_report(audit, len(all_tools), filename=report_path)
 
-        if errors:
-            for err in errors:
+        if audit['errors']:
+            for err in audit['errors']:
                 logger.error(f'  ✗ {err}')
     else:
         logger.info('No tools scraped. Nothing to sync.')
 
-    return 0 if not all_tools or inserted >= 0 else 1
+    return 0
 
 
 if __name__ == '__main__':
