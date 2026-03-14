@@ -64,6 +64,55 @@
         "external_link_indicator": null,
         "external_link_exclude": null
       }
+    },
+    {
+      "name": "aitoptools",
+      "enabled": true,
+      "base_url": "https://aitoptools.com",
+      "fetcher": "stealthy",
+      "delay_seconds": 3,
+      "pages": [
+        { "url": "https://aitoptools.com/ai-tools/chatbot", "default_category": "Chat" },
+        { "url": "https://aitoptools.com/ai-tools/image-generator", "default_category": "Image" },
+        { "url": "https://aitoptools.com/ai-tools/image-enhancer", "default_category": "Image" },
+        { "url": "https://aitoptools.com/ai-tools/art-generator", "default_category": "Image" },
+        { "url": "https://aitoptools.com/ai-tools/video-generator", "default_category": "Video" },
+        { "url": "https://aitoptools.com/ai-tools/video-editor", "default_category": "Video" },
+        { "url": "https://aitoptools.com/ai-tools/voice-generator", "default_category": "Audio" },
+        { "url": "https://aitoptools.com/ai-tools/music-generator", "default_category": "Audio" },
+        { "url": "https://aitoptools.com/ai-tools/audio-editor", "default_category": "Audio" },
+        { "url": "https://aitoptools.com/ai-tools/code-generator", "default_category": "Coding" },
+        { "url": "https://aitoptools.com/ai-tools/coding-assistant", "default_category": "Coding" },
+        { "url": "https://aitoptools.com/ai-tools/task-automation", "default_category": "Agent" },
+        { "url": "https://aitoptools.com/ai-tools/writing-assistant", "default_category": "Writing" },
+        { "url": "https://aitoptools.com/ai-tools/content-generator", "default_category": "Writing" },
+        { "url": "https://aitoptools.com/ai-tools/design-tool", "default_category": "Design" },
+        { "url": "https://aitoptools.com/ai-tools/logo-generator", "default_category": "Design" },
+        { "url": "https://aitoptools.com/ai-tools/productivity", "default_category": "Productivity" },
+        { "url": "https://aitoptools.com/ai-tools/research", "default_category": "Research" },
+        { "url": "https://aitoptools.com/ai-tools/seo-generator", "default_category": "Research" },
+        { "url": "https://aitoptools.com/ai-tools/3d-model-generators", "default_category": "3D" },
+        { "url": "https://aitoptools.com/ai-tools/marketing", "default_category": "Business" },
+        { "url": "https://aitoptools.com/ai-tools/sales", "default_category": "Business" },
+        { "url": "https://aitoptools.com/ai-tools/ecommerce", "default_category": "Business" },
+        { "url": "https://aitoptools.com/ai-tools/education", "default_category": "Education" },
+        { "url": "https://aitoptools.com/ai-tools/social-media", "default_category": "Social Media" }
+      ],
+      "selectors": {
+        "card": "a[href*=\"/tool/\"]",
+        "detail_link": null,
+        "detail_slug_split": "/tool/",
+        "name": "h2",
+        "name_max_length": 80,
+        "description": "p",
+        "description_min_length": 20,
+        "pricing": null,
+        "pricing_keywords": [],
+        "category_tags": "a[href*=\"/ai-tools/\"]",
+        "icon": null,
+        "external_link_indicator": null,
+        "external_link_exclude": null
+      }
     }
   ]
 }

@@ -1,3 +1,5 @@
 scrapling[fetchers]
 supabase
 python-dotenv
+requests
+pytrends

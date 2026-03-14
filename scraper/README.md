@@ -4,10 +4,19 @@ Config-driven scraper that discovers new AI tools from popular directories and s
 
 ## Sources (configured in `sources.json`)
 
+### Website Scrapers (config-driven)
 | Source | URL | Method |
 |---|---|---|
 | Futurepedia | futurepedia.io | StealthyFetcher (JS-rendered) |
 | Toolify | toolify.ai | StealthyFetcher (JS-rendered) |
+| AITopTools | aitoptools.com | StealthyFetcher (JS-rendered) |
+
+### API Sources (built-in)
+| Source | Method | What it finds |
+|---|---|---|
+| Reddit | Public JSON API (no key) | AI tool mentions from r/artificial, r/ChatGPT, r/LocalLLaMA, etc. |
+| GitHub Trending | HTML scrape | Trending AI/ML repos (filtered by AI keywords) |
+| Google Trends | pytrends library | Rising search queries for AI tools |
 
 ## Setup
 
@@ -28,14 +37,22 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ## Usage
 
 ```bash
-# Full scrape + sync (insert new + update existing)
+# Full scrape + sync (all sources, parallel)
 python main.py
 
 # Dry run — scrape and audit, no DB writes
 python main.py --dry-run
 
-# Scrape specific source only
+# Scrape specific source only (website or API)
 python main.py --source futurepedia
+python main.py --source reddit
+python main.py --source github
+
+# Skip API sources (Reddit, GitHub, Trends)
+python main.py --no-apis
+
+# Control parallelism (default: 3 threads)
+python main.py --workers 5
 
 # Enrich with detail page visits (slower but richer data)
 python main.py --enrich
@@ -118,15 +135,16 @@ Set `"enabled": false` in the source entry. It will be skipped during scraping.
 
 ## How It Works
 
-1. Loads enabled sources from `sources.json`
-2. For each source, fetches all configured pages using Scrapling
-3. Parses tool cards using the configured CSS selectors
-4. Maps external categories to our 14 categories
-5. Audits against existing DB tools:
+1. Loads enabled website sources from `sources.json`
+2. Runs all scrapers in parallel using ThreadPoolExecutor (configurable workers)
+3. Website scrapers: fetches pages using Scrapling, parses cards via CSS selectors
+4. API scrapers: Reddit (public JSON), GitHub Trending (HTML), Google Trends (pytrends)
+5. Maps external categories to our 14 categories
+6. Audits against existing DB tools:
    - **New tools** → inserted
    - **Existing tools with richer scraped data** → updated (description, categories, tags, icon, pricing)
    - **Existing tools with no changes** → unchanged (skipped)
-6. Saves a JSON audit report (`last_scrape_report.json`)
+7. Saves a JSON audit report (`last_scrape_report.json`)
 
 ## Audit Report
 
