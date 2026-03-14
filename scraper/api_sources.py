@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 
 import requests
 
-from config import CATEGORY_MAP, CATEGORIES
+from config import CATEGORY_MAP, CATEGORIES, is_blocked, is_junk_name
 
 logger = logging.getLogger(__name__)
 
@@ -247,6 +247,16 @@ def scrape_reddit():
             if not tool_url:
                 continue
 
+            # Blocklist + quality gate
+            if is_blocked(name, tool_url):
+                continue
+            if is_junk_name(name):
+                continue
+
+            # GitHub repos are not user-facing AI tools (handled by github source)
+            if 'github.com' in tool_url and '/blob/' not in tool_url:
+                continue
+
             name_key = name.lower()
             if name_key in seen_names:
                 continue
@@ -364,7 +374,20 @@ def scrape_github_trending():
                 if len(display_name) < 2:
                     continue
 
+                # Blocklist + quality gate
                 repo_url = f'https://github.com/{repo_full}'
+                if is_blocked(display_name, repo_url):
+                    continue
+                if is_junk_name(display_name):
+                    continue
+
+                # Skip repos that are clearly not tools (tutorials, awesome-lists, papers, benchmarks)
+                skip_keywords = ['awesome-', 'tutorial', 'course', 'learn-', 'paper',
+                                 'benchmark', 'dataset', 'example', 'demo', 'template',
+                                 'boilerplate', 'starter', 'guide', 'cheatsheet', 'list']
+                repo_lower = repo_name.lower()
+                if any(kw in repo_lower for kw in skip_keywords):
+                    continue
                 category = _guess_category(full_text)
 
                 # Get stars text if available
@@ -455,6 +478,8 @@ def scrape_google_trends():
                         name_key = name.lower()
                         if name_key in seen_names or len(name) > 50:
                             continue
+                        if is_blocked(name) or is_junk_name(name):
+                            continue
                         seen_names.add(name_key)
 
                         category = _guess_category(query)
@@ -485,6 +510,8 @@ def scrape_google_trends():
                         name = query.title()
                         name_key = name.lower()
                         if name_key in seen_names:
+                            continue
+                        if is_blocked(name) or is_junk_name(name):
                             continue
                         seen_names.add(name_key)
                         category = _guess_category(query)

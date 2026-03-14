@@ -13,6 +13,7 @@ from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 from supabase import create_client
+from config import is_blocked, is_junk_name
 
 load_dotenv()
 
@@ -179,6 +180,21 @@ def sync_tools(scraped_tools, dry_run=False):
         name = (tool.get('name') or '').strip()
         if not name or len(name) < 2:
             audit['skipped'] += 1
+            continue
+
+        url = tool.get('url', tool.get('detail_url', ''))
+
+        # Blocklist + quality check
+        if is_blocked(name, url):
+            audit['skipped'] += 1
+            audit['details']['skipped_tools'].append({'name': name, 'reason': 'blocklist'})
+            logger.debug(f'  Blocked: {name}')
+            continue
+
+        if is_junk_name(name):
+            audit['skipped'] += 1
+            audit['details']['skipped_tools'].append({'name': name, 'reason': 'junk_name'})
+            logger.debug(f'  Junk name: {name}')
             continue
 
         existing = find_existing(tool, by_id, by_name, by_url)
