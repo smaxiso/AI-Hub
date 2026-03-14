@@ -355,6 +355,15 @@ const ModuleDetail = () => {
                 headers: { 'Authorization': `Bearer ${session?.access_token}` }
             });
 
+            // Handle level-locked modules
+            if (modRes.status === 403) {
+                const errData = await modRes.json();
+                if (errData.locked) {
+                    navigate('/learning', { replace: true });
+                    return;
+                }
+            }
+
             // 2. Fetch User Progress (to check completion)
             const progRes = await fetch(`${API_URL}/learning/progress`, {
                 headers: { 'Authorization': `Bearer ${session?.access_token}` }

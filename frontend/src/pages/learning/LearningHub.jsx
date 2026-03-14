@@ -34,6 +34,7 @@ const LearningHub = () => {
     const [modules, setModules] = useState([]);
     const [selectedLevel, setSelectedLevel] = useState('beginner');
     const [error, setError] = useState(null);
+    const [levelStatus, setLevelStatus] = useState(null);
 
     useEffect(() => {
         // Fetch modules for all users (logged in or not)
@@ -44,6 +45,7 @@ const LearningHub = () => {
         // Only fetch progress for logged-in users
         if (user?.id) {
             fetchProgress();
+            fetchLevelStatus();
         } else {
             setProgressLoading(false);
         }
@@ -57,6 +59,7 @@ const LearningHub = () => {
         if (isFromModulePage && user?.id) {
             // Refetch only progress to update completion status
             fetchProgress();
+            fetchLevelStatus();
             sessionStorage.removeItem('lastVisitedModule'); // Clear flag
         }
     }, [location.key]);
@@ -108,6 +111,26 @@ const LearningHub = () => {
         }
     };
 
+    const fetchLevelStatus = async () => {
+        try {
+            const { data: { session } } = await supabase.auth.getSession();
+            const res = await fetch(`${API_URL}/learning/level-status`, {
+                headers: { 'Authorization': `Bearer ${session?.access_token}` }
+            });
+            if (res.ok) {
+                setLevelStatus(await res.json());
+            }
+        } catch (err) {
+            console.error('Error fetching level status:', err);
+        }
+    };
+
+    const isLevelUnlocked = (levelId) => {
+        if (levelId === 'beginner') return true;
+        if (!levelStatus) return false;
+        return levelStatus[levelId]?.unlocked === true;
+    };
+
     const calculateLevelProgress = (level) => {
         if (!progress) return 0;
         const levelModules = modules.filter(m => m.level === level);
@@ -119,16 +142,18 @@ const LearningHub = () => {
     };
 
     const isModuleUnlocked = (module) => {
+        // First check: is the entire level unlocked?
+        if (!isLevelUnlocked(module.level)) return false;
+
         if (!progress) return module.order_index === 1;
 
         // Strict Linear Locking: Unlock only if the IMMEDIATELY preceding module is complete
         if (module.order_index === 1) return true;
 
         // Find the previous module in the same level
-        // (Assuming modules are sorted by order_index, which the backend ensures)
         const previousModule = modules.find(m => m.order_index === module.order_index - 1);
 
-        if (!previousModule) return false; // Should not happen if data is correct
+        if (!previousModule) return false;
 
         return progress.completed_modules?.includes(previousModule.id);
     };
@@ -199,23 +224,53 @@ const LearningHub = () => {
                         scrollButtons="auto"
                         allowScrollButtonsMobile
                     >
-                        {LEVELS.map(level => (
-                            <Tab
-                                key={level.id}
-                                value={level.id}
-                                label={level.label}
-                                icon={
-                                    progress?.current_level === level.id ?
-                                        <TrendingUpIcon fontSize="small" /> : null
-                                }
-                                iconPosition="start"
-                            />
-                        ))}
+                        {LEVELS.map(level => {
+                            const unlocked = isLevelUnlocked(level.id);
+                            const stats = levelStatus?.[level.id];
+                            return (
+                                <Tab
+                                    key={level.id}
+                                    value={level.id}
+                                    label={
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                            {level.label}
+                                            {!unlocked && <LockIcon sx={{ fontSize: 16, color: 'text.disabled' }} />}
+                                            {stats && stats.total > 0 && (
+                                                <Chip
+                                                    label={`${stats.completed}/${stats.total}`}
+                                                    size="small"
+                                                    sx={{ ml: 0.5, height: 20, fontSize: '0.7rem',
+                                                        bgcolor: stats.completed >= stats.total ? '#4CAF5020' : 'transparent',
+                                                        color: stats.completed >= stats.total ? '#4CAF50' : 'text.secondary' }}
+                                                />
+                                            )}
+                                        </Box>
+                                    }
+                                    icon={
+                                        progress?.current_level === level.id ?
+                                            <TrendingUpIcon fontSize="small" /> : null
+                                    }
+                                    iconPosition="start"
+                                />
+                            );
+                        })}
                     </Tabs>
                 </Box>
 
                 {error && (
                     <Alert severity="error" sx={{ mb: 3 }}>{error}</Alert>
+                )}
+
+                {/* Level locked banner */}
+                {!isLevelUnlocked(selectedLevel) && user && (
+                    <Alert severity="info" icon={<LockIcon />} sx={{ mb: 3 }}>
+                        Complete all {LEVELS[LEVELS.findIndex(l => l.id === selectedLevel) - 1]?.label} modules to unlock {LEVELS.find(l => l.id === selectedLevel)?.label} level.
+                        {levelStatus && (() => {
+                            const prevLevel = LEVELS[LEVELS.findIndex(l => l.id === selectedLevel) - 1]?.id;
+                            const stats = levelStatus[prevLevel];
+                            return stats ? ` (${stats.completed}/${stats.total} completed)` : '';
+                        })()}
+                    </Alert>
                 )}
 
                 {/* Modules Grid */}
@@ -332,7 +387,9 @@ const LearningHub = () => {
                                                     color="text.secondary"
                                                     sx={{ display: 'block', textAlign: 'center', mt: 2 }}
                                                 >
-                                                    Complete previous modules to unlock
+                                                    {!isLevelUnlocked(module.level)
+                                                        ? `Complete all ${LEVELS[LEVELS.findIndex(l => l.id === module.level) - 1]?.label} modules first`
+                                                        : 'Complete previous module to unlock'}
                                                 </Typography>
                                             )}
                                         </CardContent>
