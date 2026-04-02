@@ -6,6 +6,9 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import ShareIcon from '@mui/icons-material/Share';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import XIcon from '@mui/icons-material/X';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import IosShareIcon from '@mui/icons-material/IosShare';
 import { motion } from 'framer-motion';
 
 const LEVEL_COLORS = {
@@ -19,14 +22,18 @@ const CertificateCard = ({ certification, compact = false }) => {
     const colors = LEVEL_COLORS[certification.level] || LEVEL_COLORS.beginner;
     const earned = certification.earned;
     const [copied, setCopied] = useState(false);
+    const [snackMsg, setSnackMsg] = useState('Verification link copied to clipboard');
 
     const shareUrl = certification.certificate_number
         ? `${window.location.origin}/certificate/verify/${certification.certificate_number}`
         : '';
 
+    const shareText = `🎓 I just earned the "${certification.name}" certification from TheAIHubX!\n📊 Average Score: ${certification.score_average || '—'}%\n🔗 Verify: ${shareUrl}\n#AI #MachineLearning #Certification #TheAIHubX`;
+
     const handleCopyLink = (e) => {
         e.stopPropagation();
         navigator.clipboard.writeText(shareUrl);
+        setSnackMsg('Verification link copied to clipboard');
         setCopied(true);
     };
 
@@ -36,9 +43,38 @@ const CertificateCard = ({ certification, compact = false }) => {
             `📊 Average Score: ${certification.score_average || '—'}%\n` +
             `🔗 Verify my certificate: ${shareUrl}\n\n` +
             `#AI #MachineLearning #Certification #TheAIHubX #LearningJourney`;
-        // Use LinkedIn's share URL with both text and link
-        const linkedInUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(postText)}`;
-        window.open(linkedInUrl, '_blank');
+        window.open(`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(postText)}`, '_blank');
+    };
+
+    const handleTwitter = (e) => {
+        e.stopPropagation();
+        const tweetText = `🎓 Just earned the "${certification.name}" certification from @TheAIHubX!\n\n📊 Score: ${certification.score_average || '—'}%\n\n#AI #MachineLearning #Certification`;
+        window.open(`https://x.com/intent/post?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+    };
+
+    const handleWhatsApp = (e) => {
+        e.stopPropagation();
+        window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+    };
+
+    const handleNativeShare = async (e) => {
+        e.stopPropagation();
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: `${certification.name} - TheAIHubX Certificate`,
+                    text: shareText,
+                    url: shareUrl
+                });
+            } catch (err) {
+                // User cancelled or share failed silently
+            }
+        } else {
+            // Fallback: copy to clipboard
+            navigator.clipboard.writeText(shareText);
+            setSnackMsg('Share text copied to clipboard');
+            setCopied(true);
+        }
     };
 
     if (compact) {
@@ -102,27 +138,40 @@ const CertificateCard = ({ certification, compact = false }) => {
 
                     {earned && (
                         <Box sx={{ mt: 2, p: 1.5, borderRadius: 1, bgcolor: colors.light }}>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <Box>
-                                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
-                                        Certificate #{certification.certificate_number}
-                                    </Typography>
-                                    <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                                        Average Score: {certification.score_average}% • Earned {new Date(certification.earned_at).toLocaleDateString()}
-                                    </Typography>
-                                </Box>
-                                <Box sx={{ display: 'flex', gap: 0.5 }}>
-                                    <Tooltip title="Copy verification link">
-                                        <IconButton size="small" onClick={handleCopyLink}>
-                                            <ContentCopyIcon fontSize="small" />
-                                        </IconButton>
-                                    </Tooltip>
-                                    <Tooltip title="Share on LinkedIn">
-                                        <IconButton size="small" onClick={handleLinkedIn} sx={{ color: '#0077B5' }}>
-                                            <LinkedInIcon fontSize="small" />
-                                        </IconButton>
-                                    </Tooltip>
-                                </Box>
+                            <Box sx={{ mb: 1.5 }}>
+                                <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+                                    Certificate #{certification.certificate_number}
+                                </Typography>
+                                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                                    Average Score: {certification.score_average}% • Earned {new Date(certification.earned_at).toLocaleDateString()}
+                                </Typography>
+                            </Box>
+                            <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap', justifyContent: 'center', borderTop: '1px solid', borderColor: 'divider', pt: 1.5 }}>
+                                <Tooltip title="Copy link">
+                                    <IconButton size="small" onClick={handleCopyLink} sx={{ color: 'text.secondary' }}>
+                                        <ContentCopyIcon fontSize="small" />
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title="Share on LinkedIn">
+                                    <IconButton size="small" onClick={handleLinkedIn} sx={{ color: '#0077B5' }}>
+                                        <LinkedInIcon fontSize="small" />
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title="Share on X">
+                                    <IconButton size="small" onClick={handleTwitter} sx={{ color: '#000' }}>
+                                        <XIcon fontSize="small" />
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title="Share on WhatsApp">
+                                    <IconButton size="small" onClick={handleWhatsApp} sx={{ color: '#25D366' }}>
+                                        <WhatsAppIcon fontSize="small" />
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title="Share via...">
+                                    <IconButton size="small" onClick={handleNativeShare} sx={{ color: 'text.secondary' }}>
+                                        <IosShareIcon fontSize="small" />
+                                    </IconButton>
+                                </Tooltip>
                             </Box>
                         </Box>
                     )}
@@ -141,7 +190,7 @@ const CertificateCard = ({ certification, compact = false }) => {
                 open={copied}
                 autoHideDuration={2000}
                 onClose={() => setCopied(false)}
-                message="Verification link copied to clipboard"
+                message={snackMsg}
             />
         </motion.div>
     );
