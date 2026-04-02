@@ -223,7 +223,7 @@ const Quiz = () => {
                 <Container maxWidth="md">
                     <Paper sx={{ p: 4, textAlign: 'center' }}>
                         <Typography variant="h6" color="text.secondary">No quiz questions available for this module yet.</Typography>
-                        <Button variant="contained" onClick={() => navigate('/learning')} sx={{ mt: 2 }}>Back to Learning Hub</Button>
+                        <Button variant="contained" onClick={() => navigate('/learning', { replace: true })} sx={{ mt: 2 }}>Back to Learning Hub</Button>
                     </Paper>
                 </Container>
             </Box>
@@ -285,7 +285,7 @@ const Quiz = () => {
                         )}
 
                         <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
-                            <Button variant="outlined" onClick={() => navigate('/learning')}>Back to Learning Hub</Button>
+                            <Button variant="outlined" onClick={() => navigate('/learning', { replace: true })}>Back to Learning Hub</Button>
                             {!results.passed && (
                                 <Button variant="contained" onClick={() => {
                                     setResults(null); setCurrentQuestionIndex(0); setQuizHistory({}); fetchQuiz();
@@ -305,7 +305,7 @@ const Quiz = () => {
             <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 3 }}>
                 <Container maxWidth="md">
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-                        <Button startIcon={<ArrowBackIcon />} onClick={() => navigate('/learning')} sx={{ color: 'white' }}>
+                        <Button startIcon={<ArrowBackIcon />} onClick={() => navigate('/learning', { replace: true })} sx={{ color: 'white' }}>
                             Exit
                         </Button>
                         <Chip

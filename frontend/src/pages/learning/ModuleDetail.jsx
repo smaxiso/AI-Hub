@@ -452,7 +452,7 @@ const ModuleDetail = () => {
                 <Container maxWidth="md">
                     <Button
                         startIcon={<ArrowBackIcon />}
-                        onClick={() => navigate('/learning')}
+                        onClick={() => navigate('/learning', { replace: true })}
                         sx={{ mb: 3 }}
                     >
                         Back to Hub
@@ -515,7 +515,7 @@ const ModuleDetail = () => {
                             variant="outlined"
                             size="large"
                             color={completion ? "success" : "primary"}
-                            onClick={() => navigate(`/learning/quiz/${moduleId}`)}
+                            onClick={() => navigate(`/learning/quiz/${moduleId}`, { replace: true })}
                         >
                             {completion ? "Retake Quiz" : "Take Quiz"}
                         </Button>
@@ -551,7 +551,7 @@ const ModuleDetail = () => {
                         variant="contained"
                         size="large"
                         color={completion ? "secondary" : "success"}
-                        onClick={() => navigate(`/learning/quiz/${moduleId}`)}
+                        onClick={() => navigate(`/learning/quiz/${moduleId}`, { replace: true })}
                         sx={{ px: 5, py: 1.5, fontSize: '1.1rem' }}
                     >
                         {completion ? "Retake Quiz" : "Take the Quiz"}
@@ -564,7 +564,7 @@ const ModuleDetail = () => {
             <Fade in={fabVisibility.showBack}>
                 <Tooltip title="Back to Learning Hub" placement="right">
                     <IconButton
-                        onClick={() => navigate('/learning')}
+                        onClick={() => navigate('/learning', { replace: true })}
                         sx={{
                             position: 'fixed',
                             top: { xs: 16, md: 24 }, // Much closer to top
