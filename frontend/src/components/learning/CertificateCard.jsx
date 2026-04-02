@@ -32,8 +32,13 @@ const CertificateCard = ({ certification, compact = false }) => {
 
     const handleLinkedIn = (e) => {
         e.stopPropagation();
-        const text = `I just earned the ${certification.name} certification from TheAIHubX! Verify it here: ${shareUrl}`;
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(certification.name)}&summary=${encodeURIComponent(text)}`, '_blank');
+        const postText = `🎓 I just earned the "${certification.name}" certification from TheAIHubX!\n\n` +
+            `📊 Average Score: ${certification.score_average || '—'}%\n` +
+            `🔗 Verify my certificate: ${shareUrl}\n\n` +
+            `#AI #MachineLearning #Certification #TheAIHubX #LearningJourney`;
+        // Use LinkedIn's share URL with both text and link
+        const linkedInUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(postText)}`;
+        window.open(linkedInUrl, '_blank');
     };
 
     if (compact) {
