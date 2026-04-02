@@ -452,7 +452,7 @@ const ModuleDetail = () => {
                 <Container maxWidth="md">
                     <Button
                         startIcon={<ArrowBackIcon />}
-                        onClick={() => navigate(-1)}
+                        onClick={() => navigate('/learning')}
                         sx={{ mb: 3 }}
                     >
                         Back to Hub
@@ -564,7 +564,7 @@ const ModuleDetail = () => {
             <Fade in={fabVisibility.showBack}>
                 <Tooltip title="Back to Learning Hub" placement="right">
                     <IconButton
-                        onClick={() => navigate(-1)}
+                        onClick={() => navigate('/learning')}
                         sx={{
                             position: 'fixed',
                             top: { xs: 16, md: 24 }, // Much closer to top
