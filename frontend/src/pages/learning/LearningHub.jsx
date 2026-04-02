@@ -65,10 +65,34 @@ const LearningHub = () => {
     }, [location.key]);
 
     useEffect(() => {
-        if (progress?.current_level) {
-            setSelectedLevel(progress.current_level);
+        if (!progress || !levelStatus) return;
+
+        // Find the most advanced level where the user has work to do:
+        // Walk through levels in order, pick the first unlocked level
+        // that is NOT fully completed. If all are complete, stay on the last one.
+        let bestTab = progress.current_level || 'beginner';
+
+        for (const level of LEVELS) {
+            const stats = levelStatus[level.id];
+            const unlocked = level.id === 'beginner' || stats?.unlocked;
+            if (!unlocked) break; // Stop at first locked level
+
+            if (stats && stats.total > 0 && stats.completed < stats.total) {
+                // This level is unlocked and has incomplete modules — select it
+                bestTab = level.id;
+                break;
+            }
+            if (stats && stats.total > 0 && stats.completed >= stats.total) {
+                // Fully completed — check next level
+                continue;
+            }
+            // No stats or no modules — fallback
+            bestTab = level.id;
+            break;
         }
-    }, [progress]);
+
+        setSelectedLevel(bestTab);
+    }, [progress, levelStatus]);
 
     const fetchProgress = async () => {
         try {
