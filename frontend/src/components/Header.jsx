@@ -80,6 +80,65 @@ const Header = () => {
                     <DarkModeToggle darkMode={darkMode} onToggle={toggleDarkMode} />
                     {user ? (
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                            {/* Primary Navigation Button (Context-Aware) */}
+                            {isLearningPage ? (
+                                <Tooltip title="Back to AI Tools Marketplace">
+                                    <Button
+                                        component={Link}
+                                        to="/"
+                                        variant="outlined"
+                                        size="small"
+                                        startIcon={<ExploreIcon />}
+                                        sx={{ 
+                                            display: { xs: 'none', sm: 'inline-flex' },
+                                            borderRadius: '20px',
+                                            textTransform: 'none',
+                                            borderColor: 'rgba(0,0,0,0.12)'
+                                        }}
+                                    >
+                                        Explore Tools
+                                    </Button>
+                                </Tooltip>
+                            ) : (
+                                <Tooltip title="Go to Learning Hub">
+                                    <Button
+                                        component={Link}
+                                        to="/learning"
+                                        variant="contained"
+                                        size="small"
+                                        startIcon={<SchoolIcon />}
+                                        sx={{ 
+                                            display: { xs: 'none', sm: 'inline-flex' },
+                                            borderRadius: '20px',
+                                            textTransform: 'none',
+                                            boxShadow: 'none',
+                                            '&:hover': { boxShadow: 2 }
+                                        }}
+                                    >
+                                        Learning Hub
+                                    </Button>
+                                </Tooltip>
+                            )}
+                            
+                            {/* Mobile equivalents for the same */}
+                            {isLearningPage ? (
+                                <IconButton 
+                                    component={Link} 
+                                    to="/" 
+                                    sx={{ display: { xs: 'inline-flex', sm: 'none' }, color: 'text.secondary' }}
+                                >
+                                    <ExploreIcon />
+                                </IconButton>
+                            ) : (
+                                <IconButton 
+                                    component={Link} 
+                                    to="/learning" 
+                                    sx={{ display: { xs: 'inline-flex', sm: 'none' }, color: 'primary.main' }}
+                                >
+                                    <SchoolIcon />
+                                </IconButton>
+                            )}
+
                             {/* Streak Counter */}
                             <StreakCounter />
 
