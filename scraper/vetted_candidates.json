@@ -1,0 +1,3986 @@
+{
+  "candidates": [
+    {
+      "id": "dante-ai",
+      "name": "Dante Ai",
+      "url": "https://www.dante-ai.com",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Customize chatbots with branding, upload media, and analyze data for valuable insights.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "wonderchat",
+      "name": "Wonderchat",
+      "url": "https://wonderchat.io",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Create custom, brand-tailored chatbots that learn from your website content effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "chatbros",
+      "name": "Chatbros",
+      "url": "https://followr.ai",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "AI-powered chatbot for sales, customer support, and lead generation.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "wp-chat-ai",
+      "name": "Wp Chat Ai",
+      "url": "https://wpchat.ai",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Automate customer support, provide product information, close sales, and track conversations to measure customer satisfaction.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "quicky-ai",
+      "name": "Quicky Ai",
+      "url": "https://quickyai.lemonsqueezy.com",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Automate customer conversations, create chat prompts, and manage inquiries with an intuitive dashboard.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "orimon",
+      "name": "Orimon",
+      "url": "https://orimon.ai:443",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Create chatbots, respond to inquiries, gain insights - all in minutes.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "tars",
+      "name": "Tars",
+      "url": "https://hellotars.com",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Build automated conversations, conduct customer research, and provide efficient customer support.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "docsbot",
+      "name": "Docsbot",
+      "url": "https://docsbot.ai",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Quickly answer queries with AI chatbots, embed into websites/apps, and access content with an intuitive interface.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "whatso-ai-chatbot",
+      "name": "Whatso Ai Chatbot",
+      "url": "https://www.whatso.net",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Turn website content into a multilingual 24x7 chatbot with continuous learning for customer support.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "webbotify",
+      "name": "Webbotify",
+      "url": "https://www.webbotify.com",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Instantly create custom chatbots, automate customer response, and enhance customer experience with targeted content.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "jivochat",
+      "name": "Jivochat",
+      "url": "https://www.jivochat.com",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Create branded chat windows, communicate in real-time, and track customer behavior with detailed conversation data.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "freshcaller",
+      "name": "Freshcaller",
+      "url": "https://affiliatepartner-freshcaller.freshworks.com/9mzj5k5yad6l",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "description": "Reduce agent workload, continue conversations on any channel, and gain better customer insights.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "thumbnailcreator-com",
+      "name": "Thumbnailcreator Com",
+      "url": "https://www.thumbnailcreator.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create AI Generated YouTube Thumbnails in Seconds",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "deepswap",
+      "name": "Deepswap",
+      "url": "https://www.deepswap.ai",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create face swap memes, generate AI-powered GIFs, make movie role-refacing videos.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "brandbird",
+      "name": "Brandbird",
+      "url": "https://www.brandbird.app",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create custom visuals for your product and brand, stand out in the SaaS landscape, and collaborate with your team efficiently.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ai-powered-product-photos",
+      "name": "Ai Powered Product Photos",
+      "url": "https://unboundcontent.ai",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Generate product images & descriptions, automate content creation, and create multiple images from one high-definition photo.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "candyicons",
+      "name": "Candyicons",
+      "url": "https://www.candyicons.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create stunning, platform-specific icons with a vast collection of designs curated by expert designers.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "undress-vip",
+      "name": "Undress Vip",
+      "url": "https://undress.vip",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Over 15 Personalized Styles Exquisite Virtual Simulation Intelligent Program Powered by AIGC.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "bannerbear",
+      "name": "Bannerbear",
+      "url": "https://www.bannerbear.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create stunning visuals with customizable designs, templates, and photos in minutes.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "kreateable",
+      "name": "Kreateable",
+      "url": "https://awin1.com/closedMerchant.html",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Generate High-Quality Logos and Engaging AI Writing for social media posts, ads, blogs, articles, emails, etc.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "pictales",
+      "name": "Pictales",
+      "url": "https://www.lemonsqueezy.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create captivating image stories with captions, filters, and effects, easily shareable with loved ones and on social media.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "draw3d",
+      "name": "Draw3D",
+      "url": "https://www.lemonsqueezy.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create photorealistic visuals, 3D renderings, and customize colors, textures, and lighting for your projects.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "palette-fm",
+      "name": "Palette Fm",
+      "url": "https://palette.fm",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Enhance family photos, create unique artworks, and effortlessly colorize black and white photos with vivid colors.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "undressbaby-ai",
+      "name": "Undressbaby Ai",
+      "url": "https://aitoptools.com/tool/undressbaby-ai/",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Grey\u2019s Secret Room is an innovative NSFW AI platform that revolutionizes virtual clothing try-ons, undressing simulations, and face swaps, both for photos and videos. Our cutting-edge AI technology, powered by Stable Diffusion, is renowned for its ability to craft highly detailed and lifelike images",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "avclabs-image-upscaler",
+      "name": "Avclabs Image Upscaler",
+      "url": "https://www.avclabs.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Enhance low-res photos, upgrade images with AI technology, and quickly upscale any image to higher resolution.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "getimg-ai",
+      "name": "Getimg Ai",
+      "url": "https://getimg.ai/",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Generate original images quickly, modify existing ones easily, and expand pictures beyond their original borders.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "background-remover-from-photo-by-hitpaw",
+      "name": "Background Remover From Photo By Hitpaw",
+      "url": "https://hitpaw.pxf.io/c/4278923/1455763/17256",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create transparent logos, change dull backgrounds to bright ones, and replace complex backgrounds easily.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "tryitonai",
+      "name": "Tryitonai",
+      "url": "https://www.tryitonai.com/",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create professional headshots in 48 hours, high-quality images at a fraction of the cost, hassle-free studio-quality portraits.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "hitpaw-online-ai-watermark-remover",
+      "name": "Hitpaw Online Ai Watermark Remover",
+      "url": "https://hitpaw.pxf.io/c/4278923/1455763/17256",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Remove watermarks from photos and videos, including logos, copyright info, and customize the removal process.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "vectormagic",
+      "name": "Vectormagic",
+      "url": "https://vectormagic.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Instantly convert images to vectors, scale images without quality loss, and create vector graphics effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "clipping-magic",
+      "name": "Clipping Magic",
+      "url": "https://clippingmagic.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Cut out objects effortlessly, blend images with ease, and adjust color, contrast, and brightness for the perfect look.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "luminar-neo-ai",
+      "name": "Luminar Neo Ai",
+      "url": "https://skylum.evyy.net/c/4032996/1142920/3255%20",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Enhance colors, adjust exposure, create stunning images, add new sky or depth with AI-powered tools.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "claid-ai",
+      "name": "Claid Ai",
+      "url": "https://claid.ai",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Automate photo enhancement, increase resolution, retouch product photos easily.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "profile-picture-ai",
+      "name": "Profile Picture Ai",
+      "url": "https://www.profilepicture.ai",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Automated optimization, customizable backgrounds, and facial recognition for professional-looking profile pictures.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "imagetocaption-ai",
+      "name": "Imagetocaption Ai",
+      "url": "https://www.imagetocaption.ai",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Generate captions for images, making your website inclusive and engaging with reliable AI-powered captions.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "socialbook-background-remover",
+      "name": "Socialbook Background Remover",
+      "url": "https://socialbook.io",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Easily remove backgrounds from images, precisely isolate subjects, and customize with brightness, contrast, and backgrounds.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "zyro",
+      "name": "Zyro",
+      "url": "https://www.hostinger.com/website-builder",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Generate unique slogans, craft perfect taglines with a wide range of adjectives, nouns, and verbs to resonate with consumers.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ai-art-shop",
+      "name": "Ai Art Shop",
+      "url": "https://aiartshop.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Find unique AI-generated artworks to match your home decor, with secure online ordering and easy payment options.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "cartoonize",
+      "name": "Cartoonize",
+      "url": "https://www.cartoonize.net",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Transform photos into cartoon-style art, customize with effects and styles, and easily share with friends and family.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "illustroke-2",
+      "name": "Illustroke 2",
+      "url": "https://illustroke.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Generate, optimize, and design attractive svgs effortlessly for improved search engine rankings.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "coloromo-ai-art-generator",
+      "name": "Coloromo Ai Art Generator",
+      "url": "http://coloromo.com/",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create custom artwork, print high-resolution images for home decor, and generate unique art styles tailored to individual taste.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "genexpert",
+      "name": "Genexpert",
+      "url": "https://genexpert.io",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "A powerful platform for unlocking data-driven insights and optimizing decision-making processes.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "thinkdiffusion",
+      "name": "Thinkdiffusion",
+      "url": "https://www.thinkdiffusion.com",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Create high-quality AI art in your browser using Stable Diffusion, a cloud-based tool.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "xinva-2",
+      "name": "Xinva 2",
+      "url": "https://xinva.ai",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Design, T-Shirt, and Artwork generator for creative content creation.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "aitubo",
+      "name": "Aitubo",
+      "url": "https://aitubo.ai",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "AI-powered tool for game developers, sketch-to-realistic visuals, and engaging cartoons with professional models.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "clip-paint-studio",
+      "name": "Clip Paint Studio",
+      "url": "https://dpbolvw.net/click-100821290-15458422",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Effortlessly create and enhance digital artwork with a wide range of brushes, textures, and special effects.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "colossyan",
+      "name": "Colossyan",
+      "url": "https://app.colossyan.com/auth/signin",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Create engaging videos with real actors, customize with drag-and-drop, and preview in real-time for perfect results.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "neural-love-art-generator",
+      "name": "Neural Love Art Generator",
+      "url": "https://neural.love",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Generate logos, personalized gifts, standout social media posts, explore creativity, and have fun with an intuitive interface.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "nsfwartgenerator-ai",
+      "name": "Nsfwartgenerator Ai",
+      "url": "https://www.nsfwartgenerator.ai",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "description": "Unleash Your Creativity: AI-Driven Art Beyond Boundaries",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "vidnoz-ai",
+      "name": "Vidnoz Ai",
+      "url": "https://www.vidnoz.com",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Ultra-fast video generation with pre-designed templates and a user-friendly interface design.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "crun-ai",
+      "name": "Crun Ai",
+      "url": "https://crun.ai",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Access top AI video, image & audio models in one API. Fast integration, low cost, high performance for developers.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "windsor",
+      "name": "Windsor",
+      "url": "https://windsor.ai",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Create personalized videos, track engagement, optimize campaigns.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "vidon",
+      "name": "Vidon",
+      "url": "https://vidon.ai",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Create social media videos, boost SEO rankings, and repurpose content into professional-quality videos effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "pipio",
+      "name": "Pipio",
+      "url": "https://www.pipio.ai",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "The AI-powered video production platform.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "movio",
+      "name": "Movio",
+      "url": "https://app.heygen.com/guest",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Create engaging videos with voiceovers, music, and customizations using a library of royalty-free assets.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "bhuman",
+      "name": "Bhuman",
+      "url": "https://app.bhuman.ai",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Personalize tutorials, reach out with videos, and build relationships for better customer engagement.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "flexclip",
+      "name": "Flexclip",
+      "url": "https://awin1.com/closedMerchant.html",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Create promotional videos, compile slideshows, and make video tutorials showcasing skills.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "60sec-site",
+      "name": "60Sec Site",
+      "url": "https://60sec.site",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Customize page look and feel, add video, images, and text, choose from templates and themes to increase engagement.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "promo-com",
+      "name": "Promo Com",
+      "url": "https://try.promo.com/givbk19nmy4p",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Create brand videos, generate high-res social media videos, measure performance with A/B testing and analytics.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ai-studios",
+      "name": "Ai Studios",
+      "url": "https://www.deepbrain.io/aistudios",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Generate customer service and marketing videos effortlessly using ChatGPT + Generative Video AI technology.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "supercreator",
+      "name": "Supercreator",
+      "url": "https://app.supercreator.ai/invite",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Create video scripts, customize videos with templates, stock footage and music, collaborate with others, access tutorials.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "wave-video",
+      "name": "Wave Video",
+      "url": "https://wave.video",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Create promotional videos, customize with branding, visuals, and track performance with analytics.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "chopcast",
+      "name": "Chopcast",
+      "url": "https://www.chopcast.io/linkedin-personal-branding-as-a-service",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Generate engaging social media videos, clip long recordings, and create personalized content for target audience.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "gptkit",
+      "name": "Gptkit",
+      "url": "https://gptkit.ai",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Validate content accuracy, detect errors, and analyze machine-generated text comprehensively.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "qlip-ai",
+      "name": "Qlip Ai",
+      "url": "https://qlip.ai/signup#via=aitoptools",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Create promotional videos, engaging event highlights, and shareable content from long-form videos.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "hitpaw-edimakor",
+      "name": "Hitpaw Edimakor",
+      "url": "https://edimakor.hitpaw.com",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "HitPaw Edimakor is a user-friendly and feature-rich video editing software that empowers users to create professional-quality videos with ease.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "pixop",
+      "name": "Pixop",
+      "url": "https://www.pixop.com",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Find the perfect AI for any task, with constantly updated algorithms, detailed descriptions, and clear instructions.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "wui-ai",
+      "name": "Wui Ai",
+      "url": "https://www.wui.ai",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "Repurpose Your Content into Viral Video Clips",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "listnr",
+      "name": "Listnr",
+      "url": "https://listnr.ai",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Create audio books, video presentations, and podcast intros with a wide range of voices and languages.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "mysimpleshow",
+      "name": "Mysimpleshow",
+      "url": "https://simpleshow.com",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "description": "simpleshow gives you the power to create simple and engaging videos with an easy-to-use, AI-powered video maker platform.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "fineshare",
+      "name": "Fineshare",
+      "url": "https://www.fineshare.com/online-voice-changer",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Fineshare is an online all-in-one AI voice generator for everyone. With advanced AI cloning technology, you can create exclusive lifelike AI voices in one minute, and use the voices in text to speech, AI voice changer, AI cover, and real-time voice changing, making your AI voice creation easy.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "voice-ai",
+      "name": "Voice Ai",
+      "url": "https://link.xsolla.com/KjbpSC8o",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Create custom voices for streamers, enhance gamer communication, and enable businesses to create and share voices globally.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "irocket-voxtalker",
+      "name": "Irocket Voxtalker",
+      "url": "https://www.irocketx.com",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "iRocket VoxTalker is a free AI-powered text-to-speech and voice cloning tool offering 3,200+ realistic voices in 100+ languages. Clone your voice with 99% accuracy in minutes, customize pitch and emotions, transform voices into characters, and export studio-quality audio in MP3 or WAV formats.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "all-voice-lab",
+      "name": "All Voice Lab",
+      "url": "https://www.allvoicelab.com",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "All Voice Lab localizes videos in 30+ languages with speech-to-text, translation, subtitles, dubbing, and AI voices \u2014 all in one seamless platform.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "aicoustics",
+      "name": "Aicoustics",
+      "url": "https://ai-coustics.com/blog/developer-platform-api-playground-sdk",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Elevate your podcasts and music with studio-quality sound, effortless noise reduction, and enhanced vocal clarity.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "voispark",
+      "name": "Voispark",
+      "url": "https://voispark.com",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Voispark is an all-in-one voice AI studio that integrates 11 top-tier AI engines like ElevenLabs and Cartersia to deliver high-quality TTS, voice cloning, voice changing, and conversational audio - all in one simple platform.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "vocal-remover-free",
+      "name": "Vocal Remover Free",
+      "url": "https://audiocleaner.ai/remove-vocals-from-song",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "vocal remover, remove vocal, vocal remover online free, vocal remover AI, best vocal remover online free",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "devoice-audio-to-text",
+      "name": "Devoice Audio To Text",
+      "url": "https://devoice.io/convert-audio-to-text",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Convert Audio to Text Online with AI",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "finevoice-text-to-speech",
+      "name": "Finevoice Text To Speech",
+      "url": "https://finevoice.ai/text-to-speech",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Free Online Text to Speech with Natural-Sounding AI Voices. Easily adjust voice style, speed, pitch, and emotion to generate high-quality voiceovers for audiobooks, ads, explainer videos, and more.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "voicify-ai",
+      "name": "Voicify Ai",
+      "url": "https://www.jammable.com",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Create AI music covers, train custom AI singing voice models, and find community created AI music.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "landr",
+      "name": "Landr",
+      "url": "https://join.landr.com/referral/landr-studio",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Master tracks with AI, create sound design, analyze and distribute music with integrated release service in minutes.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "emergent-drums",
+      "name": "Emergent Drums",
+      "url": "https://audialab.com",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Generate unique drum samples, create drum grooves, and utilize royalty-free samples worry-free.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "lemonaid-music",
+      "name": "Lemonaid Music",
+      "url": "https://lemonaid.ai",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Create custom music, eliminate beat blocks, and explore infinite sound combinations with AI-powered ideas.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "soundverse",
+      "name": "Soundverse",
+      "url": "https://www.soundverse.ai",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Soundverse AI provides a free AI music generator to create captivating and high-quality music for music makers. It has a voice AI music assistant.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "soniq",
+      "name": "Soniq",
+      "url": "https://soniq.chat",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "An adaptive AI that remembers your artistic taste and helps you write, produce, and visualize music, all in one creative chat.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "beatopia",
+      "name": "Beatopia",
+      "url": "https://www.beatopia.com",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Wav & Stems Unlimited License Hitmaker Beats for music production.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ai-music-generator",
+      "name": "Ai Music Generator",
+      "url": "https://lyricstosongai.com",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Turn your lyrics into full songs in minutes. Lyrics to Song AI uses cutting-edge technology to compose melodies, generate vocals, and produce complete songs based on your text. No music skills required.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "audionotes",
+      "name": "Audionotes",
+      "url": "https://www.audionotes.app",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Organize meetings, take notes faster, and easily review with intuitive voice-based note-taking and automated summaries.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "singify-vocal-remover",
+      "name": "Singify Vocal Remover",
+      "url": "https://singify.co/vocal-remover",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Singify AI Vocal Remover online extracts vocals or isolate voice and instruments from any song. Fast, free, and easy to use.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "generator-ai-music",
+      "name": "Generator Ai Music",
+      "url": "https://www.generatoraimusic.com/",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Create unique, never-before-heard music with just one click using advanced AI technology.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "lalal-ai-voice-cleaner",
+      "name": "Lalal Ai Voice Cleaner",
+      "url": "https://www.lalal.ai",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Enhance audio quality, remove background noise, and improve clarity with AI-powered algorithms.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "phonicmind",
+      "name": "Phonicmind",
+      "url": "https://phonicmind.com/",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Create vocal-free remixes, enhance tracks with audio editing tools, and remove vocals from audio files effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "lalal-ai",
+      "name": "Lalal Ai",
+      "url": "https://www.lalal.ai",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Remove vocals, extract audio stems, and refine audio for optimal sound quality.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "noise-eraser-2",
+      "name": "Noise Eraser 2",
+      "url": "https://eraser.dwave.cc/en-US",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "Enhance audio quality across various domains, such as podcasts, YouTube videos, and music production.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "audio-enhancer",
+      "name": "Audio Enhancer",
+      "url": "https://audioenhancer.ai/",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "AudioEnhancer.ai is a versatile tool that enhances audio quality through noise reduction, equalization, and spatial audio enhancement. With real-time processing and customizable presets, it's perfect for music production, podcasting, video editing, gaming, and more.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "finevoice",
+      "name": "Finevoice",
+      "url": "https://finevoice.ai",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "FineVoice is a versatile and expressive AI voice generator. Instantly create high-quality, royalty-free voices, SFX, and music.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "audio-muse",
+      "name": "Audio Muse",
+      "url": "https://audiomuse.ai",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "All-in-one easy-to-use online Audio tools",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "viralqr",
+      "name": "Viralqr",
+      "url": "https://viralqr.com",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "ViralQR lets you create dynamic QR codes with short links. Add passwords, set scan limits, and update content anytime. Customize mobile landing pages. Track scans with real-time analytics. Simple, secure, and built for marketers, businesses, and creators.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "poppop-ai",
+      "name": "Poppop Ai",
+      "url": "https://poppop.ai/ai-vocal-remover",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "description": "PopPop AI Vocal Remover is a free, web-based tool for isolating vocals from audio and video files. No installation or sign-up is needed, and it supports formats like MP3 and MP4. Users can easily upload files or paste URLs for online content, making it a valuable resource for enhancing audio project",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "vanna-ai",
+      "name": "Vanna Ai",
+      "url": "https://vanna.ai",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "High accuracy on complex datasets, isolated custom model, and support for multiple databases.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "codegeex",
+      "name": "Codegeex",
+      "url": "https://huggingface.co/spaces/zai-org/CodeGeeX",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Generate code from language, translate code between languages, and use ML algorithms for precise coding.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ai-data-sidekick",
+      "name": "Ai Data Sidekick",
+      "url": "https://www.airops.com",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Automate SQL creation, streamline data management, and cost-effective solution for individuals and small teams.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "debugg-ai",
+      "name": "Debugg Ai",
+      "url": "https://debugg.ai",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Zero-config AI browser testing platform",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "hostinger-horizons",
+      "name": "Hostinger Horizons",
+      "url": "https://www.hostg.xyz/aff_c",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "All-in-one toolkit with AI-powered coding and no-code solutions to bring your ideas online faster. Build, automate, and launch projects without technical barriers \u2014 perfect for entrepreneurs, creators, and small teams.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "dystr",
+      "name": "Dystr",
+      "url": "https://dystr.com",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Empower engineers with code manipulation, cloud running, and workflow automation.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "oss-insight",
+      "name": "Oss Insight",
+      "url": "https://ossinsight.io/explore",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Explore live data, create SQL queries with GPT, and visualize results effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "liner-ai",
+      "name": "Liner Ai",
+      "url": "https://liner.ai",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Effortlessly create ML models with an intuitive UI and a comprehensive library of resources and tutorials.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "entry-point-ai",
+      "name": "Entry Point Ai",
+      "url": "https://www.entrypointai.com",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Create AI models, validate data, augment data, and monitor models effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "mindstudio",
+      "name": "Mindstudio",
+      "url": "https://www.mindstudio.ai/mindstudio",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Quickly create custom AI tools without coding experience for seamless integration into your workflow.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "codeconvert-ai",
+      "name": "Codeconvert Ai",
+      "url": "https://www.codeconvert.ai",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Automatically convert code to any language, batch convert multiple files, with an intuitive user interface for non-coders.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "google-colab-copilot",
+      "name": "Google Colab Copilot",
+      "url": "https://copilot.naklecha.com/",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Access AI Python Coding Assistant on Google Collab, boost coding projects with AI, and enjoy the convenience of Google Collab.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "claudekit",
+      "name": "Claudekit",
+      "url": "https://claudekit.cc",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Your AI Development & Marketing Teams - Built on top of Claude Code",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "replit",
+      "name": "Replit",
+      "url": "https://replit.com",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Write & run code in 50+ languages, auto-complete with AI, and code faster with an intuitive interface.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "excel-vba-ai-assistant",
+      "name": "Excel Vba Ai Assistant",
+      "url": "https://vbassistant.ai/en",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Excel VBA AI Assistant integrates directly into the Visual Basic Editor. It generates code from natural language, explains and documents macros, optimizes performance, detects errors, and provides reusable code snippets within Excel, all processed securely on European servers.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "codingfleet",
+      "name": "Codingfleet",
+      "url": "https://codingfleet.com",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "CodingFleet is an AI-powered coding toolkit offering code generation, debugging assistance, code conversion, explanations, enhancements, comment generation, and automated unit testing. It includes advanced features like URL fetching,web browsing,and code execution, supporting 20 different AI models.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "lockedin-ai",
+      "name": "Lockedin Ai",
+      "url": "https://www.lockedinai.com",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "LockedIn AI is a 100% hidden interview copilot that helps you crack live interviews in any industry in real time.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "staffly-ai-workflow-management",
+      "name": "Staffly Ai Workflow Management",
+      "url": "https://www.staffly.org/ai-management",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Efficient lead prospecting and nurturing, streamlined social media engagement, automated email marketing campaigns.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "copilot",
+      "name": "Copilot",
+      "url": "https://github.com/features/copilot",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Automatically generate code suggestions, receive tailored guidance, and get alerted to potential errors and bugs.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "programminghelper",
+      "name": "Programminghelper",
+      "url": "https://www.programming-helper.com",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Generate code, troubleshoot, and reduce coding time instantly with accurate code generated from simple text descriptions.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "codeassist",
+      "name": "Codeassist",
+      "url": "https://plugins.jetbrains.com/plugin/20085-codeassist",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Automate coding, improve skills, reduce errors by generating code based on natural language descriptions and providing answers.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "amazon-codewhisperer",
+      "name": "Amazon Codewhisperer",
+      "url": "https://aws.amazon.com/q/developer",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "description": "Generate tailored code suggestions, search documentation and code libraries, and preview code outcomes intelligently.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "sanebox",
+      "name": "Sanebox",
+      "url": "https://try.sanebox.com/358nuqbews8y",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Sort emails, identify low-priority ones, and adapt to user needs with AI-powered technology.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "pandadoc",
+      "name": "Pandadoc",
+      "url": "https://pandadoc.partnerlinks.io/h1161d2fdphj",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Create, send, and track professional documents with automated workflows and secure online document signing.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "caspa-ai",
+      "name": "Caspa Ai",
+      "url": "https://www.caspa.ai",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Realistic human models, AI stock photo generation, and full editing capabilities.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "dimey-ai",
+      "name": "Dimey Ai",
+      "url": "https://www.dimeadozen.ai",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Automate task management, leverage predictive analytics, and access real-time insights through an intuitive dashboard.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "potion",
+      "name": "Potion",
+      "url": "https://www.sendpotion.com",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Easily create and schedule automated messages, segment customers, and track real-time engagement.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "morgen",
+      "name": "Morgen",
+      "url": "https://morgen.so/",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Unified Calendar, Scheduling Links, and Task Manager for efficient organization.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "process-street",
+      "name": "Process Street",
+      "url": "https://get.process.st/lm22176z5ppm",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Automate tasks, manage projects with analytics, and create custom forms for easy data capture and storage.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "adcrafter",
+      "name": "Adcrafter",
+      "url": "https://adcrafter.ai",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Boost Google Ads with AI-generated copy that matches your Landingpage, freeing up time for other campaign tasks.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "applypass",
+      "name": "Applypass",
+      "url": "https://www.applypass.com",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Automate your Job Search. Apply to hundreds of jobs tailored to your experience and preferences. ApplyPass gets you more interviews.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "text-blaze",
+      "name": "Text Blaze",
+      "url": "https://blaze.today",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Automate workflow, create personalized messages, schedule and automate processes with reusable text blocks and messages.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "subbly",
+      "name": "Subbly",
+      "url": "https://join.subbly.co/dimwlgwrangz",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "description": "Create subscription businesses, automate payments and shipping, benefit from powerful features and analytics.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "copyleaks",
+      "name": "Copyleaks",
+      "url": "https://copyleaks.com",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Detect plagiarism, verify authenticity, and save time with an intuitive interface across multiple languages.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "linguix",
+      "name": "Linguix",
+      "url": "https://awin1.com/closedMerchant.html",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Enhance writing with grammar checks, improve clarity with AI-driven rephrasing, seamlessly integrate with business platforms.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "digital-first-ai",
+      "name": "Digital First Ai",
+      "url": "https://app.digitalfirst.ai",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Generate personalized content, automate marketing, and find growth-hacking tactics quickly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "scrivener",
+      "name": "Scrivener",
+      "url": "https://www.literatureandlatte.com/scrivener/overview",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Outline, collaborate, and create great content with a customizable workspace, corkboard view, outliner, and full-screen editor.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "nando-ai",
+      "name": "Nando Ai",
+      "url": "https://nando.ai",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Generate quick, tailored, and optimized copy with AI-driven technology to save time and create high-converting content.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "shopia",
+      "name": "Shopia",
+      "url": "https://app.shopia.ai/login",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Generate optimized product descriptions, maximize online exposure with SEO assistant, and create blog articles effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "creativai",
+      "name": "Creativai",
+      "url": "https://www.creativai.io",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Create, refine, and enjoy hassle-free writing with AI algorithms and intuitive editing tools.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ai-writer-2",
+      "name": "Ai Writer 2",
+      "url": "https://apps.apple.com/us/app/ai-writer-generative-ai-chat/id6444013958",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Automatically check grammar, generate AI-powered content, and personalize to individual needs and preferences.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "heyy-ai",
+      "name": "Heyy Ai",
+      "url": "https://unboundcontent.ai",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Generate realistic product images, write product descriptions, and design professional logos and icons effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "copysmith",
+      "name": "Copysmith",
+      "url": "https://app.copysmith.ai/signup/#a_aid=aitoptools",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Create compelling copy, optimize for SEO, and generate product descriptions, web copy, blog posts, & more.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "copygenius",
+      "name": "Copygenius",
+      "url": "https://copygenius.io",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Automate content creation, create professional copy, and generate persuasive copy with an AI-powered editor.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "outranking",
+      "name": "Outranking",
+      "url": "https://www.outranking.io",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Instantly generate SEO-optimized content, create briefs, and discover keywords for better rankings.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "viral-launch-testimonials-generator",
+      "name": "Viral Launch Testimonials Generator",
+      "url": "https://affiliates.viral-launch.com/idevaffiliate.php",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Build trust, create engaging experiences, and quickly create a library of customer testimonials.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "bash",
+      "name": "Bash",
+      "url": "https://www.getbash.com/",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Bash boosts productivity using your documents for accurate responses.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "twinword",
+      "name": "Twinword",
+      "url": "https://twinword.com/ideas/",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Generate content, explore topics, get ideas fast with the AI-based brainstorming engine and creative topic explorer.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "multilings",
+      "name": "Multilings",
+      "url": "https://multilings.com",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Access 75+ languages for natural translation, check for plagiarism, and generate citations in any style/format.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "odyssey",
+      "name": "Odyssey",
+      "url": "https://odysseyapp.io",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Connect AI models without a single line of code in one simple, intuitive Mac app",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "closerscopy",
+      "name": "Closerscopy",
+      "url": "https://refer.close.com/h530ih7sjzys",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Generate personalized content, create captivating copy, and save time and energy with automated writing.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "satellitewriter",
+      "name": "Satellitewriter",
+      "url": "https://satellitewriter.com/r/aitoptools123/",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "description": "Generate visuals, create audio, and access content creation tools on any device with FridaAI model.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "lunacy",
+      "name": "Lunacy",
+      "url": "https://icons8.com",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Create stunning visuals with a simple interface, access a library of icons, shapes, and fonts, and customize designs easily.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "imggood",
+      "name": "Imggood",
+      "url": "https://www.imggood.com",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Make your photos excellent with our AI powered online tools!",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "decoritt",
+      "name": "Decoritt",
+      "url": "https://decoritt.wondershare.com/",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "All-in-One AI Design: Transform Your Space with 62 Styles, 25,00+ Interactive Elements",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ai-clothes-changer-picsman",
+      "name": "Ai Clothes Changer Picsman",
+      "url": "https://www.picsman.ai/tools/ai-clothes-changer",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Online AI outfit generator uses AI to change clothes to your liking",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "mermaidviewer",
+      "name": "Mermaidviewer",
+      "url": "https://mermaidviewer.com",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "MermaidViewer is an online tool to create, edit, and share Mermaid diagrams with live previews, AI-assisted code, and seamless export options.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ai-vector-convert-png-to-svg-instantly",
+      "name": "Ai Vector Convert Png To Svg Instantly",
+      "url": "https://aivector.ai/en",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Convert PNG to SVG Instantly",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "insmind",
+      "name": "Insmind",
+      "url": "https://www.insmind.com/",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Easily create studio-quality product photos with AI generated backgrounds and customized designs.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "namecheap-logo-maker",
+      "name": "Namecheap Logo Maker",
+      "url": "https://www.namecheap.com/logo-maker",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Create custom logos in minutes with an AI-powered algorithm for high-quality designs, and download and use logos for free.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "zoviz",
+      "name": "Zoviz",
+      "url": "https://awin1.com/closedMerchant.html",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Create Brand AI Logos in Seconds & AI Brand Kits Instantly",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "insmind-ai-agent",
+      "name": "Insmind Ai Agent",
+      "url": "https://www.insmind.com/ai-agent/",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "insMind AI Agent is a next-generation visual creation assistant that lets you generate images, videos, and even 3D content through a simple chat. Just describe your idea once, and the AI Agent interprets your intent, organizes concepts, and produces visuals in a unified canvas. You can create, refin",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "brandcrowd",
+      "name": "Brandcrowd",
+      "url": "https://www.brandcrowd.com",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Generate professional logos, customize fonts, colors, and special effects, save for future use.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "designevo",
+      "name": "Designevo",
+      "url": "https://awin1.com/closedMerchant.html",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Create unique logos using thousands of fonts, icons, and shapes, with an intuitive interface and powerful customization options.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ai-logo-maker",
+      "name": "Ai Logo Maker",
+      "url": "https://www.logoai.com",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Generate original logos with customizable styles, colors, fonts, and images effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "chatgpt-logo",
+      "name": "Chatgpt Logo",
+      "url": "https://anylogo.ai",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "GPT-Powered AI Logo Maker",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "turbologo",
+      "name": "Turbologo",
+      "url": "https://turbologo.com",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Create a striking logo effortlessly with Turbologo's Logo Maker. Whether it's for your personal brand or business, our intuitive design tool guides you",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ai-magicx",
+      "name": "Ai Magicx",
+      "url": "https://www.aimagicx.com",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Let AI Magicx be your partner in unlocking boundless creativity.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "anylogogenerator",
+      "name": "Anylogogenerator",
+      "url": "https://anylogo.ai",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Choose any logo you like to generate similar designs with AI",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "logowski-ai-logo-generator",
+      "name": "Logowski Ai Logo Generator",
+      "url": "https://logowski.com/ai-logo-maker",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Real AI Vector Logo Maker. Get totally unique logos generated by state-of-the-art neural network. Receive SVG vector file with all its benefits.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "omnigpt",
+      "name": "Omnigpt",
+      "url": "https://aitoptools.com/tool/omnigpt/",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "durable",
+      "name": "Durable",
+      "url": "https://aitoptools.com/tool/durable/",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "jobhire-ai",
+      "name": "Jobhire Ai",
+      "url": "https://aitoptools.com/tool/jobhire-ai/",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "sobrief-com",
+      "name": "Sobrief Com",
+      "url": "https://aitoptools.com/tool/sobrief-com/",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "brain-fm",
+      "name": "Brain Fm",
+      "url": "https://aitoptools.com/tool/brain-fm/",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "auto-subtitle-generator",
+      "name": "Auto Subtitle Generator",
+      "url": "https://aitoptools.com/tool/auto-subtitle-generator/",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "loopcv",
+      "name": "Loopcv",
+      "url": "https://aitoptools.com/tool/loopcv/",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "sheet",
+      "name": "Sheet",
+      "url": "https://www.sheetai.app",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "Generate formulas, automate tasks, and fix errors in formulas to save time - all with natural language capabilities.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "brandmark",
+      "name": "Brandmark",
+      "url": "https://brandmark.io/tools",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "description": "Create a unique logo, experiment with colors/fonts, and get a professional-looking logo in minutes.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ikiblast",
+      "name": "Ikiblast",
+      "url": "https://www.ikiblast.com",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "Access AI answers, unleash creativity, create custom models for tasks like image recognition.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "time-doctor",
+      "name": "Time Doctor",
+      "url": "https://try.timedoctor.com/tk4hpphmko49",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "Track time, manage tasks, and analyze progress with an intuitive user experience and helpful reporting tools.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "bramework",
+      "name": "Bramework",
+      "url": "https://www.bramework.com",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "description": "Automate blog post research, writing, and editing; generate high-quality, professional content with ease.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "pdf-flex",
+      "name": "Pdf Flex",
+      "url": "https://pdfguru.com/pdf-summarizer",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Chat PDF is an AI-powered tool that allows users to interact with PDF documents by asking questions about their content. It can generate instant summaries and retrieve specific information, making it a valuable assistant. Chat PDF can come in especially handy in fields like economics, finance, law,",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "aiscored",
+      "name": "Aiscored",
+      "url": "https://aiscored.co.uk",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Compare supplements, vitamins, protein, skincare and pet food with research-backed scores based on real reviews and ingredient data.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "quillify-ai",
+      "name": "Quillify Ai",
+      "url": "https://quillify.ai",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Quillify finds funding for your business in just 5 minutes by using AI to streamline\u00a0grant acquisition, locating ideal funding opportunities for your",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "galactica",
+      "name": "Galactica",
+      "url": "https://galactica.org",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Automate research, access scientific data, and make breakthroughs easily with this AI-powered platform.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "astrochart-ai",
+      "name": "Astrochart Ai",
+      "url": "https://astrochart.ai",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Get personalized horoscope & birth chart readings powered by #AI, #Astrology & #Numerology in seconds! \ud83d\ude80 Uncover your unique cosmic profile, daily insights, and hidden potential with AI-driven astrology. Let the stars guide your journey!",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "bearly",
+      "name": "Bearly",
+      "url": "https://bearly.ai",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Automate research article summarization, analyze text efficiently, and customize summaries and paraphrases to specific needs.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "seobility",
+      "name": "Seobility",
+      "url": "https://www.seobility.net/en",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Analyze, research keywords, and optimize website content for SEO success.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "scispace",
+      "name": "Scispace",
+      "url": "https://scispace.com:443",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Highlight confusing text, math and tables, ask follow-up questions, and search relevant papers effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "spinrewriter",
+      "name": "Spinrewriter",
+      "url": "https://www.spinrewriter.com",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Generate unique, high-quality content, improve SEO rankings, and save time and money by automatically rewriting articles.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "rank-math",
+      "name": "Rank Math",
+      "url": "https://rankmath.com",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Automate keyword optimization, analyze SEO performance, and optimize content for visibility and success.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "webceo",
+      "name": "Webceo",
+      "url": "https://online.webceo.com/accounts/register/",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Monitor website performance, analyze competitors, automate audits, and optimize SEO.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "mangools",
+      "name": "Mangools",
+      "url": "https://mangools.com/#a6477ac546aee085ad60e6fb6",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Track keyword performance, identify new opportunities, and optimize SEO with one-click integration.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ctrify",
+      "name": "Ctrify",
+      "url": "https://www.ctrify.com",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Rank on Google, optimize SEO, increase visibility, and drive traffic with a single keyword.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "aiseo",
+      "name": "Aiseo",
+      "url": "https://aiseo.ai",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Generate blog posts, analyze SEO, and create high-quality content fast.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "seomatic-ai",
+      "name": "Seomatic Ai",
+      "url": "https://app.seomatic.ai",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Automate content marketing, optimize web pages, and create custom titles and descriptions for higher SEO ranking.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "bertha-ai",
+      "name": "Bertha Ai",
+      "url": "https://bertha.ai",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Generate 5,000 words of SEO-friendly copy, tailor it to any project, and optimize for maximum online visibility.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "compar",
+      "name": "Compar",
+      "url": "https://compar.ai",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Monitor competitors, optimize content using NLP and algorithms, recommend keyword placement for search engine visibility.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "seo-content-machine",
+      "name": "Seo Content Machine",
+      "url": "https://seocontentmachine.com",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "description": "Generate high-quality content for search engine optimization purposes.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "planner-5d",
+      "name": "Planner 5D",
+      "url": "https://planner5d.affise.com/v2/sign/up",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "description": "Design stunning 3D visuals with an intuitive drag-and-drop interface and a wide selection of furniture and decor items.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "cascadeur",
+      "name": "Cascadeur",
+      "url": "https://link.xsolla.com/jEBqYs6b",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "description": "Create realistic 3D animations, access pre-built assets and tools, learn quickly with tutorials and user-friendly help center.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "dimenxioner",
+      "name": "Dimenxioner",
+      "url": "https://expireddomains.com/domain/dimenxioner.com",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "description": "Unlike most 2D-to-3D tools that produce rough or unrealistic models, DimenXioner is built with advanced AI trained on thousands of real-world objects. The result? Exceptionally accurate and detailed 3D reconstructions, even from simple input images. \u2705 98% object recognition accuracy \u2705 Generation sp",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "seele-ai",
+      "name": "Seele Ai",
+      "url": "https://www.seeles.ai",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "description": "One Sentence, One Game. SEELE AI generates playable 3D AI games with characters, map and gameplay directly from text.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "mirageml",
+      "name": "Mirageml",
+      "url": "https://www.mirageml.com/",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "description": "Create stunning 3D models effortlessly, save time with AI-powered technology and an intuitive interface.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "metaperson-creator-by-avatar-sdk",
+      "name": "Metaperson Creator By Avatar Sdk",
+      "url": "https://avatarsdk.com/metaperson-creator",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "description": "With MetaPerson Creator, you have complete control over every aspect of your avatar, from its facial features to its body type, outfits, and hairstyles. Our advanced technology uses the latest in facial recognition and 3D modeling to create an avatar that closely resembles you.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "g3dai-jedi",
+      "name": "G3Dai Jedi",
+      "url": "https://g3d.ai/",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "description": "Rapidly develop game 3D models, generate detailed landscapes from text, and craft exceptional interior design assets.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "in3d",
+      "name": "In3D",
+      "url": "https://in3d.io/",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "description": "Create realistic avatars in minutes, customize them, and build immersive virtual worlds with lifelike, human-like movement.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "tubebuddy",
+      "name": "Tubebuddy",
+      "url": "https://www.tubebuddy.com/pricing",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Analyze and optimize content, automate video tags and descriptions, and use promotion tools to increase viewership.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "poly",
+      "name": "Poly",
+      "url": "https://withpoly.com/",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "description": "Generate high-res textures, create realistic and abstract textures tailored to your specifications, save time and money.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "abtesting-ai",
+      "name": "Abtesting Ai",
+      "url": "https://abtesting.ai/",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Create A/B tests, track real-time performance, leverage AI-powered algorithms to optimize website/app versions.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "avian-io",
+      "name": "Avian Io",
+      "url": "https://avian.io",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Automate marketing analysis, gain insights, optimize campaigns for increased profitability.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "headlime",
+      "name": "Headlime",
+      "url": "https://headlime.com/",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "AI-powered copy-writing with NLP, templates, and intuitive editing for crafting compelling and captivating copy in record time.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "brand24",
+      "name": "Brand24",
+      "url": "https://try.brand24.com/lo3m0cau5zm5",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Brand24 stands out as a robust social listening solution enhanced with AI capabilities.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "keyword-insights",
+      "name": "Keyword Insights",
+      "url": "https://www.keywordinsights.ai",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Generate keyword ideas, group related words, and understand search engine intent with search intent analysis.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "wishpond",
+      "name": "Wishpond",
+      "url": "https://wishpond.com",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Create optimized campaigns, capture leads, tailor content with AI-driven marketing automation, forms, surveys, and segmentation.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "stadio-ai",
+      "name": "Stadio Ai",
+      "url": "https://stadio.ai/",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Leverage AI algorithms for real-time data processing, custom reports, dashboards, and predictive analysis.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "omnisend",
+      "name": "Omnisend",
+      "url": "https://www.omnisend.com/affiliates-general",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Automate tailored campaigns, sync customer data seamlessly, engage with personalized segmentation.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "tinyeinsten",
+      "name": "Tinyeinsten",
+      "url": "https://www.tinyalbert.ai",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Increase customer engagement, optimize marketing campaigns, and grow Shopify stores 10x faster with AI.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "arounddeal",
+      "name": "Arounddeal",
+      "url": "https://arounddealholdingslimited.grsm.io/7syonvaxem9i",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Expand into Vietnam's market, increase target company contacts by 6x, improve lead acquisition efficiency by 100% in Asia Pacific.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "growthchannel",
+      "name": "Growthchannel",
+      "url": "https://growthchannel.io",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Automate marketing, personalize messaging, and optimize performance with powerful analytics.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "outgrow",
+      "name": "Outgrow",
+      "url": "https://share.outgrow.biz/y9jqdllqn5wq",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Engage customers with interactive quizzes, generate leads with customized polls, and optimize campaigns with A/B testing.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "sybill",
+      "name": "Sybill",
+      "url": "https://app.sybill.ai",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Generate precise sales call summaries, access insights for closing deals, and foster stronger buyer relationships.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "yesware",
+      "name": "Yesware",
+      "url": "https://yesware7054.partnerlinks.io/tbqj7ec33a6x",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Automate outreach, track interactions, and monitor sales performance in real-time with reporting tools.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "freshsales-2",
+      "name": "Freshsales 2",
+      "url": "https://affiliatepartner-freshsales.freshworks.com/d601tv2869p9",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Identify high-intent leads, gain intelligent sales insights, automate work, and drive revenue.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "booth-ai-2",
+      "name": "Booth Ai 2",
+      "url": "https://www.atom.com/name/Booth.ai",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Generate product photos effortlessly, create high-quality lifestyle imagery, and enjoy a user-friendly interface.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "octane-ai",
+      "name": "Octane Ai",
+      "url": "https://octaneai.grsm.io/xbsl2nfn6r5x",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Create engaging quizzes, collect buyer data, and enable convenient shopping with saved preferences.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "retainr-io",
+      "name": "Retainr Io",
+      "url": "https://www.retainr.io",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Elevate your brand, streamline operations, and foster stronger client relationships. The future of creative agency management starts with Retainr.io! From your own branded app to client management, Retainr.io empowers you at every step.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "ecwid",
+      "name": "Ecwid",
+      "url": "http://go.ecwid.com/6sFjfd",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Create a professional store, attract customers with SEO, digital coupons, email marketing, and sell various products effortlessly.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "nonverbia",
+      "name": "Nonverbia",
+      "url": "https://nonverbia.com",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Nonverbia analyzes sales call recordings and produces human-like summaries grounded in what was said and how buyers reacted. It highlights interest, friction, and next steps, and auto-preps notes for your CRM. Get precise follow-ups, faster workflows, and better outcomes from every conversation.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "precall-iq",
+      "name": "Precall Iq",
+      "url": "https://precalliq.com",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "PreCall IQ automatically researches your leads, gathers publicly available data, and generates a clear, structured briefing so you can confidently prepare for every call in just seconds",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "markopolo",
+      "name": "Markopolo",
+      "url": "https://app.markopolo.ai/signup",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Automate actions, recapture lost audiences, maximize results with omnichannel campaigns.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "creatify-ai",
+      "name": "Creatify Ai",
+      "url": "https://creatify.ai",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Creatify utilizes AI to extract product information and media from any URLs, generating compelling short video ads to streamline the advertising process.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "keychain",
+      "name": "Keychain",
+      "url": "https://www.keychain.com",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Keychain is a cutting-edge platform designed to transform the way brands, retailers, and manufacturers in the consumer packaged goods (CPG) industry connect and collaborate. By offering an extensive network of over 20,000 U.S.-based manufacturers, Keychain streamlines the search and discovery proces",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "brandpix-ai",
+      "name": "Brandpix Ai",
+      "url": "https://www.brandpix.ai",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Generate product images and social media captions at scale.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "drezily",
+      "name": "Drezily",
+      "url": "https://www.drezily.com",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Drezily is an AI powered personal shopping assistant that makes search and discovery seamless with conversational and visual search. It delivers personalized, trend-driven recommendations by combining deep product knowledge with user preferences\u2014bringing together the best of Google Shopping and Stit",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "chargeblast",
+      "name": "Chargeblast",
+      "url": "https://www.chargeblast.com",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Chargeblast is the leading chargeback prevention platform leveraging AI to optimize decision-making behind which disputes to fight and which disputes to refund.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "accio",
+      "name": "Accio",
+      "url": "https://www.accio.com",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "With Accio, manufactures/ products/ suppliers/ inspirations will come to you, any time, any where.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "raventic",
+      "name": "Raventic",
+      "url": "https://www.raventic.com",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Semantic AI Product Discovery| Next-gen solutions that transform how e-commerce customers explore, find, and buy",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "topology-clothing",
+      "name": "Topology Clothing",
+      "url": "https://topologyclothing.com",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Smart T-shirts engineered for comfort, performance, and personalization.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "creatok",
+      "name": "Creatok",
+      "url": "https://www.creatok.ai",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "An AI video generation tool based on the soar2 large model, wan, seedance, veo3, nano banana, doubao and so on, specially designed for cross-border sellers, integrates multiple AI large models and is compatible with marketing scenarios on multiple platforms.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "glass-it-price-tracker",
+      "name": "Glass It Price Tracker",
+      "url": "https://glassit.co",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "description": "Get alerts for price drops and back in stock notifications, while checking the price history of online consumer goods.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "monic-ai",
+      "name": "Monic Ai",
+      "url": "https://beta.monic.ai",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "Transform textbooks into study guides, generate flashcards, and assess knowledge gaps with simulated tests.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "langotalk",
+      "name": "Langotalk",
+      "url": "https://www.langotalk.org",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "Connect with native speakers, learn at your own pace, and get personalized feedback on pronunciation, grammar, and more.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "passed-ai",
+      "name": "Passed Ai",
+      "url": "https://passed.ai/",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "Tailored study plans, progress tracking, task reminders, course material review, and support for mastering courses.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "teachermatic",
+      "name": "Teachermatic",
+      "url": "https://teachermatic.com/ref/8023",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "Automate assessments, personalize lessons, track student progress to save time and improve instruction.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "lingq",
+      "name": "Lingq",
+      "url": "https://www.lingq.com/en",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "Create personalized language lessons, engage with interactive activities, and monitor proficiency with quizzes.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "heights-platform",
+      "name": "Heights Platform",
+      "url": "https://www.heightsplatform.com",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "Create courses effortlessly, receive expert guidance, and get instant feedback using AI chat.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "podcast",
+      "name": "Podcast",
+      "url": "https://podcast.ai/",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "Explore interviews with Richard Feynman, Steve Jobs, and gain insights from inspiring figures.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "mondly",
+      "name": "Mondly",
+      "url": "https://www.mondly.com/offer/lifetime-en",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "Learn languages fast, practice speaking with Real Spoken, and immerse yourself in language and culture.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "speakpal-ai",
+      "name": "Speakpal Ai",
+      "url": "https://www.speakpal.ai",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "Chat about any topic and get instant feedback from the world's most advanced AI language model, powerd by ChatGPT technology.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "reach-best",
+      "name": "Reach Best",
+      "url": "https://reachbest.co",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "AI for researching and applying to Universities. Tens of thousands of students use Reach Best to check if a University is a good fit for you, predict your chances of admission, write your application essays, and much more.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "blobu-ai",
+      "name": "Blobu Ai",
+      "url": "https://blobu.ai",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "description": "Discover and create book summaries instantly and free.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "flick-ai-assistant",
+      "name": "Flick Ai Assistant",
+      "url": "https://www.flick.social",
+      "category": "Social Media",
+      "categories": [
+        "Social Media"
+      ],
+      "description": "Generate content ideas, write captions faster, and repurpose content in less time.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "socialbee",
+      "name": "Socialbee",
+      "url": "https://get.socialbee.io/dp44z6fta06d",
+      "category": "Social Media",
+      "categories": [
+        "Social Media"
+      ],
+      "description": "Schedule posts, find relevant content, and monitor accounts in real-time.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "zaap-ai",
+      "name": "Zaap Ai",
+      "url": "https://zaap.ai",
+      "category": "Social Media",
+      "categories": [
+        "Social Media"
+      ],
+      "description": "Customize, analyze, and launch digital experiences instantly with tailored web and mobile solutions and pre-built templates.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "tweet-hunter",
+      "name": "Tweet Hunter",
+      "url": "https://tweethunter.io",
+      "category": "Social Media",
+      "categories": [
+        "Social Media"
+      ],
+      "description": "Find and engage with relevant accounts, customize your approach with insights, and enjoy an intuitive interface.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "crawlq-ai",
+      "name": "Crawlq Ai",
+      "url": "https://app.crawlq.ai/sign-up",
+      "category": "Social Media",
+      "categories": [
+        "Social Media"
+      ],
+      "description": "Automate post writing, create campaigns, measure success, and develop customer relationships with emotionally-charged content.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "affable",
+      "name": "Affable",
+      "url": "https://www.bazaarvoice.com/products/bazaarvoice-creator-marketing",
+      "category": "Social Media",
+      "categories": [
+        "Social Media"
+      ],
+      "description": "Simplify influencer management and campaign tracking, analyze real-time metrics, and effortlessly create promotional activities.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "madgicx-for-facebook-ads",
+      "name": "Madgicx For Facebook Ads",
+      "url": "https://madgicx.com",
+      "category": "Social Media",
+      "categories": [
+        "Social Media"
+      ],
+      "description": "Automate optimization, track performance, and receive personalized advice for greater ROI.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    },
+    {
+      "id": "crowdfire-inc",
+      "name": "Crowdfire Inc",
+      "url": "https://refer.crowdfireapp.com/f6fyf2gqabhw",
+      "category": "Social Media",
+      "categories": [
+        "Social Media"
+      ],
+      "description": "Automate tasks, schedule posts, monitor analytics, and optimize content for effective audience reach.",
+      "tags": [],
+      "pricing": "Freemium",
+      "icon": "https://aitoptools.com/wp-content/uploads/2024/01/aitoptool-logo-black.png",
+      "use_cases": [],
+      "added_date": "2026-04-02"
+    }
+  ],
+  "blocked": [
+    {
+      "name": "The Ai Voice Generator",
+      "url": "https://aitoptools.com/tool/the-ai-voice-generator/",
+      "reason": "junk_name"
+    },
+    {
+      "name": "Free Videoswapface No Sign Up",
+      "url": "https://aitoptools.com/tool/free-videoswapface-no-sign-up/",
+      "reason": "junk_name"
+    },
+    {
+      "name": "Megatranscript Transform Voice Into Pure Intelligence With Advanced Ai Technology",
+      "url": "https://aitoptools.com/tool/megatranscript-transform-voice-into-pure-intelligence-with-advanced-ai-technology/",
+      "reason": "junk_name"
+    },
+    {
+      "name": "Free Youtube To Mp3 Converter",
+      "url": "https://aitoptools.com/tool/free-youtube-to-mp3-converter/",
+      "reason": "junk_name"
+    },
+    {
+      "name": "Ai Article Writer",
+      "url": "https://aitoptools.com/tool/ai-article-writer/",
+      "reason": "blocklist"
+    },
+    {
+      "name": "Vdraw Free Ai Carousel Post Generator For Social Media",
+      "url": "https://aitoptools.com/tool/vdraw-free-ai-carousel-post-generator-for-social-media/",
+      "reason": "blocklist"
+    },
+    {
+      "name": "Watermark Remover Remove Watermark From Photo Free Pokecut",
+      "url": "https://aitoptools.com/tool/watermark-remover-remove-watermark-from-photo-free-pokecut/",
+      "reason": "junk_name"
+    },
+    {
+      "name": "Research Studio",
+      "url": "https://aitoptools.com/tool/research-studio/",
+      "reason": "blocklist"
+    },
+    {
+      "name": "Paperbrain",
+      "url": "https://aitoptools.com/tool/paperbrain/",
+      "reason": "blocklist"
+    },
+    {
+      "name": "Autoblogging",
+      "url": "https://aitoptools.com/tool/autoblogging/",
+      "reason": "blocklist"
+    },
+    {
+      "name": "Neural Newsletters",
+      "url": "https://aitoptools.com/tool/neural-newsletters/",
+      "reason": "blocklist"
+    },
+    {
+      "name": "Post Affiliate Pro",
+      "url": "https://aitoptools.com/tool/post-affiliate-pro/",
+      "reason": "blocklist"
+    },
+    {
+      "name": "Postaga",
+      "url": "https://aitoptools.com/tool/postaga/",
+      "reason": "blocklist"
+    },
+    {
+      "name": "Postwise",
+      "url": "https://aitoptools.com/tool/postwise/",
+      "reason": "blocklist"
+    },
+    {
+      "name": "Aicomment 2",
+      "url": "https://aitoptools.com/tool/aicomment-2/",
+      "reason": "blocklist"
+    },
+    {
+      "name": "Postly",
+      "url": "https://aitoptools.com/tool/postly/",
+      "reason": "blocklist"
+    }
+  ]
+}

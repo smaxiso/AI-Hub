@@ -10,6 +10,7 @@ from urllib.parse import urljoin
 
 from scrapling.fetchers import Fetcher, StealthyFetcher
 from config import CATEGORY_MAP, PRICING_MAP
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -221,24 +222,71 @@ def _parse_card(card, sel, base_url, default_category, seen_slugs, tools, source
     }
 
 
-def enrich_tool_details(tool, fetcher_class=Fetcher):
-    """Visit a tool's detail page to get richer data."""
-    detail_url = tool.get('detail_url', '')
+def enrich_tool_details(tool, fetcher_class=StealthyFetcher):
+    """Visit a tool's detail page to get richer data and direct URLs."""
+    detail_url = tool.get('detail_url', tool.get('url', ''))
     if not detail_url:
         return tool
 
     try:
-        page = fetcher_class.get(detail_url)
+        # We use the fetcher to get the page content (Stealthy handles JS)
+        page = fetcher_class.fetch(detail_url, headless=True, network_idle=True)
 
-        # External website link
-        visit_links = page.css('a[href*="utm_source"], a[rel="nofollow"][target="_blank"]')
-        visit_link = _first(visit_links)
-        if visit_link:
-            ext_url = visit_link.attrib.get('href', '')
-            if ext_url and 'http' in ext_url:
-                tool['url'] = ext_url.split('?')[0]
+        ext_url = ''
+        
+        # Try CSS selectors first
+        css_selectors = [
+            'a.jet-listing-dynamic-link__link', # AITopTools
+            'a[href*="utm_source"]',
+            'a[rel="nofollow"][target="_blank"]',
+        ]
+        for sel in css_selectors:
+            links = page.css(sel)
+            link = _first(links)
+            if link:
+                href = link.attrib.get('href', '')
+                if href and href.startswith('http') and detail_url not in href:
+                    ext_url = href
+                    break
+        
+        # Fallback to XPath for text-based matching if still not found
+        if not ext_url:
+            xpath_selectors = [
+                '//a[contains(text(), "Visit")]',
+                '//a[contains(text(), "Website")]',
+                '//a[contains(text(), "Direct")]',
+            ]
+            for sel in xpath_selectors:
+                links = page.xpath(sel)
+                link = _first(links)
+                if link:
+                    href = link.attrib.get('href', '')
+                    if href and href.startswith('http') and detail_url not in href:
+                        ext_url = href
+                        break
 
-        # Fuller description from meta
+        # 2. If we found an external URL, try to resolve redirects to get the real domain
+        if ext_url:
+            # Strip UTM and other tracking junk
+            clean_url = ext_url.split('?')[0]
+            
+            # Resolve redirects (e.g. bypass thrivecart/affiliate links)
+            try:
+                # Use a real User-Agent to avoid bot blocking on redirectors
+                headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'}
+                # We follow redirects for 5 seconds max
+                resp = requests.head(clean_url, headers=headers, allow_redirects=True, timeout=5)
+                final_url = resp.url.split('?')[0].rstrip('/')
+                # If final URL is still fairly short/clean, use it
+                if len(final_url) < 150:
+                    tool['url'] = final_url
+                else:
+                    tool['url'] = clean_url
+            except Exception as e:
+                logger.debug(f'  Redirect check failed for {ext_url}: {e}')
+                tool['url'] = clean_url
+
+        # 3. Fuller description from meta/context
         desc_els = page.css('meta[name="description"]')
         desc_el = _first(desc_els)
         if desc_el:
@@ -246,14 +294,14 @@ def enrich_tool_details(tool, fetcher_class=Fetcher):
             if meta_desc and len(meta_desc) > len(tool.get('description', '')):
                 tool['description'] = meta_desc[:500]
 
-        # Icon/logo
-        if not tool.get('icon'):
-            icon_els = page.css('img[alt*="logo"], img[class*="logo"]')
+        # 4. Icon/logo refinement
+        if not tool.get('icon') or 'clearbit' in tool.get('icon', ''):
+            icon_els = page.css('img[alt*="logo"], img[class*="logo"], img[src*="logo"]')
             icon_el = _first(icon_els)
             if icon_el:
                 icon_src = icon_el.attrib.get('src', '')
-                if icon_src and icon_src.startswith('http'):
-                    tool['icon'] = icon_src
+                if icon_src:
+                    tool['icon'] = icon_src if icon_src.startswith('http') else urljoin(detail_url, icon_src)
 
     except Exception as e:
         logger.warning(f'Could not enrich {detail_url}: {e}')

@@ -187,13 +187,21 @@ def sync_tools(scraped_tools, dry_run=False):
         # Blocklist + quality check
         if is_blocked(name, url):
             audit['skipped'] += 1
-            audit['details']['skipped_tools'].append({'name': name, 'reason': 'blocklist'})
+            audit['details']['skipped_tools'].append({
+                'name': name, 
+                'url': url,
+                'reason': 'blocklist'
+            })
             logger.debug(f'  Blocked: {name}')
             continue
 
         if is_junk_name(name):
             audit['skipped'] += 1
-            audit['details']['skipped_tools'].append({'name': name, 'reason': 'junk_name'})
+            audit['details']['skipped_tools'].append({
+                'name': name, 
+                'url': url,
+                'reason': 'junk_name'
+            })
             logger.debug(f'  Junk name: {name}')
             continue
 
@@ -270,9 +278,8 @@ def sync_tools(scraped_tools, dry_run=False):
     if dry_run:
         for t in new_tools:
             logger.info(f'  Would insert: {t["name"]} [{t["category"]}] — {t["url"]}')
-            audit['details']['new_tools'].append({
-                'name': t['name'], 'category': t['category'], 'url': t['url'],
-            })
+            # Keep full record for downstream enrichment passes
+            audit['details']['new_tools'].append(t)
         audit['inserted'] = len(new_tools)
         return audit
 
@@ -315,9 +322,48 @@ def save_scrape_report(audit, scraped_count, filename='last_scrape_report.json')
         'unchanged': audit['unchanged'],
         'skipped': audit['skipped'],
         'errors': audit['errors'],
-        'new_tools': audit['details']['new_tools'][:100],
-        'updated_tools': audit['details']['updated_tools'][:100],
+        'new_tools': audit['details']['new_tools'],
+        'updated_tools': audit['details']['updated_tools'],
+        'skipped_tools': audit['details'].get('skipped_tools', []),
     }
     with open(filename, 'w') as f:
         json.dump(report, f, indent=2)
     logger.info(f'Report saved to {filename}')
+
+
+if __name__ == '__main__':
+    import argparse
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+
+    parser = argparse.ArgumentParser(description='Sync vetted tools to Supabase.')
+    parser.add_argument('--commit', action='store_true', help='Actually commit changes to DB')
+    parser.add_argument('--file', default='vetted_candidates.json', help='JSON file to sync')
+    args = parser.parse_args()
+
+    if not os.path.exists(args.file):
+        logger.error(f"File not found: {args.file}")
+        exit(1)
+
+    with open(args.file, 'r') as f:
+        data = json.load(f)
+        tools = data.get('candidates', [])
+
+    if not tools:
+        logger.warning("No tools found in candidates list.")
+        exit(0)
+
+    logger.info(f"Starting sync of {len(tools)} tools (dry_run={'False' if args.commit else 'True'})...")
+    
+    # We always audit, but only commit if --commit is passed
+    audit_results = sync_tools(tools, dry_run=not args.commit)
+    save_scrape_report(audit_results, len(tools))
+
+    print("\n--- SYNC SUMMARY ---")
+    print(f"  Inserted: {audit_results['inserted']}")
+    print(f"  Updated:  {audit_results['updated']}")
+    print(f"  Unchanged: {audit_results['unchanged']}")
+    print(f"  Skipped:   {audit_results['skipped']}")
+    print(f"  Errors:    {len(audit_results['errors'])}")
+    
+    if not args.commit:
+        print("\n[DRY RUN] No changes were committed. Use --commit to sync.")
