@@ -26,6 +26,7 @@ import PublicSignup from './pages/auth/Signup';
 import PublicProfile from './pages/auth/Profile';
 import PublicForgotPassword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
+import BottomNav from './components/BottomNav';
 
 function App() {
     return (
@@ -114,6 +115,7 @@ function App() {
                         {/* Catch all - redirect to home */}
                         <Route path="*" element={<Home />} />
                     </Routes>
+                    <BottomNav />
                 </BrowserRouter>
             </ThemeProvider>
         </AuthProvider>

@@ -296,12 +296,14 @@ def enrich_tool_details(tool, fetcher_class=StealthyFetcher):
 
         # 4. Icon/logo refinement
         if not tool.get('icon') or 'clearbit' in tool.get('icon', ''):
+            # Scope to main content if possible, or filter out known generic site logos
             icon_els = page.css('img[alt*="logo"], img[class*="logo"], img[src*="logo"]')
-            icon_el = _first(icon_els)
-            if icon_el:
+            for icon_el in icon_els:
                 icon_src = icon_el.attrib.get('src', '')
-                if icon_src:
+                # Filter out the generic AITopTools site logo and common header logos
+                if icon_src and 'aitoptool-logo' not in icon_src and 'site-logo' not in icon_src:
                     tool['icon'] = icon_src if icon_src.startswith('http') else urljoin(detail_url, icon_src)
+                    break
 
     except Exception as e:
         logger.warning(f'Could not enrich {detail_url}: {e}')

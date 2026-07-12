@@ -31,3 +31,6 @@ venv/
 scraper/.env
 scraper/last_scrape_report.json
 scraper/*.db
+
+# Local files
+print_project_outputs/

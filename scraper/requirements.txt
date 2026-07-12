@@ -3,3 +3,6 @@ supabase
 python-dotenv
 requests
 pytrends
+pydantic
+google-genai
+instructor

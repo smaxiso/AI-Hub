@@ -1,0 +1,664 @@
+{
+  "timestamp": "2026-07-12T08:45:56.131696+00:00",
+  "total_scraped": 131,
+  "total_classified": 131,
+  "total_inserted": 127,
+  "total_updated": 2,
+  "total_skipped": 0,
+  "total_errors": 0,
+  "new_tools": [
+    {
+      "name": "Google Ai",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Ai Tools",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Claude Ai",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Claude Ai Tool",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Ai Writing Tool",
+      "category": "Writing",
+      "url": ""
+    },
+    {
+      "name": "Chai App",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Chai",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Chai Ai App",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Chai Ai",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Google Ai App",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Ai Apps",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Ai Chat",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Claude Ai App",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Open Ai",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Ai Image Generator",
+      "category": "Image",
+      "url": ""
+    },
+    {
+      "name": "Image Generator",
+      "category": "Image",
+      "url": ""
+    },
+    {
+      "name": "Ai Video Generator",
+      "category": "Video",
+      "url": ""
+    },
+    {
+      "name": "Ai Video",
+      "category": "Coding",
+      "url": ""
+    },
+    {
+      "name": "Image Generator Ai Free",
+      "category": "Image",
+      "url": ""
+    },
+    {
+      "name": "Ai Photo Generator",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Ai Text Generator",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Google Ai Assistant",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Ai Assistant App",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Ai Assistant Free",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Ai Coding Assistant",
+      "category": "Coding",
+      "url": ""
+    },
+    {
+      "name": "Ai Research Assistant",
+      "category": "Research",
+      "url": ""
+    },
+    {
+      "name": "Agent In Ai",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Ai Coding Agent",
+      "category": "Coding",
+      "url": ""
+    },
+    {
+      "name": "Google Ai Agent",
+      "category": "Agent",
+      "url": ""
+    },
+    {
+      "name": "Ai Agents",
+      "category": "Agent",
+      "url": ""
+    },
+    {
+      "name": "Ai Agent Platform",
+      "category": "Agent",
+      "url": ""
+    },
+    {
+      "name": "Openai",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "Hermes Agent Ai",
+      "category": "Chat",
+      "url": ""
+    },
+    {
+      "name": "ChatGPT",
+      "category": "Chat",
+      "url": "https://chatgpt.com/"
+    },
+    {
+      "name": "Claude",
+      "category": "Chat",
+      "url": "https://claude.ai/"
+    },
+    {
+      "name": "Perplexity",
+      "category": "Chat",
+      "url": "https://www.futurepedia.io/tool/perplexity-ai"
+    },
+    {
+      "name": "Merlin",
+      "category": "Chat",
+      "url": "https://merlin.foyer.work/"
+    },
+    {
+      "name": "DALL\u00b7E 3",
+      "category": "Image",
+      "url": "https://openai.com/dall-e-3"
+    },
+    {
+      "name": "Midjourney",
+      "category": "Image",
+      "url": "https://www.midjourney.com/home/"
+    },
+    {
+      "name": "Craiyon",
+      "category": "Image",
+      "url": "https://www.craiyon.com/"
+    },
+    {
+      "name": "Canva Text to Image",
+      "category": "Image",
+      "url": "https://www.canva.com/your-apps/text-to-image"
+    },
+    {
+      "name": "Leonardo AI",
+      "category": "Image",
+      "url": "https://www.futurepedia.io/tool/leonardoai"
+    },
+    {
+      "name": "Luminar Neo",
+      "category": "Image",
+      "url": "https://www.futurepedia.io/tool/luminar-neo"
+    },
+    {
+      "name": "Playground AI",
+      "category": "Image",
+      "url": "https://playgroundai.com/"
+    },
+    {
+      "name": "Fliki",
+      "category": "Video",
+      "url": "https://www.futurepedia.io/tool/fliki"
+    },
+    {
+      "name": "Hour One",
+      "category": "Video",
+      "url": "https://hourone.ai/"
+    },
+    {
+      "name": "Wuri",
+      "category": "Video",
+      "url": "https://www.wuri.ai/"
+    },
+    {
+      "name": "WellSaid",
+      "category": "Audio",
+      "url": "https://wellsaidlabs.com/"
+    },
+    {
+      "name": "Respeecher",
+      "category": "Audio",
+      "url": "https://respeecher.com/"
+    },
+    {
+      "name": "Excel Formula Bot",
+      "category": "Coding",
+      "url": "https://excelformulabot.com/"
+    },
+    {
+      "name": "AgentVerse",
+      "category": "Agent",
+      "url": "https://agentverse.ai/"
+    },
+    {
+      "name": "Softr",
+      "category": "Agent",
+      "url": "https://www.futurepedia.io/tool/softr"
+    },
+    {
+      "name": "TwitterBio",
+      "category": "Writing",
+      "url": "https://www.twitterbio.com/"
+    },
+    {
+      "name": "Looka",
+      "category": "Design",
+      "url": "https://www.futurepedia.io/tool/looka"
+    },
+    {
+      "name": "NightCafe Studio",
+      "category": "Design",
+      "url": "https://creator.nightcafe.studio/"
+    },
+    {
+      "name": "Consensus",
+      "category": "Productivity",
+      "url": "https://consensus.app/"
+    },
+    {
+      "name": "Scite",
+      "category": "Productivity",
+      "url": "https://www.scite.ai/"
+    },
+    {
+      "name": "MarketAlerts.ai",
+      "category": "Research",
+      "url": "https://www.marketalerts.com/"
+    },
+    {
+      "name": "HubSpot AEO",
+      "category": "Business",
+      "url": "https://www.hubspot.com/products/aeo"
+    },
+    {
+      "name": "Voxwave AI",
+      "category": "Productivity",
+      "url": "https://www.voxwaveai.com/"
+    },
+    {
+      "name": "Candy Ai",
+      "category": "Chat",
+      "url": "https://aitoptools.com/tool/candy-ai/"
+    },
+    {
+      "name": "Dante Ai",
+      "category": "Chat",
+      "url": "https://aitoptools.com/tool/dante-ai/"
+    },
+    {
+      "name": "Whatso Ai Chatbot",
+      "category": "Chat",
+      "url": "https://aitoptools.com/tool/whatso-ai-chatbot/"
+    },
+    {
+      "name": "Seduced Ai When Porn Isnt Enough",
+      "category": "Image",
+      "url": "https://aitoptools.com/tool/seduced-ai-when-porn-isnt-enough/"
+    },
+    {
+      "name": "Ainudez",
+      "category": "Image",
+      "url": "https://aitoptools.com/tool/ainudez/"
+    },
+    {
+      "name": "Draw3D",
+      "category": "Image",
+      "url": "https://aitoptools.com/tool/draw3d/"
+    },
+    {
+      "name": "Undress Vip",
+      "category": "Image",
+      "url": "https://aitoptools.com/tool/undress-vip/"
+    },
+    {
+      "name": "Hitpaw Online Ai Watermark Remover",
+      "category": "Image",
+      "url": "https://aitoptools.com/tool/hitpaw-online-ai-watermark-remover/"
+    },
+    {
+      "name": "Luminar Neo Ai",
+      "category": "Image",
+      "url": "https://aitoptools.com/tool/luminar-neo-ai/"
+    },
+    {
+      "name": "Cartoonize",
+      "category": "Image",
+      "url": "https://aitoptools.com/tool/cartoonize/"
+    },
+    {
+      "name": "Genexpert",
+      "category": "Image",
+      "url": "https://aitoptools.com/tool/genexpert/"
+    },
+    {
+      "name": "Coloromo Ai Art Generator",
+      "category": "Image",
+      "url": "https://aitoptools.com/tool/coloromo-ai-art-generator/"
+    },
+    {
+      "name": "Clip Paint Studio",
+      "category": "Image",
+      "url": "https://aitoptools.com/tool/clip-paint-studio/"
+    },
+    {
+      "name": "Vidu Ai Video Generator",
+      "category": "Video",
+      "url": "https://aitoptools.com/tool/vidu-ai-video-generator/"
+    },
+    {
+      "name": "Pipio",
+      "category": "Video",
+      "url": "https://aitoptools.com/tool/pipio/"
+    },
+    {
+      "name": "60Sec Site",
+      "category": "Video",
+      "url": "https://aitoptools.com/tool/60sec-site/"
+    },
+    {
+      "name": "Flexclip",
+      "category": "Video",
+      "url": "https://aitoptools.com/tool/flexclip/"
+    },
+    {
+      "name": "Promo Com",
+      "category": "Video",
+      "url": "https://aitoptools.com/tool/promo-com/"
+    },
+    {
+      "name": "Image To Image Video Ai",
+      "category": "Audio",
+      "url": "https://aitoptools.com/tool/image-to-image-video-ai/"
+    },
+    {
+      "name": "Aicoustics",
+      "category": "Audio",
+      "url": "https://aitoptools.com/tool/aicoustics/"
+    },
+    {
+      "name": "Soniq",
+      "category": "Audio",
+      "url": "https://aitoptools.com/tool/soniq/"
+    },
+    {
+      "name": "Singify Vocal Remover",
+      "category": "Audio",
+      "url": "https://aitoptools.com/tool/singify-vocal-remover/"
+    },
+    {
+      "name": "Altered",
+      "category": "Audio",
+      "url": "https://aitoptools.com/tool/altered/"
+    },
+    {
+      "name": "Lalal Ai",
+      "category": "Audio",
+      "url": "https://aitoptools.com/tool/lalal-ai/"
+    },
+    {
+      "name": "Google Colab Copilot",
+      "category": "Coding",
+      "url": "https://aitoptools.com/tool/google-colab-copilot/"
+    },
+    {
+      "name": "Mindstudio",
+      "category": "Coding",
+      "url": "https://aitoptools.com/tool/mindstudio/"
+    },
+    {
+      "name": "Replit",
+      "category": "Coding",
+      "url": "https://aitoptools.com/tool/replit/"
+    },
+    {
+      "name": "Copilot",
+      "category": "Coding",
+      "url": "https://aitoptools.com/tool/copilot/"
+    },
+    {
+      "name": "Programminghelper",
+      "category": "Coding",
+      "url": "https://aitoptools.com/tool/programminghelper/"
+    },
+    {
+      "name": "Amazon Codewhisperer",
+      "category": "Coding",
+      "url": "https://aitoptools.com/tool/amazon-codewhisperer/"
+    },
+    {
+      "name": "Adcrafter",
+      "category": "Agent",
+      "url": "https://aitoptools.com/tool/adcrafter/"
+    },
+    {
+      "name": "Subbly",
+      "category": "Agent",
+      "url": "https://aitoptools.com/tool/subbly/"
+    },
+    {
+      "name": "Qa Tech",
+      "category": "Agent",
+      "url": "https://aitoptools.com/tool/qa-tech/"
+    },
+    {
+      "name": "Copyleaks",
+      "category": "Writing",
+      "url": "https://aitoptools.com/tool/copyleaks/"
+    },
+    {
+      "name": "Linguix",
+      "category": "Writing",
+      "url": "https://aitoptools.com/tool/linguix/"
+    },
+    {
+      "name": "Nando Ai",
+      "category": "Writing",
+      "url": "https://aitoptools.com/tool/nando-ai/"
+    },
+    {
+      "name": "Creativai",
+      "category": "Writing",
+      "url": "https://aitoptools.com/tool/creativai/"
+    },
+    {
+      "name": "Outranking",
+      "category": "Writing",
+      "url": "https://aitoptools.com/tool/outranking/"
+    },
+    {
+      "name": "Viral Launch Testimonials Generator",
+      "category": "Writing",
+      "url": "https://aitoptools.com/tool/viral-launch-testimonials-generator/"
+    },
+    {
+      "name": "Bash",
+      "category": "Writing",
+      "url": "https://aitoptools.com/tool/bash/"
+    },
+    {
+      "name": "Heyy Ai",
+      "category": "Writing",
+      "url": "https://aitoptools.com/tool/heyy-ai/"
+    },
+    {
+      "name": "Multilings",
+      "category": "Writing",
+      "url": "https://aitoptools.com/tool/multilings/"
+    },
+    {
+      "name": "Ugc Maker",
+      "category": "Design",
+      "url": "https://aitoptools.com/tool/ugc-maker/"
+    },
+    {
+      "name": "Decoritt",
+      "category": "Design",
+      "url": "https://aitoptools.com/tool/decoritt/"
+    },
+    {
+      "name": "Imggood",
+      "category": "Design",
+      "url": "https://aitoptools.com/tool/imggood/"
+    },
+    {
+      "name": "Ai Clothes Changer Picsman",
+      "category": "Design",
+      "url": "https://aitoptools.com/tool/ai-clothes-changer-picsman/"
+    },
+    {
+      "name": "Namecheap Logo Maker",
+      "category": "Design",
+      "url": "https://aitoptools.com/tool/namecheap-logo-maker/"
+    },
+    {
+      "name": "Zoviz",
+      "category": "Design",
+      "url": "https://aitoptools.com/tool/zoviz/"
+    },
+    {
+      "name": "Designevo",
+      "category": "Design",
+      "url": "https://aitoptools.com/tool/designevo/"
+    },
+    {
+      "name": "Turbologo",
+      "category": "Design",
+      "url": "https://aitoptools.com/tool/turbologo/"
+    },
+    {
+      "name": "Anylogogenerator",
+      "category": "Design",
+      "url": "https://aitoptools.com/tool/anylogogenerator/"
+    },
+    {
+      "name": "Galactica",
+      "category": "Research",
+      "url": "https://aitoptools.com/tool/galactica/"
+    },
+    {
+      "name": "Scispace",
+      "category": "Research",
+      "url": "https://aitoptools.com/tool/scispace/"
+    },
+    {
+      "name": "Laion",
+      "category": "Research",
+      "url": "https://aitoptools.com/tool/laion/"
+    },
+    {
+      "name": "Geofide Ai",
+      "category": "Research",
+      "url": "https://aitoptools.com/tool/geofide-ai/"
+    },
+    {
+      "name": "Webceo",
+      "category": "Research",
+      "url": "https://aitoptools.com/tool/webceo/"
+    },
+    {
+      "name": "Floor Plan Ai",
+      "category": "3D",
+      "url": "https://aitoptools.com/tool/floor-plan-ai/"
+    },
+    {
+      "name": "Character Ai",
+      "category": "3D",
+      "url": "https://aitoptools.com/tool/character-ai/"
+    },
+    {
+      "name": "G3Dai Jedi",
+      "category": "3D",
+      "url": "https://aitoptools.com/tool/g3dai-jedi/"
+    },
+    {
+      "name": "Mirageml",
+      "category": "3D",
+      "url": "https://aitoptools.com/tool/mirageml/"
+    },
+    {
+      "name": "Articos",
+      "category": "Business",
+      "url": "https://aitoptools.com/tool/articos/"
+    },
+    {
+      "name": "Abtesting Ai",
+      "category": "Business",
+      "url": "https://aitoptools.com/tool/abtesting-ai/"
+    },
+    {
+      "name": "Get Listed On 100 Directories",
+      "category": "Business",
+      "url": "https://aitoptools.com/tool/get-listed-on-100-directories/"
+    },
+    {
+      "name": "Stadio Ai",
+      "category": "Business",
+      "url": "https://aitoptools.com/tool/stadio-ai/"
+    },
+    {
+      "name": "Podcast",
+      "category": "Education",
+      "url": "https://aitoptools.com/tool/podcast/"
+    },
+    {
+      "name": "Mondly",
+      "category": "Education",
+      "url": "https://aitoptools.com/tool/mondly/"
+    },
+    {
+      "name": "Crowdfire Inc",
+      "category": "Social Media",
+      "url": "https://aitoptools.com/tool/crowdfire-inc/"
+    }
+  ],
+  "updated_tools": [
+    {
+      "name": "Scite",
+      "id": "scite",
+      "fields": [
+        "categories"
+      ]
+    },
+    {
+      "name": "Consensus",
+      "id": "consensus",
+      "fields": [
+        "categories"
+      ]
+    }
+  ],
+  "rejected_tools": [],
+  "errors": []
+}

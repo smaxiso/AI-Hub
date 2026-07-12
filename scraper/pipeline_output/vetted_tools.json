@@ -1,0 +1,2696 @@
+{
+  "vetted": [
+    {
+      "name": "Google Ai",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=google+ai",
+      "description": "Top search trend: \"google ai\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"google ai\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Tools",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+tools",
+      "description": "Top search trend: \"ai tools\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai tools\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Claude Ai",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=claude+ai",
+      "description": "Top search trend: \"claude ai\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"claude ai\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Claude Ai Tool",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=claude+ai+tool",
+      "description": "Top search trend: \"claude ai tool\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"claude ai tool\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Writing Tool",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+writing+tool",
+      "description": "Top search trend: \"ai writing tool\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai writing tool\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Chai App",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=chai+app",
+      "description": "Rising search trend: \"chai app\" \u2014 trending AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "rising"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Rising search trend: \"chai app\" \u2014 trending AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Chai",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=chai",
+      "description": "Rising search trend: \"chai\" \u2014 trending AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "rising"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Rising search trend: \"chai\" \u2014 trending AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Chai Ai App",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=chai+ai+app",
+      "description": "Rising search trend: \"chai ai app\" \u2014 trending AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "rising"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Rising search trend: \"chai ai app\" \u2014 trending AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Chai Ai",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=chai+ai",
+      "description": "Rising search trend: \"chai ai\" \u2014 trending AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "rising"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Rising search trend: \"chai ai\" \u2014 trending AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Google Ai App",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=google+ai+app",
+      "description": "Top search trend: \"google ai app\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"google ai app\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Apps",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+apps",
+      "description": "Top search trend: \"ai apps\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai apps\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Chat",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+chat",
+      "description": "Top search trend: \"ai chat\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai chat\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Claude Ai App",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=claude+ai+app",
+      "description": "Top search trend: \"claude ai app\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"claude ai app\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Open Ai",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=open+ai",
+      "description": "Top search trend: \"open ai\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"open ai\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Image Generator",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+image+generator",
+      "description": "Top search trend: \"ai image generator\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai image generator\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Image Generator",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=image+generator",
+      "description": "Top search trend: \"image generator\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"image generator\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Video Generator",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+video+generator",
+      "description": "Top search trend: \"ai video generator\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai video generator\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Video",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+video",
+      "description": "Top search trend: \"ai video\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai video\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Image Generator Ai Free",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=image+generator+ai+free",
+      "description": "Top search trend: \"image generator ai free\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"image generator ai free\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Photo Generator",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+photo+generator",
+      "description": "Top search trend: \"ai photo generator\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai photo generator\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Text Generator",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+text+generator",
+      "description": "Top search trend: \"ai text generator\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai text generator\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Google Ai Assistant",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=google+ai+assistant",
+      "description": "Top search trend: \"google ai assistant\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"google ai assistant\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Assistant App",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+assistant+app",
+      "description": "Top search trend: \"ai assistant app\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai assistant app\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Assistant Free",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+assistant+free",
+      "description": "Top search trend: \"ai assistant free\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai assistant free\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Coding Assistant",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+coding+assistant",
+      "description": "Top search trend: \"ai coding assistant\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai coding assistant\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Research Assistant",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+research+assistant",
+      "description": "Top search trend: \"ai research assistant\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai research assistant\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Agent In Ai",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=agent+in+ai",
+      "description": "Top search trend: \"agent in ai\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"agent in ai\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Coding Agent",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+coding+agent",
+      "description": "Top search trend: \"ai coding agent\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai coding agent\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Google Ai Agent",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=google+ai+agent",
+      "description": "Top search trend: \"google ai agent\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"google ai agent\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Agents",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+agents",
+      "description": "Top search trend: \"ai agents\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai agents\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Agent Platform",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=ai+agent+platform",
+      "description": "Top search trend: \"ai agent platform\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"ai agent platform\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Openai",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=openai",
+      "description": "Top search trend: \"openai\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"openai\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Hermes Agent Ai",
+      "url": "",
+      "detail_url": "https://www.google.com/search?q=hermes+agent+ai",
+      "description": "Top search trend: \"hermes agent ai\" \u2014 popular AI tool or service.",
+      "source": "google-trends",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "google-trends",
+        "top"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Top search trend: \"hermes agent ai\" \u2014 popular AI tool or service...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "ChatGPT",
+      "url": "https://chatgpt.com/",
+      "detail_url": "https://www.futurepedia.io/tool/chatgpt",
+      "description": "Research, create, and automate tasks with the leader in AI.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/2026-02-26T19-07-07.117Z-eFsSmR_y6bJz2m0O2KWwd36sXayyLnmE2.png?w=256",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "ai chatbots",
+        "research",
+        "ai agents"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Research, create, and automate tasks with the leader in AI...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Claude",
+      "url": "https://claude.ai/",
+      "detail_url": "https://www.futurepedia.io/tool/claude",
+      "description": "Create, analyze, and debug content and code faster.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/b6e50f0d7a55b834bbbc47f7baa3069472eef4b2-512x512.png?w=256",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "ai chatbots",
+        "code assistant",
+        "research"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Create, analyze, and debug content and code faster...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Perplexity",
+      "url": "https://www.futurepedia.io/tool/perplexity-ai",
+      "detail_url": "https://www.futurepedia.io/tool/perplexity-ai",
+      "description": "Find and summarize trusted web information instantly.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/a453a2e62c4074b53ee009ee907a63180f0a3629-512x512.png?w=256",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "ai chatbots",
+        "research",
+        "summarizer"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Find and summarize trusted web information instantly...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Merlin",
+      "url": "https://merlin.foyer.work/",
+      "detail_url": "https://www.futurepedia.io/tool/merlin",
+      "description": "Enhance web productivity with AI: write, summarize, code, translate effortlessly.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/19e8972b77a8ca40da2a23f24c69a555303175f1-48x48.svg?w=256",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [
+        "ai chatbots",
+        "email assistant",
+        "summarizer"
+      ],
+      "pricing": "Free",
+      "use_cases": [
+        "Enhance web productivity with AI: write, summarize, code, translate effortlessly...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "DALL\u00b7E 3",
+      "url": "https://openai.com/dall-e-3",
+      "detail_url": "https://www.futurepedia.io/tool/dall-e-3",
+      "description": "Generate stunning images from text with advanced AI technology.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/80a93a4690aeaa0bb0f4a7c5908350cd2fff10c8-100x100.svg?w=256",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [
+        "text to image",
+        "image generators",
+        "design generators"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Generate stunning images from text with advanced AI technology...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Midjourney",
+      "url": "https://www.midjourney.com/home/",
+      "detail_url": "https://www.futurepedia.io/tool/midjourney",
+      "description": "Unlock true digital artistry.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/f702c770ef67944ddac65e3b684db5bbc9792ab0-180x180.svg?w=256",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [
+        "text to image",
+        "image editing",
+        "video generators"
+      ],
+      "pricing": "Paid",
+      "use_cases": [
+        "Unlock true digital artistry...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Craiyon",
+      "url": "https://www.craiyon.com/",
+      "detail_url": "https://www.futurepedia.io/tool/craiyon",
+      "description": "Transforms text into vivid, diverse artistic images.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/61b8ec2e59f6fd8a58e4ac8431acfb1fdca78490-512x512.svg?w=256",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [
+        "cartoon generators",
+        "text to image",
+        "fun tools"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Transforms text into vivid, diverse artistic images...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Canva Text to Image",
+      "url": "https://www.canva.com/your-apps/text-to-image",
+      "detail_url": "https://www.futurepedia.io/tool/canva-text-to-image",
+      "description": "Transform text into stunning visuals effortlessly with AI-powered creativity.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/792d60a03bd6f9153ac486ac3e7819a0172e9bf7-128x128.png?w=256",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [
+        "text to image",
+        "marketing",
+        "design generators"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Transform text into stunning visuals effortlessly with AI-powered creativity...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Leonardo AI",
+      "url": "https://www.futurepedia.io/tool/leonardoai",
+      "detail_url": "https://www.futurepedia.io/tool/leonardoai",
+      "description": "Generate stunning, customizable artwork with AI.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/8c928e9ebca99cab412fbb34dcaf7f830ba5b534-192x192.svg?w=256",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [
+        "3d",
+        "text to image",
+        "video generators"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Generate stunning, customizable artwork with AI...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Luminar Neo",
+      "url": "https://www.futurepedia.io/tool/luminar-neo",
+      "detail_url": "https://www.futurepedia.io/tool/luminar-neo",
+      "description": "Revolutionize photo editing with AI-driven, user-friendly tools.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/2026-02-26T19-04-45.866Z-BVdBq7nxR_o81w9pD4dLiUVDQauA_Mq78.png?w=256",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [
+        "image editing",
+        "design generators"
+      ],
+      "pricing": "Paid",
+      "use_cases": [
+        "Revolutionize photo editing with AI-driven, user-friendly tools...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Playground AI",
+      "url": "https://playgroundai.com/",
+      "detail_url": "https://www.futurepedia.io/tool/playground-ai",
+      "description": "Unleash creativity with AI-driven image creation and intuitive editing.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/e133ca2c31bf6def28a6229855bc2cc37d3182be-48x48.svg?w=256",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [
+        "image generators",
+        "design generators",
+        "image editing"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Unleash creativity with AI-driven image creation and intuitive editing...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Fliki",
+      "url": "https://www.futurepedia.io/tool/fliki",
+      "detail_url": "https://www.futurepedia.io/tool/fliki",
+      "description": "Transform text into captivating videos with lifelike AI voiceovers.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/92768ebade3bede69b24b513983ebaf5173e6796-180x180.svg?w=256",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "tags": [
+        "video generators",
+        "text to speech",
+        "audio editing"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Transform text into captivating videos with lifelike AI voiceovers...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Hour One",
+      "url": "https://hourone.ai/",
+      "detail_url": "https://www.futurepedia.io/tool/hourone",
+      "description": "Create, manage, and streamline cinematic AI avatar videos with text-to-video generator technology",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/9212b273295c465d8002026d34a238c667777de9-32x32.svg?w=256",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "tags": [
+        "video generators",
+        "video enhancer",
+        "text to video"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Create, manage, and streamline cinematic AI avatar videos with text-to-video generator technology..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Wuri",
+      "url": "https://www.wuri.ai/",
+      "detail_url": "https://www.futurepedia.io/tool/wuri",
+      "description": "Effortlessly create engaging videos with AI avatars.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/2025-03-11T15-48-34.274Z-Kk6Ab8GF9LAZWKd9u52einZI2SWINwNS3.blob?w=256",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "tags": [
+        "video editing",
+        "video generators",
+        "avatars"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Effortlessly create engaging videos with AI avatars...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "WellSaid",
+      "url": "https://wellsaidlabs.com/",
+      "detail_url": "https://www.futurepedia.io/tool/wellsaid",
+      "description": "Transform text into lifelike, customizable spoken audio.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/0702d5cf4222acd3d20a5c55864b92e6eeb80962-128x128.png?w=256",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "tags": [
+        "text to speech",
+        "audio editing",
+        "education"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Transform text into lifelike, customizable spoken audio...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Respeecher",
+      "url": "https://respeecher.com/",
+      "detail_url": "https://www.futurepedia.io/tool/respeecher",
+      "description": "Transform voices authentically across industries with ethical AI technology.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/2e440cd11ac733d09cb49d377207d11ad581c2e6-128x128.png?w=256",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "tags": [
+        "audio editing",
+        "music",
+        "text to speech"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Transform voices authentically across industries with ethical AI technology...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Excel Formula Bot",
+      "url": "https://excelformulabot.com/",
+      "detail_url": "https://www.futurepedia.io/tool/excel-formula-bot",
+      "description": "Generate Excel formulas from natural language effortlessly.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/cf7320b0f714615b943bc3d11e295469748fb8d7-48x48.svg?w=256",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "tags": [
+        "spreadsheets",
+        "code assistant",
+        "personal assistant"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Generate Excel formulas from natural language effortlessly...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "AgentVerse",
+      "url": "https://agentverse.ai/",
+      "detail_url": "https://www.futurepedia.io/tool/agentverse",
+      "description": "Explore, create, manage AI agents effortlessly; enhance efficiency, cut costs.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/d51b59d823260862545b892f9c8bf663d88637cb-32x32.png?w=256",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "tags": [
+        "ai agents",
+        "workflows",
+        "startup tools"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Explore, create, manage AI agents effortlessly; enhance efficiency, cut costs...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Softr",
+      "url": "https://www.futurepedia.io/tool/softr",
+      "detail_url": "https://www.futurepedia.io/tool/softr",
+      "description": "Build custom business apps from your data using AI.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/acc52a3df354b6abd615d9f68652c6c1c72e752b-128x128.png?w=256",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "tags": [
+        "low-code/no-code",
+        "workflows",
+        "ai agents"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Build custom business apps from your data using AI...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "TwitterBio",
+      "url": "https://www.twitterbio.com/",
+      "detail_url": "https://www.futurepedia.io/tool/twitterbio",
+      "description": "Revamp your Twitter bio with AI-driven, personalized flair.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/351909967d5876b21a216b8f5881c6cd233ba25f-500x500.svg?w=256",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [
+        "social media",
+        "ai chatbots",
+        "writing generators"
+      ],
+      "pricing": "Free",
+      "use_cases": [
+        "Revamp your Twitter bio with AI-driven, personalized flair...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Looka",
+      "url": "https://www.futurepedia.io/tool/looka",
+      "detail_url": "https://www.futurepedia.io/tool/looka",
+      "description": "AI-driven branding: logos, websites, and full identity kits.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/3d62686fb5d09369dcd88b6d885519970c3e7a51-128x128.png?w=256",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [
+        "logo generator",
+        "design generators"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "AI-driven branding: logos, websites, and full identity kits...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "NightCafe Studio",
+      "url": "https://creator.nightcafe.studio/",
+      "detail_url": "https://www.futurepedia.io/tool/nightcafe-studio",
+      "description": "Unleash AI-driven art creation, no skills required, endless styles.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/2bedd007c65813f04191bd29eff275f8255176e0-256x256.svg?w=256",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [
+        "image generators",
+        "design generators"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Unleash AI-driven art creation, no skills required, endless styles...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Consensus",
+      "url": "https://consensus.app/",
+      "detail_url": "https://www.futurepedia.io/tool/consensus",
+      "description": "Unlock expert knowledge: AI-powered, ad-free research from 200M+ scientific papers.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/94c4d94e165a5ab075cbfee8111e929fdaa5a2e8-128x128.png?w=256",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "tags": [
+        "research",
+        "search engine",
+        "education"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Unlock expert knowledge: AI-powered, ad-free research from 200M+ scientific papers...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Scite",
+      "url": "https://www.scite.ai/",
+      "detail_url": "https://www.futurepedia.io/tool/scite",
+      "description": "Transform research with AI-driven Smart Citations and deep insights.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/ab85858c0ab66b901f0f3d2cf4e3dc2e1c9fa2fa-128x128.png?w=256",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "tags": [
+        "research",
+        "education"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Transform research with AI-driven Smart Citations and deep insights...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "MarketAlerts.ai",
+      "url": "https://www.marketalerts.com/",
+      "detail_url": "https://www.futurepedia.io/tool/marketalerts-ai",
+      "description": "AI-powered tool delivers real-time market alerts and insights.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/2026-02-26T18-58-57.135Z-7j_P97R4ZY0iL3iIAoAH9aRfrMw8vEYtB.png?w=256",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "tags": [
+        "finance",
+        "stock trading",
+        "research"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "AI-powered tool delivers real-time market alerts and insights...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "HubSpot AEO",
+      "url": "https://www.hubspot.com/products/aeo",
+      "detail_url": "https://www.futurepedia.io/tool/hubspot-aeo",
+      "description": "See and improve how AI recommends your brand.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/2026-05-13T17-01-03.438Z-jV6d8E5RIawE8Wvc4f9uML4UMuapDsZgP.png?w=256",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "tags": [
+        "seo",
+        "marketing"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "See and improve how AI recommends your brand...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Voxwave AI",
+      "url": "https://www.voxwaveai.com/",
+      "detail_url": "https://www.futurepedia.io/tool/voxwave-ai",
+      "description": "Transform email campaigns with personalized AI voice cloning and analytics.",
+      "source": "futurepedia",
+      "icon": "https://cdn2.futurepedia.io/45069a1b155dde52944003520eb7da59b2a841f6-144x144.svg?w=256",
+      "category": "Productivity",
+      "categories": [
+        "Productivity"
+      ],
+      "tags": [
+        "marketing",
+        "email assistant",
+        "sales assistant"
+      ],
+      "pricing": "Freemium",
+      "use_cases": [
+        "Transform email campaigns with personalized AI voice cloning and analytics...."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Candy Ai",
+      "url": "https://aitoptools.com/tool/candy-ai/",
+      "detail_url": "https://aitoptools.com/tool/candy-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Dante Ai",
+      "url": "https://aitoptools.com/tool/dante-ai/",
+      "detail_url": "https://aitoptools.com/tool/dante-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Whatso Ai Chatbot",
+      "url": "https://aitoptools.com/tool/whatso-ai-chatbot/",
+      "detail_url": "https://aitoptools.com/tool/whatso-ai-chatbot/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Chat",
+      "categories": [
+        "Chat"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Seduced Ai When Porn Isnt Enough",
+      "url": "https://aitoptools.com/tool/seduced-ai-when-porn-isnt-enough/",
+      "detail_url": "https://aitoptools.com/tool/seduced-ai-when-porn-isnt-enough/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ainudez",
+      "url": "https://aitoptools.com/tool/ainudez/",
+      "detail_url": "https://aitoptools.com/tool/ainudez/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Draw3D",
+      "url": "https://aitoptools.com/tool/draw3d/",
+      "detail_url": "https://aitoptools.com/tool/draw3d/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Undress Vip",
+      "url": "https://aitoptools.com/tool/undress-vip/",
+      "detail_url": "https://aitoptools.com/tool/undress-vip/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Hitpaw Online Ai Watermark Remover",
+      "url": "https://aitoptools.com/tool/hitpaw-online-ai-watermark-remover/",
+      "detail_url": "https://aitoptools.com/tool/hitpaw-online-ai-watermark-remover/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Luminar Neo Ai",
+      "url": "https://aitoptools.com/tool/luminar-neo-ai/",
+      "detail_url": "https://aitoptools.com/tool/luminar-neo-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Cartoonize",
+      "url": "https://aitoptools.com/tool/cartoonize/",
+      "detail_url": "https://aitoptools.com/tool/cartoonize/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Genexpert",
+      "url": "https://aitoptools.com/tool/genexpert/",
+      "detail_url": "https://aitoptools.com/tool/genexpert/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Coloromo Ai Art Generator",
+      "url": "https://aitoptools.com/tool/coloromo-ai-art-generator/",
+      "detail_url": "https://aitoptools.com/tool/coloromo-ai-art-generator/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Clip Paint Studio",
+      "url": "https://aitoptools.com/tool/clip-paint-studio/",
+      "detail_url": "https://aitoptools.com/tool/clip-paint-studio/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Image",
+      "categories": [
+        "Image"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Vidu Ai Video Generator",
+      "url": "https://aitoptools.com/tool/vidu-ai-video-generator/",
+      "detail_url": "https://aitoptools.com/tool/vidu-ai-video-generator/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Fliki",
+      "url": "https://aitoptools.com/tool/fliki/",
+      "detail_url": "https://aitoptools.com/tool/fliki/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Pipio",
+      "url": "https://aitoptools.com/tool/pipio/",
+      "detail_url": "https://aitoptools.com/tool/pipio/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "60Sec Site",
+      "url": "https://aitoptools.com/tool/60sec-site/",
+      "detail_url": "https://aitoptools.com/tool/60sec-site/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Flexclip",
+      "url": "https://aitoptools.com/tool/flexclip/",
+      "detail_url": "https://aitoptools.com/tool/flexclip/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Promo Com",
+      "url": "https://aitoptools.com/tool/promo-com/",
+      "detail_url": "https://aitoptools.com/tool/promo-com/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Video",
+      "categories": [
+        "Video"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Image To Image Video Ai",
+      "url": "https://aitoptools.com/tool/image-to-image-video-ai/",
+      "detail_url": "https://aitoptools.com/tool/image-to-image-video-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Aicoustics",
+      "url": "https://aitoptools.com/tool/aicoustics/",
+      "detail_url": "https://aitoptools.com/tool/aicoustics/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Soniq",
+      "url": "https://aitoptools.com/tool/soniq/",
+      "detail_url": "https://aitoptools.com/tool/soniq/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Singify Vocal Remover",
+      "url": "https://aitoptools.com/tool/singify-vocal-remover/",
+      "detail_url": "https://aitoptools.com/tool/singify-vocal-remover/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Altered",
+      "url": "https://aitoptools.com/tool/altered/",
+      "detail_url": "https://aitoptools.com/tool/altered/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Lalal Ai",
+      "url": "https://aitoptools.com/tool/lalal-ai/",
+      "detail_url": "https://aitoptools.com/tool/lalal-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Audio",
+      "categories": [
+        "Audio"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Google Colab Copilot",
+      "url": "https://aitoptools.com/tool/google-colab-copilot/",
+      "detail_url": "https://aitoptools.com/tool/google-colab-copilot/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Mindstudio",
+      "url": "https://aitoptools.com/tool/mindstudio/",
+      "detail_url": "https://aitoptools.com/tool/mindstudio/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Replit",
+      "url": "https://aitoptools.com/tool/replit/",
+      "detail_url": "https://aitoptools.com/tool/replit/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Copilot",
+      "url": "https://aitoptools.com/tool/copilot/",
+      "detail_url": "https://aitoptools.com/tool/copilot/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Programminghelper",
+      "url": "https://aitoptools.com/tool/programminghelper/",
+      "detail_url": "https://aitoptools.com/tool/programminghelper/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Amazon Codewhisperer",
+      "url": "https://aitoptools.com/tool/amazon-codewhisperer/",
+      "detail_url": "https://aitoptools.com/tool/amazon-codewhisperer/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Coding",
+      "categories": [
+        "Coding"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Adcrafter",
+      "url": "https://aitoptools.com/tool/adcrafter/",
+      "detail_url": "https://aitoptools.com/tool/adcrafter/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Subbly",
+      "url": "https://aitoptools.com/tool/subbly/",
+      "detail_url": "https://aitoptools.com/tool/subbly/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Qa Tech",
+      "url": "https://aitoptools.com/tool/qa-tech/",
+      "detail_url": "https://aitoptools.com/tool/qa-tech/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Agent",
+      "categories": [
+        "Agent"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Copyleaks",
+      "url": "https://aitoptools.com/tool/copyleaks/",
+      "detail_url": "https://aitoptools.com/tool/copyleaks/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Linguix",
+      "url": "https://aitoptools.com/tool/linguix/",
+      "detail_url": "https://aitoptools.com/tool/linguix/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Nando Ai",
+      "url": "https://aitoptools.com/tool/nando-ai/",
+      "detail_url": "https://aitoptools.com/tool/nando-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Creativai",
+      "url": "https://aitoptools.com/tool/creativai/",
+      "detail_url": "https://aitoptools.com/tool/creativai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Outranking",
+      "url": "https://aitoptools.com/tool/outranking/",
+      "detail_url": "https://aitoptools.com/tool/outranking/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Viral Launch Testimonials Generator",
+      "url": "https://aitoptools.com/tool/viral-launch-testimonials-generator/",
+      "detail_url": "https://aitoptools.com/tool/viral-launch-testimonials-generator/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Bash",
+      "url": "https://aitoptools.com/tool/bash/",
+      "detail_url": "https://aitoptools.com/tool/bash/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Heyy Ai",
+      "url": "https://aitoptools.com/tool/heyy-ai/",
+      "detail_url": "https://aitoptools.com/tool/heyy-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Multilings",
+      "url": "https://aitoptools.com/tool/multilings/",
+      "detail_url": "https://aitoptools.com/tool/multilings/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Writing",
+      "categories": [
+        "Writing"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ugc Maker",
+      "url": "https://aitoptools.com/tool/ugc-maker/",
+      "detail_url": "https://aitoptools.com/tool/ugc-maker/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Decoritt",
+      "url": "https://aitoptools.com/tool/decoritt/",
+      "detail_url": "https://aitoptools.com/tool/decoritt/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Imggood",
+      "url": "https://aitoptools.com/tool/imggood/",
+      "detail_url": "https://aitoptools.com/tool/imggood/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Ai Clothes Changer Picsman",
+      "url": "https://aitoptools.com/tool/ai-clothes-changer-picsman/",
+      "detail_url": "https://aitoptools.com/tool/ai-clothes-changer-picsman/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Namecheap Logo Maker",
+      "url": "https://aitoptools.com/tool/namecheap-logo-maker/",
+      "detail_url": "https://aitoptools.com/tool/namecheap-logo-maker/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Zoviz",
+      "url": "https://aitoptools.com/tool/zoviz/",
+      "detail_url": "https://aitoptools.com/tool/zoviz/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Designevo",
+      "url": "https://aitoptools.com/tool/designevo/",
+      "detail_url": "https://aitoptools.com/tool/designevo/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Turbologo",
+      "url": "https://aitoptools.com/tool/turbologo/",
+      "detail_url": "https://aitoptools.com/tool/turbologo/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Looka",
+      "url": "https://aitoptools.com/tool/looka/",
+      "detail_url": "https://aitoptools.com/tool/looka/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Anylogogenerator",
+      "url": "https://aitoptools.com/tool/anylogogenerator/",
+      "detail_url": "https://aitoptools.com/tool/anylogogenerator/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Design",
+      "categories": [
+        "Design"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Scite",
+      "url": "https://aitoptools.com/tool/scite/",
+      "detail_url": "https://aitoptools.com/tool/scite/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Consensus",
+      "url": "https://aitoptools.com/tool/consensus/",
+      "detail_url": "https://aitoptools.com/tool/consensus/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Galactica",
+      "url": "https://aitoptools.com/tool/galactica/",
+      "detail_url": "https://aitoptools.com/tool/galactica/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Scispace",
+      "url": "https://aitoptools.com/tool/scispace/",
+      "detail_url": "https://aitoptools.com/tool/scispace/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Laion",
+      "url": "https://aitoptools.com/tool/laion/",
+      "detail_url": "https://aitoptools.com/tool/laion/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Geofide Ai",
+      "url": "https://aitoptools.com/tool/geofide-ai/",
+      "detail_url": "https://aitoptools.com/tool/geofide-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Webceo",
+      "url": "https://aitoptools.com/tool/webceo/",
+      "detail_url": "https://aitoptools.com/tool/webceo/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Research",
+      "categories": [
+        "Research"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Floor Plan Ai",
+      "url": "https://aitoptools.com/tool/floor-plan-ai/",
+      "detail_url": "https://aitoptools.com/tool/floor-plan-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Character Ai",
+      "url": "https://aitoptools.com/tool/character-ai/",
+      "detail_url": "https://aitoptools.com/tool/character-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "G3Dai Jedi",
+      "url": "https://aitoptools.com/tool/g3dai-jedi/",
+      "detail_url": "https://aitoptools.com/tool/g3dai-jedi/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Mirageml",
+      "url": "https://aitoptools.com/tool/mirageml/",
+      "detail_url": "https://aitoptools.com/tool/mirageml/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "3D",
+      "categories": [
+        "3D"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Articos",
+      "url": "https://aitoptools.com/tool/articos/",
+      "detail_url": "https://aitoptools.com/tool/articos/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Abtesting Ai",
+      "url": "https://aitoptools.com/tool/abtesting-ai/",
+      "detail_url": "https://aitoptools.com/tool/abtesting-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Get Listed On 100 Directories",
+      "url": "https://aitoptools.com/tool/get-listed-on-100-directories/",
+      "detail_url": "https://aitoptools.com/tool/get-listed-on-100-directories/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Stadio Ai",
+      "url": "https://aitoptools.com/tool/stadio-ai/",
+      "detail_url": "https://aitoptools.com/tool/stadio-ai/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Business",
+      "categories": [
+        "Business"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Podcast",
+      "url": "https://aitoptools.com/tool/podcast/",
+      "detail_url": "https://aitoptools.com/tool/podcast/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Mondly",
+      "url": "https://aitoptools.com/tool/mondly/",
+      "detail_url": "https://aitoptools.com/tool/mondly/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Education",
+      "categories": [
+        "Education"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    },
+    {
+      "name": "Crowdfire Inc",
+      "url": "https://aitoptools.com/tool/crowdfire-inc/",
+      "detail_url": "https://aitoptools.com/tool/crowdfire-inc/",
+      "description": "",
+      "source": "aitoptools",
+      "icon": "",
+      "category": "Social Media",
+      "categories": [
+        "Social Media"
+      ],
+      "tags": [],
+      "pricing": "Freemium",
+      "use_cases": [
+        "..."
+      ],
+      "quality_score": 5,
+      "embedding": null
+    }
+  ],
+  "rejected": []
+}

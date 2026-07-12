@@ -26,14 +26,14 @@ const SearchBar = ({ value, onChange }) => {
             boxShadow: '0 8px 32px 0 rgba(107, 182, 255, 0.15)',
             transition: 'all 0.3s ease',
             '&:hover': {
-              border: '1.5px solid rgba(107, 182, 255, 0.5)',
-              boxShadow: '0 12px 48px 0 rgba(107, 182, 255, 0.25)',
-              background: 'rgba(255, 255, 255, 0.4)'
+              border: '1.5px solid rgba(107, 182, 255, 0.6)',
+              boxShadow: '0 12px 48px 0 rgba(107, 182, 255, 0.3)',
+              background: 'rgba(255, 255, 255, 0.5)'
             },
             '&.Mui-focused': {
               border: '2px solid #6BB6FF',
-              boxShadow: '0 12px 48px 0 rgba(107, 182, 255, 0.35)',
-              background: 'rgba(255, 255, 255, 0.45)'
+              boxShadow: '0 0 24px 0 rgba(107, 182, 255, 0.6), 0 12px 48px 0 rgba(107, 182, 255, 0.3)',
+              background: 'rgba(255, 255, 255, 0.6)'
             },
             '& fieldset': {
               border: 'none'

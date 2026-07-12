@@ -23,7 +23,7 @@ SUPABASE_URL = os.getenv('SUPABASE_URL')
 SUPABASE_KEY = os.getenv('SUPABASE_SERVICE_ROLE_KEY')
 
 # Fields we compare for updates — if scraped data is richer, we update
-UPDATABLE_FIELDS = ['description', 'pricing', 'categories', 'tags', 'icon']
+UPDATABLE_FIELDS = ['description', 'pricing', 'categories', 'tags', 'icon', 'embedding']
 
 
 def get_supabase():
@@ -142,6 +142,11 @@ def compute_updates(existing, scraped):
     existing_pricing = (existing.get('pricing') or '').strip()
     if scraped_pricing and scraped_pricing != 'Freemium' and existing_pricing == 'Freemium':
         updates['pricing'] = scraped_pricing
+
+    # Embedding: update if scraped has an embedding and we either don't have one or are updating text fields
+    scraped_embedding = scraped.get('embedding')
+    if scraped_embedding and (not existing.get('embedding') or 'description' in updates or 'categories' in updates):
+        updates['embedding'] = scraped_embedding
 
     return updates
 
@@ -262,6 +267,7 @@ def sync_tools(scraped_tools, dry_run=False):
             'icon': tool.get('icon', f'https://logo.clearbit.com/{_extract_domain(tool.get("url", ""))}'),
             'use_cases': tool.get('use_cases', []),
             'added_date': today,
+            'embedding': tool.get('embedding'),
         }
 
         new_tools.append(record)

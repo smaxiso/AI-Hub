@@ -28,9 +28,8 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import TagIcon from '@mui/icons-material/Tag';
 import WorkIcon from '@mui/icons-material/Work';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { categoryColors } from '../data/tools.js';
-// Removed static aiTools import
-import { findSimilarTools, findAlternatives } from '../utils/toolSimilarity.js';
 import ShareButton from './ShareButton';
 import ToolCard from './ToolCard';
 
@@ -40,9 +39,26 @@ const ToolDetailModal = ({ tool = null, aiTools = [], open, onClose, onFavorite,
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const categoryColor = tool ? (categoryColors[tool.category] || categoryColors.Other) : '#B8E0F2';
 
-  // Find similar tools and alternatives
-  const similarTools = (tool && aiTools.length > 0) ? findSimilarTools(tool, aiTools, 4) : [];
-  const alternativeTools = (tool && aiTools.length > 0) ? findAlternatives(tool, aiTools, 4) : [];
+  const [similarTools, setSimilarTools] = useState([]);
+  const [isLoadingSimilar, setIsLoadingSimilar] = useState(false);
+
+  useEffect(() => {
+    if (tool && open) {
+      setIsLoadingSimilar(true);
+      fetch(`/api/tools/${tool.id}/related`)
+        .then(res => res.json())
+        .then(data => {
+          setSimilarTools(data);
+          setIsLoadingSimilar(false);
+        })
+        .catch(err => {
+          console.error('Error fetching related tools:', err);
+          setIsLoadingSimilar(false);
+        });
+    } else {
+      setSimilarTools([]);
+    }
+  }, [tool, open]);
 
   if (!tool) return null;
 
@@ -176,10 +192,11 @@ const ToolDetailModal = ({ tool = null, aiTools = [], open, onClose, onFavorite,
               <Typography
                 variant="h4"
                 component="div"
+                className="glass-text-primary"
                 sx={{
                   fontWeight: 700,
                   mb: { xs: 0.5, sm: 1 },
-                  color: isDarkMode ? '#E2E8F0' : '#2D3748',
+                  color: isDarkMode ? '#FFFFFF' : '#121212',
                   fontSize: { xs: '1.25rem', sm: '1.75rem', md: '2rem' },
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
@@ -531,170 +548,138 @@ const ToolDetailModal = ({ tool = null, aiTools = [], open, onClose, onFavorite,
         </Box>
 
         {/* Similar Tools */}
-        {similarTools.length > 0 && (
+        {(similarTools.length > 0 || isLoadingSimilar) && (
           <Box sx={{ mt: 4 }}>
             <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, fontSize: '1.1rem' }}>
-              Similar Tools
+              Related Tools
             </Typography>
-            <Grid container spacing={2}>
-              {similarTools.map((similarTool) => (
-                <Grid item xs={6} sm={4} md={3} key={similarTool.id}>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Paper
-                      onClick={() => {
-                        if (onToolClick) {
-                          onToolClick(similarTool);
-                        }
-                      }}
-                      sx={{
-                        p: 1.5,
-                        background: 'rgba(255, 255, 255, 0.15)',
-                        backdropFilter: 'blur(10px)',
-                        borderRadius: '12px',
-                        border: `1px solid ${categoryColors[similarTool.category] || categoryColors.Other}40`,
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        '&:hover': {
-                          background: 'rgba(255, 255, 255, 0.25)',
-                          border: `1px solid ${categoryColors[similarTool.category] || categoryColors.Other}60`,
-                          transform: 'translateY(-2px)',
-                          boxShadow: `0 4px 12px ${categoryColors[similarTool.category] || categoryColors.Other}30`
-                        }
-                      }}
+            {isLoadingSimilar ? (
+              <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>Loading recommendations...</Typography>
+              </Box>
+            ) : (
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 2,
+                  overflowX: 'auto',
+                  overflowY: 'hidden',
+                  pb: 2,
+                  pt: 1,
+                  px: 1,
+                  m: -1,
+                  '&::-webkit-scrollbar': {
+                    height: '8px',
+                  },
+                  '&::-webkit-scrollbar-track': {
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    borderRadius: '4px',
+                  },
+                  '&::-webkit-scrollbar-thumb': {
+                    background: 'rgba(255, 255, 255, 0.2)',
+                    borderRadius: '4px',
+                    '&:hover': {
+                      background: 'rgba(255, 255, 255, 0.3)',
+                    }
+                  }
+                }}
+              >
+                {similarTools.map((similarTool) => (
+                  <Box key={similarTool.id} sx={{ flex: '0 0 auto', width: { xs: 220, sm: 260 } }}>
+                    <motion.div
+                      whileHover={{ scale: 1.03, y: -4 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        {similarTool.icon && (
-                          <img
-                            src={similarTool.icon}
-                            alt={similarTool.name}
-                            style={{
-                              width: '32px',
-                              height: '32px',
-                              borderRadius: '8px'
-                            }}
-                          />
-                        )}
-                        <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Paper
+                        onClick={() => {
+                          if (onToolClick) {
+                            onToolClick(similarTool);
+                          }
+                        }}
+                        sx={{
+                          p: 2,
+                          background: 'rgba(255, 255, 255, 0.15)',
+                          backdropFilter: 'blur(10px)',
+                          borderRadius: '16px',
+                          border: `1px solid ${categoryColors[similarTool.category] || categoryColors.Other}30`,
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          height: '100%',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          '&:hover': {
+                            background: 'rgba(255, 255, 255, 0.25)',
+                            border: `1px solid ${categoryColors[similarTool.category] || categoryColors.Other}60`,
+                            boxShadow: `0 8px 24px ${categoryColors[similarTool.category] || categoryColors.Other}25`
+                          }
+                        }}
+                      >
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5 }}>
+                          {similarTool.icon && (
+                            <img
+                              src={similarTool.icon}
+                              alt={similarTool.name}
+                              style={{
+                                width: '40px',
+                                height: '40px',
+                                borderRadius: '10px',
+                                objectFit: 'cover'
+                              }}
+                            />
+                          )}
+                          <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography
+                              variant="body1"
+                              className="glass-text-primary"
+                              sx={{
+                                fontWeight: 700,
+                                fontSize: '0.95rem',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                                color: isDarkMode ? '#FFFFFF' : '#121212'
+                              }}
+                            >
+                              {similarTool.name}
+                            </Typography>
+                            <Chip
+                              label={similarTool.category}
+                              size="small"
+                              sx={{
+                                mt: 0.5,
+                                height: '22px',
+                                fontSize: '0.7rem',
+                                fontWeight: 700,
+                                background: `linear-gradient(135deg, ${categoryColors[similarTool.category] || categoryColors.Other} 0%, ${categoryColors[similarTool.category] || categoryColors.Other}dd 100%)`,
+                                border: `1.5px solid ${categoryColors[similarTool.category] || categoryColors.Other}`,
+                                color: 'white',
+                                boxShadow: `0 2px 6px ${categoryColors[similarTool.category] || categoryColors.Other}40`
+                              }}
+                            />
+                          </Box>
+                        </Box>
+                        {similarTool.description && (
                           <Typography
                             variant="body2"
                             sx={{
-                              fontWeight: 600,
-                              fontSize: '0.85rem',
+                              color: 'text.secondary',
+                              fontSize: '0.8rem',
+                              display: '-webkit-box',
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical',
                               overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                              whiteSpace: 'nowrap'
+                              textOverflow: 'ellipsis'
                             }}
                           >
-                            {similarTool.name}
+                            {similarTool.description}
                           </Typography>
-                          <Chip
-                            label={similarTool.category}
-                            size="small"
-                            sx={{
-                              mt: 0.5,
-                              height: '20px',
-                              fontSize: '0.7rem',
-                              fontWeight: 700,
-                              background: `linear-gradient(135deg, ${categoryColors[similarTool.category] || categoryColors.Other} 0%, ${categoryColors[similarTool.category] || categoryColors.Other}dd 100%)`,
-                              border: `1.5px solid ${categoryColors[similarTool.category] || categoryColors.Other}`,
-                              color: isDarkMode ? '#FFFFFF' : '#000000',
-                              boxShadow: `0 2px 6px ${categoryColors[similarTool.category] || categoryColors.Other}50`
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    </Paper>
-                  </motion.div>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        )}
-
-        {/* Alternative Tools */}
-        {alternativeTools.length > 0 && (
-          <Box sx={{ mt: 4 }}>
-            <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, fontSize: '1.1rem' }}>
-              Alternatives
-            </Typography>
-            <Grid container spacing={2}>
-              {alternativeTools.map((altTool) => (
-                <Grid item xs={6} sm={4} md={3} key={altTool.id}>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Paper
-                      onClick={() => {
-                        if (onToolClick) {
-                          onToolClick(altTool);
-                        }
-                      }}
-                      sx={{
-                        p: 1.5,
-                        background: 'rgba(255, 255, 255, 0.15)',
-                        backdropFilter: 'blur(10px)',
-                        borderRadius: '12px',
-                        border: `1px solid ${categoryColors[altTool.category] || categoryColors.Other}40`,
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        '&:hover': {
-                          background: 'rgba(255, 255, 255, 0.25)',
-                          border: `1px solid ${categoryColors[altTool.category] || categoryColors.Other}60`,
-                          transform: 'translateY(-2px)',
-                          boxShadow: `0 4px 12px ${categoryColors[altTool.category] || categoryColors.Other}30`
-                        }
-                      }}
-                    >
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        {altTool.icon && (
-                          <img
-                            src={altTool.icon}
-                            alt={altTool.name}
-                            style={{
-                              width: '32px',
-                              height: '32px',
-                              borderRadius: '8px'
-                            }}
-                          />
                         )}
-                        <Box sx={{ flex: 1, minWidth: 0 }}>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              fontWeight: 600,
-                              fontSize: '0.85rem',
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                              whiteSpace: 'nowrap'
-                            }}
-                          >
-                            {altTool.name}
-                          </Typography>
-                          <Chip
-                            label={altTool.category}
-                            size="small"
-                            sx={{
-                              mt: 0.5,
-                              height: '20px',
-                              fontSize: '0.7rem',
-                              fontWeight: 700,
-                              background: `linear-gradient(135deg, ${categoryColors[altTool.category] || categoryColors.Other} 0%, ${categoryColors[altTool.category] || categoryColors.Other}dd 100%)`,
-                              border: `1.5px solid ${categoryColors[altTool.category] || categoryColors.Other}`,
-                              color: isDarkMode ? '#FFFFFF' : '#000000',
-                              boxShadow: `0 2px 6px ${categoryColors[altTool.category] || categoryColors.Other}50`
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    </Paper>
-                  </motion.div>
-                </Grid>
-              ))}
-            </Grid>
+                      </Paper>
+                    </motion.div>
+                  </Box>
+                ))}
+              </Box>
+            )}
           </Box>
         )}
       </DialogContent>

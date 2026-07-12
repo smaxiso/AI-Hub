@@ -1,54 +1,89 @@
-const { Client } = require('pg');
-require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
+const { Pool } = require('pg');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
-const tryConnect = async () => {
-    const connectionStrings = [
-        process.env.DATABASE_URL_IPV6,
-        process.env.DATABASE_URL_IPV4_SESSION_POOLER,
-        process.env.DATABASE_URL_IPV4_TRANSACTION_POOLER
-    ].filter(Boolean);
+const MIGRATIONS_DIR = path.join(__dirname, 'migrations');
 
-    for (const connectionString of connectionStrings) {
-        console.log(`Trying connection...`);
-        const client = new Client({ connectionString });
-        try {
-            await client.connect();
-            console.log('Connected successfully!');
-            return client;
-        } catch (err) {
-            console.warn(`Connection failed: ${err.message}. Retrying with next URL...`);
-        }
+async function runMigrations() {
+    console.log('🔄 Initializing Formal Database Migration System...\n');
+
+    // Securely pool connections to avoid max_connections limits against transaction poolers
+    const connectionString = process.env.DATABASE_URL_IPV4_SESSION_POOLER 
+        || process.env.DATABASE_URL_IPV6;
+    
+    if (!connectionString) {
+        console.error('❌ Database connection string is missing.');
+        process.exit(1);
     }
-    throw new Error('All connection attempts failed.');
-};
 
-const createTableQuery = `
-  CREATE TABLE IF NOT EXISTS tools (
-    id TEXT PRIMARY KEY,
-    name TEXT NOT NULL,
-    url TEXT NOT NULL,
-    category TEXT NOT NULL,
-    icon TEXT,
-    description TEXT,
-    tags TEXT[],
-    pricing TEXT,
-    use_cases TEXT[],
-    added_date DATE NOT NULL DEFAULT CURRENT_DATE,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-  );
-`;
+    const pool = new Pool({
+        connectionString,
+        max: 5, // Strict limit to not overwhelm the pooler
+        idleTimeoutMillis: 10000,
+        connectionTimeoutMillis: 5000,
+    });
 
-async function setup() {
-    let client;
+    const client = await pool.connect();
+    console.log('✅ Connected to database.\n');
+
     try {
-        client = await tryConnect();
-        await client.query(createTableQuery);
-        console.log('Table "tools" created successfully');
+        // 1. Create Migration Tracking Table
+        await client.query(`
+            CREATE TABLE IF NOT EXISTS _migrations (
+                id SERIAL PRIMARY KEY,
+                name TEXT NOT NULL UNIQUE,
+                applied_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+            );
+        `);
+
+        // 2. Read Migrations Folder
+        const files = fs.readdirSync(MIGRATIONS_DIR)
+            .filter(f => f.endsWith('.sql'))
+            .sort();
+
+        if (files.length === 0) {
+            console.log('⚠️ No migration files found in migrations/ directory.');
+            return;
+        }
+
+        // 3. Loop and execute in chronological sequence
+        for (const file of files) {
+            const filePath = path.join(MIGRATIONS_DIR, file);
+            
+            // Check if already applied
+            const checkRes = await client.query('SELECT name FROM _migrations WHERE name = $1', [file]);
+            if (checkRes.rows.length > 0) {
+                console.log(`⏩ Skipping ${file} (Already Applied)`);
+                continue;
+            }
+
+            console.log(`⏳ Applying ${file}...`);
+            const sql = fs.readFileSync(filePath, 'utf8');
+
+            // 4. Wrap execution in transaction
+            await client.query('BEGIN');
+            try {
+                await client.query(sql);
+                await client.query('INSERT INTO _migrations (name) VALUES ($1)', [file]);
+                await client.query('COMMIT');
+                console.log(`✅ Success: ${file}`);
+            } catch (err) {
+                await client.query('ROLLBACK');
+                console.error(`❌ Migration failed at ${file}:`, err.message);
+                throw err;
+            }
+        }
+
+        console.log('\n🎉 All database migrations are up to date!');
+        
     } catch (err) {
-        console.error('Error creating table:', err);
+        console.error('\n🛑 Database Initialization Failed:', err);
+        process.exit(1);
     } finally {
-        if (client) await client.end();
+        client.release();
+        await pool.end();
     }
 }
 
-setup();
+runMigrations();

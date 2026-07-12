@@ -15,6 +15,9 @@ CATEGORIES = [
     '3D', 'Business', 'Education', 'Social Media'
 ]
 
+# Quality threshold for accepting tools
+QUALITY_THRESHOLD = 4
+
 # Map external category names (from scraped sites) → our categories
 CATEGORY_MAP = {
     'ai chatbots': 'Chat', 'chatbots': 'Chat', 'chatbot': 'Chat',

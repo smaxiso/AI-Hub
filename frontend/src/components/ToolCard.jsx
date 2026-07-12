@@ -34,9 +34,9 @@ const ToolCard = ({ tool, onFavorite = undefined, isFavorite = false, onClick = 
   const CardWrapper = isMobile ? 'div' : motion.div;
   const cardWrapperProps = isMobile ? {} : {
     whileHover: { 
-      y: -8,
-      scale: 1.02,
-      transition: { duration: 0.2 }
+      y: -12,
+      scale: 1.04,
+      transition: { duration: 0.25, ease: "easeOut" }
     },
     whileTap: { scale: 0.98 }
   };
@@ -100,15 +100,17 @@ const ToolCard = ({ tool, onFavorite = undefined, isFavorite = false, onClick = 
             size="small"
             sx={{
               position: 'absolute',
-              top: 8,
-              left: 8,
+              top: 10,
+              left: 10,
               zIndex: 3,
-              background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)',
+              background: 'linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%)',
               color: 'white',
-              fontSize: '0.65rem',
-              height: '20px',
-              fontWeight: 600,
-              boxShadow: '0 2px 8px rgba(255, 107, 107, 0.4)'
+              fontSize: '0.7rem',
+              height: '24px',
+              fontWeight: 800,
+              letterSpacing: '0.5px',
+              boxShadow: '0 4px 12px rgba(255, 65, 108, 0.6)',
+              border: '1px solid rgba(255,255,255,0.4)'
             }}
           />
         )}
@@ -255,6 +257,7 @@ const ToolCard = ({ tool, onFavorite = undefined, isFavorite = false, onClick = 
           <Typography
             variant="h6"
             component="h3"
+            className="glass-text-primary"
             sx={{
               fontWeight: 600,
               mb: 0.5,
@@ -352,7 +355,6 @@ const ToolCard = ({ tool, onFavorite = undefined, isFavorite = false, onClick = 
               position: 'absolute',
               bottom: { xs: 8, sm: 12 },
               right: { xs: 8, sm: 12 },
-              opacity: 0.6,
               transition: 'opacity 0.3s ease'
             }}
           >
