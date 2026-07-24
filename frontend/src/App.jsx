@@ -23,6 +23,7 @@ const Quiz = lazy(() => import('./pages/learning/Quiz'));
 const Certifications = lazy(() => import('./pages/learning/Certifications'));
 const CertificateVerify = lazy(() => import('./pages/learning/CertificateVerify'));
 const MagicPromptTool = lazy(() => import('./pages/tools/MagicPromptTool'));
+const ToolDetail = lazy(() => import('./pages/ToolDetail'));
 const PublicLogin = lazy(() => import('./pages/auth/Login'));
 const PublicSignup = lazy(() => import('./pages/auth/Signup'));
 const PublicProfile = lazy(() => import('./pages/auth/Profile'));
@@ -99,6 +100,7 @@ function App() {
                         />
 
                         {/* Tools Routes */}
+                        <Route path="/tool/:id" element={<ToolDetail />} />
                         <Route path="/tools/magic-prompt" element={<MagicPromptTool />} />
 
                         {/* Learning Platform Routes */}

@@ -71,9 +71,9 @@ const BottomNav = () => {
                     }
                 }}
             >
-                <BottomNavigationAction label="Tools" value="/" icon={<ExploreIcon />} />
-                <BottomNavigationAction label="Learn" value="/learning" icon={<SchoolIcon />} />
-                <BottomNavigationAction label="Profile" value="/profile" icon={<PersonIcon />} />
+                <BottomNavigationAction label="Tools" value="/" icon={<ExploreIcon />} aria-label="Browse AI tools" />
+                <BottomNavigationAction label="Learn" value="/learning" icon={<SchoolIcon />} aria-label="Learning hub" />
+                <BottomNavigationAction label="Profile" value="/profile" icon={<PersonIcon />} aria-label="Your profile" />
             </BottomNavigation>
         </Paper>
     );

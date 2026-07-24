@@ -24,6 +24,9 @@ router.get('/', async (req, res) => {
             categories: tool.categories || (tool.category ? [tool.category] : [])
         }));
 
+        // Cache for 5 minutes — tools change at most weekly via scraper
+        res.set('Cache-Control', 'public, max-age=300');
+
         res.json({
             data: enhancedTools,
             page,

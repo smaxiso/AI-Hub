@@ -8,6 +8,25 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'apple-touch-icon.png'],
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/.*\.supabase\.co\/rest\/v1\/tools/,
+            handler: 'StaleWhileRevalidate',
+            options: { cacheName: 'api-tools', expiration: { maxAgeSeconds: 300 } }
+          },
+          {
+            urlPattern: /^https:\/\/logo\.clearbit\.com\//,
+            handler: 'CacheFirst',
+            options: { cacheName: 'tool-icons', expiration: { maxEntries: 200, maxAgeSeconds: 604800 } }
+          },
+          {
+            urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\//,
+            handler: 'CacheFirst',
+            options: { cacheName: 'google-fonts', expiration: { maxAgeSeconds: 31536000 } }
+          }
+        ]
+      },
       manifest: {
         name: 'TheAIHubX',
         short_name: 'AIHub',

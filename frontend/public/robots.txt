@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aihubx.web.app/sitemap.xml
