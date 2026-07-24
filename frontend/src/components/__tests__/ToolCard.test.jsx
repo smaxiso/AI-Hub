@@ -84,7 +84,7 @@ describe('ToolCard', () => {
     );
 
     const card = screen.getByRole('article');
-    fireEvent.keyPress(card, { key: 'Enter', code: 'Enter', charCode: 13 });
+    fireEvent.keyDown(card, { key: 'Enter', code: 'Enter' });
 
     expect(onClick).toHaveBeenCalledWith(mockTool);
   });
