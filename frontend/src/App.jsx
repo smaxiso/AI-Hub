@@ -1,38 +1,47 @@
 
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import { Box, CircularProgress } from '@mui/material';
 
-// Pages
+// Eagerly loaded (home page — first paint)
 import Home from './Home';
-import Login from './pages/admin/Login';
-import Signup from './pages/admin/Signup';
-import ForgotPassword from './pages/admin/ForgotPassword';
-import Dashboard from './pages/admin/Dashboard';
-import Profile from './pages/admin/Profile';
-import ToolForm from './pages/admin/ToolForm';
-import LearningHub from './pages/learning/LearningHub';
-import ModuleDetail from './pages/learning/ModuleDetail';
-import Quiz from './pages/learning/Quiz';
-import Certifications from './pages/learning/Certifications';
-import CertificateVerify from './pages/learning/CertificateVerify';
-import MagicPromptTool from './pages/tools/MagicPromptTool';
-
-// Public Auth Pages
-import PublicLogin from './pages/auth/Login';
-import PublicSignup from './pages/auth/Signup';
-import PublicProfile from './pages/auth/Profile';
-import PublicForgotPassword from './pages/auth/ForgotPassword';
-import ResetPassword from './pages/auth/ResetPassword';
 import BottomNav from './components/BottomNav';
+
+// Lazy loaded — only fetched when route is visited
+const Login = lazy(() => import('./pages/admin/Login'));
+const Signup = lazy(() => import('./pages/admin/Signup'));
+const ForgotPassword = lazy(() => import('./pages/admin/ForgotPassword'));
+const Dashboard = lazy(() => import('./pages/admin/Dashboard'));
+const Profile = lazy(() => import('./pages/admin/Profile'));
+const ToolForm = lazy(() => import('./pages/admin/ToolForm'));
+const LearningHub = lazy(() => import('./pages/learning/LearningHub'));
+const ModuleDetail = lazy(() => import('./pages/learning/ModuleDetail'));
+const Quiz = lazy(() => import('./pages/learning/Quiz'));
+const Certifications = lazy(() => import('./pages/learning/Certifications'));
+const CertificateVerify = lazy(() => import('./pages/learning/CertificateVerify'));
+const MagicPromptTool = lazy(() => import('./pages/tools/MagicPromptTool'));
+const PublicLogin = lazy(() => import('./pages/auth/Login'));
+const PublicSignup = lazy(() => import('./pages/auth/Signup'));
+const PublicProfile = lazy(() => import('./pages/auth/Profile'));
+const PublicForgotPassword = lazy(() => import('./pages/auth/ForgotPassword'));
+const ResetPassword = lazy(() => import('./pages/auth/ResetPassword'));
+
+// Minimal loading fallback
+const PageLoader = () => (
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
+        <CircularProgress size={32} />
+    </Box>
+);
 
 function App() {
     return (
         <AuthProvider>
             <ThemeProvider>
                 <BrowserRouter>
+                    <Suspense fallback={<PageLoader />}>
                     <Routes>
                         <Route path="/" element={<Home />} />
 
@@ -115,6 +124,7 @@ function App() {
                         {/* Catch all - redirect to home */}
                         <Route path="*" element={<Home />} />
                     </Routes>
+                    </Suspense>
                     <BottomNav />
                 </BrowserRouter>
             </ThemeProvider>

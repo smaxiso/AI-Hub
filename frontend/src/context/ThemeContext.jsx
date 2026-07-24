@@ -31,11 +31,11 @@ export const ThemeProvider = ({ children }) => {
 
     const theme = useMemo(() => createAppTheme(darkMode), [darkMode]);
 
-    const value = {
+    const value = useMemo(() => ({
         darkMode,
         toggleDarkMode,
         theme
-    };
+    }), [darkMode, theme]);
 
     return (
         <ThemeContext.Provider value={value}>

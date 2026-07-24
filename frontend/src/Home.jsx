@@ -30,7 +30,11 @@ import Header from './components/Header';
 import { Link } from 'react-router-dom';
 import SignupPromptModal from './components/SignupPromptModal';
 
+import useToolSearch from './hooks/useToolSearch';
+
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+
+const TOOLS_PER_PAGE = 30; // Load More batch size
 
 function Home() {
   const [aiTools, setAiTools] = useState([]);
@@ -51,6 +55,7 @@ function Home() {
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [collectionFilter, setCollectionFilter] = useState(null);
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(TOOLS_PER_PAGE);
 
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
   const { recentlyViewed, addToRecent } = useRecentlyViewed();
@@ -133,17 +138,15 @@ function Home() {
     return Array.from(tagsSet).sort();
   }, [aiTools]);
 
+  // Fuzzy search via Fuse.js (better relevance than .includes())
+  const fuseSearch = useToolSearch(aiTools);
+
   // Enhanced filtering with all criteria
   const filteredTools = useMemo(() => {
-    let filtered = aiTools.filter(tool => {
-      // Search filter
-      const matchesSearch =
-        tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tool.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (tool.categories && tool.categories.some(cat => cat.toLowerCase().includes(searchQuery.toLowerCase()))) ||
-        (tool.description && tool.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
+    // Use Fuse.js for search when there's a query, otherwise start with all tools
+    let filtered = searchQuery.trim() ? fuseSearch(searchQuery) : aiTools;
 
+    filtered = filtered.filter(tool => {
       // Category filter — supports multi-category via categories array
       const matchesCategory = selectedCategory === 'All' ||
         (tool.categories && tool.categories.includes(selectedCategory)) ||
@@ -159,7 +162,7 @@ function Home() {
       // Collection filter
       const matchesCollection = !collectionFilter || collectionFilter.includes(tool.id);
 
-      return matchesSearch && matchesCategory && matchesPricing && matchesTags && matchesCollection;
+      return matchesCategory && matchesPricing && matchesTags && matchesCollection;
     });
 
     // Sorting
@@ -170,7 +173,6 @@ function Home() {
         case 'newest':
           return new Date(b.addedDate || 0) - new Date(a.addedDate || 0);
         case 'popular':
-          // This would use analytics data in a real implementation
           return 0;
         default:
           return a.name.localeCompare(b.name);
@@ -178,7 +180,12 @@ function Home() {
     });
 
     return filtered;
-  }, [aiTools, searchQuery, selectedCategory, pricingFilter, sortBy, selectedTags, collectionFilter]);
+  }, [aiTools, searchQuery, selectedCategory, pricingFilter, sortBy, selectedTags, collectionFilter, fuseSearch]);
+
+  // Reset visible count when filters change
+  useEffect(() => {
+    setVisibleCount(TOOLS_PER_PAGE);
+  }, [searchQuery, selectedCategory, pricingFilter, sortBy, selectedTags, collectionFilter]);
 
   // Get unique categories from all tools' categories arrays
   const categories = useMemo(() => {
@@ -316,8 +323,7 @@ function Home() {
         pb: 8,
         background: theme.palette.mode === 'dark'
           ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
-          : 'linear-gradient(135deg, #E8F4F8 0%, #D4C5F9 50%, #C8F4E0 100%)',
-        backgroundAttachment: 'fixed'
+          : 'linear-gradient(135deg, #E8F4F8 0%, #D4C5F9 50%, #C8F4E0 100%)'
       }}
     >
       {/* Header */}
@@ -594,10 +600,11 @@ function Home() {
               exit={{ opacity: 0 }}
             >
               {filteredTools.length > 0 ? (
+                <>
                 <Grid container spacing={3}>
-                  {filteredTools.map((tool, index) => (
+                  {filteredTools.slice(0, visibleCount).map((tool, index) => (
                     <Grid item xs={12} sm={6} md={4} lg={3} key={tool.id}>
-                      {shouldAnimate ? (
+                      {shouldAnimate && index < TOOLS_PER_PAGE ? (
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -621,6 +628,31 @@ function Home() {
                     </Grid>
                   ))}
                 </Grid>
+                {/* Load More button */}
+                {visibleCount < filteredTools.length && (
+                  <Box sx={{ textAlign: 'center', mt: 4 }}>
+                    <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
+                      Showing {Math.min(visibleCount, filteredTools.length)} of {filteredTools.length} tools
+                    </Typography>
+                    <button
+                      onClick={() => setVisibleCount(prev => prev + TOOLS_PER_PAGE)}
+                      style={{
+                        padding: '12px 32px',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(255,255,255,0.3)',
+                        background: 'rgba(255,255,255,0.15)',
+                        backdropFilter: 'blur(10px)',
+                        color: 'inherit',
+                        fontSize: '1rem',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                      }}
+                    >
+                      Load More ({filteredTools.length - visibleCount} remaining)
+                    </button>
+                  </Box>
+                )}
+                </>
               ) : (
                 <EmptyState
                   icon={<SearchOffIcon sx={{ fontSize: 64, color: theme.palette.mode === 'dark' ? '#A0AEC0' : '#718096', opacity: 0.6 }} />}

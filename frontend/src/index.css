@@ -24,7 +24,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(135deg, #E8F4F8 0%, #D4C5F9 50%, #C8F4E0 100%);
-  background-attachment: fixed;
   min-height: 100vh;
   color: var(--text-primary);
   transition: background 0.3s ease, color 0.3s ease;
