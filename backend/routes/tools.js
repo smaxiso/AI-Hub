@@ -2,27 +2,35 @@ const express = require('express');
 const router = express.Router();
 const { supabase } = require('../supabaseClient');
 const { authenticateUser, requireRole } = require('../middleware/auth');
-const { isToolNew } = require('../middleware/helpers');
+const { isToolNew, pick, parsePagination } = require('../middleware/helpers');
 
-// GET /api/tools - Fetch all tools with dynamic isNew flag
+// GET /api/tools - Fetch all tools with dynamic isNew flag (paginated)
 router.get('/', async (req, res) => {
     try {
-        const { data, error } = await supabase
+        const { from, to, page, pageSize } = parsePagination(req);
+
+        const { data, error, count } = await supabase
             .from('tools')
-            .select('*')
-            .order('added_date', { ascending: false });
+            .select('id, name, url, category, categories, description, tags, pricing, icon, use_cases, added_date, created_at', { count: 'exact' })
+            .order('added_date', { ascending: false })
+            .range(from, to);
 
         if (error) throw error;
 
-        // Enhance data with dynamic isNew flag and categories array
-        const enhancedTools = data.map(tool => ({
+        // Enhance data with dynamic isNew flag and categories array; exclude embedding from response
+        const enhancedTools = data.map(({ embedding, ...tool }) => ({
             ...tool,
             isNew: isToolNew(tool.added_date, tool.created_at),
-            // Ensure categories array exists — use DB value if present, otherwise wrap single category
             categories: tool.categories || (tool.category ? [tool.category] : [])
         }));
 
-        res.json(enhancedTools);
+        res.json({
+            data: enhancedTools,
+            page,
+            pageSize,
+            total: count,
+            totalPages: Math.ceil((count || 0) / pageSize)
+        });
     } catch (err) {
         console.error('Error fetching tools:', err);
         res.status(500).json({ error: 'Failed to fetch tools' });
@@ -127,7 +135,12 @@ router.post('/', authenticateUser, requireRole(['owner', 'admin']), async (req, 
 // PUT /api/tools/:id - Update tool (Admin only)
 router.put('/:id', authenticateUser, requireRole(['owner', 'admin']), async (req, res) => {
     const { id } = req.params;
-    const updates = req.body;
+    const TOOL_UPDATE_FIELDS = ['name', 'url', 'category', 'categories', 'description', 'tags', 'pricing', 'icon', 'use_cases'];
+    const updates = pick(req.body, TOOL_UPDATE_FIELDS);
+
+    if (Object.keys(updates).length === 0) {
+        return res.status(400).json({ error: 'No valid fields to update' });
+    }
 
     try {
         const { data, error } = await supabase

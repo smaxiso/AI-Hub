@@ -11,6 +11,7 @@ import logging
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
+import tldextract
 from dotenv import load_dotenv
 from supabase import create_client
 from config import is_blocked, is_junk_name
@@ -51,10 +52,23 @@ def _extract_domain(url):
         return ''
 
 
+def canonical_domain(url):
+    """Extract registrable domain (eTLD+1) from URL for deduplication."""
+    if not url:
+        return ''
+    try:
+        ext = tldextract.extract(url)
+        if ext.domain and ext.suffix:
+            return f"{ext.domain}.{ext.suffix}".lower()
+    except Exception:
+        pass
+    return ''
+
+
 def fetch_existing_tools(supabase):
     """
     Fetch all existing tools from DB with full data for update comparison.
-    Returns (tools_by_id, tools_by_name, tools_by_url) lookup dicts.
+    Returns (tools_by_id, tools_by_name, tools_by_url, tools_by_domain) lookup dicts.
     """
     result = supabase.table('tools').select('*').execute()
     all_tools = result.data or []
@@ -62,6 +76,7 @@ def fetch_existing_tools(supabase):
     by_id = {}
     by_name = {}
     by_url = {}
+    by_domain = {}
 
     for t in all_tools:
         tid = t.get('id', '')
@@ -73,22 +88,32 @@ def fetch_existing_tools(supabase):
         url = (t.get('url') or '').lower().rstrip('/')
         if url:
             by_url[url] = t
+        domain = canonical_domain(t.get('url', ''))
+        if domain:
+            by_domain[domain] = t
 
-    return by_id, by_name, by_url
+    return by_id, by_name, by_url, by_domain
 
 
-def find_existing(tool, by_id, by_name, by_url):
+def find_existing(tool, by_id, by_name, by_url, by_domain):
     """
     Find an existing DB record matching this scraped tool.
+    Checks canonical domain first (strongest match), then slug, url, name.
     Returns the existing record dict or None.
     """
+    # Canonical domain match first (audit D1 fix)
+    url = tool.get('url', tool.get('detail_url', ''))
+    domain = canonical_domain(url)
+    if domain and domain in by_domain:
+        return by_domain[domain]
+
     tool_id = slugify(tool.get('name', ''))
     if tool_id in by_id:
         return by_id[tool_id]
 
-    url = (tool.get('url') or '').lower().rstrip('/')
-    if url and url in by_url:
-        return by_url[url]
+    url_lower = (url or '').lower().rstrip('/')
+    if url_lower and url_lower in by_url:
+        return by_url[url_lower]
 
     name = (tool.get('name') or '').lower().strip()
     if name and name in by_name:
@@ -118,7 +143,7 @@ def compute_updates(existing, scraped):
         if cat and cat not in merged_cats:
             merged_cats.append(cat)
     if len(merged_cats) > len(existing_cats):
-        updates['categories'] = merged_cats
+        updates['categories'] = merged_cats[:5]  # cap at 5 categories (audit D2)
 
     # Tags: merge — add new tags
     existing_tags = existing.get('tags') or []
@@ -159,7 +184,7 @@ def sync_tools(scraped_tools, dry_run=False):
     Returns an audit dict: {inserted, updated, unchanged, skipped, errors, details}
     """
     supabase = get_supabase()
-    by_id, by_name, by_url = fetch_existing_tools(supabase)
+    by_id, by_name, by_url, by_domain = fetch_existing_tools(supabase)
 
     logger.info(f'Existing tools in DB: {len(by_id)}')
     logger.info(f'Scraped tools to process: {len(scraped_tools)}')
@@ -200,6 +225,17 @@ def sync_tools(scraped_tools, dry_run=False):
             logger.debug(f'  Blocked: {name}')
             continue
 
+        # Reject non-entities: empty URL or search-engine query URLs (audit D3)
+        if not url or 'google.com/search' in url:
+            audit['skipped'] += 1
+            audit['details']['skipped_tools'].append({
+                'name': name,
+                'url': url,
+                'reason': 'empty_or_search_url'
+            })
+            logger.debug(f'  Rejected non-entity: {name}')
+            continue
+
         if is_junk_name(name):
             audit['skipped'] += 1
             audit['details']['skipped_tools'].append({
@@ -210,7 +246,7 @@ def sync_tools(scraped_tools, dry_run=False):
             logger.debug(f'  Junk name: {name}')
             continue
 
-        existing = find_existing(tool, by_id, by_name, by_url)
+        existing = find_existing(tool, by_id, by_name, by_url, by_domain)
 
         if existing:
             # Check if we should update
@@ -275,6 +311,9 @@ def sync_tools(scraped_tools, dry_run=False):
         by_name[name.lower().strip()] = record
         if record['url']:
             by_url[record['url'].lower().rstrip('/')] = record
+            domain = canonical_domain(record['url'])
+            if domain:
+                by_domain[domain] = record
 
     logger.info(f'New tools to insert: {len(new_tools)}')
     logger.info(f'Tools to update: {audit["updated"]}')
@@ -335,6 +374,57 @@ def save_scrape_report(audit, scraped_count, filename='last_scrape_report.json')
     with open(filename, 'w') as f:
         json.dump(report, f, indent=2)
     logger.info(f'Report saved to {filename}')
+
+
+# ─── Pipeline Runs Recording (audit Task 20) ───
+
+def start_pipeline_run(supabase):
+    """Insert a pipeline_runs row with status 'running'. Returns the run ID."""
+    try:
+        # Check if another run is already in progress
+        existing = supabase.table('pipeline_runs').select('id').eq('status', 'running').execute()
+        if existing.data:
+            logger.warning(f'Another pipeline run is already in progress (id={existing.data[0]["id"]}). Exiting.')
+            return None  # Signal caller to exit
+
+        result = supabase.table('pipeline_runs').insert({
+            'status': 'running',
+            'started_at': datetime.now(timezone.utc).isoformat(),
+        }).execute()
+        run_id = result.data[0]['id']
+        logger.info(f'Pipeline run started: {run_id}')
+        return run_id
+    except Exception as e:
+        logger.error(f'Failed to start pipeline run: {e}')
+        return 'skip'  # Non-fatal — continue without recording
+
+
+def complete_pipeline_run(supabase, run_id, audit, status='completed', error_message=None):
+    """Update the pipeline_runs row with final metrics."""
+    if not run_id or run_id == 'skip':
+        return
+    try:
+        update_data = {
+            'status': status,
+            'completed_at': datetime.now(timezone.utc).isoformat(),
+            'total_scraped': audit.get('total_scraped', 0),
+            'total_inserted': audit.get('inserted', 0),
+            'total_updated': audit.get('updated', 0),
+            'total_skipped': audit.get('skipped', 0),
+            'total_errors': len(audit.get('errors', [])),
+            'report': {
+                'source_stats': audit.get('source_stats', {}),
+                'degraded': audit.get('degraded', False),
+                'unmapped_categories': audit.get('unmapped_categories', []),
+            },
+        }
+        if error_message:
+            update_data['error_message'] = str(error_message)[:500]
+
+        supabase.table('pipeline_runs').update(update_data).eq('id', run_id).execute()
+        logger.info(f'Pipeline run {status}: {run_id}')
+    except Exception as e:
+        logger.error(f'Failed to update pipeline run: {e}')
 
 
 if __name__ == '__main__':

@@ -39,7 +39,7 @@ const Quiz = () => {
     const currentHistory = currentQuestion ? (quizHistory[currentQuestion.id] || {
         attempts: 0,
         status: 'unanswered',
-        selectedOption: '',
+        selectedOption: null,
         isLocked: false
     }) : null;
 
@@ -83,28 +83,12 @@ const Quiz = () => {
     };
 
     const handleCheck = () => {
-        if (!currentHistory.selectedOption) return;
+        if (currentHistory.selectedOption === '' || currentHistory.selectedOption === null) return;
 
-        const selectedOptObj = currentQuestion.options.find(opt => opt.text === currentHistory.selectedOption);
-        const isCorrect = selectedOptObj?.is_correct || false;
-
-        let newStatus = currentHistory.status;
-        let newIsLocked = currentHistory.isLocked;
+        // ponytail: server grades on final submit; client just locks the selection after 1 attempt
         let newAttempts = currentHistory.attempts + 1;
-
-        if (isCorrect) {
-            newStatus = 'correct';
-            newIsLocked = true;
-        } else {
-            // Incorrect Logic
-            if (newAttempts >= 2) {
-                newStatus = 'incorrect_final'; // 2nd fail -> Locked
-                newIsLocked = true;
-            } else {
-                newStatus = 'incorrect_retry'; // 1st fail -> Retry allowed
-                newIsLocked = false;
-            }
-        }
+        let newStatus = 'answered';
+        let newIsLocked = true;
 
         setQuizHistory(prev => ({
             ...prev,
@@ -329,10 +313,10 @@ const Quiz = () => {
                         <Typography variant="h5" sx={{ mb: 3 }}>{currentQuestion.question_text}</Typography>
 
                         <FormControl component="fieldset" fullWidth>
-                            <RadioGroup value={currentHistory.selectedOption} onChange={(e) => handleOptionSelect(e.target.value)}>
+                            <RadioGroup value={currentHistory.selectedOption} onChange={(e) => handleOptionSelect(parseInt(e.target.value))}>
                                 {currentQuestion.options.map((option, idx) => {
                                     // Visual State Logic
-                                    const isSelected = currentHistory.selectedOption === option.text;
+                                    const isSelected = currentHistory.selectedOption === option.id;
                                     let borderColor = isSelected ? '#1976d2' : 'transparent';
                                     let bgColor = 'inherit';
 
@@ -352,10 +336,10 @@ const Quiz = () => {
                                             border: `2px solid ${borderColor}`,
                                             bgcolor: bgColor,
                                             transition: 'all 0.2s',
-                                            opacity: (currentHistory.isLocked && !isSelected && !option.is_correct) ? 0.5 : 1
-                                        }} onClick={() => handleOptionSelect(option.text)}>
+                                            opacity: (currentHistory.isLocked && !isSelected) ? 0.5 : 1
+                                        }} onClick={() => !currentHistory.isLocked && handleOptionSelect(option.id)}>
                                             <FormControlLabel
-                                                value={option.text} control={<Radio />} label={option.text}
+                                                value={option.id} control={<Radio />} label={option.text}
                                                 sx={{ width: '100%', m: 0, p: 2 }}
                                             />
                                         </Paper>
@@ -372,7 +356,7 @@ const Quiz = () => {
                             </Button>
 
                             {!currentHistory.isLocked ? (
-                                <Button onClick={handleCheck} disabled={!currentHistory.selectedOption} fullWidth variant="contained" size="large">
+                                <Button onClick={handleCheck} disabled={currentHistory.selectedOption === null} fullWidth variant="contained" size="large">
                                     {currentHistory.status === 'incorrect_retry' ? 'Check Again' : 'Check Answer'}
                                 </Button>
                             ) : (

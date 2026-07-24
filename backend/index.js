@@ -1,12 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: ['https://aihubx.web.app', 'http://localhost:5173']
+}));
 app.use(express.json());
 
 // Shared middleware
@@ -14,8 +17,16 @@ const { authenticateUser, requireRole } = require('./middleware/auth');
 
 // ─── Route Mounts ───
 
+// Rate limit auth routes (audit S8)
+const authLimiter = rateLimit({
+    windowMs: 60 * 1000,
+    max: 10,
+    standardHeaders: true,
+    message: { error: 'Too many requests, please try again later', retryAfter: 60 }
+});
+
 // Auth (profile, signup, login, check-username)
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth', authLimiter, require('./routes/auth'));
 
 // Tools (CRUD, check-duplicate, isNew flag)
 app.use('/api/tools', require('./routes/tools'));
@@ -48,21 +59,7 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// DEBUG: Check Active Policies
-app.get('/api/debug/policies', async (req, res) => {
-    try {
-        const { supabase } = require('./supabaseClient');
-        const { data, error } = await supabase
-            .from('pg_policies')
-            .select('*')
-            .eq('tablename', 'profiles');
-
-        if (error) throw error;
-        res.json(data);
-    } catch (err) {
-        res.status(500).json({ error: err.message, hint: "Make sure you have access to pg_policies" });
-    }
-});
+// ponytail: debug endpoint removed — leaked DB policy metadata unauthenticated (audit S4)
 
 // Health check (alternate path)
 app.get('/health', (req, res) => {

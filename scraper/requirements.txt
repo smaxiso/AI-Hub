@@ -6,3 +6,4 @@ pytrends
 pydantic
 google-genai
 instructor
+tldextract

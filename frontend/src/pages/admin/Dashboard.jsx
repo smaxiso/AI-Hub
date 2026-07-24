@@ -128,8 +128,9 @@ const Dashboard = () => {
 
     const fetchTools = async () => {
         try {
-            const res = await fetch(`${API_URL}/tools`);
-            const data = await res.json();
+            const res = await fetch(`${API_URL}/tools?pageSize=1000`);
+            const json = await res.json();
+            const data = json.data || json; // Support paginated response
             setTools(data);
             setFilteredTools(data);
         } catch (err) {

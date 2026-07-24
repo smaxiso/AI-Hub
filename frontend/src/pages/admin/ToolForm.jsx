@@ -42,8 +42,9 @@ const ToolForm = ({ isEditing }) => {
 
     const fetchTool = async () => {
         try {
-            const res = await fetch(`${API_URL}/tools`);
-            const tools = await res.json();
+            const res = await fetch(`${API_URL}/tools?pageSize=1000`);
+            const json = await res.json();
+            const tools = json.data || json; // Support paginated response
             const tool = tools.find(t => t.id === id);
 
             if (tool) {

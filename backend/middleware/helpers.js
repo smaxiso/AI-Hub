@@ -56,4 +56,25 @@ async function checkLevelAccess(userId, moduleLevel) {
     return { allowed: true };
 }
 
-module.exports = { isToolNew, checkLevelAccess, LEVEL_ORDER };
+module.exports = { isToolNew, checkLevelAccess, LEVEL_ORDER, pick, parsePagination };
+
+/**
+ * Pick only allowed keys from an object (mass-assignment prevention).
+ */
+function pick(obj, keys) {
+    return keys.reduce((acc, k) => {
+        if (obj[k] !== undefined) acc[k] = obj[k];
+        return acc;
+    }, {});
+}
+
+/**
+ * Parse pagination params from request query. Returns { from, to, page, pageSize }.
+ */
+function parsePagination(req, defaultSize = 50, maxSize = 1000) {
+    const page = Math.max(1, parseInt(req.query.page) || 1);
+    const pageSize = Math.min(Math.max(1, parseInt(req.query.pageSize) || defaultSize), maxSize);
+    const from = (page - 1) * pageSize;
+    const to = from + pageSize - 1;
+    return { from, to, page, pageSize };
+}

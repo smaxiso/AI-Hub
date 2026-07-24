@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { supabase } = require('../supabaseClient');
 const { authenticateUser } = require('../middleware/auth');
+const { awardCertificationsForUser } = require('../middleware/certifications');
 
 // 10. GET /api/certifications - List all certifications (public, with user status if logged in)
 router.get('/', async (req, res) => {
@@ -121,92 +122,7 @@ router.get('/verify/:certNumber', async (req, res) => {
 router.post('/check', authenticateUser, async (req, res) => {
     try {
         const userId = req.user.id;
-        const awarded = [];
-
-        // Get all certifications
-        const { data: allCerts } = await supabase.from('certifications').select('*');
-        if (!allCerts) return res.json({ awarded: [] });
-
-        // Get user's already earned certifications
-        const { data: earnedCerts } = await supabase
-            .from('user_certifications')
-            .select('certification_id')
-            .eq('user_id', userId);
-        const earnedIds = new Set((earnedCerts || []).map(c => c.certification_id));
-
-        // Get all modules grouped by level
-        const { data: allModules } = await supabase
-            .from('learning_modules')
-            .select('id, level')
-            .eq('is_published', true);
-
-        // Get user's completions with scores
-        const { data: completions } = await supabase
-            .from('module_completions')
-            .select('module_id, quiz_score')
-            .eq('user_id', userId);
-
-        const completedIds = new Set((completions || []).map(c => c.module_id));
-
-        for (const cert of allCerts) {
-            if (earnedIds.has(cert.id)) continue; // already earned
-
-            const level = cert.requirements?.level;
-            if (!level) continue;
-
-            // Get modules for this level
-            const levelModules = (allModules || []).filter(m => m.level === level);
-            const requiredCount = cert.requirements?.modules_required || levelModules.length;
-
-            // Check if all modules in this level are completed
-            const completedLevelModules = levelModules.filter(m => completedIds.has(m.id));
-            if (completedLevelModules.length < requiredCount) continue;
-
-            // Calculate average score
-            const scores = completedLevelModules.map(m => {
-                const comp = (completions || []).find(c => c.module_id === m.id);
-                return comp?.quiz_score || 0;
-            });
-            const avgScore = scores.length > 0 ? Math.round((scores.reduce((a, b) => a + b, 0) / scores.length) * 100) / 100 : 0;
-
-            // Generate certificate number: AIHUBX-LEVEL-TIMESTAMP
-            const certNum = `AIHUBX-${level.toUpperCase()}-${Date.now().toString(36).toUpperCase()}`;
-
-            // Award certification
-            const { error: insertErr } = await supabase
-                .from('user_certifications')
-                .insert({
-                    user_id: userId,
-                    certification_id: cert.id,
-                    score_average: avgScore,
-                    certificate_number: certNum
-                });
-
-            if (!insertErr) {
-                // Add bonus points to user progress
-                const { data: progress } = await supabase
-                    .from('user_progress')
-                    .select('total_points')
-                    .eq('user_id', userId)
-                    .single();
-
-                if (progress) {
-                    await supabase
-                        .from('user_progress')
-                        .update({ total_points: progress.total_points + cert.points_awarded })
-                        .eq('user_id', userId);
-                }
-
-                awarded.push({
-                    name: cert.name,
-                    level: cert.level,
-                    points_awarded: cert.points_awarded,
-                    certificate_number: certNum,
-                    score_average: avgScore
-                });
-            }
-        }
-
+        const awarded = await awardCertificationsForUser(supabase, userId);
         res.json({ awarded });
     } catch (err) {
         console.error('Error checking certifications:', err);

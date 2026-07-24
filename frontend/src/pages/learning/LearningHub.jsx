@@ -120,7 +120,8 @@ const LearningHub = () => {
             setLoading(true);
             const res = await fetch(`${API_URL}/learning/modules?level=${selectedLevel}`);
             if (res.ok) {
-                const data = await res.json();
+                const json = await res.json();
+                const data = json.data || json; // Support paginated response
                 setModules(Array.isArray(data) ? data : []);
             } else {
                 console.error('Failed to fetch modules');

@@ -67,9 +67,10 @@ function Home() {
     const fetchTools = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/tools`);
+        const response = await fetch(`${API_URL}/tools?pageSize=1000`);
         if (!response.ok) throw new Error('Failed to fetch tools');
-        const data = await response.json();
+        const json = await response.json();
+        const data = json.data || json; // Support paginated { data: [...] } and legacy array
 
         // Map backend snake_case to frontend camelCase
         const mappedTools = data.map(tool => ({

@@ -6,13 +6,37 @@ Reads selectors from sources.json to scrape any configured site.
 import re
 import time
 import logging
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
+from urllib.robotparser import RobotFileParser
 
 from scrapling.fetchers import Fetcher, StealthyFetcher
 from config import CATEGORY_MAP, PRICING_MAP
 import requests
 
 logger = logging.getLogger(__name__)
+
+# robots.txt cache per domain (audit R7 compliance)
+_robots_cache = {}
+
+
+def check_robots(url, user_agent='*'):
+    """Check robots.txt for the given URL. Returns True if allowed."""
+    try:
+        parsed = urlparse(url)
+        base = f"{parsed.scheme}://{parsed.netloc}"
+        if base not in _robots_cache:
+            rp = RobotFileParser()
+            rp.set_url(f"{base}/robots.txt")
+            try:
+                rp.read()
+            except Exception:
+                _robots_cache[base] = None
+                return True  # If can't fetch robots.txt, allow
+            _robots_cache[base] = rp
+        rp = _robots_cache[base]
+        return rp.can_fetch(user_agent, url) if rp else True
+    except Exception:
+        return True
 
 FETCHERS = {
     'stealthy': StealthyFetcher,
@@ -25,12 +49,23 @@ def _first(elements):
     return elements[0] if elements else None
 
 
+_unmapped_categories = set()
+
+
 def normalize_category(raw_category):
     """Map an external category string to one of our 14 categories."""
     if not raw_category:
         return None
     key = raw_category.lower().strip().lstrip('#')
-    return CATEGORY_MAP.get(key)
+    mapped = CATEGORY_MAP.get(key)
+    if mapped is None and key:
+        _unmapped_categories.add(key)
+    return mapped
+
+
+def get_unmapped_categories():
+    """Return list of category keys that had no mapping (for report maintenance)."""
+    return sorted(_unmapped_categories)
 
 
 def normalize_pricing(raw_pricing):
@@ -69,6 +104,12 @@ def scrape_site(site_config):
         default_category = page_info.get('default_category', 'Chat')
 
         logger.info(f'[{name}] Scraping: {page_url}')
+
+        # robots.txt compliance check (audit R7)
+        if not check_robots(page_url):
+            logger.info(f'[{name}]   Skipped (robots.txt disallows): {page_url}')
+            continue
+
         try:
             page = fetcher_cls.fetch(page_url, headless=True, network_idle=True)
         except Exception as e:

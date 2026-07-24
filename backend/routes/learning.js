@@ -2,27 +2,36 @@ const express = require('express');
 const router = express.Router();
 const { supabase } = require('../supabaseClient');
 const { authenticateUser, requireRole } = require('../middleware/auth');
-const { checkLevelAccess } = require('../middleware/helpers');
+const { checkLevelAccess, pick, parsePagination } = require('../middleware/helpers');
+const { awardCertificationsForUser } = require('../middleware/certifications');
 
-// 1. GET /api/learning/modules - List modules (optionally by level)
+// 1. GET /api/learning/modules - List modules (optionally by level, paginated)
 router.get('/modules', async (req, res) => {
     try {
         const { level } = req.query;
+        const { from, to, page, pageSize } = parsePagination(req);
 
         let query = supabase
             .from('learning_modules')
-            .select('*')
+            .select('*', { count: 'exact' })
             .eq('is_published', true)
-            .order('order_index', { ascending: true });
+            .order('order_index', { ascending: true })
+            .range(from, to);
 
         if (level) {
             query = query.eq('level', level);
         }
 
-        const { data, error } = await query;
+        const { data, error, count } = await query;
 
         if (error) throw error;
-        res.json(data);
+        res.json({
+            data,
+            page,
+            pageSize,
+            total: count,
+            totalPages: Math.ceil((count || 0) / pageSize)
+        });
     } catch (err) {
         console.error('Error fetching modules:', err);
         res.status(500).json({ error: 'Failed to fetch modules' });
@@ -69,7 +78,8 @@ router.get('/level-status', authenticateUser, async (req, res) => {
                 status[level] = { unlocked: true, ...levelStats[level] };
             } else {
                 const prev = LEVEL_ORDER[i - 1];
-                const prevDone = levelStats[prev].total > 0 && levelStats[prev].completed >= levelStats[prev].total;
+                // ponytail: empty level = done (audit C7 fix — prevents permanent lockout)
+                const prevDone = levelStats[prev].total === 0 || levelStats[prev].completed >= levelStats[prev].total;
                 status[level] = { unlocked: prevDone, ...levelStats[level] };
             }
         }
@@ -123,7 +133,8 @@ router.get('/modules/:id', async (req, res) => {
 // 3. POST /api/learning/modules - Create module (Admin only)
 router.post('/modules', authenticateUser, requireRole(['owner', 'admin']), async (req, res) => {
     try {
-        const moduleData = req.body;
+        const MODULE_FIELDS = ['title', 'description', 'level', 'order_index', 'learning_objectives', 'tool_ids', 'prerequisites', 'estimated_duration_minutes', 'is_published'];
+        const moduleData = pick(req.body, MODULE_FIELDS);
 
         const { data, error } = await supabase
             .from('learning_modules')
@@ -161,11 +172,21 @@ router.get('/quiz/:moduleId', authenticateUser, async (req, res) => {
 
         if (error) throw error;
 
-        // Randomly select questions
-        const shuffled = allQuestions.sort(() => 0.5 - Math.random());
+        // Randomly select questions (Fisher-Yates shuffle)
+        const shuffled = [...allQuestions];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
         const selected = shuffled.slice(0, Math.min(count, allQuestions.length));
 
-        res.json(selected);
+        // Strip is_correct from options — client gets { text, id } only
+        const sanitized = selected.map(q => ({
+            ...q,
+            options: q.options.map((opt, idx) => ({ text: opt.text, id: idx }))
+        }));
+
+        res.json(sanitized);
     } catch (err) {
         console.error('Error fetching quiz:', err);
         res.status(500).json({ error: 'Failed to fetch quiz' });
@@ -178,6 +199,11 @@ router.post('/quiz/:moduleId/submit', authenticateUser, async (req, res) => {
         const { moduleId } = req.params;
         const { answers } = req.body; // [{question_id, selected_option}]
         const userId = req.user.id;
+
+        // Input validation (audit C1)
+        if (!Array.isArray(answers) || answers.length === 0) {
+            return res.status(400).json({ error: 'answers must be a non-empty array' });
+        }
 
         // Level gating
         const { data: mod } = await supabase.from('learning_modules').select('level').eq('id', moduleId).single();
@@ -195,28 +221,29 @@ router.post('/quiz/:moduleId/submit', authenticateUser, async (req, res) => {
 
         if (questionsError) throw questionsError;
 
-        // Score the quiz
+        // Score the quiz — match by option index, guard null (audit C2, C3)
         let correctCount = 0;
         const detailedResults = answers.map(answer => {
             const question = questions.find(q => q.id === answer.question_id);
             if (!question) return null;
 
-            const correctOption = question.options.find(opt => opt.is_correct);
-            const isCorrect = answer.selected_option === correctOption.text;
+            const correctIndex = question.options.findIndex(opt => opt.is_correct);
+            const correctOption = correctIndex >= 0 ? question.options[correctIndex] : null;
+            const isCorrect = correctOption ? answer.selected_option === correctIndex : false;
 
             if (isCorrect) correctCount++;
 
             return {
                 question_id: answer.question_id,
                 selected_option: answer.selected_option,
-                correct_option: correctOption.text,
+                correct_option: correctIndex,
                 is_correct: isCorrect,
-                explanation: question.explanation,
+                explanation: question.explanation || '',
                 topic_tag: question.topic_tag
             };
-        });
+        }).filter(Boolean);
 
-        const score = Math.round((correctCount / answers.length) * 100);
+        const score = Math.round((correctCount / detailedResults.length) * 100);
         const passed = score >= 90; // 90% passing threshold
 
         // Get failed topics for recommendations
@@ -243,7 +270,7 @@ router.post('/quiz/:moduleId/submit', authenticateUser, async (req, res) => {
 
         // --- If Passed, Mark Module as Complete ---
         if (passed) {
-            // Check if already completed
+            // Check if already completed (UNIQUE constraint is the ultimate guard)
             const { data: existingCompletion } = await supabase
                 .from('module_completions')
                 .select('id')
@@ -253,111 +280,44 @@ router.post('/quiz/:moduleId/submit', authenticateUser, async (req, res) => {
 
             if (!existingCompletion) {
                 // Record Completion
-                await supabase
+                const { error: compErr } = await supabase
                     .from('module_completions')
                     .insert([{
                         user_id: userId,
                         module_id: moduleId,
                         completion_type: 'quiz',
                         quiz_score: score,
-                        time_spent_minutes: 15 // Estimate or track later
+                        time_spent_minutes: 15
                     }]);
 
-                // Update User Progress (Points + List)
-                const { data: userProg } = await supabase
-                    .from('user_progress')
-                    .select('*')
-                    .eq('user_id', userId)
-                    .single();
+                // 23505 = already exists (race condition) — fine
+                if (!compErr || compErr.code === '23505') {
+                    // Atomic points increment (audit C4 fix)
+                    await supabase.rpc('increment_points', { p_user_id: userId, p_points: 50 });
 
-                if (userProg) {
-                    const alreadyListed = userProg.completed_modules?.includes(moduleId);
-                    const updatedModules = alreadyListed
-                        ? (userProg.completed_modules || [])
-                        : [...(userProg.completed_modules || []), moduleId];
-
-                    const newPoints = userProg.total_points + 50; // 50 pts for Quiz pass
-
-                    await supabase
+                    // Update completed_modules array
+                    const { data: userProg } = await supabase
                         .from('user_progress')
-                        .update({
-                            completed_modules: updatedModules,
-                            total_points: newPoints
-                        })
-                        .eq('user_id', userId);
+                        .select('completed_modules')
+                        .eq('user_id', userId)
+                        .single();
+
+                    if (userProg && !userProg.completed_modules?.includes(moduleId)) {
+                        await supabase
+                            .from('user_progress')
+                            .update({ completed_modules: [...(userProg.completed_modules || []), moduleId] })
+                            .eq('user_id', userId);
+                    }
                 }
             }
         }
 
-        // --- AUTO-CHECK CERTIFICATIONS ---
+        // --- AUTO-CHECK CERTIFICATIONS (consolidated helper) ---
         let newCertification = null;
         if (passed) {
-            try {
-                // Get the module's level
-                const { data: thisModule } = await supabase
-                    .from('learning_modules')
-                    .select('level')
-                    .eq('id', moduleId)
-                    .single();
-
-                if (thisModule) {
-                    // Check if there's a certification for this level that user hasn't earned
-                    const { data: cert } = await supabase
-                        .from('certifications')
-                        .select('*')
-                        .eq('level', thisModule.level)
-                        .single();
-
-                    if (cert) {
-                        const { data: alreadyEarned } = await supabase
-                            .from('user_certifications')
-                            .select('id')
-                            .eq('user_id', userId)
-                            .eq('certification_id', cert.id)
-                            .maybeSingle();
-
-                        if (!alreadyEarned) {
-                            // Check if all modules in this level are now completed
-                            const { data: levelModules } = await supabase
-                                .from('learning_modules')
-                                .select('id')
-                                .eq('level', thisModule.level)
-                                .eq('is_published', true);
-
-                            const { data: userCompletions } = await supabase
-                                .from('module_completions')
-                                .select('module_id, quiz_score')
-                                .eq('user_id', userId);
-
-                            const completedIds = new Set((userCompletions || []).map(c => c.module_id));
-                            const allComplete = (levelModules || []).every(m => completedIds.has(m.id));
-
-                            if (allComplete) {
-                                const scores = (levelModules || []).map(m => {
-                                    const comp = (userCompletions || []).find(c => c.module_id === m.id);
-                                    return comp?.quiz_score || 0;
-                                });
-                                const avgScore = Math.round((scores.reduce((a, b) => a + b, 0) / scores.length) * 100) / 100;
-                                const certNum = `AIHUBX-${thisModule.level.toUpperCase()}-${Date.now().toString(36).toUpperCase()}`;
-
-                                const { error: certErr } = await supabase
-                                    .from('user_certifications')
-                                    .insert({ user_id: userId, certification_id: cert.id, score_average: avgScore, certificate_number: certNum });
-
-                                if (!certErr) {
-                                    // Add bonus points
-                                    const { data: prog } = await supabase.from('user_progress').select('total_points').eq('user_id', userId).single();
-                                    if (prog) {
-                                        await supabase.from('user_progress').update({ total_points: prog.total_points + cert.points_awarded }).eq('user_id', userId);
-                                    }
-                                    newCertification = { name: cert.name, level: cert.level, points_awarded: cert.points_awarded, certificate_number: certNum };
-                                }
-                            }
-                        }
-                    }
-                }
-            } catch (certCheckErr) {
-                console.error('Certification auto-check error (non-fatal):', certCheckErr.message);
+            const awarded = await awardCertificationsForUser(supabase, userId);
+            if (awarded.length > 0) {
+                newCertification = awarded[0];
             }
         }
 
@@ -425,39 +385,40 @@ router.get('/progress', authenticateUser, async (req, res) => {
     }
 });
 
-// 7. POST /api/learning/complete/:moduleId - Mark module as complete
+// 7. POST /api/learning/complete/:moduleId - Mark module as complete (reading-only; quiz completions go through quiz-submit)
 router.post('/complete/:moduleId', authenticateUser, async (req, res) => {
     try {
         const { moduleId } = req.params;
-        const { completion_type, quiz_score, time_spent_minutes } = req.body;
+        const { completion_type, time_spent_minutes } = pick(req.body, ['completion_type', 'time_spent_minutes']);
         const userId = req.user.id;
 
-        // Check if already completed
-        const { data: existing } = await supabase
-            .from('module_completions')
-            .select('*')
-            .eq('user_id', userId)
-            .eq('module_id', moduleId)
-            .single();
-
-        if (existing) {
-            return res.status(400).json({ error: 'Module already completed' });
+        // Quiz completions must go through the graded quiz-submit path (audit S2)
+        if (completion_type === 'quiz') {
+            return res.status(400).json({ error: 'Quiz completions must be submitted via /quiz/:moduleId/submit' });
         }
 
-        // Insert completion
+        // Insert completion — UNIQUE constraint prevents duplicates
         const { data: completion, error: completionError } = await supabase
             .from('module_completions')
             .insert([{
                 user_id: userId,
                 module_id: moduleId,
-                completion_type,
-                quiz_score,
-                time_spent_minutes
+                completion_type: completion_type || 'reading',
+                time_spent_minutes: time_spent_minutes || 0
             }])
             .select()
             .single();
 
-        if (completionError) throw completionError;
+        if (completionError) {
+            // UNIQUE violation = already completed
+            if (completionError.code === '23505') {
+                return res.status(400).json({ error: 'Module already completed' });
+            }
+            throw completionError;
+        }
+
+        // Fixed points for reading completions (not client-supplied)
+        const points = 25;
 
         // Update user progress
         const { data: progress } = await supabase
@@ -468,18 +429,15 @@ router.post('/complete/:moduleId', authenticateUser, async (req, res) => {
 
         if (progress) {
             const updatedModules = [...(progress.completed_modules || []), moduleId];
-            const points = progress.total_points + (completion_type === 'quiz' ? (quiz_score >= 90 ? 50 : 20) : 25);
-
             await supabase
                 .from('user_progress')
                 .update({
                     completed_modules: updatedModules,
-                    total_points: points
+                    total_points: progress.total_points + points
                 })
                 .eq('user_id', userId);
 
-            // --- GAMIFICATION CHECK ---
-            // Check for 'First Step' (1 module)
+            // Gamification: 'First Step' badge
             if (updatedModules.length === 1) {
                 const { data: achievement } = await supabase.from('achievements').select('id').eq('name', 'First Step').single();
                 if (achievement) {

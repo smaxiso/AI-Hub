@@ -9,6 +9,9 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    concurrency:
+      group: scraper-pipeline
+      cancel-in-progress: false
     defaults:
       run:
         working-directory: scraper

@@ -23,9 +23,9 @@ from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from config import load_sources
-from scrapers import scrape_site, enrich_tool_details
+from scrapers import scrape_site, enrich_tool_details, get_unmapped_categories
 from api_sources import API_SOURCES
-from sync import sync_tools, save_scrape_report
+from sync import sync_tools, save_scrape_report, get_supabase, start_pipeline_run, complete_pipeline_run
 
 logging.basicConfig(
     level=logging.INFO,
@@ -68,11 +68,24 @@ def main():
     parser.add_argument('--config', type=str, default=None, help='Path to sources.json config file')
     parser.add_argument('--workers', type=int, default=DEFAULT_WORKERS, help=f'Parallel threads (default: {DEFAULT_WORKERS})')
     parser.add_argument('--no-apis', action='store_true', help='Skip API sources (Reddit, GitHub, Trends)')
+    parser.add_argument('--classify', action='store_true', help='Run LLM classification on new tools after scraping (requires GEMINI_API_KEY)')
     args = parser.parse_args()
 
     start = datetime.now(timezone.utc)
     logger.info(f'=== TheAIHubX Scraper — {start.strftime("%Y-%m-%d %H:%M UTC")} ===')
     logger.info(f'Workers: {args.workers} threads')
+
+    # Start pipeline run recording (audit Task 20)
+    run_id = None
+    try:
+        sb = get_supabase()
+        run_id = start_pipeline_run(sb)
+        if run_id is None:
+            # Another run is in progress — exit early
+            return 0
+    except Exception as e:
+        logger.warning(f'Pipeline run recording unavailable: {e}')
+        run_id = 'skip'
 
     # ── Load website sources from JSON config ──
     try:
@@ -134,6 +147,13 @@ def main():
 
     logger.info(f'\nTotal scraped across all sources: {len(all_tools)}')
 
+    # Source rot detection (audit D5): warn if >50% sources yield 0
+    zero_count = sum(1 for s in source_stats.values() if s['count'] == 0 and not s['error'])
+    total_sources = len(source_stats)
+    degraded = total_sources > 0 and zero_count > total_sources * 0.5
+    if degraded:
+        logger.warning(f'⚠️  RUN DEGRADED: {zero_count}/{total_sources} sources yielded 0 tools')
+
     # ── Optional enrichment pass (parallel too) ──
     if args.enrich and all_tools:
         logger.info('\n── Enriching tool details ──')
@@ -168,13 +188,27 @@ def main():
 
         # Save report
         report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'last_scrape_report.json')
+        audit['source_stats'] = source_stats
+        audit['degraded'] = degraded
+        audit['unmapped_categories'] = get_unmapped_categories()
         save_scrape_report(audit, len(all_tools), filename=report_path)
 
         if audit['errors']:
             for err in audit['errors']:
                 logger.error(f'  ✗ {err}')
+
+        # Complete pipeline run recording
+        audit['total_scraped'] = len(all_tools)
+        try:
+            complete_pipeline_run(sb, run_id, audit, status='degraded' if degraded else 'completed')
+        except Exception:
+            pass
     else:
         logger.info('No tools scraped. Nothing to sync.')
+        try:
+            complete_pipeline_run(sb, run_id, {'inserted': 0, 'updated': 0, 'skipped': 0, 'errors': [], 'total_scraped': 0}, status='completed')
+        except Exception:
+            pass
 
     return 0
 

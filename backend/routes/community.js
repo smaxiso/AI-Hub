@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { supabase } = require('../supabaseClient');
+const { requireRole } = require('../middleware/auth');
+const { parsePagination } = require('../middleware/helpers');
 
-// Middleware to check if user is authenticated is applied globally or can be applied here
-// Assuming req.user is populated by auth middleware
+// Note: authenticateUser is applied at mount level in index.js
 
-// POST /api/community/suggest - Create a new suggestion
+// POST /api/community/suggest - Create a new suggestion (any authenticated user)
 router.post('/suggest', async (req, res) => {
     try {
         const { type, content } = req.body;
@@ -30,50 +31,37 @@ router.post('/suggest', async (req, res) => {
     }
 });
 
-// GET /api/community/suggestions - List suggestions (Admin only)
-router.get('/suggestions', async (req, res) => {
+// GET /api/community/suggestions - List suggestions (Owner/Admin only, paginated)
+router.get('/suggestions', requireRole(['owner', 'admin']), async (req, res) => {
     try {
-        // Double check admin role if not done by middleware
-        const { data: profile } = await supabase
-            .from('profiles')
-            .select('role')
-            .eq('id', req.user.id)
-            .single();
+        const { from, to, page, pageSize } = parsePagination(req);
 
-        if (profile?.role !== 'owner') {
-            return res.status(403).json({ error: 'Unauthorized' });
-        }
-
-        const { data, error } = await supabase
+        const { data, error, count } = await supabase
             .from('community_suggestions')
-            .select('*, profiles(username, full_name)')
-            .order('created_at', { ascending: false });
+            .select('*, profiles(username, full_name)', { count: 'exact' })
+            .order('created_at', { ascending: false })
+            .range(from, to);
 
         if (error) throw error;
 
-        res.json(data);
+        res.json({
+            data,
+            page,
+            pageSize,
+            total: count,
+            totalPages: Math.ceil((count || 0) / pageSize)
+        });
     } catch (error) {
         console.error('Error fetching suggestions:', error);
         res.status(500).json({ error: 'Failed to fetch suggestions' });
     }
 });
 
-// PUT /api/community/suggestions/:id/status - Update status (Admin only)
-router.put('/suggestions/:id/status', async (req, res) => {
+// PUT /api/community/suggestions/:id/status - Update status (Owner/Admin only)
+router.put('/suggestions/:id/status', requireRole(['owner', 'admin']), async (req, res) => {
     try {
         const { status } = req.body;
         const { id } = req.params;
-
-        // Double check admin role
-        const { data: profile } = await supabase
-            .from('profiles')
-            .select('role')
-            .eq('id', req.user.id)
-            .single();
-
-        if (profile?.role !== 'owner') {
-            return res.status(403).json({ error: 'Unauthorized' });
-        }
 
         if (!['pending', 'approved', 'rejected'].includes(status)) {
             return res.status(400).json({ error: 'Invalid status' });
@@ -96,21 +84,10 @@ router.put('/suggestions/:id/status', async (req, res) => {
     }
 });
 
-// DELETE /api/community/suggestions/:id - Delete suggestion (Admin only)
-router.delete('/suggestions/:id', async (req, res) => {
+// DELETE /api/community/suggestions/:id - Delete suggestion (Owner/Admin only)
+router.delete('/suggestions/:id', requireRole(['owner', 'admin']), async (req, res) => {
     try {
         const { id } = req.params;
-
-        // Double check admin role
-        const { data: profile } = await supabase
-            .from('profiles')
-            .select('role')
-            .eq('id', req.user.id)
-            .single();
-
-        if (profile?.role !== 'owner') {
-            return res.status(403).json({ error: 'Unauthorized' });
-        }
 
         const { error } = await supabase
             .from('community_suggestions')

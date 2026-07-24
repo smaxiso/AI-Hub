@@ -542,7 +542,7 @@ def scrape_google_trends():
 # ─────────────────────────────────────────────
 
 API_SOURCES = {
-    'reddit': scrape_reddit,
+    # 'reddit': scrape_reddit,  # Disabled: public JSON API returns 403 since 2024. Needs OAuth (PRAW) to restore.
     'github': scrape_github_trending,
     'google-trends': scrape_google_trends,
 }
