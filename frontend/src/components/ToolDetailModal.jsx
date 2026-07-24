@@ -145,6 +145,8 @@ const ToolDetailModal = ({ tool = null, aiTools = [], open, onClose, onFavorite,
                   <img
                     src={tool.icon}
                     alt={tool.name}
+                    width={60}
+                    height={60}
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                       e.currentTarget.nextElementSibling.style.display = 'flex';
@@ -417,7 +419,7 @@ const ToolDetailModal = ({ tool = null, aiTools = [], open, onClose, onFavorite,
                 <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
                   {tool.useCases.map((useCase, index) => (
                     <motion.div
-                      key={index}
+                      key={useCase || index}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -476,7 +478,7 @@ const ToolDetailModal = ({ tool = null, aiTools = [], open, onClose, onFavorite,
                 <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
                   {tool.tags.map((tag, index) => (
                     <motion.div
-                      key={index}
+                      key={tag || index}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -619,6 +621,8 @@ const ToolDetailModal = ({ tool = null, aiTools = [], open, onClose, onFavorite,
                             <img
                               src={similarTool.icon}
                               alt={similarTool.name}
+                              width={40}
+                              height={40}
                               style={{
                                 width: '40px',
                                 height: '40px',

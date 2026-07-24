@@ -261,7 +261,7 @@ const Collections = ({ tools, onCollectionSelect }) => {
             variant="outlined"
             value={newCollectionName}
             onChange={(e) => setNewCollectionName(e.target.value)}
-            onKeyPress={(e) => {
+            onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 createCollection();
               }

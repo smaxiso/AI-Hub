@@ -50,7 +50,7 @@ const ToolCard = ({ tool, onFavorite = undefined, isFavorite = false, onClick = 
         role="article"
         aria-label={`${tool.name} - ${tool.category} tool`}
         onClick={handleClick}
-        onKeyPress={(e) => {
+        onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             handleClick(e);

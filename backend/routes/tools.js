@@ -97,6 +97,13 @@ router.get('/:id/related', async (req, res) => {
 router.post('/', authenticateUser, requireRole(['owner', 'admin']), async (req, res) => {
     const { id, name, url, category, categories, description, tags, pricing, icon, use_cases, added_date } = req.body;
 
+    if (!name || !name.trim()) {
+        return res.status(400).json({ error: 'Tool name is required' });
+    }
+    if (!url || !url.trim()) {
+        return res.status(400).json({ error: 'Tool URL is required' });
+    }
+
     // Auto-generate ID if not provided (simple slugify)
     const toolId = id || name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     const addedDate = added_date || new Date().toISOString().split('T')[0];

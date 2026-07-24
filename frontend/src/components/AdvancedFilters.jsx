@@ -162,7 +162,7 @@ const AdvancedFilters = ({
                   aria-label={`${selectedTags.includes(tag) ? 'Remove' : 'Add'} ${tag} tag filter`}
                   role="button"
                   tabIndex={0}
-                  onKeyPress={(e) => {
+                  onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       onTagToggle(tag);

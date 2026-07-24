@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
             return profileFetchPromise.current;
         }
 
-        console.log(`AuthContext: fetchUserProfile called for ${userId}`);
+
 
         profileFetchPromise.current = (async () => {
             try {
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
                 if (res.ok) {
                     const profile = await res.json();
                     if (profile) {
-                        console.log('AuthContext: Background Profile Update', profile.role);
+
                         setUser(currentUser => {
                             // Deep compare to prevent re-render if identical
                             if (currentUser?.profile?.updated_at === profile.updated_at &&
@@ -115,12 +115,12 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-            console.log('AuthContext: Auth change event', event);
+
             setSession(session); // Update session state
 
             if (session?.user) {
                 // 1. OPTIMISTIC LOGIN: Show UI Immediately
-                console.log('AuthContext: Optimistic Login (Immediate)');
+
                 setUser(prev => prev?.id === session.user.id ? prev : { ...session.user, role: 'authenticated' });
                 setLoading(false);
 
@@ -128,7 +128,7 @@ export const AuthProvider = ({ children }) => {
                 fetchUserProfile(session.user.id);
 
             } else {
-                console.log('AuthContext: No session');
+
                 setUser(null);
                 setLoading(false);
             }

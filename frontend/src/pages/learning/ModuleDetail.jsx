@@ -434,7 +434,18 @@ const ModuleDetail = () => {
         );
     }
 
-    if (!module) return null;
+    if (!module) return (
+        <Box sx={{ minHeight: '100vh', bgcolor: '#ffffff', py: 4 }}>
+            <Header />
+            <Container maxWidth="md" sx={{ textAlign: 'center', py: 8 }}>
+                <Typography variant="h5" gutterBottom>Module not found</Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+                    This module may have been removed or is not yet published.
+                </Typography>
+                <Button variant="contained" onClick={() => navigate('/learning')}>Back to Learning Hub</Button>
+            </Container>
+        </Box>
+    );
 
     return (
         <Box sx={{ minHeight: '100vh', bgcolor: '#ffffff', pb: 10 }}>

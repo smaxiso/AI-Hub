@@ -165,7 +165,7 @@ const Login = () => {
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <IconButton
-                                        onClick={() => setShowPassword(!showPassword)}
+                                        aria-label="Toggle password visibility" onClick={() => setShowPassword(!showPassword)}
                                         edge="end"
                                         sx={{ color: '#ccc' }}
                                     >

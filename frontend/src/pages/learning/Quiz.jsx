@@ -22,6 +22,7 @@ const Quiz = () => {
     // Core Data
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [fetchError, setFetchError] = useState(null);
 
     // Quiz State
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -49,14 +50,20 @@ const Quiz = () => {
 
     const fetchQuiz = async () => {
         try {
+            setFetchError(null);
             const { data: { session } } = await supabase.auth.getSession();
             const res = await fetch(`${API_URL}/learning/quiz/${moduleId}?count=10`, {
                 headers: { 'Authorization': `Bearer ${session.access_token}` }
             });
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                throw new Error(err.error || 'Failed to load quiz');
+            }
             const data = await res.json();
             setQuestions(data);
         } catch (err) {
             console.error('Error fetching quiz:', err);
+            setFetchError(err.message || 'Failed to load quiz. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -197,6 +204,23 @@ const Quiz = () => {
             <Container maxWidth="md" sx={{ py: 4, textAlign: 'center' }}>
                 <Typography>Loading quiz...</Typography>
             </Container>
+        );
+    }
+
+    if (fetchError) {
+        return (
+            <Box sx={{ minHeight: '100vh', bgcolor: '#f5f5f5', py: 4 }}>
+                <Header />
+                <Container maxWidth="md">
+                    <Paper sx={{ p: 4, textAlign: 'center' }}>
+                        <Typography variant="h6" color="error" gutterBottom>{fetchError}</Typography>
+                        <Button variant="contained" onClick={() => { setLoading(true); fetchQuiz(); }} sx={{ mr: 2 }}>
+                            Retry
+                        </Button>
+                        <Button variant="outlined" onClick={() => navigate(-1)}>Go Back</Button>
+                    </Paper>
+                </Container>
+            </Box>
         );
     }
 

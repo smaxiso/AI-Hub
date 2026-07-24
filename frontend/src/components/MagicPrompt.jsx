@@ -103,7 +103,7 @@ const MagicPrompt = ({ onClose }) => {
             Magic Prompt
           </Typography>
         </Box>
-        <IconButton onClick={onClose} sx={{ background: isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
+        <IconButton aria-label="Close" onClick={onClose} sx={{ background: isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
           <CloseIcon />
         </IconButton>
       </Box>

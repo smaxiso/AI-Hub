@@ -28,6 +28,13 @@ router.get('/profile', authenticateUser, async (req, res) => {
 router.post('/signup', async (req, res) => {
     const { email, password, full_name, username } = req.body;
 
+    if (!email || !password || !full_name || !username) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+    if (password.length < 6) {
+        return res.status(400).json({ error: 'Password must be at least 6 characters' });
+    }
+
     let authId = null;
 
     try {
@@ -78,6 +85,10 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
     const { identifier, password } = req.body;
 
+    if (!identifier || !password) {
+        return res.status(400).json({ error: 'Email/username and password are required' });
+    }
+
     try {
         let email = identifier;
 
@@ -115,6 +126,13 @@ router.post('/login', async (req, res) => {
 // POST /api/auth/signup-learner - Public Learner Signup Endpoint (Auto-approved)
 router.post('/signup-learner', async (req, res) => {
     const { email, password, full_name, username } = req.body;
+
+    if (!email || !password || !full_name || !username) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+    if (password.length < 6) {
+        return res.status(400).json({ error: 'Password must be at least 6 characters' });
+    }
 
     let authId = null;
 

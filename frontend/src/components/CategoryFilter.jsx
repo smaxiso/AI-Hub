@@ -58,7 +58,7 @@ const CategoryFilter = ({ categories, selected, onChange }) => {
               aria-label={`Filter by ${category} category`}
               role="button"
               tabIndex={0}
-              onKeyPress={(e) => {
+              onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
                   onChange(category);

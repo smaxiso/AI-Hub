@@ -15,6 +15,9 @@ router.post('/suggest', async (req, res) => {
         if (!['tool', 'quiz_question', 'feedback'].includes(type)) {
             return res.status(400).json({ error: 'Invalid type' });
         }
+        if (!content || (typeof content === 'object' && Object.keys(content).length === 0)) {
+            return res.status(400).json({ error: 'Content is required' });
+        }
 
         const { data, error } = await supabase
             .from('community_suggestions')

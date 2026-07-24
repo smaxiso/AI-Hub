@@ -92,7 +92,7 @@ const ResetPassword = () => {
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
-                                            <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                                            <IconButton aria-label="Toggle password visibility" onClick={() => setShowPassword(!showPassword)} edge="end">
                                                 {showPassword ? <VisibilityOff /> : <Visibility />}
                                             </IconButton>
                                         </InputAdornment>
